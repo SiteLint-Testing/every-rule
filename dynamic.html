@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic content</title>
+    <script>
+        (function(w,d,s,a,m,t) {
+          a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';
+        
+          function onPageLoaded() {
+            w.clearTimeout(t);
+            w.removeEventListener('DOMContentLoaded', onPageLoaded);
+            m.parentNode.insertBefore(a, m);
+          }
+          
+          function onAuditorLoaded(){
+            auditor.config({
+              includeHidden: false,
+              stripTextFromReport: false,
+              watchDomChanges: true
+            }).run();
+          }
+        
+          a.addEventListener('load', onAuditorLoaded);
+        
+          if (d.readyState !== 'loading') {
+            onPageLoaded();
+            return;
+          }
+        
+          w.addEventListener('DOMContentLoaded', onPageLoaded);
+        })(window, document, 'script');
+        </script>
+    <style>
+        .content {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dynamic content</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section aria-labelledby="dynamic-content-heading">
+            <h2 id="dynamic-content-heading">Interactive Section</h2>
+            <p>Click the button below to display dynamic content:</p>
+            <button onclick="displayDynamicContent()">Show Content</button>
+            <div id="dynamic-content" class="content" aria-live="polite" style="display: none;">
+                <p>This content was dynamically loaded based on your interaction!</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Example Company</p>
+    </footer>
+
+    <script>
+        function displayDynamicContent() {
+            const contentDiv = document.getElementById('dynamic-content');
+            contentDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
