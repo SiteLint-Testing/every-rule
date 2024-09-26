@@ -4,34 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic content</title>
-    <script>
-        (function(w,d,s,a,m,t) {
-          a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';
-        
-          function onPageLoaded() {
-            w.clearTimeout(t);
-            w.removeEventListener('DOMContentLoaded', onPageLoaded);
-            m.parentNode.insertBefore(a, m);
-          }
-          
-          function onAuditorLoaded(){
-            auditor.config({
-              includeHidden: false,
-              stripTextFromReport: false,
-              watchDomChanges: true
-            }).run();
-          }
-        
-          a.addEventListener('load', onAuditorLoaded);
-        
-          if (d.readyState !== 'loading') {
-            onPageLoaded();
-            return;
-          }
-        
-          w.addEventListener('DOMContentLoaded', onPageLoaded);
-        })(window, document, 'script');
-        </script>
     <style>
         .content {
             margin: 20px;
@@ -43,25 +15,20 @@
 </head>
 <body>
     <header>
+        <h1>Dynamic Content with Dropdown and Multiple Buttons</h1>
+    </header>
 
-        <label for="append-checkbox">Show sidebar</label>
-        <input type="checkbox" id="append-checkbox">
-        
-        <label for="page-select">Navigate to a SiteLint violation example:</label>
-        <select id="page-select" onchange="navigateToPage()">
+    <!-- Checkbox and Dropdown Menu -->
+    <label for="append-checkbox">Show sidebar</label>
+    <input type="checkbox" id="append-checkbox">
+    
+    <label for="page-select">Navigate to a SiteLint violation example:</label>
+    <select id="page-select" onchange="navigateToPage()">
         <option value="index.html">Choose a page:</option>
-            <option value="https://docs.google.com/spreadsheets/d/1p4zejQ4g_Hfiz_ine9-EwUppILYmX9msd9SwGlHSvgA/edit?gid=863730017#gid=863730017">
-                View the SiteLint Google spreadsheet
-            </option>
-            <option value="https://www.sitelint.com/docs/accessibility">
-                View the full list of SiteLint rules
-            </option>
-            <option value="https://sitelint-testing.github.io/axe-dev-tools/">
-                Switch to the axe Dev Tools testing suite
-            </option>
-            <option value="https://sitelint-testing.github.io/arc-toolkit/">
-                Switch to the ARC Toolkit testing suite
-            </option>
+        <option value="https://docs.google.com/spreadsheets/d/1p4zejQ4g_Hfiz_ine9-EwUppILYmX9msd9SwGlHSvgA/edit?gid=863730017#gid=863730017">View the SiteLint Google spreadsheet</option>
+        <option value="https://www.sitelint.com/docs/accessibility">View the full list of SiteLint rules</option>
+        <option value="https://sitelint-testing.github.io/axe-dev-tools/">Switch to the axe Dev Tools testing suite</option>
+        <option value="https://sitelint-testing.github.io/arc-toolkit/">Switch to the ARC Toolkit testing suite</option>
         <option value="accessible-name-mismatch-element-description.html">1. accessible name mismatch element description</option>
         <option value="alt-color-convey-information.html">2. alt color convey information</option>
         <option value="alt-text-filename.html">3. alt text filename</option>
@@ -171,69 +138,61 @@
         <option value="unclear-page-title.html">107. unclear page title</option>
         <option value="unsupported-role-on-element.html">108. unsupported role on element</option>
         <option value="video-audio-descriptions.html">109. video audio descriptions</option>
-                    <option value="zoom-disabled.html">115. zoom disabled</option>
-                </select>
-        
-        
-        
-        <script>
-            function navigateToPage() {
-                var select = document.getElementById("page-select");
-                var checkbox = document.getElementById("append-checkbox");
-                var selectedValue = select.options[select.selectedIndex].value;
-                var parameter = '?sitelint=%5B%7B%22ui%22%3A%22full%22%7D%5D';
-        
-                if (checkbox.checked) {
-                    selectedValue += parameter;
-                }
-        
-                if (selectedValue !== "index.html") {
-            window.open(selectedValue, '_blank');
-        } else {
-            window.location.href = selectedValue;
-        }
-            }
-        </script>
+        <option value="zoom-disabled.html">110. zoom disabled</option>
+            </select>
 
-        <h1>Dynamic content</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-        </ul>
-    </nav>
-    <main>
-        <section aria-labelledby="dynamic-content-heading">
-            <h2 id="dynamic-content-heading">Interactive Section</h2>
-            <p>Click the button below to display dynamic content:</p>
-            <button onclick="loadExternalContent()">Show Content</button>
-            <div id="dynamic-content" class="content" aria-live="polite" style="display: none;">
-                <p>This content will be dynamically loaded from an external page.</p>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Example Company</p>
-    </footer>
+    <section>
+        <h2>Dynamic Content Examples</h2>
+        
+        <!-- Button for dynamic content loading -->
+        <button onclick="loadExternalContent('https://sitelint-testing.github.io/every-rule/alt-text-filename.html', 'dynamic-content-1')">Show Alt Text Filename</button>
+        <div id="dynamic-content-1" class="content" style="display: none;"></div>
+
+        <button onclick="loadExternalContent('https://sitelint-testing.github.io/every-rule/aria-attribute-conflict.html', 'dynamic-content-2')">Show ARIA Attribute Conflict</button>
+        <div id="dynamic-content-2" class="content" style="display: none;"></div>
+
+        <button onclick="loadExternalContent('https://sitelint-testing.github.io/every-rule/aria-labelledby-association-empty-element.html', 'dynamic-content-3')">Show ARIA Labelledby Association Empty Element</button>
+        <div id="dynamic-content-3" class="content" style="display: none;"></div>
+
+        <button onclick="loadExternalContent('https://sitelint-testing.github.io/every-rule/aria-role-dialog.html', 'dynamic-content-4')">Show ARIA Role Dialog</button>
+        <div id="dynamic-content-4" class="content" style="display: none;"></div>
+    </section>
+
+    <div id="dynamic-content" class="content" style="display: none;">
+        <p>Content will be loaded here.</p>
+    </div>
 
     <script>
-        function loadExternalContent() {
-            fetch('https://sitelint-testing.github.io/every-rule/broken-same-page-link.html')
+        function navigateToPage() {
+            var select = document.getElementById("page-select");
+            var checkbox = document.getElementById("append-checkbox");
+            var selectedValue = select.value;
+            var parameter = '?sitelint=%5B%7B%22ui%22%3A%22full%22%7D%5D';
+
+            if (checkbox.checked) {
+                selectedValue += parameter;
+            }
+
+            if (selectedValue !== "index.html") {
+                window.open(selectedValue, '_blank');
+            } else {
+                window.location.href = selectedValue;
+            }
+        }
+
+        function loadExternalContent(url, elementId) {
+            fetch(url)
                 .then(response => response.text())
                 .then(data => {
-                    document.getElementById('dynamic-content').innerHTML = data;
-                    document.getElementById('dynamic-content').style.display = 'block';
+                    document.getElementById(elementId).innerHTML = data;
+                    document.getElementById(elementId).style.display = 'block';
                 })
                 .catch(error => console.error('Error fetching content:', error));
         }
     </script>
+
+    <footer>
+        <p>&copy; 2024 Example Company</p>
+    </footer>
 </body>
-
-<a href="https://platform-staging.sitelint.site/sites/pages/reports?token=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950&url=https:%2F%2Fsitelint-testing.github.io%2Fevery-rule%2Fdynamic.html#tab_failed_reports"
-target="_blank">View SiteLint Report</a>
-<p>&nbsp;</p>
-
-
 </html>
