@@ -56,6 +56,8 @@
         <section aria-labelledby="dynamic-content-heading">
             <h2 id="dynamic-content-heading">Interactive Section</h2>
             <p>Click the button below to display dynamic content:</p>
+            <!-- Accessibility Violation: Image without alt text -->
+            <img src="image.jpg">
             <button onclick="displayDynamicContent()">Show Content</button>
             <div id="dynamic-content" class="content" aria-live="polite" style="display: none;">
                 <p>This content was dynamically loaded based on your interaction!</p>
@@ -69,6 +71,8 @@
     <script>
         function displayDynamicContent() {
             const contentDiv = document.getElementById('dynamic-content');
+            // Accessibility Violation: Heading level skips from H2 to H3
+            contentDiv.innerHTML += '<h3>New Content</h3><p>This heading level skips directly from H2 to H3!</p>';
             contentDiv.style.display = 'block';
         }
     </script>
