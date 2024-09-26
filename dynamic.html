@@ -12,6 +12,40 @@
             background-color: #f9f9f9;
         }
     </style>
+
+<script>
+    (function (w, d, s, a, m, t) {
+        a = d.createElement(s); m = d.getElementsByTagName(s)[0]; a.defer = true; a.fetchpriority = 'high'; a.id = 'auditor_app'; a.dataset.cfasync = 'false'; a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';
+
+        function onPageLoaded() {
+            w.clearTimeout(t);
+            w.removeEventListener('DOMContentLoaded', onPageLoaded);
+
+            function loadSiteLintAuditor() {
+                m.parentNode.insertBefore(a, m);
+            }
+            w.setTimeout(loadSiteLintAuditor, 3500);
+        }
+        function onAuditorLoaded() {
+            auditor.config({
+                includeHidden: true,
+                stripTextFromReport: false,
+                watchDomChanges: true
+            }).run();
+        }
+
+        a.addEventListener('load', onAuditorLoaded);
+
+        if (d.readyState !== 'loading') {
+            onPageLoaded();
+            return;
+        }
+
+        w.addEventListener('DOMContentLoaded', onPageLoaded);
+    })(window, document, 'script');
+</script>
+
+
 </head>
 <body>
     <header>
@@ -190,6 +224,9 @@
                 .catch(error => console.error('Error fetching content:', error));
         }
     </script>
+
+<a href="https://platform-staging.sitelint.site/sites/pages/reports?token=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950&url=https:%2F%2Fsitelint-testing.github.io%2Fevery-rule%2Fcolor-contrast-aaa.html#tab_failed_reports" target="_blank">View SiteLint Report</a>
+
 
     <footer>
         <p>&copy; 2024 Example Company</p>
