@@ -26,6 +26,26 @@
 
     <h1>Exploring text size, style and contrast ratios</h1>
 
+    <label for="append-checkbox">Show sidebar</label>
+    <input type="checkbox" id="append-checkbox">
+
+    <label for="page-select">Navigate to a SiteLint violation example:</label>
+    <select id="page-select" onchange="navigateToPage()">
+        <option value="index.html">Choose a page:</option>
+        <option value="https://docs.google.com/spreadsheets/d/1p4zejQ4g_Hfiz_ine9-EwUppILYmX9msd9SwGlHSvgA/edit?gid=863730017#gid=863730017">
+            View the SiteLint Google spreadsheet
+        </option>
+        <option value="https://www.sitelint.com/docs/accessibility">
+            View the full list of SiteLint rules
+        </option>
+        <option value="https://sitelint-testing.github.io/axe-dev-tools/">
+            Switch to the axe Dev Tools testing suite
+        </option>
+        <option value="https://sitelint-testing.github.io/arc-toolkit/">
+            Switch to the ARC Toolkit testing suite
+        </option>
+    </select>
+
     <div id="text-container"></div>
 
     <script>
@@ -50,6 +70,58 @@
             boldText.textContent = `This is text color #949494 in style bold and size ${i}px, Contrast ratio 3:1`;
             container.appendChild(boldText);
         }
+
+        function navigateToPage() {
+            const select = document.getElementById("page-select");
+            const checkbox = document.getElementById("append-checkbox");
+            let selectedValue = select.options[select.selectedIndex].value;
+            const parameter = '?sitelint=%5B%7B%22ui%22%3A%22full%22%7D%5D';
+
+            if (checkbox.checked) {
+                selectedValue += parameter;
+            }
+
+            if (selectedValue !== "index.html") {
+                window.open(selectedValue, '_blank');
+            } else {
+                window.location.href = selectedValue;
+            }
+        }
+    </script>
+
+    <script>
+        (function(w, d, s, a, m, t) {
+            a = d.createElement(s);
+            m = d.getElementsByTagName(s)[0];
+            a.defer = true;
+            a.fetchpriority = 'high';
+            a.id = 'auditor_app';
+            a.dataset.cfasync = 'false';
+            a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=cd63d1cc5383f27b7a7ee35c47d1f68e14f15aa6426f00e526a41a6eff587f78';
+
+            function onPageLoaded() {
+                w.clearTimeout(t);
+                w.removeEventListener('DOMContentLoaded', onPageLoaded);
+                m.parentNode.insertBefore(a, m);
+            }
+
+            function onAuditorLoaded() {
+                auditor.config({
+                    includeHidden: false,
+                    stripTextFromReport: false,
+                    watchDomChanges: true
+                }).run();
+            }
+
+            a.addEventListener('load', onAuditorLoaded);
+
+            if (d.readyState !== 'loading') {
+                onPageLoaded();
+                return;
+            }
+
+            w.addEventListener('DOMContentLoaded', onPageLoaded);
+        })(window, document, 'script');
     </script>
 
 </body>
