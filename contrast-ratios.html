@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring text size, style and contrast ratios</title>
+    <style>
+        body {
+            background-color: #ffffff; /* White background */
+            color: #949494; /* Text color */
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+            color: #949494; /* Same grey text */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .text-sample {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Exploring text size, style and contrast ratios</h1>
+
+    <div id="text-container"></div>
+
+    <script>
+        const container = document.getElementById('text-container');
+
+        // Generate the first 10 rows with normal style
+        for (let i = 11; i <= 20; i++) {
+            const normalText = document.createElement('div');
+            normalText.className = 'text-sample';
+            normalText.style.fontSize = `${i}px`;
+            normalText.style.fontWeight = 'normal';
+            normalText.textContent = `This is text color #949494 in style normal and size ${i}px, Contrast ratio 3:1`;
+            container.appendChild(normalText);
+        }
+
+        // Generate the second 10 rows with bold style
+        for (let i = 11; i <= 20; i++) {
+            const boldText = document.createElement('div');
+            boldText.className = 'text-sample';
+            boldText.style.fontSize = `${i}px`;
+            boldText.style.fontWeight = 'bold';
+            boldText.textContent = `This is text color #949494 in style bold and size ${i}px, Contrast ratio 3:1`;
+            container.appendChild(boldText);
+        }
+    </script>
+
+</body>
+</html>
