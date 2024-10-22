@@ -51,25 +51,25 @@
     <script>
         const container = document.getElementById('text-container');
 
-        // Generate the first 10 rows with normal style, starting from 11px (15pt) up to 20px (20pt)
-        for (let i = 11; i <= 20; i++) {
-            const points = Math.round(i * 0.75); // Convert pixels to points assuming 1px = 0.75pt
+        // Generate the first 10 rows with normal style, starting from 15pt up to 20pt
+        for (let i = 15; i <= 20; i++) {
+            const pixels = Math.round(i * 1.333); // Convert points to pixels assuming 1pt = 1.333px
             const normalText = document.createElement('div');
             normalText.className = 'text-sample';
-            normalText.style.fontSize = `${i}px`;
+            normalText.style.fontSize = `${pixels}px`;
             normalText.style.fontWeight = 'normal';
-            normalText.textContent = `This is text color #949494 in style normal and size ${points}pt (original: ${i}px), Contrast ratio 3:1`;
+            normalText.textContent = `This is text color #949494 in style normal and size ${i}pt (original: ${pixels}px), Contrast ratio 3:1`;
             container.appendChild(normalText);
         }
 
-        // Generate the second 10 rows with bold style, starting from 11px (15pt) up to 20px (20pt)
-        for (let i = 11; i <= 20; i++) {
-            const points = Math.round(i * 0.75); // Convert pixels to points assuming 1px = 0.75pt
+        // Generate the second 10 rows with bold style, starting from 15pt up to 20pt
+        for (let i = 15; i <= 20; i++) {
+            const pixels = Math.round(i * 1.333); // Convert points to pixels assuming 1pt = 1.333px
             const boldText = document.createElement('div');
             boldText.className = 'text-sample';
-            boldText.style.fontSize = `${i}px`;
+            boldText.style.fontSize = `${pixels}px`;
             boldText.style.fontWeight = 'bold';
-            boldText.textContent = `This is text color #949494 in style bold and size ${points}pt (original: ${i}px), Contrast ratio 3:1`;
+            boldText.textContent = `This is text color #949494 in style bold and size ${i}pt (original: ${pixels}px), Contrast ratio 3:1`;
             container.appendChild(boldText);
         }
 
