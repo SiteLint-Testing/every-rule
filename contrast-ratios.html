@@ -7,18 +7,23 @@
     <style>
         body {
             background-color: #ffffff; /* White background */
-            color: #949494; /* Text color */
+            color: #333333; /* Improved text color for better contrast */
             font-family: Arial, sans-serif;
         }
         h1 {
             font-size: 2em;
             font-weight: bold;
-            color: #949494; /* Same grey text */
+            color: #333333; /* Darker grey text for better contrast */
             text-align: center;
             margin-bottom: 20px;
         }
         .text-sample {
             margin: 5px 0;
+        }
+        .text-group {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333333;
         }
     </style>
 </head>
@@ -51,27 +56,57 @@
     <script>
         const container = document.getElementById('text-container');
 
-        // Generate the first 10 rows with normal style, starting from 15pt up to 20pt
-        for (let i = 15; i <= 20; i++) {
-            const pixels = Math.round(i * 1.333); // Convert points to pixels assuming 1pt = 1.333px
-            const normalText = document.createElement('div');
-            normalText.className = 'text-sample';
-            normalText.style.fontSize = `${pixels}px`;
-            normalText.style.fontWeight = 'normal';
-            normalText.textContent = `This is text color #949494 in style normal and size ${i}pt (original: ${pixels}px), Contrast ratio 3:1`;
-            container.appendChild(normalText);
+        // Define colors based on WCAG compliance
+        const aaInsufficientContrast = "#787878"; // Color insufficient for AA normal text but sufficient for large text (fails AAA)
+        const aaaSufficientContrast = "#5C5C5C"; // Color insufficient for AAA normal text but sufficient for large text
+        const bgColor = "#FFFFFF"; // White background
+
+        // Add groups for different text scenarios
+        function addTextGroup(groupTitle, examples) {
+            let groupHeading = document.createElement('div');
+            groupHeading.className = 'text-group';
+            groupHeading.textContent = groupTitle;
+            container.appendChild(groupHeading);
+            examples.forEach(example => container.appendChild(example));
         }
 
-        // Generate the second 10 rows with bold style, starting from 15pt up to 20pt
-        for (let i = 15; i <= 20; i++) {
-            const pixels = Math.round(i * 1.333); // Convert points to pixels assuming 1pt = 1.333px
-            const boldText = document.createElement('div');
-            boldText.className = 'text-sample';
-            boldText.style.fontSize = `${pixels}px`;
-            boldText.style.fontWeight = 'bold';
-            boldText.textContent = `This is text color #949494 in style bold and size ${i}pt (original: ${pixels}px), Contrast ratio 3:1`;
-            container.appendChild(boldText);
+        function createTextElement(text, fontSizePx, color, fontWeight) {
+            let textElement = document.createElement('div');
+            textElement.className = 'text-sample';
+            textElement.style.fontSize = fontSizePx + 'px';
+            textElement.style.fontWeight = fontWeight;
+            textElement.style.color = color;
+            textElement.textContent = `${text} - Text color: ${color} (${fontSizePx}px)`;
+            return textElement;
         }
+
+        // AA Normal Text
+        addTextGroup('AA Normal Text', [
+            createTextElement('Not compliant: Contrast 4.41:1', 16, '#787878', 'normal', `${'Not compliant: Contrast 4.41:1'} - Text color: ${'#787878'} (16px, ${(16 * 0.75).toFixed(2)}pt)`),
+            createTextElement('Compliant: Contrast 7:1', 16, '#595959', 'normal', `${'Compliant: Contrast 7:1'} - Text color: ${'#595959'} (16px, ${(16 * 0.75).toFixed(2)}pt)`)
+        ]);
+
+        // AA Large Text
+        addTextGroup('AA Large Text', [
+            createTextElement('Not compliant: Contrast 4.41:1', 22.67, aaInsufficientContrast, 'normal', `${'Not compliant: Contrast 4.41:1'} - Text color: ${aaInsufficientContrast} (22.67px, ${(22.67 * 0.75).toFixed(2)}pt)`),
+            createTextElement('Compliant: Contrast 7:1', 18.67, aaInsufficientContrast, 'bold', `${'Compliant: Contrast 7:1'} - Text color: ${aaInsufficientContrast} (18.67px, ${(18.67 * 0.75).toFixed(2)}pt)`),
+            createTextElement('Not compliant: Contrast 4.41:1', 17.33, aaInsufficientContrast, 'bold', `${'Not compliant: Contrast 4.41:1'} - Text color: ${aaInsufficientContrast} (17.33px, ${(17.33 * 0.75).toFixed(2)}pt)`),
+            createTextElement('Compliant: Contrast 7:1', 24, aaInsufficientContrast, 'normal', `${'Compliant: Contrast 7:1'} - Text color: ${aaInsufficientContrast} (24px, ${(24 * 0.75).toFixed(2)}pt)`)
+        ]);
+
+        // AAA Normal Text
+        addTextGroup('AAA Normal Text', [
+            createTextElement('Not compliant: Contrast 4.41:1', 16, '#5C5C5C', 'normal', `${'Not compliant: Contrast 4.41:1'} - Text color: ${aaaSufficientContrast} (16px, ${(16 * 0.75).toFixed(2)}pt)`),
+            createTextElement('Compliant: Contrast 7:1', 18, '#595959', 'normal', `${'Compliant: Contrast 7:1'} - Text color: ${'#595959'} (18px, ${(18 * 0.75).toFixed(2)}pt)`)
+        ]);
+
+        // AAA Large Text
+        addTextGroup('AAA Large Text', [
+            createTextElement('Not compliant: Contrast 4.41:1', 17.33, aaaSufficientContrast, 'bold', `${'Not compliant: Contrast 4.41:1'} - Text color: ${aaaSufficientContrast} (17.33px, ${(17.33 * 0.75).toFixed(2)}pt)`),
+            createTextElement('Compliant: Contrast 7:1', 18.67, '#5C5C5C', 'bold', `${'Compliant: Contrast 7:1'} - Text color: ${aaaSufficientContrast} (18.67px, ${(18.67 * 0.75).toFixed(2)}pt)`),
+            createTextElement('Not compliant: Contrast 4.41:1', 22.67, aaaSufficientContrast, 'normal', `${'Not compliant: Contrast 4.41:1'} - Text color: ${aaaSufficientContrast} (22.67px, ${(22.67 * 0.75).toFixed(2)}pt)`),
+            createTextElement('Compliant: Contrast 7:1', 24, aaaSufficientContrast, 'bold', `${'Compliant: Contrast 7:1'} - Text color: ${aaaSufficientContrast} (24px, ${(24 * 0.75).toFixed(2)}pt)`)
+        ]);
 
         function navigateToPage() {
             const select = document.getElementById("page-select");
@@ -79,14 +114,17 @@
             let selectedValue = select.options[select.selectedIndex].value;
             const parameter = '?sitelint=%5B%7B%22ui%22%3A%22full%22%7D%5D';
 
-            if (checkbox.checked) {
-                selectedValue += parameter;
-            }
-
             if (selectedValue !== "index.html") {
+                if (checkbox.checked) {
+                    selectedValue += parameter;
+                }
                 window.open(selectedValue, '_blank');
             } else {
-                window.location.href = selectedValue;
+                try {
+                    window.location.href = selectedValue;
+                } catch (e) {
+                    console.error("Unable to navigate to the selected page:", e);
+                }
             }
         }
     </script>
