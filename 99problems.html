@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Issues Example</title>
+    <style>
+        body {
+            font-size: 12px;
+            color: #aaa;
+            background-color: #ccc;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .focus-trap {
+            outline: none;
+        }
+
+        .infographic {
+            color: green;
+        }
+
+        /* Buttons too close together */
+        .close-buttons {
+            margin-top: 20px;
+        }
+
+        .close-buttons button {
+            margin-right: 5px; /* Buttons too close together */
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+    <script>
+        // Keyboard focus trap
+        function trapFocus() {
+            const focusableElements = document.querySelectorAll('a, button, input, textarea, select');
+            let currentElementIndex = 0;
+            focusableElements[0].focus();
+
+            function handleTab(e) {
+                if (e.key === 'Tab') {
+                    currentElementIndex++;
+                    if (currentElementIndex >= focusableElements.length) {
+                        currentElementIndex = 0;
+                    }
+                    focusableElements[currentElementIndex].focus();
+                    e.preventDefault();
+                }
+            }
+
+            window.addEventListener('keydown', handleTab);
+        }
+
+        window.onload = trapFocus;
+    </script>
+</head>
+<body>
+    <!-- Missing Skip Link -->
+    <header>
+        <h1>Accessibility Issues</h1> <!-- Heading out of order -->
+        <h3>This is a heading that should be an H2, but it's an H3 instead</h3>
+    </header>
+
+    <!-- Missing Landmarks -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Image missing alt text -->
+    <img src="https://via.placeholder.com/150" />
+
+    <!-- Video missing captions -->
+    <video controls autoplay>
+        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Animation that autoplays -->
+    <div style="animation: blink 1s infinite;">Blinking Animation</div>
+
+    <!-- Infographic with color-based meaning -->
+    <div class="infographic">
+        <p>Green items are good, and red items are bad</p>
+        <span style="color: green;">Good</span>
+        <span style="color: red;">Bad</span>
+    </div>
+
+    <!-- Gray text on gray background with low contrast -->
+    <p style="color: #aaa; background-color: #ccc;">This is low-contrast text</p>
+
+    <!-- Text too small and can't be resized -->
+    <p style="font-size: 8px;">This text is too small and cannot be resized</p>
+
+    <!-- SVG missing alt text -->
+    <svg width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+    </svg>
+
+    <!-- Non-semantic use of HTML -->
+    <div role="button" onclick="alert('Clicked!')">Click Me</div> <!-- div used as a button -->
+
+    <!-- Missing "aria" roles -->
+    <section>
+        <h2>Important Content</h2>
+        <p>This section is important, but it's missing the appropriate ARIA roles.</p>
+    </section>
+
+    <!-- Non-unique ID attributes -->
+    <input type="text" id="name" placeholder="Name">
+    <input type="text" id="name" placeholder="Duplicate ID">
+
+    <!-- Empty or duplicate links -->
+    <a href=""></a>
+    <a href="#">Click here</a> <!-- "Click here" link -->
+
+    <a href="#">Read more</a> <!-- "Read more" link -->
+
+    <button>Submit</button> <!-- Submit button -->
+
+    <!-- Link that opens in a new tab without warning -->
+    <a href="https://www.example.com" target="_blank">Open in a new tab</a>
+
+    <!-- Popup that is hard to dismiss -->
+    <div class="popup" style="position: fixed; top: 50%; left: 50%; background-color: white; padding: 20px;">
+        <p>This is a popup.</p>
+        <button onclick="this.parentElement.style.display='none'">Close</button>
+    </div>
+
+    <!-- Close buttons with too little target area -->
+    <div class="close-buttons">
+        <button>Close</button>
+        <button>Close</button> <!-- Buttons are too close together (less than 24px) -->
+    </div>
+
+    <div class="focus-trap">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+    </div>
+
+    <footer style="text-transform: uppercase;">
+        <p>THIS IS FOOTER TEXT IN ALL CAPS</p>
+    </footer>
+
+    <script>
+        (function (w, d, s, a, m, t) {
+            a = d.createElement(s); m = d.getElementsByTagName(s)[0]; a.defer = true; a.fetchpriority = 'high'; a.id = 'auditor_app'; a.dataset.cfasync = 'false'; a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';
+
+            function onPageLoaded() {
+                w.clearTimeout(t);
+                w.removeEventListener('DOMContentLoaded', onPageLoaded);
+
+                function loadSiteLintAuditor() {
+                    m.parentNode.insertBefore(a, m);
+                }
+                w.setTimeout(loadSiteLintAuditor, 3500);
+            }
+            function onAuditorLoaded() {
+                auditor.config({
+                    includeHidden: true,
+                    stripTextFromReport: false,
+                    watchDomChanges: true
+                }).run();
+            }
+
+            a.addEventListener('load', onAuditorLoaded);
+
+            if (d.readyState !== 'loading') {
+                onPageLoaded();
+                return;
+            }
+
+            w.addEventListener('DOMContentLoaded', onPageLoaded);
+        })(window, document, 'script');
+    </script>
+</body>
+</html>
