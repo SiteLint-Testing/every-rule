@@ -154,36 +154,5 @@
         <p>THIS IS FOOTER TEXT IN ALL CAPS</p>
     </footer>
 
-    <script>
-        (function (w, d, s, a, m, t) {
-            a = d.createElement(s); m = d.getElementsByTagName(s)[0]; a.defer = true; a.fetchpriority = 'high'; a.id = 'auditor_app'; a.dataset.cfasync = 'false'; a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';
-
-            function onPageLoaded() {
-                w.clearTimeout(t);
-                w.removeEventListener('DOMContentLoaded', onPageLoaded);
-
-                function loadSiteLintAuditor() {
-                    m.parentNode.insertBefore(a, m);
-                }
-                w.setTimeout(loadSiteLintAuditor, 3500);
-            }
-            function onAuditorLoaded() {
-                auditor.config({
-                    includeHidden: true,
-                    stripTextFromReport: false,
-                    watchDomChanges: true
-                }).run();
-            }
-
-            a.addEventListener('load', onAuditorLoaded);
-
-            if (d.readyState !== 'loading') {
-                onPageLoaded();
-                return;
-            }
-
-            w.addEventListener('DOMContentLoaded', onPageLoaded);
-        })(window, document, 'script');
-    </script>
 </body>
 </html>
