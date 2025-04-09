@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SiteLint Test – Image in Link Accessible Name Scenarios</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    section { margin-bottom: 3rem; }
+    img { width: 120px; vertical-align: middle; }
+    .label {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      font-weight: bold;
+      background: #eee;
+      border-left: 4px solid #0077cc;
+    }
+  </style>
+  <script>
+    (function(w,d,s,a,m,t) {
+      a = d.createElement(s);
+      m = d.getElementsByTagName(s)[0];
+      a.defer = true;
+      a.fetchpriority = 'high';
+      a.id = 'auditor_app';
+      a.dataset.cfasync = 'false';
+      a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';
+
+      function onPageLoaded() {
+        w.clearTimeout(t);
+        w.removeEventListener('DOMContentLoaded', onPageLoaded);
+        m.parentNode.insertBefore(a, m);
+      }
+
+      function onAuditorLoaded(){
+        auditor.config({
+          includeHidden: false,
+          stripTextFromReport: false,
+          watchDomChanges: true
+        }).run();
+      }
+
+      a.addEventListener('load', onAuditorLoaded);
+
+      if (d.readyState !== 'loading') {
+        onPageLoaded();
+        return;
+      }
+
+      w.addEventListener('DOMContentLoaded', onPageLoaded);
+    })(window, document, 'script');
+  </script>
+</head>
+<body>
+
+  <h1>SiteLint Accessibility Test: Image in Link Accessible Name Scenarios</h1>
+
+  <section>
+    <div class="label">✅ 1. aria-label present (VALID)</div>
+    <a href="https://example.com" aria-label="Visit Example site" target="_blank" rel="noopener noreferrer">
+      <img src="https://via.placeholder.com/120x40?text=Logo" alt="">
+    </a>
+  </section>
+
+  <section>
+    <div class="label">✅ 2. aria-labelledby present (VALID)</div>
+    <p id="link-desc">Visit Example site (labelled by ID)</p>
+    <a href="https://example.com" aria-labelledby="link-desc" target="_blank" rel="noopener noreferrer">
+      <img src="https://via.placeholder.com/120x40?text=Logo" alt="">
+    </a>
+  </section>
+
+  <section>
+    <div class="label">✅ 3. Text content in the link (VALID)</div>
+    <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://via.placeholder.com/120x40?text=Logo" alt="">
+      Visit Example site
+    </a>
+  </section>
+
+  <section>
+    <div class="label">✅ 4. Image has proper alt text (VALID)</div>
+    <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://via.placeholder.com/120x40?text=Logo" alt="Example Logo">
+    </a>
+  </section>
+
+  <section>
+    <div class="label">❌ 5. No alt, no aria-label, no text (INVALID)</div>
+    <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://via.placeholder.com/120x40?text=Logo">
+    </a>
+  </section>
+
+  <section>
+    <div class="label">❌ 6. alt is empty, no other name (INVALID)</div>
+    <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://via.placeholder.com/120x40?text=Logo" alt="">
+    </a>
+  </section>
+
+</body>
+</html>
