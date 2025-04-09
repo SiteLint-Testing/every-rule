@@ -1,104 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SiteLint Test – Image in Link Accessible Name Scenarios</title>
+  <meta charset="UTF-8">
+  <title>Image inside of a link needs an alternative description</title>
   <style>
-    body { font-family: sans-serif; padding: 2rem; }
-    section { margin-bottom: 3rem; }
-    img { width: 120px; vertical-align: middle; }
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.2em;
+    }
+    .scenario {
+      margin-top: 2em;
+    }
     .label {
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.25rem 0.5rem;
       font-weight: bold;
-      background: #eee;
-      border-left: 4px solid #0077cc;
+      padding: 0.5em;
+      background-color: #f0f0f0;
+      border-left: 6px solid;
+      margin-bottom: 0.5em;
+    }
+    .label.invalid {
+      border-color: #cc0000;
+    }
+    .label.valid {
+      border-color: #007700;
+    }
+    img.logo {
+      width: 261.984px;
+      height: 26.234px;
+      vertical-align: middle;
+      margin-top: 0.5em;
+      display: block;
     }
   </style>
-  <script>
-    (function(w,d,s,a,m,t) {
-      a = d.createElement(s);
-      m = d.getElementsByTagName(s)[0];
-      a.defer = true;
-      a.fetchpriority = 'high';
-      a.id = 'auditor_app';
-      a.dataset.cfasync = 'false';
-      a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';
-
-      function onPageLoaded() {
-        w.clearTimeout(t);
-        w.removeEventListener('DOMContentLoaded', onPageLoaded);
-        m.parentNode.insertBefore(a, m);
-      }
-
-      function onAuditorLoaded(){
-        auditor.config({
-          includeHidden: false,
-          stripTextFromReport: false,
-          watchDomChanges: true
-        }).run();
-      }
-
-      a.addEventListener('load', onAuditorLoaded);
-
-      if (d.readyState !== 'loading') {
-        onPageLoaded();
-        return;
-      }
-
-      w.addEventListener('DOMContentLoaded', onPageLoaded);
-    })(window, document, 'script');
-  </script>
 </head>
 <body>
 
-  <h1>SiteLint Accessibility Test: Image in Link Accessible Name Scenarios</h1>
+  <h1>Image inside of a link needs an alternative description</h1>
+  <p><strong>Rule ID:</strong> <a href="https://www.sitelint.com/docs/accessibility/image-inside-of-a-link-needs-an-alternative-description" target="_blank" rel="noopener noreferrer">img-empty-alt-in-link</a></p>
+  <p><strong>Jira ticket:</strong> <a href="https://sitelint.atlassian.net/browse/PM-1097" target="_blank" rel="noopener noreferrer">PM-1097</a></p>
+  <p><strong>Client URL:</strong> <a href="http://develop.sponsorship.qa.internal.test/#/" target="_blank" rel="noopener noreferrer">http://develop.sponsorship.qa.internal.test/#/</a></p>
+  <p>This page demonstrates six scenarios to test SiteLint's detection of <strong>images with empty alt attributes inside links</strong>. The goal is to isolate this rule without triggering false positives like “links should have meaningful, descriptive content.”</p>
 
-  <section>
-    <div class="label">✅ 1. aria-label present (VALID)</div>
-    <a href="https://example.com" aria-label="Visit Example site" target="_blank" rel="noopener noreferrer">
-      <img src="https://via.placeholder.com/120x40?text=Logo" alt="">
-    </a>
-  </section>
+  <!-- VALID EXAMPLES FIRST -->
 
-  <section>
-    <div class="label">✅ 2. aria-labelledby present (VALID)</div>
-    <p id="link-desc">Visit Example site (labelled by ID)</p>
-    <a href="https://example.com" aria-labelledby="link-desc" target="_blank" rel="noopener noreferrer">
-      <img src="https://via.placeholder.com/120x40?text=Logo" alt="">
+  <!-- 1 -->
+  <div class="scenario">
+    <div class="label valid">✅ 1. Valid – Image with descriptive <code>alt</code> inside link:</div>
+    <p>This passes because the image has an appropriate alt text.</p>
+    <a href="#">
+      <img class="logo" src="https://www2.bac-assets.com/homepage/spa-assets/images/assets-images-global-logos-bac-logo-v2-CSX3648cbbb.svg" alt="Bank of America logo">
     </a>
-  </section>
+  </div>
 
-  <section>
-    <div class="label">✅ 3. Text content in the link (VALID)</div>
-    <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-      <img src="https://via.placeholder.com/120x40?text=Logo" alt="">
-      Visit Example site
-    </a>
-  </section>
+  <!-- 2 -->
+  <div class="scenario">
+    <div class="label valid">✅ 2. Valid – Decorative image with empty <code>alt</code> outside link:</div>
+    <p>This is acceptable. Decorative images may have <code>alt=""</code> as long as they are not inside a link.</p>
+    <p>
+      <img class="logo" src="https://www2.bac-assets.com/homepage/spa-assets/images/assets-images-global-logos-bac-logo-v2-CSX3648cbbb.svg" alt="">
+    </p>
+  </div>
 
-  <section>
-    <div class="label">✅ 4. Image has proper alt text (VALID)</div>
-    <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-      <img src="https://via.placeholder.com/120x40?text=Logo" alt="Example Logo">
+  <!-- 3 -->
+  <div class="scenario">
+    <div class="label valid">✅ 3. Valid – Link has an <code>aria-label</code> and image with empty <code>alt</code>:</div>
+    <p>Decorative image is allowed if the link has a meaningful <code>aria-label</code>. This should pass.</p>
+    <a href="#" aria-label="Open settings panel">
+      <img class="logo" src="https://www2.bac-assets.com/homepage/spa-assets/images/assets-images-global-logos-bac-logo-v2-CSX3648cbbb.svg" alt="">
     </a>
-  </section>
+  </div>
 
-  <section>
-    <div class="label">❌ 5. No alt, no aria-label, no text (INVALID)</div>
-    <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-      <img src="https://via.placeholder.com/120x40?text=Logo">
+  <!-- 4 -->
+  <div class="scenario">
+    <div class="label valid">✅ 4. Valid – Link includes visible text and image with empty <code>alt</code>:</div>
+    <p>The image is decorative, and the link has meaningful text. SiteLint should not flag this.</p>
+    <a href="#">
+      This is visible text associated with the image
+      <img class="logo" src="https://www2.bac-assets.com/homepage/spa-assets/images/assets-images-global-logos-bac-logo-v2-CSX3648cbbb.svg" alt="">
     </a>
-  </section>
+  </div>
 
-  <section>
-    <div class="label">❌ 6. alt is empty, no other name (INVALID)</div>
-    <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-      <img src="https://via.placeholder.com/120x40?text=Logo" alt="">
+  <!-- INVALID EXAMPLES -->
+
+  <!-- 5 -->
+  <div class="scenario">
+    <div class="label invalid">❌ 5. Invalid – Image inside a link with empty <code>alt</code>:</div>
+    <p>This is the classic violation: an image inside a link with <code>alt=""</code>. SiteLint should flag this for <code>img-empty-alt-in-link</code>.</p>
+    <a href="#">
+      <img class="logo" src="https://www2.bac-assets.com/homepage/spa-assets/images/assets-images-global-logos-bac-logo-v2-CSX3648cbbb.svg" alt="">
     </a>
-  </section>
+  </div>
+
+  <!-- 6 -->
+  <div class="scenario">
+    <div class="label invalid">❌ 6. Invalid – Link contains only an image with empty <code>alt</code>:</div>
+    <p>This should be flagged because the link has no other descriptive content, and the image has <code>alt=""</code>.</p>
+    <a href="#">
+      <img class="logo" src="https://www2.bac-assets.com/homepage/spa-assets/images/assets-images-global-logos-bac-logo-v2-CSX3648cbbb.svg" alt="">
+    </a>
+  </div>
 
 </body>
 </html>
