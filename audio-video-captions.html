@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Audio Video Captions</title>
+<script src="pages.js" defer></script>
 
 <script>(function(w,d,s,a,m,t){a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.id = 'auditor_app';a.dataset.autorun = '';a.dataset.cfasync = 'false';a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';m.parentNode.insertBefore(a, m);
 })(window, document, 'script');</script>
     
 </head>
 <body>
+<div id="dropdown-placeholder"></div>
+<script src="dropdown-loader.js" defer></script>
 <div id="dropdown-placeholder"></div>
 
 
@@ -19,22 +22,67 @@
       const container = document.getElementById('dropdown-placeholder');
       container.innerHTML = html;
 
-      // After injecting, attach the event listener directly
-      const select = container.querySelector("#page-select");
-      if (select) {
-        select.addEventListener("change", function () {
-          const selected = this.value;
-          if (!selected || selected === "Choose a page:") return;
+      const input = container.querySelector("#combo-search");
+      const listbox = container.querySelector("#combo-list");
 
-          if (selected.startsWith("http") || selected.startsWith("../")) {
-            window.location.href = selected;
+      function renderOptions(query = "") {
+        const value = query.toLowerCase();
+        listbox.innerHTML = "";
+
+        const filtered = window.siteLintPages.filter(p =>
+          p.label.toLowerCase().includes(value)
+        );
+
+        filtered.forEach((page, index) => {
+          const li = document.createElement("li");
+          li.id = "option-" + index;
+          li.role = "option";
+          li.textContent = page.label;
+          li.tabIndex = 0;
+          li.dataset.href = page.value;
+          li.addEventListener("click", () => {
+            window.location.href = page.value;
+          });
+          listbox.appendChild(li);
+        });
+
+        listbox.style.display = "block";
+      }
+
+      input?.addEventListener("input", () => {
+        renderOptions(input.value);
+      });
+
+      input?.addEventListener("keydown", (e) => {
+        const options = listbox.querySelectorAll('[role="option"]');
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          currentIndex = (currentIndex + 1) % options.length;
+          updateActiveOption(options);
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          currentIndex = (currentIndex - 1 + options.length) % options.length;
+          updateActiveOption(options);
+        } else if (e.key === "Enter" && currentIndex >= 0) {
+          e.preventDefault();
+          options[currentIndex].click();
+        }
+      });
+
+      function updateActiveOption(options) {
+        options.forEach((opt, idx) => {
+          if (idx === currentIndex) {
+            opt.setAttribute("aria-selected", "true");
+            input.setAttribute("aria-activedescendant", opt.id);
+            opt.focus();
           } else {
-            const currentPath = window.location.pathname;
-            const basePath = currentPath.substring(0, currentPath.lastIndexOf("/") + 1);
-            window.location.href = basePath + selected;
+            opt.removeAttribute("aria-selected");
           }
         });
       }
+
+      let currentIndex = -1;
+      renderOptions();
     });
 </script>
 

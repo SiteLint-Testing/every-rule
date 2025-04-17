@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>aria-hidden true focusable descendants</title>
+<script src="pages.js" defer></script>
 <script>
     // JavaScript for external script inclusion
     (function(w,d,s,a,m,t){
@@ -20,41 +21,9 @@
 </head>
 <body>
 <div id="dropdown-placeholder"></div>
+<script src="dropdown-loader.js" defer></script>
 
-
-<script>
-  fetch('nav-dropdown.html')
-    .then(res => res.text())
-    .then(html => {
-      const container = document.getElementById('dropdown-placeholder');
-      container.innerHTML = html;
-
-      // After injecting, attach the event listener directly
-      const select = container.querySelector("#page-select");
-      if (select) {
-        select.addEventListener("change", function () {
-          const selected = this.value;
-          if (!selected || selected === "Choose a page:") return;
-
-          if (selected.startsWith("http") || selected.startsWith("../")) {
-            window.location.href = selected;
-          } else {
-            const currentPath = window.location.pathname;
-            const basePath = currentPath.substring(0, currentPath.lastIndexOf("/") + 1);
-            window.location.href = basePath + selected;
-          }
-        });
-      }
-    });
-</script>
-
-
-
-
-
-
-    
-    <h1>aria-hidden true focusable descendants</h1>
+<h1>aria-hidden true focusable descendants</h1>
 
 <!-- Example of aria-hidden with focusable descendants -->
 <div aria-hidden="true">
