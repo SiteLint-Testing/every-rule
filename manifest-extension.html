@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>manifest-extension</title>
+  <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+
+  <script>
+    (function(w, d, s, a, m, t) {
+      a = d.createElement(s);
+      m = d.getElementsByTagName(s)[0];
+      a.defer = true;
+      a.id = 'auditor_app';
+      a.dataset.autorun = '';
+      a.dataset.cfasync = 'false';
+      a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script');
+  </script>
+
+  <script src="pages.js" defer></script>
+</head>
+<body>
+  <div id="dropdown-placeholder"></div>
+
+  <main>
+    <h1>Manifest Extension</h1>
+    <p>This page intentionally includes a manifest file that does not meet specified requirements (proper file extension).</p>
+  </main>
+
+  <footer>
+    <a href="https://platform-staging.sitelint.site/audits/sites/site/reports?token=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950&url=https:%2F%2Fsitelint-testing.github.io%2Fevery-rule%2Fmanifest-extension.html#tab_failed_reports"
+      target="_blank">View SiteLint Report</a>
+  </footer>
+
+  <script src="dropdown-loader.js" defer></script>
+</body>
+</html>

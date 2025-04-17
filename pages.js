@@ -1,8 +1,8 @@
 window.siteLintPages = [
-  { value: "https://docs.google.com/spreadsheets/d/1p4zejQ4g_Hfiz_ine9-EwUppILYmX9msd9SwGlHSvgA/edit?gid=863730017#gid=863730017", label: "View the SiteLint Google spreadsheet" },
-  { value: "https://www.sitelint.com/docs/accessibility", label: "View the full list of SiteLint rules" },
-  { value: "https://sitelint-testing.github.io/every-rule/axe/index.html", label: "Switch to the axe Dev Tools testing suite" },
-  { value: "https://sitelint-testing.github.io/every-rule/arc/index.html", label: "Switch to the ARC Toolkit testing suite" },
+  { value: "https://docs.google.com/spreadsheets/d/1p4zejQ4g_Hfiz_ine9-EwUppILYmX9msd9SwGlHSvgA/edit?gid=863730017#gid=863730017", label: "View the SiteLint Google spreadsheet", target: "_blank" },
+  { value: "https://www.sitelint.com/docs/accessibility", label: "View the full list of SiteLint rules", target: "_blank" },
+  { value: "https://sitelint-testing.github.io/axe-dev-tools/", label: "Switch to the axe Dev Tools testing suite", target: "_blank" },
+  { value: "https://sitelint-testing.github.io/arc-toolkit/", label: "Switch to the ARC Toolkit testing suite", target: "_blank" },
   { value: "accessible-name-mismatch-element-description.html", label: "1. accessible name mismatch element description" },
   { value: "alt-color-convey-information.html", label: "2. alt color convey information" },
   { value: "alt-text-filename.html", label: "3. alt text filename" },

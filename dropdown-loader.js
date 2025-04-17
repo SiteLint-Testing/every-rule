@@ -24,7 +24,11 @@ fetch('nav-dropdown.html')
         li.tabIndex = 0;
         li.dataset.href = page.value;
         li.addEventListener("click", () => {
-          window.location.href = page.value;
+          if (page.target === "_blank") {
+            window.open(page.value, "_blank");
+          } else {
+            window.location.href = page.value;
+          }
         });
         listbox.appendChild(li);
       });
