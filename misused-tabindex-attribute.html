@@ -11,172 +11,25 @@
 </head>
 
 <body>
-
-    <label for="append-checkbox">Show sidebar</label>
-    <input type="checkbox" id="append-checkbox">
-
-    <label for="page-select">Navigate to a SiteLint violation example:</label>
-    <select id="page-select" onchange="navigateToPage()">
-<option value="index.html">Choose a page:</option>
-    <option value="https://docs.google.com/spreadsheets/d/1p4zejQ4g_Hfiz_ine9-EwUppILYmX9msd9SwGlHSvgA/edit?gid=863730017#gid=863730017">
-        View the SiteLint Google spreadsheet
-    </option>
-    <option value="https://www.sitelint.com/docs/accessibility">
-        View the full list of SiteLint rules
-    </option>
-    <option value="https://sitelint-testing.github.io/axe-dev-tools/">
-        Switch to the axe Dev Tools testing suite
-    </option>
-    <option value="https://sitelint-testing.github.io/arc-toolkit/">
-        Switch to the ARC Toolkit testing suite
-    </option>
-<option value="accessible-name-mismatch-element-description.html">1. accessible name mismatch element description</option>
-<option value="alt-color-convey-information.html">2. alt color convey information</option>
-<option value="alt-text-filename.html">3. alt text filename</option>
-<option value="animation.html">4. animation</option>
-<option value="applet-missing-alt.html">5. applet missing alt</option>
-<option value="applet-missing-body.html">6. applet missing body</option>
-<option value="area-missing-alt.html">7. area missing alt</option>
-<option value="aria-attribute-conflict.html">8. aria attribute conflict</option>
-<option value="aria-describedby-association.html">9. aria-describedby association</option>
-<option value="aria-hidden-false.html">10. aria hidden false</option>
-<option value="aria-hidden-true-focusable-descendants.html">11. aria hidden true focusable descendants</option>
-<option value="aria-labelledby-association-empty-element.html">12. aria-labelledby association empty element</option>
-<option value="aria-labelledby-association.html">13. aria-labelledby association</option>
-<option value="aria-role-dialog.html">14. aria role dialog</option>
-<option value="audio-alternative.html">15. audio alternative</option>
-<option value="audio-video-captions.html">16. audio video captions</option>
-<option value="autoplay-audio-video.html">17. autoplay audio video</option>
-<option value="blink-element.html">18. blink element</option>
-<option value="broken-same-page-link.html">19. broken same page link</option>
-<option value="capital-letters.html">20. capital letters</option>
-<option value="captcha-google.html">21. captcha google</option>
-<option value="click-verb.html">22. click verb</option>
-<option value="color-contrast-aa.html">23. color contrast aa</option>
-<option value="color-contrast-aaa.html">24. color contrast aaa</option>
-<option value="color-contrast-state-pseudo-classes.html">25. color contrast state pseudo classes</option>
-<option value="color-name.html">26. color name</option>
-<option value="content-editable-missing-attributes.html">27. content editable missing attributes</option>
-<option value="content-wider-than-screen.html">28. content wider than screen</option>
-<option value="contentinfo-landmark-only-one.html">29. contentinfo landmark only one</option>
-<option value="css-images-convey-information.html">30. css images convey information</option>
-<option value="dynamic.html">31. Dynamic Content</option>
-<option value="duplicated-for-attribute.html">32. duplicated for attribute</option>
-<option value="duplicated-id.html">33. duplicated id</option>
-<option value="ebi-test.html">34. ebi test</option>
-<option value="empty-button-description.html">35. empty button description</option>
-<option value="empty-heading.html">36. empty heading</option>
-<option value="empty-label-element.html">37. empty label element</option>
-<option value="empty-link-element.html">38. empty link element</option>
-<option value="empty-title-attribute.html">39. empty title attribute</option>
-<option value="fieldset-no-legend.html">40. fieldset no legend</option>
-<option value="flash-content.html">41. flash content</option>
-<option value="flickering.html">42. flickering</option>
-<option value="font-style-italic.html">43. font style italic</option>
-<option value="general-alt.html">44. general alt</option>
-<option value="group-elements-name-attribute.html">45. group elements name attribute</option>
-<option value="h1-must-be-defined.html">46. h1 must be defined</option>
-<option value="h1-only-one.html">47. h1 only one</option>
-<option value="headings-hierarchy.html">48. headings hierarchy</option>
-<option value="headings-sibling-unique.html">49. headings sibling unique</option>
-<option value="horizontal-rule.html">50. horizontal rule</option>
-<option value="html-lang-attr.html">51. html lang attr</option>
-<option value="identify-input-purpose.html">52. identify input purpose</option>
-<option value="img-adjacent-duplicate-text-link.html">53. img adjacent duplicate text link</option>
-<option value="img-alt-duplicate-text-link.html">54. img alt duplicate text link</option>
-<option value="img-empty-alt-in-link.html">55. img empty alt in link</option>
-<option value="img-empty-alt-with-empty-title.html">56. img empty alt with empty title</option>
-<option value="inaccessible-svg.html">57. inaccessible svg</option>
-<option value="incorrect-label-placement-for-associated-input.html">58. incorrect label placement forassociated input</option>
-<option value="incorrect-technique-for-hiding-content.html">59. incorrect technique for hiding content</option>
-<option value="input-image-missing-alt.html">60. input image missing alt</option>
-<option value="invalid-attribute-dir-value.html">61. invalid attribute dir value</option>
-<option value="label-duplicated-content-title.html">62. label duplicated content title</option>
-<option value="label-implicitly-associated.html">63. label implicitly associated</option>
-<option value="label-inappropriate-association.html">64. label inappropriate association</option>
-<option value="label-visually-hidden-only.html">65. label visually hidden only</option>
-<option value="legend-first-child-of-fieldset.html">66. legend first child of fieldset</option>
-<option value="link-button-space-key.html">67. link button space key</option>
-<option value="link-with-unclear-purpose.html">68. link with unclear purpose</option>
-<option value="links-language-destination.html">69. links language destination</option>
-<option value="links-new-window-mark.html">70. links new window mark</option>
-<option value="links-not-visually-evident-without-color-vision.html">71. links not visually evident without color vision</option>
-<option value="links-same-content-different-url.html">72. links same content different url</option>
-<option value="main-element-only-one.html">73. main element only one</option>
-<option value="main-landmark-must-be-top-level.html">74. main landmark must be top level</option>
-<option value="manifest-extension.html">75. manifest extension</option>
-<option value="meaningful-content-sequence.html">76. meaningful content sequence</option>
-<option value="minimum-font-size.html">77. minimum font size</option>
-<option value="missing-alt-attribute.html">78. missing alt attribute</option>
-<option value="missing-href.html">79. missing href</option>
-<option value="missing-label.html">80. missing label</option>
-<option value="missing-submit-button.html">81. missing submit button</option>
-<option value="misused-aria.html">82. misused aria</option>
-<option value="misused-input-attribute.html">83. misused input attribute</option>
-<option value="misused-required-attribute.html">84. misused required attribute</option>
-<option value="misused-tabindex-attribute.html">85. misused tabindex attribute</option>
-<option value="motion-actuation.html">86. motion actuation</option>
-<option value="navigation-landmark-restrictions.html">87. navigation landmark restrictions</option>
-<option value="no-headings.html">88. no headings</option>
-<option value="no-meta-http-equiv-refresh.html">89. no meta http-equiv refresh</option>
-<option value="object-general-alt.html">90. object general alt</option>
-<option value="object-missing-body.html">91. object missing body</option>
-<option value="obsolete-html-attributes.html">92. obsolete html attributes</option>
-<option value="obsolete-html-elements.html">93. obsolete html elements</option>
-<option value="orientation.html">94. orientation</option>
-<option value="outline-zero.html">95. outline zero</option>
-<option value="overlay.html">96. overlay</option>
-<option value="position-sticky.html">97. position sticky</option>
-<option value="positive-tabindex.html">98. positive tabindex</option>
-<option value="reflow.html">99. reflow</option>
-<option value="role-application.html">100. role application</option>
-<option value="rtl-content.html">101. rtl content</option>
-<option value="same-target-anchor-text-more-than-once.html">102. same target anchor text more than once</option>
-<option value="svg-without-accessible-description.html">103. svg without accessible description</option>
-<option value="table-caption-summary-identical.html">104. table caption summary identical</option>
-<option value="table-missing-description.html">105. table missing description</option>
-<option value="table-row-and-column-headers.html">106. table row and column headers</option>
-<option value="target-size-minimum.html">107. target size minimum</option>
-<option value="text-color-convey-information.html">108. text color convey information</option>
-<option value="contrast-ratios.html">109. Text size, style and contrast ratios</option>
-<option value="title-for-abbr.html">110. title for abbr</option>
-<option value="title-iframe.html">111. title iframe</option>
-<option value="unclear-anchor-url.html">112. unclear anchor url</option>
-<option value="unclear-image-description.html">113. unclear image description</option>
-<option value="unclear-page-title.html">114. unclear page title</option>
-<option value="unsupported-role-on-element.html">115. unsupported role on element</option>
-<option value="video-audio-descriptions.html">116. video audio descriptions</option>
-<option value="zoom-disabled.html">117. zoom disabled</option>
-
-
-
-
-
-
-
-
-    </select>
+<div id="dropdown-placeholder"></div>
 
 
 
     <script>
-        function navigateToPage() {
-            var select = document.getElementById("page-select");
-            var checkbox = document.getElementById("append-checkbox");
-            var selectedValue = select.options[select.selectedIndex].value;
-            var parameter = '?sitelint=%5B%7B%22ui%22%3A%22full%22%7D%5D';
+  fetch('nav-dropdown.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('dropdown-placeholder').innerHTML = html;
+    });
+</script>
 
-            if (checkbox.checked) {
-                selectedValue += parameter;
-            }
 
-            if (selectedValue !== "index.html") {
-    window.open(selectedValue, '_blank');
-} else {
-    window.location.href = selectedValue;
-}
-        }
-    </script>
+
+
+
+
+
+    
 
     <h1>Misused Tabindex Attribute</h1>
 

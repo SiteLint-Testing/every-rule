@@ -28,28 +28,19 @@
     </style>
 </head>
 <body>
+<div id="dropdown-placeholder"></div>
 
     <h1>Exploring text size, style and contrast ratios</h1>
 
-    <label for="append-checkbox">Show sidebar</label>
-    <input type="checkbox" id="append-checkbox">
 
-    <label for="page-select">Navigate to a SiteLint violation example:</label>
-    <select id="page-select" onchange="navigateToPage()">
-        <option value="index.html">Choose a page:</option>
-        <option value="https://docs.google.com/spreadsheets/d/1p4zejQ4g_Hfiz_ine9-EwUppILYmX9msd9SwGlHSvgA/edit?gid=863730017#gid=863730017">
-            View the SiteLint Google spreadsheet
-        </option>
-        <option value="https://www.sitelint.com/docs/accessibility">
-            View the full list of SiteLint rules
-        </option>
-        <option value="https://sitelint-testing.github.io/axe-dev-tools/">
-            Switch to the axe Dev Tools testing suite
-        </option>
-        <option value="https://sitelint-testing.github.io/arc-toolkit/">
-            Switch to the ARC Toolkit testing suite
-        </option>
-    </select>
+
+    <script>
+        fetch('nav-dropdown.html')
+          .then(res => res.text())
+          .then(html => {
+            document.getElementById('dropdown-placeholder').innerHTML = html;
+          });
+      </script>
 
     <div id="text-container"></div>
 
