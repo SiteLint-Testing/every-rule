@@ -1,20 +1,21 @@
 <label for="combo-search">Navigate to a SiteLint violation example:</label>
-<div role="combobox" aria-haspopup="listbox" aria-owns="combo-list" aria-expanded="false" style="position: relative;">
+<div id="combo-container" style="display: inline-block; width: max-content; max-width: 90vw; position: relative;">
   <input id="combo-search" aria-autocomplete="list" aria-controls="combo-list" aria-activedescendant="" placeholder="Type to filter..." style="width: 100%; margin-bottom: 0.5em;" />
+  <ul id="combo-list" role="listbox" style="
+    border: 1px solid #ccc;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    padding-left: 0;
+    list-style: none;
+    margin-top: 0;
+    display: none;
+    background: white;
+    position: absolute;
+    z-index: 9999;
+    width: max-content;
+    max-width: 90vw;">
+  </ul>
 </div>
-<ul id="combo-list" role="listbox" style="
-  border: 1px solid #ccc;
-  max-height: calc(100vh - 150px);
-  overflow-y: auto;
-  padding-left: 0;
-  list-style: none;
-  margin-top: 0;
-  display: none;
-  background: white;
-  position: absolute;
-  z-index: 9999;
-  width: 100%;">
-</ul>
 
 <script>
   const input = document.getElementById("combo-search");
