@@ -1,5 +1,5 @@
 <label for="page-select">Navigate to a SiteLint violation example:</label>
-<select id="page-select" onchange="navigateToPage()">
+<select id="page-select">
   <option disabled selected>Choose a page:</option>
   <option value="https://docs.google.com/spreadsheets/d/your-spreadsheet-id-here">View the SiteLint Google spreadsheet</option>
   <option value="https://sitelint.site/rules">View the full list of SiteLint rules</option>
@@ -122,19 +122,6 @@
   <option value="unsupported-role-on-element.html">115. unsupported role on element</option>
   <option value="video-audio-descriptions.html">116. video audio descriptions</option>
   <option value="zoom-disabled.html">117. zoom disabled</option>
+  <option value="99problems.html">118. 99 Problems</option>
 </select>
 
-<script>
-  function navigateToPage() {
-    const select = document.getElementById("page-select");
-    const selected = select.value;
-    if (!selected || selected === "Choose a page:") return;
-
-    if (selected.startsWith("http") || selected.startsWith("../")) {
-      window.location.href = selected;
-    } else {
-      // Use absolute path from site root
-      window.location.href = "/every-rule/" + selected;
-    }
-  }
-</script>

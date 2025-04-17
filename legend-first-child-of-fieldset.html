@@ -13,29 +13,39 @@
 <body>
 <div id="dropdown-placeholder"></div>
 
-
-
-    <script>
+<script>
   fetch('nav-dropdown.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('dropdown-placeholder').innerHTML = html;
+      const container = document.getElementById('dropdown-placeholder');
+      container.innerHTML = html;
+
+      // After injecting, attach the event listener directly
+      const select = container.querySelector("#page-select");
+      if (select) {
+        select.addEventListener("change", function () {
+          const selected = this.value;
+          if (!selected || selected === "Choose a page:") return;
+
+          if (selected.startsWith("http") || selected.startsWith("../")) {
+            window.location.href = selected;
+          } else {
+            const currentPath = window.location.pathname;
+            const basePath = currentPath.substring(0, currentPath.lastIndexOf("/") + 1);
+            window.location.href = basePath + selected;
+          }
+        });
+      }
     });
 </script>
 
+<h1>Legend First Child of Fieldset Example</h1>
+<form>
+    <fieldset><div>Sorry, I am first</div><legend>Legend</legend><input id="m" type="radio"><label for="m">William Shakespeare</label></fieldset>
+</form>
 
-
-
-
-
-
-    <h1>Legend First Child of Fieldset Example</h1>
-    <form>
-        <fieldset><div>Sorry, I am first</div><legend>Legend</legend><input id="m" type="radio"><label for="m">William Shakespeare</label></fieldset>
-    </form>
-
-    <a href="https://platform-staging.sitelint.site/sites/pages/reports?token=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950&url=https:%2F%2Fsitelint-testing.github.io%2Fevery-rule%2Flegend-first-child-of-fieldset.html#tab_failed_reports"
-        target="_blank">View SiteLint Report</a>
+<a href="https://platform-staging.sitelint.site/sites/pages/reports?token=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950&url=https:%2F%2Fsitelint-testing.github.io%2Fevery-rule%2Flegend-first-child-of-fieldset.html#tab_failed_reports"
+    target="_blank">View SiteLint Report</a>
 
 </body>
 

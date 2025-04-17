@@ -58,6 +58,30 @@
 </head>
 <body>
 <div id="dropdown-placeholder"></div>
+<script>
+  fetch('nav-dropdown.html')
+    .then(res => res.text())
+    .then(html => {
+      const container = document.getElementById('dropdown-placeholder');
+      container.innerHTML = html;
+
+      const select = container.querySelector("#page-select");
+      if (select) {
+        select.addEventListener("change", function () {
+          const selected = this.value;
+          if (!selected || selected === "Choose a page:") return;
+
+          if (selected.startsWith("http") || selected.startsWith("../")) {
+            window.location.href = selected;
+          } else {
+            const currentPath = window.location.pathname;
+            const basePath = currentPath.substring(0, currentPath.lastIndexOf("/") + 1);
+            window.location.href = basePath + selected;
+          }
+        });
+      }
+    });
+</script>
     <!-- Missing Skip Link -->
     <header>
         <h1>Accessibility Issues</h1> <!-- Heading out of order -->
