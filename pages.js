@@ -120,5 +120,6 @@ window.siteLintPages = [
   { value: "unsupported-role-on-element.html", label: "115. unsupported role on element" },
   { value: "video-audio-descriptions.html", label: "116. video audio descriptions" },
   { value: "zoom-disabled.html", label: "117. zoom disabled" },
-  { value: "99problems.html", label: "118. 99 Problems" }
+  { value: "99problems.html", label: "118. 99 Problems" },
+  { value: "accessible-name-pm1097.html", label: "119. Accessible Name - PM-1097 - BOA logos" }
 ];
