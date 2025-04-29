@@ -2,7 +2,10 @@ fetch('nav-dropdown.html')
   .then(res => res.text())
   .then(html => {
     const container = document.getElementById('dropdown-placeholder');
-    container.innerHTML = html;
+    container.innerHTML = `
+      <label for="combo-search" class="visually-hidden">Filter navigation options</label>
+      ${html}
+    `;
 
     const input = container.querySelector("#combo-search");
     const listbox = container.querySelector("#combo-list");
@@ -68,7 +71,6 @@ fetch('nav-dropdown.html')
       options.forEach((opt, idx) => {
         if (idx === currentIndex) {
           opt.setAttribute("aria-selected", "true");
-          input.setAttribute("aria-activedescendant", opt.id);
           opt.focus();
         } else {
           opt.removeAttribute("aria-selected");

@@ -24,6 +24,113 @@
 
     <main>
         <h1>CAPITAL LETTERS WORDS</h1>
+
+        <!-- 1. Acronym Example (Screen Reader Reads Letter-by-Letter) -->
+        <section>
+            <h2>Acronym Example (Screen Reader Reads Letter-by-Letter)</h2>
+            <p>NASA is an acronym and will typically be read letter-by-letter by screen readers.</p>
+        </section>
+
+        <!-- 2. Visually Styled All Caps (text-transform: uppercase) -->
+        <section>
+            <h2>Visually Styled All Caps (Styled but Read Normally)</h2>
+            <p style="text-transform: uppercase;">This sentence is styled to appear as all caps, but is read normally by screen readers.</p>
+        </section>
+
+        <!-- 3. Short UI Label in All Caps (Acceptable) -->
+        <section>
+            <h2>Short UI Label in All Caps (Acceptable)</h2>
+            <button style="text-transform: uppercase;">Submit</button>
+        </section>
+
+        <!-- 4. Brand Name in All Caps (Acceptable) -->
+        <section>
+            <h2>Brand Name in All Caps (Acceptable)</h2>
+            <p>WELCOME TO IBM'S OFFICIAL SITE.</p>
+        </section>
+
+        <!-- 5. Section Header Styled in All Caps (Borderline Case) -->
+        <section>
+            <h2 style="text-transform: uppercase;">Featured Products</h2>
+            <p>Check out our latest offerings below.</p>
+        </section>
+
+        <!-- 6. Full Paragraph in All Caps (Bad Practice) -->
+        <section>
+            <h2>Full Paragraph in All Caps (Bad Practice)</h2>
+            <p style="text-transform: uppercase;">
+                THIS ENTIRE PARAGRAPH IS WRITTEN IN ALL CAPITAL LETTERS. IT IS HARDER TO READ AND SHOULD BE AVOIDED WHEN POSSIBLE.
+            </p>
+        </section>
+
+        <!-- 7. Acronyms Testing Various Combinations -->
+        <section>
+            <h2>Acronyms Testing Various Combinations</h2>
+
+            <!-- Single Acronyms -->
+            <h3>Single Acronyms (Each in Separate <p>)</h3>
+            <p>US</p> <!-- 2 letters -->
+            <p>NBA</p> <!-- 3 letters -->
+            <p>NASA</p> <!-- 4 letters -->
+            <p>SCUBA</p> <!-- 5 letters -->
+            <p>UNESCO</p> <!-- 6 letters -->
+            <p>INTERPOL</p> <!-- 8 letters -->
+
+            <!-- Multiple Acronyms Together -->
+            <h3>Multiple Acronyms Together (Likely to Trigger)</h3>
+            <p>NASA SCUBA</p> <!-- 4 and 5 letters -->
+            <p>UNESCO INTERPOL</p> <!-- 6 and 8 letters -->
+            <p>FBI CIA NSA</p> <!-- 3-letter acronyms together -->
+
+            <!-- Acronyms Mixed With Lowercase Words -->
+            <h3>Acronyms Mixed with Regular Words (Testing)</h3>
+            <p>The NASA mission was successful.</p> <!-- Only one all-caps word -->
+            <p>The FBI and CIA collaborated.</p> <!-- Two all-caps words, could trigger -->
+
+            <!-- Full Sentence All Caps -->
+            <h3>Full Sentence Typed in All Caps (Styled, No CSS)</h3>
+            <p>THIS IS A TEST SENTENCE WRITTEN IN ALL CAPITAL LETTERS TO CHECK FLAGGING.</p>
+
+            <!-- Full Sentence Styled to All Caps (Using text-transform) -->
+            <h3>Full Sentence Styled in All Caps (CSS Styling)</h3>
+            <p style="text-transform: uppercase;">This sentence is visually styled to appear all caps but isn't typed that way.</p>
+
+            <!-- 8. Edge Cases Testing Different Combinations -->
+            <section>
+                <h2>Edge Cases Testing Different Combinations</h2>
+
+                <!-- One Long Acronym, One Short Acronym -->
+                <h3>One Long Acronym, One Short Acronym</h3>
+                <p>SCUBA FBI</p>
+                <!-- Explanation: SCUBA (5 letters) qualifies, FBI (3 letters) doesn't. Only one qualifying word. ❌ No flag. -->
+
+                <!-- Two Short Acronyms -->
+                <h3>Two Short Acronyms</h3>
+                <p>FBI CIA</p>
+                <!-- Explanation: Both FBI and CIA are 3 letters. Too short to qualify individually. ❌ No flag. -->
+
+                <!-- Two Long Acronyms -->
+                <h3>Two Long Acronyms</h3>
+                <p>SCUBA UNESCO</p>
+                <!-- Explanation: SCUBA (5 letters) and UNESCO (6 letters) both qualify. ✅ Should trigger a flag. -->
+
+                <!-- One Long Word in Lowercase, One Long Acronym -->
+                <h3>One Long Lowercase Word and One Long Acronym</h3>
+                <p>scuba UNESCO</p>
+                <!-- Explanation: 'scuba' lowercase does not count as capital letters. Only UNESCO counts. ❌ No flag. -->
+
+                <!-- Long Acronym + Regular Word Capitalized Normally -->
+                <h3>Long Acronym + Normal Capitalized Word</h3>
+                <p>UNESCO Education</p>
+                <!-- Explanation: UNESCO qualifies, but 'Education' is not all caps. Only one qualifying word. ❌ No flag. -->
+
+                <!-- Three Mixed Acronyms -->
+                <h3>Three Mixed Acronyms</h3>
+                <p>FBI NASA UNESCO</p>
+                <!-- Explanation: FBI (3 letters, ignored), NASA (4 letters, qualifies), UNESCO (6 letters, qualifies). Two qualifying words. ✅ Should trigger a flag. -->
+            </section>
+        </section>
+
         <a href="https://platform-staging.sitelint.site/sites/pages/reports?token=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950&url=https:%2F%2Fsitelint-testing.github.io%2Fevery-rule%2Fcapital-letters.html#tab_failed_reports" target="_blank">View SiteLint Report</a>
     </main>
     
