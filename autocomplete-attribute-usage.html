@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Autocomplete Attribute Usage</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 1.5rem;
+    }
+    form {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border: 1px solid #ccc;
+    }
+    nav a {
+      margin-right: 15px;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+<section>
+  <p><strong>Rule ID:</strong> autocomplete-attribute-usage</p>
+  <p><strong>Rule title:</strong> Add autocomplete attribute to form controls to help users fill out forms more efficiently.</p>
+  <p><strong>Documentation:</strong> <a href="https://www.sitelint.com/docs/accessibility/add-autocomplete-attribute-to-form-controls-to-help-users-fill-out-forms-more-efficiently" target="_blank" rel="noopener noreferrer">SiteLint documentation</a></p>
+  <p><strong>Code validator:</strong> <a href="https://bitbucket.org/sitelint/auditor/src/main/app/rules/wcag21/1/1.3/1.3.5/autocomplete-attribute-usage.ts" target="_blank" rel="noopener noreferrer">View source on Bitbucket</a></p>
+  <p><strong>Jira Ticket:</strong> <a href="https://sitelint.atlassian.net/issues/PM-1099" target="_blank" rel="noopener noreferrer">PM-1099</a></p>
+</section>
+<hr />
+  <h1>Autocomplete Attribute Usage</h1>
+
+  <h2>✅ Correct Form (Passes SiteLint rule)</h2>
+  <form autocomplete="on">
+    <label>
+      Full Name:
+      <input type="text" name="name" autocomplete="name" />
+    </label>
+    <label>
+      Email:
+      <input type="email" name="email" autocomplete="email" />
+    </label>
+    <label>
+      Phone Number:
+      <input type="tel" name="tel" autocomplete="tel" />
+    </label>
+    <label>
+      Street Address:
+      <input type="text" name="address" autocomplete="street-address" />
+    </label>
+    <label>
+      City:
+      <input type="text" name="city" autocomplete="address-level2" />
+    </label>
+    <label>
+      State:
+      <input type="text" name="state" autocomplete="address-level1" />
+    </label>
+    <label>
+      ZIP Code:
+      <input type="text" name="zip" autocomplete="postal-code" />
+    </label>
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>❌ Incorrect Form (Fails SiteLint rule)</h2>
+  <form>
+    <label>
+      Email:
+      <input type="email" name="email" autocomplete="e-mail" />
+    </label>
+    <label>
+      Phone Number:
+      <input type="tel" name="tel" autocomplete="phone" />
+    </label>
+    <label>
+      City:
+      <input type="text" name="city" autocomplete="city" />
+    </label>
+    <label>
+      ZIP Code:
+      <input type="text" name="zip" autocomplete="zipcode" />
+    </label>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
