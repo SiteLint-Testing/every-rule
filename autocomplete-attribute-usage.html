@@ -1,34 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Autocomplete Attribute Usage</title>
+  <script src="pages.js" defer></script>
   <style>
     body {
       font-family: Arial, sans-serif;
       max-width: 800px;
       margin: 40px auto;
       padding: 20px;
+      line-height: 1.6;
     }
     h1 {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
+      margin-bottom: 0.2em;
     }
-    form {
-      margin-bottom: 2rem;
-      padding: 1rem;
-      border: 1px solid #ccc;
+    .scenario {
+      margin-top: 2em;
     }
-    nav a {
-      margin-right: 15px;
+    .label {
+      font-weight: bold;
+      padding: 0.5em;
+      background-color: #f0f0f0;
+      border-left: 6px solid;
+      margin-bottom: 0.5em;
     }
-    label {
+    .label.invalid {
+      border-color: #cc0000;
+    }
+    .label.valid {
+      border-color: #007700;
+    }
+    img.logo {
+      width: 261.984px;
+      height: 26.234px;
+      vertical-align: middle;
+      margin-top: 0.5em;
       display: block;
-      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
-<section>
+  <div id="dropdown-placeholder"></div>
+  <script src="dropdown-loader.js" defer></script>
+  
+  <section>
   <p><strong>Rule ID:</strong> autocomplete-attribute-usage</p>
   <p><strong>Rule title:</strong> Add autocomplete attribute to form controls to help users fill out forms more efficiently.</p>
   <p><strong>Documentation:</strong> <a href="https://www.sitelint.com/docs/accessibility/add-autocomplete-attribute-to-form-controls-to-help-users-fill-out-forms-more-efficiently" target="_blank" rel="noopener noreferrer">SiteLint documentation</a></p>
@@ -40,55 +57,25 @@
 
   <h2>✅ Correct Form (Passes SiteLint rule)</h2>
   <form autocomplete="on">
-    <label>
-      Full Name:
-      <input type="text" name="name" autocomplete="name" />
-    </label>
-    <label>
-      Email:
-      <input type="email" name="email" autocomplete="email" />
-    </label>
-    <label>
-      Phone Number:
-      <input type="tel" name="tel" autocomplete="tel" />
-    </label>
-    <label>
-      Street Address:
-      <input type="text" name="address" autocomplete="street-address" />
-    </label>
-    <label>
-      City:
-      <input type="text" name="city" autocomplete="address-level2" />
-    </label>
-    <label>
-      State:
-      <input type="text" name="state" autocomplete="address-level1" />
-    </label>
-    <label>
-      ZIP Code:
-      <input type="text" name="zip" autocomplete="postal-code" />
-    </label>
+    <label>Full Name: <input type="text" name="name" autocomplete="name" /></label><br />
+    <label>Email: <input type="email" name="email" autocomplete="email" /></label><br />
+    <label>Phone Number: <input type="tel" name="tel" autocomplete="tel" /></label><br />
+    <label>Street Address: <input type="text" name="address" autocomplete="street-address" /></label><br />
+    <label>City: <input type="text" name="city" autocomplete="address-level2" /></label><br />
+    <label>State: <input type="text" name="state" autocomplete="address-level1" /></label><br />
+    <label>ZIP Code: <input type="text" name="zip" autocomplete="postal-code" /></label><br />
     <button type="submit">Submit</button>
   </form>
 
-  <h2>❌ Incorrect Form (Fails SiteLint rule)</h2>
+  <h2>❗ Missing Autocomplete (Triggers autocomplete-attribute-usage rule)</h2>
   <form>
-    <label>
-      Email:
-      <input type="email" name="email" autocomplete="e-mail" />
-    </label>
-    <label>
-      Phone Number:
-      <input type="tel" name="tel" autocomplete="phone" />
-    </label>
-    <label>
-      City:
-      <input type="text" name="city" autocomplete="city" />
-    </label>
-    <label>
-      ZIP Code:
-      <input type="text" name="zip" autocomplete="zipcode" />
-    </label>
+    <label>Full Name: <input type="text" name="name" /></label><br />
+    <label>Email: <input type="email" name="email" /></label><br />
+    <label>Phone Number: <input type="tel" name="tel" /></label><br />
+    <label>Street Address: <input type="text" name="address" /></label><br />
+    <label>City: <input type="text" name="city" /></label><br />
+    <label>State: <input type="text" name="state" /></label><br />
+    <label>ZIP Code: <input type="text" name="zip" /></label><br />
     <button type="submit">Submit</button>
   </form>
 </body>

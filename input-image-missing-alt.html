@@ -9,18 +9,22 @@
 })(window,document,'script');</script>
 </head>
 <body>
-<div id="dropdown-placeholder"></div>
+<section style="margin: 2rem auto; max-width: 800px;">
+  <div id="dropdown-placeholder"></div>
+</section>
 <script src="dropdown-loader.js" defer></script>
 
+<section style="margin: 2rem auto; max-width: 800px;">
+  <div style="font-family: sans-serif;">
+    <p><strong>Rule ID:</strong> input-image-missing-alt</p>
+    <p><strong>Rule title:</strong> Image buttons must have an alternative description of their function.</p>
+    <p><strong>Documentation:</strong> <a href="https://www.sitelint.com/docs/accessibility/image-buttons-must-have-an-alternative-description-of-their-function" target="_blank" rel="noopener noreferrer">SiteLint documentation</a></p>
+    <p><strong>Code validator:</strong> <a href="https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/H36/input-image-missing-alt.ts" target="_blank" rel="noopener noreferrer">View source on Bitbucket</a></p>
+    <p><strong>Jira Ticket:</strong> n/a</p>
+  </div>
+</section>
 
-<script src="dropdown-loader.js" defer></script>
-
-
-
-
-
-
-    
+<main style="margin: 2rem auto; max-width: 800px;">
     <h1>Input Image Missing Alt Attribute Example</h1>
     <form>
         <!-- Input image without alt attribute -->
@@ -28,6 +32,7 @@
     </form>
 
     <a href="https://platform-staging.sitelint.site/sites/pages/reports?token=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950&url=https:%2F%2Fsitelint-testing.github.io%2Fevery-rule%2Finput-image-missing-alt.html#tab_failed_reports" target="_blank">View SiteLint Report</a>
+</main>
 
 </body>
 </html>

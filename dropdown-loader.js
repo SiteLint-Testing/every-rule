@@ -8,6 +8,8 @@ fetch('nav-dropdown.html')
     `;
 
     const input = container.querySelector("#combo-search");
+    input.value = "";
+    input.setAttribute("autocomplete", "off");
     const listbox = container.querySelector("#combo-list");
 
     function renderOptions(query = "") {
