@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to the SiteLint Testing Suite for every rule</title>
+    <title>SiteLint Accessibility Rule Test Pages</title>
     <script>
       (function(w,d,s,a,m,t){
         a = d.createElement(s);
@@ -38,12 +38,19 @@
       .meta p {
         margin: 0.3em 0;
       }
+      label:focus {
+        outline: 2px solid #000;
+        outline-offset: 2px;
+      }
     </style>
 </head>
 <body>
-<div id="dropdown-placeholder"></div>
-
-<p>Welcome to the SiteLint Accessibility Rule Test Pages. This site contains individual test cases for each of the accessibility rules implemented in SiteLint.</p>
+  <div id="dropdown-placeholder">
+    <label for="filter" tabindex="0">Filter navigation options:</label>
+  </div>
+  
+<h1>Welcome to the SiteLint Accessibility Rule Test Pages.</h1>
+<p>This site contains individual test cases for each of the accessibility rules implemented in SiteLint.</p>
 <script src="pages.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {

@@ -8,12 +8,11 @@
 <script>(function(w,d,s,a,m,t){a=d.createElement(s);m=d.getElementsByTagName(s)[0];a.defer=true;a.id='auditor_app';a.dataset.autorun='';a.dataset.cfasync='false';a.src='https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';m.parentNode.insertBefore(a,m);
 })(window,document,'script');</script>
 <style>
-  /* Remove outline for all focusable elements */
-  button, input[type="text"], a {
-    outline: none;
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
   /* Styling for demonstration purposes */
-  button, input[type="text"], a {
+  button, input[type="text"], a.button {
     background-color: #f0f0f0;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -24,30 +23,50 @@
     text-decoration: none;
   }
   button:focus, input[type="text"]:focus, a:focus {
-    outline: 0;
+    outline: 2px solid #005fcc;
+    outline-offset: 2px;
+  }
+  a.button {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    color: #333;
+    display: inline-block;
+    margin: 10px 0;
+    padding: 10px;
+    text-decoration: none;
+  }
+  a.button:focus {
+    outline: 2px solid #005fcc;
+    outline-offset: 2px;
+  }
+  .main {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  .meta p {
+    margin: 0.25em 0;
   }
 </style>
 </head>
 <body>
-<div id="dropdown-placeholder"></div>
+<section class="main">
+  <div id="dropdown-placeholder"></div>
+    <div class="meta">
+      <p><strong>Rule ID:</strong> outline-zero</p>
+      <p><strong>Rule Title:</strong> Outline zero</p>
+      <p><strong>Documentation:</strong> <a class="meta-link" href="https://www.sitelint.com/docs/accessibility/outline-zero" target="_blank" rel="noopener noreferrer">SiteLint documentation</a></p>
+      <p><strong>Code Validator:</strong> <a class="meta-link" href="https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/outline-zero/outline-zero.ts" target="_blank" rel="noopener noreferrer">View source on Bitbucket</a></p>
+      <p><strong>Jira Ticket:</strong> n/a</p>
+    </div>
+  <h1>Outline Zero Example</h1>
+  <p>Click on the elements below to see their focus behavior:</p>
+  <button>Button</button>
+  <input type="text" placeholder="Input Field">
+  <a href="#">Link</a>
+</section>
 <script src="dropdown-loader.js" defer></script>
-
-
-<script src="dropdown-loader.js" defer></script>
-
-
-
-
-
-
-    
-    <h1>Outline Zero Example</h1>
-    <p>Click on the elements below to see their focus behavior:</p>
-    <button>Button</button>
-    <input type="text" placeholder="Input Field">
-    <a href="#">Link</a>
-
-    <a href="https://platform-staging.sitelint.site/sites/pages/reports?token=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950&url=https:%2F%2Fsitelint-testing.github.io%2Fevery-rule%2Foutline-zero.html#tab_failed_reports" target="_blank">View SiteLint Report</a>
-
-  </body>
+</body>
 </html>

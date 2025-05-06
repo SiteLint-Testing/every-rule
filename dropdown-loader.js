@@ -28,6 +28,7 @@ fetch('nav-dropdown.html')
         li.textContent = page.label;
         li.tabIndex = 0;
         li.dataset.href = page.value;
+        li.classList.add("dropdown-option");
         li.addEventListener("click", () => {
           if (page.target === "_blank") {
             window.open(page.value, "_blank");

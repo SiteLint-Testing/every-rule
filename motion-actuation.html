@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>motion-actuation</title>
+<script src="pages.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+
+<script>
+    (function(w,d,s,a,m,t) {
+      a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';
+    
+      function onPageLoaded() {
+        w.clearTimeout(t);
+        w.removeEventListener('DOMContentLoaded', onPageLoaded);
+        m.parentNode.insertBefore(a, m);
+      }
+      
+      function onAuditorLoaded(){
+        auditor.config({
+          includeHidden: true,
+          stripTextFromReport: false,
+          watchDomChanges: false
+        }).run();
+      }
+    
+      a.addEventListener('load', onAuditorLoaded);
+    
+      if (d.readyState !== 'loading') {
+        onPageLoaded();
+        return;
+      }
+    
+      w.addEventListener('DOMContentLoaded', onPageLoaded);
+    })(window, document, 'script');
+    </script>
+    
+</head>
+<body>
+<div id="dropdown-placeholder"></div>
+<script src="dropdown-loader.js" defer></script>
+
+
+    <script src="dropdown-loader.js" defer></script>
+
+
+
+    
+
+    <h1>motion-actuation</h1>
+    <p>Shake your device to see the alert.</p>
+
+    <script>
+        // Function to handle device motion events
+        function handleMotion(event) {
+            const threshold = 10;
+            console.log("Motion detected: ", event.accelerationIncludingGravity);
+            if (Math.abs(event.accelerationIncludingGravity.x) > threshold ||
+                Math.abs(event.accelerationIncludingGravity.y) > threshold ||
+                Math.abs(event.accelerationIncludingGravity.z) > threshold) {
+                alert('Device shaken!');
+            }
+        }
+
+        // Function to request permission for motion sensors
+        function requestMotionPermission() {
+            if (typeof DeviceMotionEvent.requestPermission === 'function') {
+                // iOS 13+ devices
+                DeviceMotionEvent.requestPermission().then(permissionState => {
+                    if (permissionState === 'granted') {
+                        console.log("Motion permission granted");
+                        window.addEventListener('devicemotion', handleMotion);
+                    } else {
+                        console.log("Motion permission denied");
+                    }
+                }).catch(console.error);
+            } else {
+                // Non-iOS 13+ devices
+                console.log("Motion permission not required");
+                window.addEventListener('devicemotion', handleMotion);
+            }
+        }
+
+        // Request motion permission on load
+        window.onload = requestMotionPermission;
+    </script>
+
+    <a href="https://platform-staging.sitelint.site/sites/pages/reports?token=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950&url=https:%2F%2Fsitelint-testing.github.io%2Fevery-rule%2Fmotion-actuation.html#tab_failed_reports" target="_blank">View SiteLint Report</a>
+</body>
+</html>
