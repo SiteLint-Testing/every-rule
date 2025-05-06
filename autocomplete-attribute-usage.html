@@ -39,6 +39,23 @@
       margin-top: 0.5em;
       display: block;
     }
+    .form-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .form-row label {
+      display: inline-block;
+      width: 180px;
+      text-align: right;
+      margin-right: 10px;
+    }
+
+    .form-row input,
+    .form-row textarea {
+      width: 250px;
+    }
   </style>
 </head>
 <body>
@@ -57,25 +74,62 @@
 
   <h2>✅ Correct Form (Passes SiteLint rule)</h2>
   <form autocomplete="on">
-    <label>Full Name: <input type="text" name="name" autocomplete="name" /></label><br />
-    <label>Email: <input type="email" name="email" autocomplete="email" /></label><br />
-    <label>Phone Number: <input type="tel" name="tel" autocomplete="tel" /></label><br />
-    <label>Street Address: <input type="text" name="address" autocomplete="street-address" /></label><br />
-    <label>City: <input type="text" name="city" autocomplete="address-level2" /></label><br />
-    <label>State: <input type="text" name="state" autocomplete="address-level1" /></label><br />
-    <label>ZIP Code: <input type="text" name="zip" autocomplete="postal-code" /></label><br />
+    <div class="form-row">
+      <label for="name">Full Name:</label><input id="name" type="text" name="name" autocomplete="name" />
+    </div>
+    <div class="form-row">
+      <label for="email">Email:</label><input id="email" type="email" name="email" autocomplete="email" />
+    </div>
+    <div class="form-row">
+      <label for="tel">Phone Number:</label><input id="tel" type="tel" name="tel" autocomplete="tel" />
+    </div>
+    <div class="form-row">
+      <label for="address">Street Address:</label><input id="address" type="text" name="address" autocomplete="street-address" />
+    </div>
+    <div class="form-row">
+      <label for="city">City:</label><input id="city" type="text" name="city" autocomplete="address-level2" />
+    </div>
+    <div class="form-row">
+      <label for="state">State:</label><input id="state" type="text" name="state" autocomplete="address-level1" />
+    </div>
+    <div class="form-row">
+      <label for="zip">ZIP Code:</label><input id="zip" type="text" name="zip" autocomplete="postal-code" />
+    </div>
+    <div class="form-row">
+      <label for="search">Search:</label><input id="search" type="search" name="search" />
+    </div>
     <button type="submit">Submit</button>
   </form>
 
   <h2>❗ Missing Autocomplete (Triggers autocomplete-attribute-usage rule)</h2>
   <form>
-    <label>Full Name: <input type="text" name="name" /></label><br />
-    <label>Email: <input type="email" name="email" /></label><br />
-    <label>Phone Number: <input type="tel" name="tel" /></label><br />
-    <label>Street Address: <input type="text" name="address" /></label><br />
-    <label>City: <input type="text" name="city" /></label><br />
-    <label>State: <input type="text" name="state" /></label><br />
-    <label>ZIP Code: <input type="text" name="zip" /></label><br />
+    <div class="form-row">
+      <label for="name-missing">Full Name:</label><input id="name-missing" type="text" name="name" />
+    </div>
+    <div class="form-row">
+      <label for="email-missing">Email:</label><input id="email-missing" type="email" name="email" />
+    </div>
+    <div class="form-row">
+      <label for="tel-missing">Phone Number:</label><input id="tel-missing" type="tel" name="tel" />
+    </div>
+    <div class="form-row">
+      <label for="address-missing">Street Address:</label><input id="address-missing" type="text" name="address" />
+    </div>
+    <div class="form-row">
+      <label for="city-missing">City:</label><input id="city-missing" type="text" name="city" />
+    </div>
+    <div class="form-row">
+      <label for="state-missing">State:</label><input id="state-missing" type="text" name="state" />
+    </div>
+    <div class="form-row">
+      <label for="zip-missing">ZIP Code:</label><input id="zip-missing" type="text" name="zip" />
+    </div>
+    <div class="form-row">
+      <label for="favoriteColor-missing">Favorite Color:</label><input id="favoriteColor-missing" type="text" name="favoriteColor" />
+    </div>
+    <div class="form-row">
+      <label for="comments-missing">Comments:</label><textarea id="comments-missing" name="comments"></textarea>
+    </div>
     <button type="submit">Submit</button>
   </form>
 </body>
