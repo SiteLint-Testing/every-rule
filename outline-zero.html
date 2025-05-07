@@ -56,16 +56,29 @@
   <div id="dropdown-placeholder"></div>
     <div class="meta">
       <p><strong>Rule ID:</strong> outline-zero</p>
-      <p><strong>Rule Title:</strong> Outline zero</p>
-      <p><strong>Documentation:</strong> <a class="meta-link" href="https://www.sitelint.com/docs/accessibility/outline-zero" target="_blank" rel="noopener noreferrer">SiteLint documentation</a></p>
+      <p><strong>Rule Title:</strong> Avoid using CSS outline attribute because it can hide the focus state of interactive elements</p>
+      <p><strong>Documentation:</strong> <a class="meta-link" href="https://www.sitelint.com/docs/accessibility/avoid-using-css-outline-attribute-because-it-can-hide-the-focus-state-of-interactive-elements" target="_blank" rel="noopener noreferrer">SiteLint documentation</a></p>
       <p><strong>Code Validator:</strong> <a class="meta-link" href="https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/outline-zero/outline-zero.ts" target="_blank" rel="noopener noreferrer">View source on Bitbucket</a></p>
       <p><strong>Jira Ticket:</strong> n/a</p>
     </div>
   <h1>Outline Zero Example</h1>
   <p>Click on the elements below to see their focus behavior:</p>
+
+  <h2>Failing Examples</h2>
+  <p>These interactive elements do <strong>not</strong> have visible focus styles, which fails the rule:</p>
+  <button style="outline: none;">No Focus Button</button>
+  <input type="text" placeholder="No Focus Input" style="outline: none;">
+  <a href="#" style="outline: none; border: none;">No Focus Link</a>
+
+  <h2>Passing Examples</h2>
+  <p>These interactive elements have visible custom focus styles, which <strong>pass</strong> the rule:</p>
+  <button style="outline: none; box-shadow: 0 0 0 3px rgba(21, 156, 228, 0.4);">Custom Focus Button</button>
+  <input type="text" placeholder="Custom Focus Input" style="outline: none; box-shadow: 0 0 0 3px rgba(21, 156, 228, 0.4);">
+  <a href="#" style="outline: none; border: 2px solid #005fcc;">Custom Focus Link</a>
+
   <button>Button</button>
   <input type="text" placeholder="Input Field">
-  <a href="#">Link</a>
+  <a href="#" style="outline: none; border: none;">Link</a>
 </section>
 <script src="dropdown-loader.js" defer></script>
 </body>
