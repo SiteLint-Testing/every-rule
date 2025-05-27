@@ -42,13 +42,33 @@
         outline: 2px solid #000;
         outline-offset: 2px;
       }
-    </style>
+</style>
+<script src="rule-index.js" defer></script>
 </head>
 <body>
   <div id="dropdown-placeholder">
     <label for="filter" tabindex="0">Filter navigation options:</label>
   </div>
-  
+
+  <div style="margin-top: 2em; font-weight: 600;">Search for a Rule by ID or Title:</div>
+  <input id="rule-search" placeholder="Type rule ID or title..." style="width: 40ch; max-width: 90vw; margin-bottom: 0.2em; display: block;" />
+  <div id="rule-results" style="display: inline-block; width: max-content; max-width: 90vw; position: relative;">
+    <ul id="rule-list" role="listbox" style="
+      border: 1px solid #ccc;
+      max-height: calc(100vh - 150px);
+      overflow-y: auto;
+      padding-left: 0;
+      list-style: none;
+      margin-top: 0.2em;
+      display: none;
+      background: white;
+      position: absolute;
+      z-index: 9999;
+      width: max-content;
+      max-width: 90vw;">
+    </ul>
+  </div>
+
 <h1>Welcome to the SiteLint Accessibility Rule Test Pages.</h1>
 <p>This site contains individual test cases for each of the accessibility rules implemented in SiteLint.</p>
 <script src="pages.js"></script>
@@ -69,6 +89,32 @@
     }
   });
 </script>
+</script>
 <script src="dropdown-loader.js" defer></script>
+<script>
+  document.getElementById("rule-search").addEventListener("input", (e) => {
+    const query = e.target.value.toLowerCase();
+    const list = document.getElementById("rule-list");
+    list.innerHTML = "";
+
+    const filtered = (window.siteLintRules || []).filter(rule =>
+      rule.ruleId.toLowerCase().includes(query) ||
+      rule.title.toLowerCase().includes(query)
+    );
+
+    filtered.forEach(rule => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <strong>${rule.ruleId}</strong>: ${rule.title}<br/>
+        <a href="${rule.testPage}" target="_blank">🧪 Test Page</a> |
+        <a href="${rule.docLink}" target="_blank">📄 Docs</a> |
+        <a href="${rule.codeLink}" target="_blank">💻 Code</a>
+      `;
+      list.appendChild(li);
+    });
+
+    list.style.display = filtered.length ? "block" : "none";
+  });
+</script>
 </body>
 </html>

@@ -5,21 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>missing-submit-button</title>
 <script src="pages.js" defer></script>
-<script>(function(w,d,s,a,m,t){a=d.createElement(s);m=d.getElementsByTagName(s)[0];a.defer=true;a.id='auditor_app';a.dataset.autorun='';a.dataset.cfasync='false';a.src='https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';m.parentNode.insertBefore(a,m);
-})(window,document,'script');</script>
+
 </head>
 <body>
 <div id="dropdown-placeholder"></div>
 <script src="dropdown-loader.js" defer></script>
-
-
-<script src="dropdown-loader.js" defer></script>
-
-
-
-
-
-
     
     <h1>Missing Submit Button Example</h1>
     <form action="#">
@@ -30,6 +20,40 @@
         <input type="password" id="password" name="password" placeholder="Enter your password">
         <br><br>
         <!-- No submit button -->
+    </form>
+
+    <h2>1. Single Button (No Type)</h2>
+    <form action="#">
+      <label for="email1">Email:</label>
+      <input type="email" id="email1" name="email" placeholder="Enter your email">
+      <br><br>
+      <button>Submit</button>
+    </form>
+
+    <h2>2. Single Button (type="submit")</h2>
+    <form action="#">
+      <label for="email2">Email:</label>
+      <input type="email" id="email2" name="email" placeholder="Enter your email">
+      <br><br>
+      <button type="submit">Submit</button>
+    </form>
+
+    <h2>3. Two Buttons (One is type="submit")</h2>
+    <form action="#">
+      <label for="email3">Email:</label>
+      <input type="email" id="email3" name="email" placeholder="Enter your email">
+      <br><br>
+      <button type="submit">Submit</button>
+      <button type="button">Cancel</button>
+    </form>
+
+    <h2>4. Two Buttons (Neither is type="submit")</h2>
+    <form action="#">
+      <label for="email4">Email:</label>
+      <input type="email" id="email4" name="email" placeholder="Enter your email">
+      <br><br>
+      <button type="button">Save</button>
+      <button type="button">Cancel</button>
     </form>
 
     <a href="https://platform-staging.sitelint.site/sites/pages/reports?token=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950&url=https:%2F%2Fsitelint-testing.github.io%2Fevery-rule%2Fmissing-submit-button.html#tab_failed_reports" target="_blank">View SiteLint Report</a>
