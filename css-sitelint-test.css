@@ -1,0 +1,63 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.2em;
+}
+
+nav {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.meta {
+  background: #f9f9f9;
+  border-left: 6px solid #0077cc;
+  padding: 1em;
+  margin-bottom: 2em;
+}
+
+.meta p {
+  margin: 0.3em 0;
+}
+
+label:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+#rule-search {
+  width: 40ch;
+  max-width: 90vw;
+  margin-bottom: 0.2em;
+  display: block;
+}
+
+#rule-results {
+  display: inline-block;
+  width: max-content;
+  max-width: 90vw;
+  position: relative;
+}
+
+#rule-list {
+  border: 1px solid #ccc;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  padding-left: 0;
+  list-style: none;
+  margin-top: 0.2em;
+  display: none;
+  background: white;
+  position: absolute;
+  z-index: 9999;
+  width: max-content;
+  max-width: 90vw;
+}

@@ -3,42 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Autocomplete Attribute Usage</title>
-  <script src="pages.js" defer></script>
+  <script src="js-auditor-init.js" defer></script>
+  <link rel="stylesheet" href="css-sitelint-test.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      line-height: 1.6;
-    }
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 0.2em;
-    }
-    .scenario {
-      margin-top: 2em;
-    }
-    .label {
-      font-weight: bold;
-      padding: 0.5em;
-      background-color: #f0f0f0;
-      border-left: 6px solid;
-      margin-bottom: 0.5em;
-    }
-    .label.invalid {
-      border-color: #cc0000;
-    }
-    .label.valid {
-      border-color: #007700;
-    }
-    img.logo {
-      width: 261.984px;
-      height: 26.234px;
-      vertical-align: middle;
-      margin-top: 0.5em;
-      display: block;
-    }
     .form-row {
       display: flex;
       align-items: center;
@@ -59,8 +26,17 @@
   </style>
 </head>
 <body>
-  <div id="dropdown-placeholder"></div>
-  <script src="dropdown-loader.js" defer></script>
+  <div id="dropdown-placeholder">
+    <label for="filter" tabindex="0">Filter navigation options:</label>
+  </div>
+  <div id="rule-search-wrapper">
+    <label for="rule-search" id="rule-search-label">Search for a Rule by ID or Title:</label>
+    <input id="rule-search" type="text" />
+    <ul id="rule-list" role="listbox"></ul>
+  </div>
+  <script src="js-pages.js" defer></script>
+  <script src="js-dropdown-loader.js" defer></script>
+  <script src="js-rule-index.js" defer></script>
   
   <section>
   <p><strong>Rule ID:</strong> autocomplete-attribute-usage</p>

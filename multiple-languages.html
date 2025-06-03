@@ -3,72 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    (function(w,d,s,a,m,t){
-      a = d.createElement(s);
-      m = d.getElementsByTagName(s)[0];
-      a.defer = true;
-      a.id = 'auditor_app';
-      a.dataset.autorun = '';
-      a.dataset.cfasync = 'false';
-      a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script');
-  </script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      line-height: 1.6;
-    }
-    nav {
-      max-width: 800px;
-      margin: 0 auto 40px;
-      padding: 0 20px;
-    }
-    .meta {
-      background: #f9f9f9;
-      border-left: 6px solid #0077cc;
-      padding: 1em;
-      margin-bottom: 2em;
-    }
-    .meta p {
-      margin: 0.3em 0;
-    }
-    label:focus {
-      outline: 2px solid #000;
-      outline-offset: 2px;
-    }
-  </style>
+  <script src="js-auditor-init.js" defer></script>
+  <link rel="stylesheet" href="css-sitelint-test.css">
   <script src="rule-index.js" defer></script>
   <title>Multiple Languages</title>
 </head>
 <body>
-  <header>
-    <div id="dropdown-placeholder">
-      <label for="filter" tabindex="0">Filter navigation options:</label>
-    </div>
-    <div style="margin-top: 2em; font-weight: 600;">Search for a Rule by ID or Title:</div>
-    <input id="rule-search" placeholder="Type rule ID or title..." style="width: 40ch; max-width: 90vw; margin-bottom: 0.2em; display: block;" />
-    <div id="rule-results" style="display: inline-block; width: max-content; max-width: 90vw; position: relative;">
-      <ul id="rule-list" role="listbox" style="
-        border: 1px solid #ccc;
-        max-height: calc(100vh - 150px);
-        overflow-y: auto;
-        padding-left: 0;
-        list-style: none;
-        margin-top: 0.2em;
-        display: none;
-        background: white;
-        position: absolute;
-        z-index: 9999;
-        width: max-content;
-        max-width: 90vw;">
-      </ul>
-    </div>
-  </header>
+  <div id="dropdown-placeholder">
+    <label for="filter" tabindex="0">Filter navigation options:</label>
+  </div>
+  <div id="rule-search-wrapper">
+    <label for="rule-search" id="rule-search-label">Search for a Rule by ID or Title:</label>
+    <input id="rule-search" type="text" />
+    <ul id="rule-list" role="listbox"></ul>
+  </div>
 
   <main>
     <h1>Multiple Languages on the Page</h1>
@@ -92,58 +40,10 @@
       </p>
     </section>
 
-    <a href="https://platform-staging.sitelint.site/sites/pages/reports?token=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950&url=https:%2F%2Fsitelint-testing.github.io%2Fevery-rule%2Fmultiple-languages.html#tab_failed_reports" target="_blank">View SiteLint Report</a>
   </main>
 
-  <script src="pages.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      if (typeof pages !== 'undefined' && Array.isArray(pages)) {
-        const list = document.getElementById('test-pages-list');
-        pages.forEach(page => {
-          const li = document.createElement('li');
-          const link = document.createElement('a');
-          link.href = page.url;
-          link.textContent = page.label;
-          li.appendChild(link);
-          list.appendChild(li);
-        });
-      } else {
-        console.error('Pages not defined or not an array');
-      }
-    });
-  </script>
-  <script src="dropdown-loader.js" defer></script>
-  <script>
-    document.getElementById("rule-search").addEventListener("input", (e) => {
-      const query = e.target.value.toLowerCase();
-      const list = document.getElementById("rule-list");
-      list.innerHTML = "";
-
-      const filtered = (window.siteLintRules || []).filter(rule =>
-        rule.ruleId.toLowerCase().includes(query) ||
-        rule.title.toLowerCase().includes(query)
-      );
-
-      filtered.forEach(rule => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <strong>${rule.ruleId}</strong>: ${rule.title}<br/>
-          <a href="${rule.testPage}" target="_blank">🧪 Test Page</a> |
-          <a href="${rule.docLink}" target="_blank">📄 Docs</a> |
-          <a href="${rule.codeLink}" target="_blank">💻 Code</a>
-        `;
-        list.appendChild(li);
-      });
-
-      list.style.display = filtered.length ? "block" : "none";
-    });
-
-    document.getElementById("rule-search").addEventListener("blur", () => {
-      setTimeout(() => {
-        document.getElementById("rule-list").style.display = "none";
-      }, 100); // allow time for clicks on dropdown links
-    });
-  </script>
+  <script src="js-pages.js" defer></script>
+  <script src="js-dropdown-loader.js" defer></script>
+  <script src="js-rule-index.js" defer></script>
 </body>
 </html>

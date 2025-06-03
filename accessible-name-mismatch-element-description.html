@@ -5,48 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accessible name mismatch element description</title>
-<script src="pages.js" defer></script>
-    <script>
-        (function (w, d, s, a, m, t) {
-            a = d.createElement(s); m = d.getElementsByTagName(s)[0]; a.defer = true; a.fetchpriority = 'high'; a.id = 'auditor_app'; a.dataset.cfasync = 'false'; a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';
-
-            function onPageLoaded() {
-                w.clearTimeout(t);
-                w.removeEventListener('DOMContentLoaded', onPageLoaded);
-
-                function loadSiteLintAuditor() {
-                    m.parentNode.insertBefore(a, m);
-                }
-                w.setTimeout(loadSiteLintAuditor, 3500);
-            }
-            function onAuditorLoaded() {
-                auditor.config({
-                    includeHidden: true,
-                    stripTextFromReport: false,
-                    watchDomChanges: true
-                }).run();
-            }
-
-            a.addEventListener('load', onAuditorLoaded);
-
-            if (d.readyState !== 'loading') {
-                onPageLoaded();
-                return;
-            }
-
-            w.addEventListener('DOMContentLoaded', onPageLoaded);
-        })(window, document, 'script');
-    </script>
+<script src="js-auditor-init.js" defer></script>
+<link rel="stylesheet" href="css-sitelint-test.css">
 </head>
 
 <body>
-<div id="dropdown-placeholder"></div>
-<script src="dropdown-loader.js" defer></script>
+<div id="dropdown-placeholder">
+  <label for="filter" tabindex="0">Filter navigation options:</label>
+</div>
+<div id="rule-search-wrapper">
+  <label for="rule-search" id="rule-search-label">Search for a Rule by ID or Title:</label>
+  <input id="rule-search" type="text" />
+  <ul id="rule-list" role="listbox"></ul>
+</div>
+<script src="js-pages.js" defer></script>
+<script src="js-dropdown-loader.js" defer></script>
+<script src="js-rule-index.js" defer></script>
     <header>
         
-
-<script src="dropdown-loader.js" defer></script>
-
 
 
         

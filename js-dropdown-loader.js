@@ -2,6 +2,10 @@ fetch('nav-dropdown.html')
   .then(res => res.text())
   .then(html => {
     const container = document.getElementById('dropdown-placeholder');
+    const ruleSearchLabel = document.getElementById("rule-search-label");
+    if (ruleSearchLabel) {
+      ruleSearchLabel.textContent = "Search for a Rule by ID or Title:";
+    }
     container.innerHTML = `
       <label for="combo-search" class="visually-hidden">Filter navigation options</label>
       ${html}
@@ -13,6 +17,10 @@ fetch('nav-dropdown.html')
     const listbox = container.querySelector("#combo-list");
 
     function renderOptions(query = "") {
+      if (!Array.isArray(window.siteLintPages)) {
+        console.error("siteLintPages is not defined or is not an array");
+        return;
+      }
       const value = query.toLowerCase();
       listbox.innerHTML = "";
       listbox.style.display = "block";

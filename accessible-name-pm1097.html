@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Image inside of a link needs an alternative description</title>
-<script src="pages.js" defer></script>
+  <script src="js-auditor-init.js" defer></script>
+  <link rel="stylesheet" href="css-sitelint-test.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -42,8 +43,17 @@
   </style>
 </head>
 <body>
-<div id="dropdown-placeholder"></div>
-<script src="dropdown-loader.js" defer></script>
+<div id="dropdown-placeholder">
+  <label for="filter" tabindex="0">Filter navigation options:</label>
+</div>
+<div id="rule-search-wrapper">
+  <label for="rule-search" id="rule-search-label">Search for a Rule by ID or Title:</label>
+  <input id="rule-search" type="text" />
+  <ul id="rule-list" role="listbox"></ul>
+</div>
+<script src="js-pages.js" defer></script>
+<script src="js-dropdown-loader.js" defer></script>
+<script src="js-rule-index.js" defer></script>
 
   <h1>Image inside of a link needs an alternative description</h1>
   <p><strong>Rule ID:</strong> <a href="https://www.sitelint.com/docs/accessibility/image-inside-of-a-link-needs-an-alternative-description" target="_blank" rel="noopener noreferrer">img-empty-alt-in-link</a></p>

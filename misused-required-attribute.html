@@ -5,29 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>misused-required-attribute</title>
-<script src="pages.js" defer></script>
-    <script>(function (w, d, s, a, m, t) {
-            a = d.createElement(s); m = d.getElementsByTagName(s)[0]; a.defer = true; a.id = 'auditor_app'; a.dataset.autorun = ''; a.dataset.cfasync = 'false'; a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950'; m.parentNode.insertBefore(a, m);
-        })(window, document, 'script');</script>
+    <script src="sitelint-test-init.js" defer></script>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 2em auto;
+            max-width: 40em;
+            background: #f9f9fa;
+            color: #222;
+        }
+        nav {
+            margin-bottom: 2em;
+        }
+        .meta {
+            color: #666;
+            font-size: 0.9em;
+        }
+        label:focus {
+            outline: 2px solid #005fcc;
+            outline-offset: 2px;
+        }
+    </style>
 </head>
 
 <body>
-<div id="dropdown-placeholder"></div>
-<script src="dropdown-loader.js" defer></script>
+<div id="dropdown-placeholder">
+  <label for="filter" tabindex="0">Filter navigation options:</label>
+</div>
+<div style="margin-top: 2em; font-weight: 600;" id="rule-search-label"></div>
+<input id="rule-search" placeholder="Type rule ID or title..." style="width: 40ch; max-width: 90vw; margin-bottom: 0.2em; display: block;" />
+<div id="rule-results" style="display: inline-block; width: max-content; max-width: 90vw; position: relative;">
+  <ul id="rule-list" role="listbox" style="
+    border: 1px solid #ccc;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    padding-left: 0;
+    list-style: none;
+    margin-top: 0.2em;
+    display: none;
+    background: white;
+    position: absolute;
+    z-index: 9999;
+    width: max-content;
+    max-width: 90vw;">
+  </ul>
+</div>
 
-
-
-    <script src="dropdown-loader.js" defer></script>
-
-
-
-
-
-
-
-    
-
-    <h1>Misused Required Attribute</h1>
+<h1>Misused Required Attribute</h1>
     <form>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" placeholder="Enter your username" required aria-required="true">
@@ -37,9 +61,23 @@
     </form>
     <p>This form includes required attributes on input fields but lacks appropriate validation and error handling.</p>
 
-    <a href="https://platform-staging.sitelint.site/sites/pages/reports?token=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950&url=https:%2F%2Fsitelint-testing.github.io%2Fevery-rule%2Fmisused-required-attribute.html#tab_failed_reports"
-        target="_blank">View SiteLint Report</a>
 
+<script>
+  // Hide the rule list when clicking outside or on blur
+  document.addEventListener('click', (event) => {
+    const ruleInput = document.getElementById('rule-search');
+    const ruleList = document.getElementById('rule-list');
+    if (!ruleInput.contains(event.target) && !ruleList.contains(event.target)) {
+      ruleList.style.display = 'none';
+    }
+  });
+
+  document.getElementById('rule-search').addEventListener('blur', () => {
+    setTimeout(() => {
+      document.getElementById('rule-list').style.display = 'none';
+    }, 100); // delay to allow click on list item
+  });
+</script>
 </body>
 
 </html>

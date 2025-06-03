@@ -737,31 +737,94 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.4/1.4.4/G142/zoom-disabled.ts"
   }
 ];
-const updateRuleList = (query) => {
-  const list = document.getElementById("rule-list");
-  list.innerHTML = "";
+// Inject the Rule Search UI if not already present, then set up listeners and styles
+document.addEventListener('DOMContentLoaded', () => {
+  // Inject the Rule Search UI if not already present
+  if (!document.getElementById("rule-search-wrapper")) {
+    const wrapper = document.createElement("div");
+    wrapper.id = "rule-search-wrapper";
 
-  const filtered = (window.siteLintRules || []).filter(rule =>
-    rule.ruleId.toLowerCase().includes(query) ||
-    rule.title.toLowerCase().includes(query)
-  );
+    const label = document.createElement("label");
+    label.setAttribute("for", "rule-search");
+    label.id = "rule-search-label";
+    label.textContent = "Search for a Rule by ID or Title:";
 
-  filtered.forEach(rule => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <strong>${rule.number}. ${rule.ruleId}</strong>: ${rule.title} —
-      <a href="${rule.codeLink}" target="_blank">Code</a>
-    `;
-    list.appendChild(li);
+    const input = document.createElement("input");
+    input.id = "rule-search";
+    input.type = "text";
+
+    const list = document.createElement("ul");
+    list.id = "rule-list";
+    list.setAttribute("role", "listbox");
+
+    wrapper.appendChild(label);
+    wrapper.appendChild(input);
+    wrapper.appendChild(list);
+
+    document.body.insertBefore(wrapper, document.body.firstChild);
+    // Add margin to wrapper to avoid crowding at the top
+    wrapper.style.marginBottom = '1em';
+  }
+
+  // Now that the UI exists, set up logic and listeners
+  const ruleSearchInput = document.getElementById("rule-search");
+  const ruleList = document.getElementById("rule-list");
+
+  if (!ruleSearchInput || !ruleList) {
+    console.error("Rule search elements not found.");
+    return;
+  }
+
+  // Dropdown styles for ruleList
+  ruleList.style.display = 'none';
+  ruleList.style.position = 'absolute';
+  ruleList.style.zIndex = '9999';
+  ruleList.style.background = 'white';
+  ruleList.style.border = '1px solid #ccc';
+  ruleList.style.listStyle = 'none';
+  ruleList.style.padding = '0.5em';
+  ruleList.style.marginTop = '0.2em';
+  ruleList.style.maxHeight = '50vh';
+  ruleList.style.overflowY = 'auto';
+  ruleList.style.whiteSpace = 'nowrap';
+  ruleList.style.width = 'max-content';
+  ruleList.style.minWidth = ruleSearchInput.offsetWidth + 'px';
+  // Ensure the input is visible and the rules dropdown stays functional
+  ruleSearchInput.style.display = 'inline-block';
+  ruleSearchInput.style.width = '300px';
+  ruleList.style.boxShadow = '0 2px 6px rgba(0,0,0,0.2)';
+
+  const updateRuleList = (query) => {
+    ruleList.innerHTML = "";
+
+    const filtered = (window.siteLintRules || []).filter(rule =>
+      rule.ruleId.toLowerCase().includes(query) ||
+      rule.title.toLowerCase().includes(query)
+    );
+
+    filtered.forEach(rule => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <strong>${rule.number}. ${rule.ruleId}</strong>: ${rule.title} —
+        <a href="${rule.codeLink}" target="_blank">Code</a>
+      `;
+      ruleList.appendChild(li);
+    });
+
+    ruleList.style.display = (filtered.length || query === "") ? "block" : "none";
+  };
+
+  ruleSearchInput.addEventListener("input", (e) => {
+    updateRuleList(e.target.value.toLowerCase().trim());
   });
 
-  list.style.display = filtered.length ? "block" : "none";
-};
+  ruleSearchInput.addEventListener("focus", () => {
+    updateRuleList("");
+  });
 
-document.getElementById("rule-search").addEventListener("input", (e) => {
-  updateRuleList(e.target.value.toLowerCase().trim());
-});
-
-document.getElementById("rule-search").addEventListener("focus", () => {
-  updateRuleList("");
+  ruleSearchInput.addEventListener("blur", () => {
+    setTimeout(() => {
+      ruleList.style.display = "none";
+    }, 150); // allow time for interaction
+  });
 });
