@@ -10,7 +10,7 @@ window.siteLintRules = [
   {
     number: 2,
     ruleId: "alt-text-include-filename",
-    title: "Don't use image filenames as alt text",
+    title: "The alt text of an image should describe the image's content, not its filename",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/F30/alt-text-include-filename.ts"
@@ -18,7 +18,7 @@ window.siteLintRules = [
   {
     number: 3,
     ruleId: "animation",
-    title: "Animation must be stoppable, or less than 5 seconds, or essential",
+    title: "Animations should not loop indefinitely",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.2/2.2.2/F16/animation.ts"
@@ -26,7 +26,7 @@ window.siteLintRules = [
   {
     number: 4,
     ruleId: "applet-missing-alt",
-    title: "Applets must contain fallback text",
+    title: "Applets must have a text alternative when not supported",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/H35/applet-missing-alt.ts"
@@ -34,7 +34,7 @@ window.siteLintRules = [
   {
     number: 5,
     ruleId: "aria-describedby-association",
-    title: "aria-describedby attribute must reference a valid ID",
+    title: "Use <aria-describedby> to provide additional descriptions and context for elements (e.g., images, form fields) that need it",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/ARIA1/aria-describedby-association.ts"
@@ -42,7 +42,7 @@ window.siteLintRules = [
   {
     number: 6,
     ruleId: "aria-hidden-false",
-    title: "aria-hidden='false' must not be used",
+    title: "Use caution with <aria-hidden=\"false\"> because content may still be exposed unintentionally",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/aria-hidden-false/aria-hidden-false.ts"
@@ -50,7 +50,7 @@ window.siteLintRules = [
   {
     number: 7,
     ruleId: "aria-hidden-true-focusable-descendants",
-    title: "aria-hidden='true' elements must not contain focusable content",
+    title: "Focusable elements should not be hidden from assistive technologies",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/4/4.1/4.1.2/aria-hidden-true-focusable-descendants/aria-hidden-true-focusable-descendants.ts"
@@ -58,7 +58,7 @@ window.siteLintRules = [
   {
     number: 8,
     ruleId: "aria-labelledby-association",
-    title: "aria-labelledby attribute must reference a valid ID",
+    title: "The <aria-labelledby> attribute must reference an existing element",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.4/aria-labelledby-association.ts"
@@ -66,7 +66,7 @@ window.siteLintRules = [
   {
     number: 9,
     ruleId: "aria-labelledby-association-empty-element",
-    title: "Empty elements must not use aria-labelledby",
+    title: "An <aria-labelledby> attribute must reference an element that contains meaningful content",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.4/aria-labelledby-association-empty-element.ts"
@@ -74,7 +74,7 @@ window.siteLintRules = [
   {
     number: 10,
     ruleId: "aria-role-dialog",
-    title: "Dialogs must use role='dialog'",
+    title: "Pop-ups and modals must have accessible names'",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/aria-role-dialog/aria-role-dialog.ts"
@@ -82,7 +82,7 @@ window.siteLintRules = [
   {
     number: 11,
     ruleId: "audio-alternative",
-    title: "Audio-only content must have a transcript",
+    title: "Audio content must have a text alternative",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.2/1.2.1/G158/audio-alternative.ts"
@@ -90,7 +90,7 @@ window.siteLintRules = [
   {
     number: 12,
     ruleId: "audio-video-captions",
-    title: "Videos with audio must have captions",
+    title: "Audio and video content need captions and subtitles",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.2/1.2.1/H95/audio-video-captions.ts"
@@ -98,7 +98,7 @@ window.siteLintRules = [
   {
     number: 13,
     ruleId: "autoplay-audio-video",
-    title: "Auto-playing audio or video must be under 3 seconds or have controls",
+    title: "Audio and video content should not play automatically",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.4/1.4.2/autoplay-audio-video.ts"
@@ -106,7 +106,7 @@ window.siteLintRules = [
   {
     number: 14,
     ruleId: "broken-same-page-link",
-    title: "Anchor links must point to valid IDs on the same page",
+    title: "Links must have a corresponding target",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.1/2.1.1/broken-same-page-link.ts"
@@ -114,7 +114,7 @@ window.siteLintRules = [
   {
     number: 15,
     ruleId: "capital-letters-words",
-    title: "Avoid using all capital letters in words",
+    title: "Only use all caps for acronyms",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/capital-letters-words/capital-letters-words.ts"
@@ -122,7 +122,7 @@ window.siteLintRules = [
   {
     number: 16,
     ruleId: "click-verb",
-    title: "Link text should not include the word 'click'",
+    title: "Don't use "Click" for link text",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.4/click-verb.ts"
@@ -130,7 +130,7 @@ window.siteLintRules = [
   {
     number: 17,
     ruleId: "color-contrast-aa",
-    title: "Text must meet WCAG AA color contrast requirements",
+    title: "The contrast ratio should be at least 4.5:1 for normal text and 3:1 for large text against a background",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.4/1.4.3/G18/color-contrast-aa.ts"
@@ -138,7 +138,7 @@ window.siteLintRules = [
   {
     number: 18,
     ruleId: "color-contrast-aaa",
-    title: "Text must meet WCAG AAA color contrast requirements",
+    title: "The contrast ratio should be at least 7:1 for normal text and 4.5:1 for large text against a background",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.4/1.4.6/G17/color-contrast-aaa.ts"
@@ -146,7 +146,7 @@ window.siteLintRules = [
   {
     number: 19,
     ruleId: "content-editable-missing-attributes",
-    title: "Contenteditable elements must include ARIA roles and keyboard handlers",
+    title: "Editable content (like form fields) need appropriate attributes for assistive technology",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/content-editable-missing-attributes/content-editable-missing-attributes.ts"
@@ -154,7 +154,7 @@ window.siteLintRules = [
   {
     number: 20,
     ruleId: "contentinfo-landmark-only-one",
-    title: "Only one contentinfo landmark is allowed",
+    title: "Code role=\"contentinfo\" should be defined only once",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/contentinfo-landmark-only-one/contentinfo-landmark-only-one.ts"
@@ -162,7 +162,7 @@ window.siteLintRules = [
   {
     number: 21,
     ruleId: "aria-attribute-conflict",
-    title: "Conflicting ARIA attributes must not be used together",
+    title: "Both native HTML attributes and ARIA attributes should not be used together",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/aria-attribute-conflict/aria-attribute-conflict.ts"
@@ -170,7 +170,7 @@ window.siteLintRules = [
   {
     number: 22,
     ruleId: "duplicated-for-attribute",
-    title: "Multiple labels must not point to the same 'for' attribute",
+    title: "A single <label> element should only describe one form control",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/H93/duplicated-for-attribute.ts"
@@ -178,7 +178,7 @@ window.siteLintRules = [
   {
     number: 23,
     ruleId: "duplicated-id-attribute",
-    title: "ID attributes must be unique",
+    title: "Code <id> attribute should be unique",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/4/4.1/4.1.1/F77/duplicated-id-attribute.ts"
@@ -186,7 +186,7 @@ window.siteLintRules = [
   {
     number: 24,
     ruleId: "elements-not-allowed-in-head",
-    title: "Disallowed elements must not appear inside <head>",
+    title: "Invalid HTML elements in the HEAD section",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/elements-not-allowed-in-head/elements-not-allowed-in-head.ts"
@@ -194,7 +194,7 @@ window.siteLintRules = [
   {
     number: 25,
     ruleId: "empty-button-description",
-    title: "Buttons must have discernible text",
+    title: "Buttons must have visible, accessible content that describes their action. Empty or unreachable buttons hinder accessibility",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/4/4.1/4.1.2/H91/empty-button-description.ts"
@@ -202,7 +202,7 @@ window.siteLintRules = [
   {
     number: 26,
     ruleId: "empty-heading",
-    title: "Avoid empty headings",
+    title: "Heading element (like H1) exists but has no content",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.6/G130/empty-heading.ts"
@@ -210,7 +210,7 @@ window.siteLintRules = [
   {
     number: 27,
     ruleId: "empty-label-element",
-    title: "Label elements must contain or reference text",
+    title: "Labels should always contain meaningful text describing the associated form control",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/H44/empty-label-element.ts"
@@ -218,7 +218,7 @@ window.siteLintRules = [
   {
     number: 28,
     ruleId: "empty-link-element",
-    title: "Links must contain text or accessible content",
+    title: "Links should have meaningful, descriptive content",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.4/H30/empty-link-element.ts"
@@ -234,7 +234,7 @@ window.siteLintRules = [
   {
     number: 30,
     ruleId: "fieldset-no-legend",
-    title: "&lt;fieldset&gt; elements must include a &lt;legend&gt;",
+    title: "Grouped form controls need a defined caption or description",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/H71/fieldset-no-legend.ts"
@@ -242,7 +242,7 @@ window.siteLintRules = [
   {
     number: 31,
     ruleId: "flash-content",
-    title: "Avoid using Flash content",
+    title: "Do not use Adobe Flash",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/flash-content/flash-content.ts"
@@ -258,7 +258,7 @@ window.siteLintRules = [
   {
     number: 33,
     ruleId: "font-style-italic",
-    title: "Avoid italic text unless necessary",
+    title: "Avoid excessive use of italic text",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/font-style-italic/font-style-italic.ts"
@@ -266,7 +266,7 @@ window.siteLintRules = [
   {
     number: 34,
     ruleId: "group-elements-name-attribute",
-    title: "Form groups must have a name attribute",
+    title: "Checkboxes should be grouped together",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/H71/group-elements-name-attribute.ts"
@@ -274,7 +274,7 @@ window.siteLintRules = [
   {
     number: 35,
     ruleId: "h1-must-be",
-    title: "The page must include an &lt;h1&gt; heading",
+    title: "Pages should have an H1",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/h1-must-be/h1-must-be.ts"
@@ -282,7 +282,7 @@ window.siteLintRules = [
   {
     number: 36,
     ruleId: "headings-hierarchy",
-    title: "Headings must follow a logical hierarchy",
+    title: "Headings must be in order and not skip (e.g., H1 to H3)",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/G141/headings-hierarchy.ts"
@@ -290,7 +290,7 @@ window.siteLintRules = [
   {
     number: 37,
     ruleId: "headings-sibling-unique",
-    title: "Headings at the same level must be unique",
+    title: "All headings at the same level (e.g., H2) should have unique and meaningful text",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/headings-sibling-unique/headings-sibling-unique.ts"
@@ -298,7 +298,7 @@ window.siteLintRules = [
   {
     number: 38,
     ruleId: "horizontal-rule",
-    title: "Avoid using &lt;hr&gt; for purely decorative purposes",
+    title: "Use horizontal rule HR sparingly",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/horizontal-rule/horizontal-rule.ts"
@@ -306,7 +306,7 @@ window.siteLintRules = [
   {
     number: 39,
     ruleId: "html-lang-attr",
-    title: "Set the language of the document using the html 'lang' attribute",
+    title: "Page needs to declare the language",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/3/3.1/3.1.1/html-lang-attr.ts"
@@ -314,7 +314,7 @@ window.siteLintRules = [
   {
     number: 40,
     ruleId: "identify-input-purpose",
-    title: "Common input fields must include autocomplete attributes",
+    title: "Invalid definition of input purpose",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag21/1/1.3/1.3.5/identify-input-purpose.ts"
@@ -322,7 +322,7 @@ window.siteLintRules = [
   {
     number: 41,
     ruleId: "a-area-missing-alt",
-    title: "<area> elements must have alt text",
+    title: "Image map area must have a text alternative",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/H24/a-area-missing-alt.ts"
@@ -330,7 +330,7 @@ window.siteLintRules = [
   {
     number: 42,
     ruleId: "img-adjacent-duplicate-text-link",
-    title: "Avoid repeating image text next to the link",
+    title: "Adjacent text and images should link to the same destination",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/H2/img-adjacent-duplicate-text-link.ts"
@@ -338,7 +338,7 @@ window.siteLintRules = [
   {
     number: 43,
     ruleId: "img-alt-duplicate-text-link",
-    title: "Don't duplicate image alt text in adjacent links",
+    title: "A link and its image may not have duplicate text content",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/H2/img-alt-duplicate-text-link.ts"
@@ -346,7 +346,7 @@ window.siteLintRules = [
   {
     number: 44,
     ruleId: "img-empty-alt-in-link",
-    title: "Linked images must not have empty alt attributes",
+    title: "Image inside of a link needs an alternative description",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/H30/img-empty-alt-in-link.ts"
@@ -354,7 +354,7 @@ window.siteLintRules = [
   {
     number: 45,
     ruleId: "img-empty-alt-with-empty-title",
-    title: "Avoid using both empty alt and empty title on images",
+    title: "Decorative images should not have a title attribute",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/H67/img-empty-alt-with-empty-title.ts"
@@ -370,7 +370,7 @@ window.siteLintRules = [
   {
     number: 47,
     ruleId: "incorrect-technique-for-hiding-content",
-    title: "Avoid hiding content using inaccessible techniques",
+    title: "Don't use the CSS text-indent to hide text",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/incorrect-technique-for-hiding-content/incorrect-technique-for-hiding-content.ts"
@@ -378,7 +378,7 @@ window.siteLintRules = [
   {
     number: 48,
     ruleId: "input-image-missing-alt",
-    title: "Image inputs must have alt text",
+    title: "Image buttons must have an alternative description of their function",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/H36/input-image-missing-alt.ts"
@@ -386,7 +386,7 @@ window.siteLintRules = [
   {
     number: 49,
     ruleId: "invalid-attribute-dir-value",
-    title: "The 'dir' attribute must have a valid value",
+    title: "The dir attribute for writing direction must be set either ltr (left to right) or rtl (right to left) as appropriate for the language",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/invalid-attribute-dir-value/invalid-attribute-dir-value.ts"
@@ -394,7 +394,7 @@ window.siteLintRules = [
   {
     number: 50,
     ruleId: "label-duplicated-content-title",
-    title: "Labels must not duplicate the title attribute",
+    title: "Title and element content must be distinct and complementary",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/label-duplicated-content-title/label-duplicated-content-title.ts"
@@ -402,7 +402,7 @@ window.siteLintRules = [
   {
     number: 51,
     ruleId: "label-implicitly-associated",
-    title: "Label elements must be explicitly associated with a form field",
+    title: "Labels for form elements must be clear and sufficient",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/H44/label-implicitly-associated.ts"
@@ -410,7 +410,7 @@ window.siteLintRules = [
   {
     number: 52,
     ruleId: "label-inappropriate-association",
-    title: "Label elements must only be associated with valid form fields",
+    title: "Form fields need a label explaining what it is",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/H44/label-inappropriate-association.ts"
@@ -418,7 +418,7 @@ window.siteLintRules = [
   {
     number: 53,
     ruleId: "legend-first-child-of-fieldset",
-    title: "&lt;legend&gt; must be the first child of &lt;fieldset&gt;",
+    title: "When using fieldset element to group related form controls, the legend element must be the first child",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/3/3.3/3.3.2/H71/legend-first-child-of-fieldset.ts"
@@ -426,7 +426,7 @@ window.siteLintRules = [
   {
     number: 54,
     ruleId: "link-with-unclear-purpose",
-    title: "Links must have a clear purpose",
+    title: "Links should have descriptive, meaningful text that makes sense even when taken out of context",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.9/F84/link-with-unclear-purpose/link-with-unclear-purpose.ts"
@@ -434,7 +434,7 @@ window.siteLintRules = [
   {
     number: 55,
     ruleId: "links-not-visually-evident-without-color-vision",
-    title: "Link styles must not rely on color alone",
+    title: "Links need to be understandable and distinguishable from their surrounding text",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.4/1.4.1/F73/links-not-visually-evident-without-color-vision.ts"
@@ -442,7 +442,7 @@ window.siteLintRules = [
   {
     number: 56,
     ruleId: "links-same-content-different-url",
-    title: "Links with the same text must go to the same destination",
+    title: "Multiple text links that look the same should also link to the same content (such as \"Read more\")",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.4/H30/links-same-content-different-url.ts"
@@ -450,7 +450,7 @@ window.siteLintRules = [
   {
     number: 57,
     ruleId: "main-element-only-one",
-    title: "Only one &lt;main&gt; element is allowed per page",
+    title: "The main element should only be defined once on a page",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/main-element-only-one/main-element-only-one.ts"
@@ -458,7 +458,7 @@ window.siteLintRules = [
   {
     number: 58,
     ruleId: "main-landmark-must-be-top-level",
-    title: "&lt;main&gt; landmark must be top-level and not nested",
+    title: "Code <main> should be toplevel landmark",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/main-landmark-must-be-top-level/main-landmark-must-be-top-level.ts"
@@ -474,7 +474,7 @@ window.siteLintRules = [
   {
     number: 60,
     ruleId: "minimum-font-size",
-    title: "Text must not be smaller than 9px",
+    title: "Body text size should be at least 16px",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/minimum-font-size/minimum-font-size.ts"
@@ -482,7 +482,7 @@ window.siteLintRules = [
   {
     number: 61,
     ruleId: "missing-alt-attribute",
-    title: "Images must include alt text",
+    title: "Non-text content must have an alternative description",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/F65/missing-alt-attribute.ts"
@@ -490,8 +490,7 @@ window.siteLintRules = [
   {
     number: 62,
     ruleId: "missing-href-on-a",
-    // PATCHING STRATEGY: Always escape angle brackets in titles for HTML elements.
-    title: "&lt;a&gt; tags must include an href attribute",
+    title: "A link needs a destination to function properly",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/missing-href-on-a/missing-href-on-a.ts"
@@ -499,7 +498,7 @@ window.siteLintRules = [
   {
     number: 63,
     ruleId: "missing-label",
-    title: "Form fields must have labels",
+    title: "Form controls need labels",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/3/3.3/3.3.2/H44/missing-label.ts"
@@ -507,7 +506,7 @@ window.siteLintRules = [
   {
     number: 64,
     ruleId: "missing-submit-button",
-    title: "Forms must include a submit button",
+    title: "Forms must have a submit button",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/3/3.2/3.2.2/H32/missing-submit-button.ts"
@@ -515,7 +514,7 @@ window.siteLintRules = [
   {
     number: 65,
     ruleId: "misused-aria-on-focusable-element",
-    title: "ARIA attributes must be used correctly on focusable elements",
+    title: "Aria attribute should not be applied to elements that are already focusable and have inherent accessibility properties",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/misused-aria-on-focusable-element/misused-aria-on-focusable-element.ts"
@@ -523,7 +522,7 @@ window.siteLintRules = [
   {
     number: 66,
     ruleId: "misused-input-attribute",
-    title: "Input attributes must match the input type",
+    title: "Use  attributes on input elements properly and only when they are needed",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/misused-input-attribute/misused-input-attribute.ts"
@@ -531,7 +530,7 @@ window.siteLintRules = [
   {
     number: 67,
     ruleId: "misused-required-attribute",
-    title: "Avoid using both required and aria-required on the same element",
+    title: "The \"required\" and \"aria-required\" attributes should not be combined on the same element",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/misused-required-attribute/misused-required-attribute.ts"
@@ -539,7 +538,7 @@ window.siteLintRules = [
   {
     number: 68,
     ruleId: "misused-tabindex-attribute",
-    title: "Avoid misusing the tabindex attribute",
+    title: "Set <tabindex> properly to match the correct reading order of content on the page",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.3/H4/misused-tabindex-attribute.ts"
@@ -555,7 +554,7 @@ window.siteLintRules = [
   {
     number: 71,
     ruleId: "navigation-landmark-restrictions",
-    title: "Navigation landmarks must follow landmark restrictions",
+    title: "The element must only contain region or search landmarks",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/navigation-landmark-restrictions/navigation-landmark-restrictions.ts"
@@ -563,7 +562,7 @@ window.siteLintRules = [
   {
     number: 72,
     ruleId: "no-headings",
-    title: "Pages must include at least one heading",
+    title: "Headings (h1-h6) are essential for organizing content and creating a hierarchy",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.10/no-headings.ts"
@@ -571,7 +570,7 @@ window.siteLintRules = [
   {
     number: 73,
     ruleId: "no-meta-http-equiv-refresh",
-    title: "Do not use meta refresh to reload pages automatically",
+    title: "Pages must not automatically refresh or redirect without user control",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.2/2.2.1/F41/no-meta-http-equiv-refresh.ts"
@@ -579,7 +578,7 @@ window.siteLintRules = [
   {
     number: 74,
     ruleId: "object-missing-body",
-    title: "Object elements must include fallback content",
+    title: "Missing text alternative for the <object>",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/H53/object-missing-body.ts"
@@ -587,7 +586,7 @@ window.siteLintRules = [
   {
     number: 75,
     ruleId: "obsolete-html-attributes",
-    title: "Avoid using obsolete HTML attributes",
+    title: "Do not use obsolete attributes (e.g., <align>, <bgcolor>)",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/obsolete-html-attributes/obsolete-html-attributes.ts"
@@ -595,7 +594,7 @@ window.siteLintRules = [
   {
     number: 76,
     ruleId: "obsolete-html-elements",
-    title: "Avoid using obsolete HTML elements",
+    title: "Do not use obsolete HTML elements (e.g., <font>, <center>)",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/obsolete-html-elements/obsolete-html-elements.ts"
@@ -611,7 +610,7 @@ window.siteLintRules = [
   {
     number: 78,
     ruleId: "positive-tabindex",
-    title: "Avoid positive tabindex values",
+    title: "Do not use positive tabindex",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.3/H4/positive-tabindex.ts"
@@ -619,7 +618,7 @@ window.siteLintRules = [
   {
     number: 79,
     ruleId: "rtl-content",
-    title: "Use dir='rtl' only when content is intended to be right-to-left",
+    title: "Features must accommodate right-to-left languages",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/rtl-content/rtl-content.ts"
@@ -627,7 +626,7 @@ window.siteLintRules = [
   {
     number: 80,
     ruleId: "accessible-svg",
-    title: "SVGs must include a role and a title or desc element",
+    title: "SVG content must have an accessible name",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/F65/accessible-svg.ts"
@@ -635,7 +634,7 @@ window.siteLintRules = [
   {
     number: 81,
     ruleId: "table-caption-summary-identical",
-    title: "Table captions and summaries must not be identical",
+    title: "Table summary and caption content should be different",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/H39/table-caption-summary-identical.ts"
@@ -643,7 +642,7 @@ window.siteLintRules = [
   {
     number: 82,
     ruleId: "table-missing-description",
-    title: "Tables must have a caption or summary description",
+    title: "Tables should include a description (using a  or an additional explanation)",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/H39/table-missing-description.ts"
@@ -651,7 +650,7 @@ window.siteLintRules = [
   {
     number: 83,
     ruleId: "table-row-and-column-headers",
-    title: "Tables must use proper row and column headers",
+    title: "Tables should have  elements that define headers for each column or row",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/H51/table-row-and-column-headers.ts"
@@ -659,7 +658,7 @@ window.siteLintRules = [
   {
     number: 84,
     ruleId: "target-size-minimum",
-    title: "Touch targets must be at least 24px by 24px",
+    title: "Interactive elements must have an area of at least 24 by 24 pixels",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag22/target-size-minimum/target-size-minimum.ts"
@@ -667,7 +666,7 @@ window.siteLintRules = [
   {
     number: 85,
     ruleId: "text-color-convey-information",
-    title: "Color must not be the only method to convey information",
+    title: "Information conveyed by color must also be available in text",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.4/1.4.1/G14/text-color-convey-information.ts"
@@ -675,7 +674,7 @@ window.siteLintRules = [
   {
     number: 86,
     ruleId: "title-for-abbr",
-    title: "Abbreviations must use a title attribute to define their meaning",
+    title: "Abbreviations need alternative text for explanation",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/3/3.1/3.1.4/H28/title-for-abbr.ts"
@@ -683,7 +682,7 @@ window.siteLintRules = [
   {
     number: 87,
     ruleId: "title-iframe",
-    title: "iframes must include a descriptive title",
+    title: "Missing the title attribute on iframe",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/4/4.1/4.1.2/H64/title-iframe.ts"
@@ -691,7 +690,7 @@ window.siteLintRules = [
   {
     number: 88,
     ruleId: "unclear-anchor-url",
-    title: "Anchor link URLs must be descriptive",
+    title: "Links must have a clear, valid destination",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/unclear-uri-on-a/unclear-anchor-url.ts"
@@ -699,7 +698,7 @@ window.siteLintRules = [
   {
     number: 89,
     ruleId: "unclear-image-description",
-    title: "Image alt text must clearly describe the image",
+    title: "Image descriptions (alt text) must be clear and concise",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/unclear-image-description/unclear-image-description.ts"
@@ -707,7 +706,7 @@ window.siteLintRules = [
   {
     number: 90,
     ruleId: "unclear-page-title",
-    title: "Pages must have clear and descriptive titles",
+    title: "The title HTML element should clearly describe the content or purpose of the page",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.2/H25/unclear-page-title.ts"
@@ -715,7 +714,7 @@ window.siteLintRules = [
   {
     number: 91,
     ruleId: "unsupported-role-on-element",
-    title: "Do not use ARIA roles on unsupported elements",
+    title: "Do not use unsupported or incorrect role attribute on an element",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/unsupported-role-on-element/unsupported-role-on-element.ts"
@@ -723,7 +722,7 @@ window.siteLintRules = [
   {
     number: 92,
     ruleId: "video-audio-descriptions",
-    title: "Videos must include audio descriptions for meaningful content",
+    title: "Audio, video, and other media need captions or descriptions",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.2/1.2.1/H96/video-audio-descriptions.ts"
@@ -731,7 +730,7 @@ window.siteLintRules = [
   {
     number: 93,
     ruleId: "zoom-disabled",
-    title: "User zoom must not be disabled",
+    title: "User must be able to zoom the page content",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.4/1.4.4/G142/zoom-disabled.ts"
