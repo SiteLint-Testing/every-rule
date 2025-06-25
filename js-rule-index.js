@@ -122,7 +122,7 @@ window.siteLintRules = [
   {
     number: 16,
     ruleId: "click-verb",
-    title: "Don't use "Click" for link text",
+    title: "Don't use \"Click\" for link text",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.4/click-verb.ts"
@@ -522,7 +522,7 @@ window.siteLintRules = [
   {
     number: 66,
     ruleId: "misused-input-attribute",
-    title: "Use  attributes on input elements properly and only when they are needed",
+    title: "Use attributes on input elements properly and only when they are needed",
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/misused-input-attribute/misused-input-attribute.ts"
