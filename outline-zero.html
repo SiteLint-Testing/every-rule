@@ -4,56 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>outline-zero</title>
-<script src="pages.js" defer></script>
+<script src="js-auditor-init.js" defer></script>
+<link rel="stylesheet" href="css-sitelint-test.css">
 <script>(function(w,d,s,a,m,t){a=d.createElement(s);m=d.getElementsByTagName(s)[0];a.defer=true;a.id='auditor_app';a.dataset.autorun='';a.dataset.cfasync='false';a.src='https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=f1c099211379e038cff26cbdeaaf9918eb39aea3978c0648935080e02f36f950';m.parentNode.insertBefore(a,m);
 })(window,document,'script');</script>
-<style>
-  body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  }
-  /* Styling for demonstration purposes */
-  button, input[type="text"], a.button {
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    color: #333;
-    display: inline-block;
-    margin: 10px;
-    padding: 10px;
-    text-decoration: none;
-  }
-  button:focus, input[type="text"]:focus, a:focus {
-    outline: 2px solid #005fcc;
-    outline-offset: 2px;
-  }
-  a.button {
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    color: #333;
-    display: inline-block;
-    margin: 10px 0;
-    padding: 10px;
-    text-decoration: none;
-  }
-  a.button:focus {
-    outline: 2px solid #005fcc;
-    outline-offset: 2px;
-  }
-  .main {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    line-height: 1.6;
-  }
-  .meta p {
-    margin: 0.25em 0;
-  }
-</style>
 </head>
 <body>
 <section class="main">
-  <div id="dropdown-placeholder"></div>
+  <div id="dropdown-placeholder">
+    <label for="filter" tabindex="0">Filter navigation options:</label>
+  </div>
+  <div id="rule-search-wrapper">
+    <label for="rule-search" id="rule-search-label">Search for a Rule by ID or Title:</label>
+    <input id="rule-search" type="text" />
+    <ul id="rule-list" role="listbox"></ul>
+  </div>
     <div class="meta">
       <p><strong>Rule ID:</strong> outline-zero</p>
       <p><strong>Rule Title:</strong> Avoid using CSS outline attribute because it can hide the focus state of interactive elements</p>
@@ -80,6 +45,8 @@
   <input type="text" placeholder="Input Field">
   <a href="#" style="outline: none; border: none;">Link</a>
 </section>
-<script src="dropdown-loader.js" defer></script>
+<script src="js-pages.js" defer></script>
+<script src="js-dropdown-loader.js" defer></script>
+<script src="js-rule-index.js" defer></script>
 </body>
 </html>

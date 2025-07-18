@@ -457,6 +457,14 @@ window.siteLintRules = [
   },
   {
     number: 58,
+    ruleId: "landmarks-none",
+    title: "Pages should contain landmarks",
+    testPage: "landmarks-none.html",
+    docLink: "https://www.sitelint.com/docs/accessibility/pages-should-contain-landmarks",
+    codeLink: "https://bitbucket.org/sitelint/auditor/src/develop/app/rules/auditor/accessibility/landmarks-none/landmarks-none.ts"
+  },
+  {
+    number: 59,
     ruleId: "legend-first-child-of-fieldset",
     title: "When using fieldset element to group related form controls, the legend element must be the first child",
     testPage: "",
@@ -464,7 +472,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/3/3.3/3.3.2/H71/legend-first-child-of-fieldset.ts"
   },
   {
-    number: 59,
+    number: 60,
     ruleId: "link-with-unclear-purpose",
     title: "Links should have descriptive, meaningful text that makes sense even when taken out of context",
     testPage: "",
@@ -472,7 +480,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.9/F84/link-with-unclear-purpose/link-with-unclear-purpose.ts"
   },
   {
-    number: 60,
+    number: 61,
     ruleId: "links-not-visually-evident-without-color-vision",
     title: "Links need to be understandable and distinguishable from their surrounding text",
     testPage: "",
@@ -480,7 +488,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.4/1.4.1/F73/links-not-visually-evident-without-color-vision.ts"
   },
   {
-    number: 61,
+    number: 62,
     ruleId: "links-same-content-different-url",
     title: "Multiple text links that look the same should also link to the same content (such as \"Read more\")",
     testPage: "",
@@ -488,7 +496,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.4/H30/links-same-content-different-url.ts"
   },
   {
-    number: 62,
+    number: 63,
     ruleId: "main-element-only-one",
     title: "The main element should only be defined once on a page",
     testPage: "",
@@ -496,7 +504,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/main-element-only-one/main-element-only-one.ts"
   },
   {
-    number: 63,
+    number: 64,
     ruleId: "main-landmark-must-be-top-level",
     title: "Code <main> should be toplevel landmark",
     testPage: "",
@@ -504,7 +512,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/main-landmark-must-be-top-level/main-landmark-must-be-top-level.ts"
   },
   {
-    number: 64,
+    number: 65,
     ruleId: "meaningful-content-sequence",
     title: "Content must be in a meaningful reading order",
     testPage: "",
@@ -512,7 +520,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.2/G57/meaningful-content-sequence.ts"
   },
   {
-    number: 65,
+    number: 66,
     ruleId: "minimum-font-size",
     title: "Body text size should be at least 16px",
     testPage: "",
@@ -520,7 +528,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/minimum-font-size/minimum-font-size.ts"
   },
   {
-    number: 66,
+    number: 67,
     ruleId: "missing-alt-attribute",
     title: "Non-text content must have an alternative description",
     testPage: "",
@@ -528,7 +536,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/F65/missing-alt-attribute.ts"
   },
   {
-    number: 67,
+    number: 68,
     ruleId: "missing-href-on-a",
     title: "A link needs a destination to function properly",
     testPage: "",
@@ -536,7 +544,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/missing-href-on-a/missing-href-on-a.ts"
   },
   {
-    number: 68,
+    number: 69,
     ruleId: "missing-label",
     title: "Form controls need labels",
     testPage: "",
@@ -544,7 +552,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/3/3.3/3.3.2/H44/missing-label.ts"
   },
   {
-    number: 69,
+    number: 70,
     ruleId: "missing-submit-button",
     title: "Forms must have a submit button",
     testPage: "",
@@ -552,7 +560,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/3/3.2/3.2.2/H32/missing-submit-button.ts"
   },
   {
-    number: 70,
+    number: 71,
     ruleId: "misused-aria-on-focusable-element",
     title: "Aria attribute should not be applied to elements that are already focusable and have inherent accessibility properties",
     testPage: "",
@@ -560,7 +568,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/misused-aria-on-focusable-element/misused-aria-on-focusable-element.ts"
   },
   {
-    number: 71,
+    number: 72,
     ruleId: "misused-input-attribute",
     title: "Use attributes on input elements properly and only when they are needed",
     testPage: "",
@@ -568,7 +576,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/misused-input-attribute/misused-input-attribute.ts"
   },
   {
-    number: 72,
+    number: 73,
     ruleId: "misused-required-attribute",
     title: "The \"required\" and \"aria-required\" attributes should not be combined on the same element",
     testPage: "",
@@ -576,7 +584,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/misused-required-attribute/misused-required-attribute.ts"
   },
   {
-    number: 73,
+    number: 74,
     ruleId: "misused-tabindex-attribute",
     title: "Set <tabindex> properly to match the correct reading order of content on the page",
     testPage: "",
@@ -584,7 +592,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.3/H4/misused-tabindex-attribute.ts"
   },
   {
-    number: 74,
+    number: 75,
     ruleId: "motion-actuation",
     title: "Functionality must not be triggered by motion alone",
     testPage: "",
@@ -592,7 +600,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag21/2/2.5/2.5.4/G213/motion-actuation.ts"
   },
   {
-    number: 75,
+    number: 76,
     ruleId: "navigation-landmark-restrictions",
     title: "The element must only contain region or search landmarks",
     testPage: "",
@@ -600,7 +608,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/navigation-landmark-restrictions/navigation-landmark-restrictions.ts"
   },
   {
-    number: 76,
+    number: 77,
     ruleId: "no-headings",
     title: "Headings (h1-h6) are essential for organizing content and creating a hierarchy",
     testPage: "",
@@ -608,7 +616,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.10/no-headings.ts"
   },
   {
-    number: 77,
+    number: 78,
     ruleId: "no-meta-http-equiv-refresh",
     title: "Pages must not automatically refresh or redirect without user control",
     testPage: "",
@@ -616,7 +624,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.2/2.2.1/F41/no-meta-http-equiv-refresh.ts"
   },
   {
-    number: 78,
+    number: 79,
     ruleId: "object-missing-body",
     title: "Missing text alternative for the <object>",
     testPage: "",
@@ -624,7 +632,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.1/1.1.1/H53/object-missing-body.ts"
   },
   {
-    number: 79,
+    number: 80,
     ruleId: "obsolete-html-attributes",
     title: "Do not use obsolete attributes (e.g., <align>, <bgcolor>)",
     testPage: "",
@@ -632,7 +640,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/obsolete-html-attributes/obsolete-html-attributes.ts"
   },
   {
-    number: 80,
+    number: 81,
     ruleId: "obsolete-html-elements",
     title: "Do not use obsolete HTML elements (e.g., <font>, <center>)",
     testPage: "",
@@ -640,7 +648,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/obsolete-html-elements/obsolete-html-elements.ts"
   },
   {
-    number: 81,
+    number: 82,
     ruleId: "overlay",
     title: "Avoid using accessibility overlays",
     testPage: "",
@@ -648,7 +656,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/overlay/overlay.ts"
   },
   {
-    number: 82,
+    number: 83,
     ruleId: "position-sticky",
     title: "Sticky positioning must not obscure content",
     testPage: "",
@@ -656,7 +664,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag21/1/1.4/1.4.10/position-sticky.ts"
   },
   {
-    number: 83,
+    number: 84,
     ruleId: "positive-tabindex",
     title: "Do not use positive tabindex",
     testPage: "",
@@ -664,7 +672,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.3/H4/positive-tabindex.ts"
   },
   {
-    number: 84,
+    number: 85,
     ruleId: "rtl-content",
     title: "Features must accommodate right-to-left languages",
     testPage: "",
@@ -672,7 +680,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/rtl-content/rtl-content.ts"
   },
   {
-    number: 85,
+    number: 86,
     ruleId: "table-caption-summary-identical",
     title: "Table summary and caption content should be different",
     testPage: "",
@@ -680,7 +688,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/H39/table-caption-summary-identical.ts"
   },
   {
-    number: 86,
+    number: 87,
     ruleId: "table-missing-description",
     title: "Tables should include a description (using a  or an additional explanation)",
     testPage: "",
@@ -688,7 +696,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/H39/table-missing-description.ts"
   },
   {
-    number: 87,
+    number: 88,
     ruleId: "table-row-and-column-headers",
     title: "Tables should have  elements that define headers for each column or row",
     testPage: "",
@@ -696,7 +704,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.3/1.3.1/H51/table-row-and-column-headers.ts"
   },
   {
-    number: 88,
+    number: 89,
     ruleId: "target-size-minimum",
     title: "Interactive elements must have an area of at least 24 by 24 pixels",
     testPage: "",
@@ -704,7 +712,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag22/target-size-minimum/target-size-minimum.ts"
   },
   {
-    number: 89,
+    number: 90,
     ruleId: "text-color-convey-information",
     title: "Information conveyed by color must also be available in text",
     testPage: "",
@@ -712,7 +720,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.4/1.4.1/G14/text-color-convey-information.ts"
   },
   {
-    number: 90,
+    number: 91,
     ruleId: "title-for-abbr",
     title: "Abbreviations need alternative text for explanation",
     testPage: "",
@@ -720,7 +728,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/3/3.1/3.1.4/H28/title-for-abbr.ts"
   },
   {
-    number: 91,
+    number: 92,
     ruleId: "title-iframe",
     title: "Missing the title attribute on iframe",
     testPage: "",
@@ -728,7 +736,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/4/4.1/4.1.2/H64/title-iframe.ts"
   },
   {
-    number: 92,
+    number: 93,
     ruleId: "unclear-anchor-url",
     title: "Links must have a clear, valid destination",
     testPage: "",
@@ -736,7 +744,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/unclear-uri-on-a/unclear-anchor-url.ts"
   },
   {
-    number: 93,
+    number: 94,
     ruleId: "unclear-image-description",
     title: "Image descriptions (alt text) must be clear and concise",
     testPage: "",
@@ -744,7 +752,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/unclear-image-description/unclear-image-description.ts"
   },
   {
-    number: 94,
+    number: 95,
     ruleId: "unclear-page-title",
     title: "The title HTML element should clearly describe the content or purpose of the page",
     testPage: "",
@@ -752,7 +760,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.2/H25/unclear-page-title.ts"
   },
   {
-    number: 95,
+    number: 96,
     ruleId: "unsupported-role-on-element",
     title: "Do not use unsupported or incorrect role attribute on an element",
     testPage: "",
@@ -760,7 +768,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/unsupported-role-on-element/unsupported-role-on-element.ts"
   },
   {
-    number: 96,
+    number: 97,
     ruleId: "video-audio-descriptions",
     title: "Audio, video, and other media need captions or descriptions",
     testPage: "",
@@ -768,7 +776,7 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/1/1.2/1.2.1/H96/video-audio-descriptions.ts"
   },
   {
-    number: 97,
+    number: 98,
     ruleId: "zoom-disabled",
     title: "User must be able to zoom the page content",
     testPage: "",

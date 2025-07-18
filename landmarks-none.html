@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Missing Landmarks Test</title>
+  <script src="js-auditor-init.js" defer></script>
+  <link rel="stylesheet" href="css-sitelint-test.css" />
+</head>
+<body>
+  <div id="dropdown-placeholder">
+    <label for="filter" tabindex="0">Filter navigation options:</label>
+  </div>
+  <div id="rule-search-wrapper">
+    <label for="rule-search" id="rule-search-label">Search for a Rule by ID or Title:</label>
+    <input id="rule-search" type="text" />
+    <ul id="rule-list" role="listbox"></ul>
+  </div>
+
+  <div class="meta">
+    <p><strong>Rule ID:</strong> landmarks-none</p>
+    <p><strong>Rule title:</strong> Pages should contain landmarks</p>
+    <p><strong>Documentation:</strong> <a href="https://www.sitelint.com/docs/accessibility/pages-should-contain-landmarks">SiteLint documentation</a></p>
+    <p><strong>Code validator:</strong> <a href="https://bitbucket.org/sitelint/auditor/src/develop/app/rules/auditor/accessibility/landmarks-none/">View source on Bitbucket</a></p>
+    <p><strong>Jira Ticket:</strong> <a href="https://sitelint.atlassian.net/browse/PM-1131">PM-1131</a></p>
+  </div>
+
+  <script src="js-pages.js" defer></script>
+  <script src="js-dropdown-loader.js" defer></script>
+  <script src="js-rule-index.js" defer></script>
+
+  <h1>Example Page Without Landmarks</h1>
+  <p>This page intentionally omits landmark elements to trigger the <code>landmarks-none</code> rule.</p>
+  <p>It does not use elements like <code>&lt;main&gt;</code>, <code>&lt;nav&gt;</code>, or any ARIA landmark roles.</p>
+</body>
+</html>
