@@ -152,14 +152,6 @@ window.siteLintRules = [
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/capital-letters-words/capital-letters-words.ts"
   },
   {
-    number: 20,
-    ruleId: "click-verb",
-    title: "Don't use \"Click\" for link text",
-    testPage: "",
-    docLink: "",
-    codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag2/2/2.4/2.4.4/click-verb.ts"
-  },
-  {
     number: 21,
     ruleId: "color-contrast-aa",
     title: "The contrast ratio should be at least 4.5:1 for normal text and 3:1 for large text against a background",
@@ -654,14 +646,6 @@ window.siteLintRules = [
     testPage: "",
     docLink: "",
     codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/auditor/accessibility/overlay/overlay.ts"
-  },
-  {
-    number: 83,
-    ruleId: "position-sticky",
-    title: "Sticky positioning must not obscure content",
-    testPage: "",
-    docLink: "",
-    codeLink: "https://bitbucket.org/sitelint/auditor/src/master/app/rules/wcag21/1/1.4/1.4.10/position-sticky.ts"
   },
   {
     number: 84,
