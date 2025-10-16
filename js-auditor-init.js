@@ -5,6 +5,6 @@
   a.id = 'auditor_app';
   a.dataset.autorun = '';
   a.dataset.cfasync = 'false';
-  a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?32c87bf7dee2424c7e0eb3cd04e5319b54d9a45cb7a8cc1919e414b4682d1bf1';
+  a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?659e781b77530e8f213fbc028de8ec327c876b995563e950b30dea9135af72d9';
   m.parentNode.insertBefore(a, m);
 })(window, document, 'script');
