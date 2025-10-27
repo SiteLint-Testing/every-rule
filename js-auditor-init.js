@@ -1,10 +1,2 @@
-(function(w,d,s,a,m,t){
-  a = d.createElement(s);
-  m = d.getElementsByTagName(s)[0];
-  a.defer = true;
-  a.id = 'auditor_app';
-  a.dataset.autorun = '';
-  a.dataset.cfasync = 'false';
-  a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=659e781b77530e8f213fbc028de8ec327c876b995563e950b30dea9135af72d9';
-  m.parentNode.insertBefore(a, m);
+(function(w,d,s,a,m,t){a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.id = 'auditor_app';a.dataset.autorun = '';a.dataset.cfasync = 'false';a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=758d9598b1132ec7074b8a1d5f4b69e06a45878cbe615cb0b8456fb881c6a33d';m.parentNode.insertBefore(a, m);
 })(window, document, 'script');
