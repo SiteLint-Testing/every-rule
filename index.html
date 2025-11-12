@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="js-auditor-init.js" defer></script>
-    <link rel="stylesheet" href="css-sitelint-test.css">
+
+<script>
+(function(w,d,s,a,m,t) {
+  a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=758d9598b1132ec7074b8a1d5f4b69e06a45878cbe615cb0b8456fb881c6a33d';
+
+  function onPageLoaded() {
+    w.clearTimeout(t);
+    w.removeEventListener('DOMContentLoaded', onPageLoaded);
+    m.parentNode.insertBefore(a, m);
+  }
+  
+  function onAuditorLoaded(){
+    auditor.config({
+      includeHidden: true,
+      stripTextFromReport: false,
+      watchDomChanges: false
+    }).run();
+  }
+
+  a.addEventListener('load', onAuditorLoaded);
+
+  if (d.readyState !== 'loading') {
+    onPageLoaded();
+    return;
+  }
+
+  w.addEventListener('DOMContentLoaded', onPageLoaded);
+})(window, document, 'script');
+</script>
+
 </head>
 <body>
-  <div id="dropdown-placeholder">
-    <label for="filter" tabindex="0">Filter navigation options:</label>
-  </div>
-  <div id="rule-search-wrapper">
-    <label for="rule-search" id="rule-search-label">Search for a Rule by ID or Title:</label>
-    <input id="rule-search" type="text" />
-    <ul id="rule-list" role="listbox"></ul>
-  </div>
-  <script src="js-pages.js" defer></script>
-  <script src="js-dropdown-loader.js" defer></script>
-  <script src="js-rule-index.js" defer></script>
   <h1>Welcome to the SiteLint Accessibility Rule Test Pages.</h1>
   <p>This site contains individual test cases for each of the accessibility rules implemented in SiteLint.</p>
 </body>
