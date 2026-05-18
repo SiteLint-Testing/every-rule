@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C7: Using CSS to hide a portion of the link text</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.5rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .visually-hidden {
+      clip: rect(1px, 1px, 1px, 1px);
+      clip-path: inset(100%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+
+    .incorrectly-hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>C7: Using CSS to hide a portion of the link text</h1>
+
+    <p>
+      <strong>Technique:</strong> C7. This technique supplements brief visible link text with additional text that is visually hidden but remains available to assistive technologies.
+    </p>
+
+    <p>
+      <strong>Related WCAG Success Criteria:</strong>
+      2.4.4 Link Purpose (In Context) and 2.4.9 Link Purpose (Link Only).
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Techniques/css/C7">View the W3C C7 technique</a>.
+    </p>
+
+    <section class="example passing-example">
+      <h2>Passing example</h2>
+      <p>
+        This succeeds because the visible link text says <strong>Full story</strong>, while the visually hidden text adds the missing context. The combined accessible link text identifies the link's purpose without changing the visual design.
+      </p>
+
+      <p>
+        Washington has announced plans to stimulate economic growth.
+        <a href="#washington-growth">
+          <span class="visually-hidden">Washington stimulates economic growth </span>Full story
+        </a>
+      </p>
+
+      <p id="washington-growth">
+        This text provides a valid same-page destination for the passing example link.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h2>Failing example 1: Generic link text with no supplemental hidden text</h2>
+      <p>
+        This fails to demonstrate C7 because the visible link text is only <strong>Full story</strong>, and no visually hidden text is included inside the link to make its purpose clear from the link text alone.
+      </p>
+
+      <p>
+        Philadelphia has announced plans to expand protected bike lanes.
+        <a href="#bike-lanes">Full story</a>
+      </p>
+
+      <p id="bike-lanes">
+        This text provides a valid same-page destination for the first failing example link.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h2>Failing example 2: Supplemental text is hidden from assistive technologies</h2>
+      <p>
+        This fails because the supplemental text is hidden with <code>display: none</code>. That removes it from assistive technologies as well as from visual display, so the accessible link text remains only <strong>Full story</strong>.
+      </p>
+
+      <p>
+        New library hours will begin next month.
+        <a href="#library-hours">
+          <span class="incorrectly-hidden">New library hours begin next month </span>Full story
+        </a>
+      </p>
+
+      <p id="library-hours">
+        This text provides a valid same-page destination for the second failing example link.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h2>Failing example 3: Repeated generic link text points to different destinations</h2>
+      <p>
+        This fails to use C7 because each link is displayed only as <strong>Full story</strong>, with no visually hidden text inside the link to distinguish one destination from another. This is the type of pattern C7 is intended to improve.
+      </p>
+
+      <p>
+        City council approves a new tree-planting initiative.
+        <a href="#tree-planting-story">Full story</a>
+      </p>
+
+      <p>
+        The school district releases its updated graduation plan.
+        <a href="#graduation-plan-story">Full story</a>
+      </p>
+
+      <p id="tree-planting-story">
+        This text provides a valid same-page destination for the tree-planting story link.
+      </p>
+
+      <p id="graduation-plan-story">
+        This text provides a valid same-page destination for the graduation-plan story link.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h2>Failing example 4: Repeated format links are not supplemented with the resource title</h2>
+      <p>
+        This fails to use C7 because multiple links are labeled only <strong>PDF</strong>, even though they point to different resources. A C7 implementation could visually hide each document title inside the corresponding link.
+      </p>
+
+      <dl>
+        <dt>Accessibility checklist</dt>
+        <dd><a href="#accessibility-checklist-pdf">PDF</a></dd>
+        <dt>Remediation guide</dt>
+        <dd><a href="#remediation-guide-pdf">PDF</a></dd>
+      </dl>
+
+      <p id="accessibility-checklist-pdf">
+        This text provides a valid same-page destination for the accessibility checklist PDF link.
+      </p>
+
+      <p id="remediation-guide-pdf">
+        This text provides a valid same-page destination for the remediation guide PDF link.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h2>Failing example 5: Supplemental context is visually hidden, but placed outside the link</h2>
+      <p>
+        This fails to use C7 because the visually hidden supplemental text is present in the paragraph, but it is not included inside the anchor element. As a result, it does not become part of the link's accessible name.
+      </p>
+
+      <p>
+        <span class="visually-hidden">Neighborhood park renovation </span>
+        <a href="#park-renovation-story">Full story</a>
+      </p>
+
+      <p id="park-renovation-story">
+        This text provides a valid same-page destination for the park-renovation story link.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
