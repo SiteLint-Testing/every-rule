@@ -1,42 +1,24 @@
-<!DOCTYPE html>
+
+
+<!doctype html>
 <html lang="en">
 <head>
-
-<script>
-(function(w,d,s,a,m,t) {
-  a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://stage-auditor.sitelint.com/auditor.bundle.js?tokenId=758d9598b1132ec7074b8a1d5f4b69e06a45878cbe615cb0b8456fb881c6a33d';
-
-  function onPageLoaded() {
-    w.clearTimeout(t);
-    w.removeEventListener('DOMContentLoaded', onPageLoaded);
-    m.parentNode.insertBefore(a, m);
-  }
-  
-  function onAuditorLoaded(){
-    auditor.config({
-      includeHidden: true,
-      stripTextFromReport: false,
-      watchDomChanges: false
-    }).run();
-  }
-
-  a.addEventListener('load', onAuditorLoaded);
-
-  if (d.readyState !== 'loading') {
-    onPageLoaded();
-    return;
-  }
-
-  w.addEventListener('DOMContentLoaded', onPageLoaded);
-})(window, document, 'script');
-</script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello World</title>
+  <meta property="og:title" content="Hello World">
+  <meta property="og:description" content="A simple test page.">
+  <meta property="og:type" content="website">
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to the SiteLint Accessibility Rule Test Pages.</h1>
-  <p>This site contains individual test cases for each of the accessibility rules implemented in SiteLint.</p>
+  <main>
+    <h1>Hello world</h1>
+  </main>
 </body>
-  <a href="https://images.ctfassets.net/2djrn56blv6r/63KKR8wAPEaxLGr8xThRP4/3e0ea178bd23c45afd28d579ab5237e8/akc-pupill-hdr-new-new.jpg">
-    <img src="https://images.ctfassets.net/2djrn56blv6r/63KKR8wAPEaxLGr8xThRP4/3e0ea178bd23c45afd28d579ab5237e8/akc-pupill-hdr-new-new.jpg">
-  </a>
 </html>
