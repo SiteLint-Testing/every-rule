@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -55,12 +53,41 @@
     </section>
 
     <section class="example failing-example">
-      <h2>Failing example</h2>
+      <h2>Failing example 1: Referenced description ID does not exist</h2>
       <p>
         This fails because the button uses <code>aria-describedby</code>, but the referenced description ID does not exist in the page. As a result, the intended descriptive information is not programmatically associated with the control.
       </p>
 
       <button type="button" aria-describedby="missing-color-description">Colors</button>
+    </section>
+
+    <section class="example failing-example">
+      <h2>Failing example 2: <code>aria-describedby</code> is empty</h2>
+      <p>
+        This fails because the button has an <code>aria-describedby</code> attribute, but the attribute is empty. It does not reference any descriptive text.
+      </p>
+
+      <button type="button" aria-describedby="">Customize</button>
+    </section>
+
+    <section class="example failing-example">
+      <h2>Failing example 3: Referenced description exists but is empty</h2>
+      <p>
+        This fails because the button references an existing description element, but that element contains no descriptive information about the control.
+      </p>
+
+      <p id="empty-layout-description"></p>
+      <button type="button" aria-describedby="empty-layout-description">Layout</button>
+    </section>
+
+    <section class="example failing-example">
+      <h2>Failing example 4: Referenced text exists but does not provide useful additional information</h2>
+      <p>
+        This fails the ARIA1 technique in substance because the referenced text does not provide meaningful additional information about the control. This may require human judgment rather than automated detection.
+      </p>
+
+      <p id="unhelpful-theme-description">Button description.</p>
+      <button type="button" aria-describedby="unhelpful-theme-description">Themes</button>
     </section>
   </main>
 </body>
