@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color Contrast AA Test</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Color Contrast AA Test</h1>
+
+    <p><strong>WCAG Success Criterion tested:</strong> 1.4.3 Contrast (Minimum)</p>
+    <p>This success criterion requires text and images of text to meet minimum contrast requirements so they are readable for people with low vision or reduced contrast sensitivity. For normal-sized text, WCAG AA requires a contrast ratio of at least 4.5:1.</p>
+
+    <section class="example passing-example">
+      <h2>Passing example</h2>
+      <p>This succeeds because the dark text has sufficient contrast against the white background to meet WCAG AA requirements for normal-sized text.</p>
+      <p style="color: #000000; background-color: #ffffff;">This text should pass the WCAG AA color contrast requirement.</p>
+    </section>
+
+    <section class="example failing-example">
+      <h2>Failing example</h2>
+      <p>This fails because the light gray text does not have enough contrast against the white background to meet WCAG AA requirements for normal-sized text.</p>
+      <p style="color: #999999; background-color: #ffffff;">This text should fail the WCAG AA color contrast requirement.</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Potential false positive: decorative linked image with descriptive link text</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .example {
+      border-left: 0.5rem solid #b7e4c7;
+      padding-left: 1rem;
+      margin-block: 1.5rem;
+    }
+
+    .icon-link {
+      align-items: center;
+      display: inline-flex;
+      gap: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Potential false positive: decorative linked image with descriptive link text</h1>
+
+    <p><strong>WCAG Success Criteria relevant:</strong> 1.1.1 Non-text Content and 2.4.4 Link Purpose (In Context)</p>
+    <p>
+      This page tests whether SiteLint treats an image inside a link as needing its own alternative text even when the image is decorative and the link's visible text already provides the full purpose of the link.
+    </p>
+
+    <section class="example">
+      <h2>Scenario: decorative icon inside a descriptive link</h2>
+      <p>
+        This should be accessible. The image is decorative, so it correctly uses <code>alt=""</code>. The adjacent visible link text, <strong>Download annual report</strong>, provides the link's accessible name and fully communicates the destination.
+      </p>
+
+      <a class="icon-link" href="#annual-report">
+        <img
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M12 3v11' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M7 10l5 5 5-5' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M5 20h14' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E"
+          alt=""
+          width="24"
+          height="24">
+        <span>Download annual report</span>
+      </a>
+
+      <p id="annual-report">
+        This text provides a valid same-page destination for the demonstration link.
+      </p>
+
+      <p>
+        If SiteLint reports the empty <code>alt</code> attribute as a problem here, that would be a useful example of a rule being too literal: the image does not need its own text alternative because it is decorative, and the link purpose is already conveyed by visible text.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

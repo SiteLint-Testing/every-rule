@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Missing href on anchor test</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Missing href on anchor test</h1>
+
+    <p><strong>Rule tested:</strong> <code>missing_href_on_a</code></p>
+    <p>This SiteLint best-practice rule checks for <code>&lt;a&gt;</code> elements that do not have an <code>href</code> attribute. Without <code>href</code>, an anchor is not a functional hyperlink and users cannot navigate to it as a link.</p>
+
+    <section class="example passing-example">
+      <h2>Passing example</h2>
+      <p>This succeeds because the anchor includes an <code>href</code> attribute that points to a valid destination on the page.</p>
+      <a href="#destination">Go to the destination section</a>
+    </section>
+
+    <section class="example failing-example">
+      <h2>Failing example</h2>
+      <p>This fails because the anchor does not include an <code>href</code> attribute, so it is not a functional hyperlink.</p>
+      <a>Go to the destination section</a>
+    </section>
+
+    <section id="destination">
+      <h2>Destination section</h2>
+      <p>This section provides a valid target for the passing example link.</p>
+    </section>
+  </main>
+</body>
+</html>

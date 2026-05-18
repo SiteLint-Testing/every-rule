@@ -1,0 +1,30 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ARIA Attribute Conflict Test</title>
+</head>
+<body>
+  <main>
+    <h1>ARIA Attribute Conflict Test</h1>
+
+    <p><strong>WCAG Success Criterion tested:</strong> 4.1.2 Name, Role, Value</p>
+    <p>This success criterion requires user interface components to expose accurate programmatic information, including their name, role, and state. Conflicting ARIA attributes can provide contradictory state information to assistive technologies.</p>
+
+    <section>
+      <h2>Passing example</h2>
+      <p>This succeeds because the button uses only <code>aria-pressed</code> to communicate its toggle state, without adding a conflicting ARIA state.</p>
+      <button type="button" aria-pressed="true">Notifications enabled</button>
+    </section>
+
+    <section>
+      <h2>Failing example</h2>
+      <p>This fails because the button uses both <code>aria-pressed</code> and <code>aria-selected</code>, which can create conflicting or inappropriate state information on the same control.</p>
+      <button type="button" aria-pressed="true" aria-selected="true">Notifications enabled</button>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,54 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessible SVG test</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Accessible SVG rule test</h1>
+
+    <p><strong>WCAG Success Criterion tested:</strong> 1.1.1 Non-text Content</p>
+    <p>This rule checks whether a meaningful inline <code>&lt;svg&gt;</code> element has accessible text that identifies it for assistive technology users.</p>
+
+    <section class="example passing-example">
+      <h2>Passing example</h2>
+      <p>This succeeds because the SVG includes a non-empty <code>&lt;title&gt;</code> element that provides an accessible name.</p>
+      <svg viewBox="0 0 120 80" width="120" height="80" role="img">
+        <title>Blue circle illustration</title>
+        <circle cx="60" cy="40" r="28" fill="#1f5fbf"></circle>
+      </svg>
+    </section>
+
+    <section class="example failing-example">
+      <h2>Failing example</h2>
+      <p>This fails because the SVG does not include an accessible name or description, such as a <code>&lt;title&gt;</code>, <code>&lt;desc&gt;</code>, or <code>aria-label</code>.</p>
+      <svg viewBox="0 0 120 80" width="120" height="80" role="img">
+        <circle cx="60" cy="40" r="28" fill="#1f5fbf"></circle>
+      </svg>
+    </section>
+  </main>
+</body>
+</html>
