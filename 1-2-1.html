@@ -1,0 +1,191 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 1.2.1 Audio-only and Video-only (Prerecorded) Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    audio,
+    video {
+      display: block;
+      margin-block: 0.75rem;
+      max-width: 100%;
+    }
+
+    video {
+      background-color: #000000;
+      height: auto;
+      width: 20rem;
+    }
+
+    .transcript {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 48rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .transcript h4 {
+      margin-top: 0;
+    }
+
+    .sitelint-observation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.2.1: Audio-only and Video-only (Prerecorded)</h1>
+
+    <p>
+      <strong>Brief summary:</strong> Prerecorded audio-only content needs an alternative for time-based media that presents equivalent information. Prerecorded video-only content needs either an alternative for time-based media or an audio track that presents equivalent information.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/audio-only-and-video-only-prerecorded.html">View the W3C Understanding page for WCAG 1.2.1 Audio-only and Video-only (Prerecorded)</a>.
+    </p>
+
+    <p>
+      These examples test whether SiteLint distinguishes valid and invalid implementations of WCAG 1.2.1. For audio-only media, the requirement is an alternative for time-based media that presents equivalent information. For video-only media, the requirement can be met through either an alternative for time-based media or an audio track that presents equivalent information. Whether a provided alternative is fully equivalent remains a human judgment.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Audio-only media with an adjacent transcript</h3>
+      <p>
+        This succeeds because the audio-only media is followed by a transcript that presents the information conveyed in the recording.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> This is a valid 1.2.1 passing pattern. If SiteLint reports this as a failure solely because the <code>&lt;audio&gt;</code> element does not contain a <code>&lt;track&gt;</code> element, that would be too narrow; WCAG 1.2.1 permits an equivalent text alternative for prerecorded audio-only content.
+      </p>
+
+      <audio controls preload="metadata" aria-describedby="audio-transcript-intro">
+        <source src="media/sample-podcast-intro.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <div class="transcript" id="audio-transcript-intro">
+        <h4>Transcript: Podcast introduction</h4>
+        <p><strong>Host:</strong> Welcome to the accessibility update. Today we are reviewing three improvements to our website testing process.</p>
+        <p><strong>Host:</strong> First, we will discuss non-text content. Second, we will cover prerecorded media alternatives. Third, we will describe the next steps for implementation.</p>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Video-only media with an adjacent text alternative</h3>
+      <p>
+        This succeeds because the silent video-only media is followed by a text alternative that describes the important visual information presented in the video.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint currently reports this passing example as a 1.2.1 issue because the <code>&lt;video&gt;</code> does not include a <code>&lt;track&gt;</code> element or audio source. That appears overly narrow. WCAG 1.2.1 allows prerecorded video-only media to pass through either an equivalent text alternative or an equivalent audio track; this example demonstrates the text-alternative pathway.
+      </p>
+      <p class="sitelint-observation">
+        <strong>Recommendation:</strong> The rule should not treat the absence of <code>&lt;track&gt;</code> or an audio source as sufficient evidence of a 1.2.1 failure when an associated text alternative is present. At minimum, this condition should not be reported as a confirmed failure without accounting for the text-alternative option.
+      </p>
+
+      <video controls muted preload="metadata" aria-describedby="video-description-intro">
+        <source src="media/sample-silent-instructions.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+
+      <div class="transcript" id="video-description-intro">
+        <h4>Text alternative: Silent instructional video</h4>
+        <p>A hand places a blue accessibility checklist on a desk. The hand points to the first checklist item, “Provide text alternatives for non-text content,” and then checks the item off.</p>
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Audio-only media with no transcript or equivalent alternative</h3>
+      <p>
+        This fails because the audio-only media is presented without a transcript or other equivalent alternative for people who cannot hear the recording.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> This is an appropriate 1.2.1 failure case for SiteLint to report, provided the tool is accurately identifying prerecorded audio-only media with no equivalent alternative.
+      </p>
+
+      <audio controls preload="metadata">
+        <source src="media/sample-audio-without-transcript.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Video-only media with no text alternative or equivalent audio track</h3>
+      <p>
+        This fails because the silent video-only media is presented without a text alternative or audio track that explains the important visual information.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> This is an appropriate 1.2.1 failure case for SiteLint to report. Unlike the passing video-only example above, this media has neither an equivalent text alternative nor an equivalent audio track.
+      </p>
+      <p class="sitelint-observation">
+        <strong>Broader rule concern:</strong> A 1.2.1 rule should distinguish audio-only media from video-only media and should not conflate 1.2.1 with captions or audio-description requirements that belong to other time-based media success criteria.
+      </p>
+
+      <video controls muted preload="metadata">
+        <source src="media/sample-video-without-alternative.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=c33f205401327c9d91e4d16454bd90135ac132ae351bf5fcf71b991868ffb785';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

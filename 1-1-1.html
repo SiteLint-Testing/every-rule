@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 1.1.1 Non-text Content Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .example-image {
+      display: block;
+      height: auto;
+      margin-block: 0.75rem;
+      max-width: 12rem;
+    }
+
+    .decorative-divider {
+      display: block;
+      height: auto;
+      margin-block: 0.75rem;
+      max-width: 18rem;
+    }
+
+    .image-submit-form {
+      align-items: end;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-block: 0.75rem;
+    }
+
+    .image-submit-form label,
+    .image-submit-form input[type="text"] {
+      display: block;
+    }
+
+    .image-submit-form input[type="text"] {
+      margin-top: 0.25rem;
+      min-height: 2rem;
+      min-width: 14rem;
+    }
+
+    .image-submit-form input[type="image"] {
+      height: 2.75rem;
+      width: 2.75rem;
+    }
+
+    svg {
+      display: block;
+      margin-block: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.1.1: Non-text Content</h1>
+
+    <p>
+      <strong>Brief summary:</strong> Non-text content that is presented to users needs a text alternative that serves the equivalent purpose, except for specific cases such as decorative content, controls, CAPTCHA, time-based media, tests, and sensory experiences.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html">View the W3C Understanding page for WCAG 1.1.1 Non-text Content</a>.
+    </p>
+
+    <p>
+      The examples below are intended to test common, web-relevant 1.1.1 scenarios that an automated accessibility tool may reasonably evaluate. Each example is labeled as passing or failing and includes a short explanation.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Informative image with meaningful alternative text</h3>
+      <p>
+        This succeeds because the image conveys information and the <code>alt</code> attribute provides a concise text alternative that communicates the image's purpose.
+      </p>
+      <img
+        class="example-image"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='140' viewBox='0 0 240 140'%3E%3Crect width='240' height='140' fill='%23e7f0ff'/%3E%3Ccircle cx='70' cy='70' r='36' fill='%231f5fbf'/%3E%3Ctext x='122' y='77' font-family='Arial' font-size='20' fill='%23000000'%3ESupport%3C/text%3E%3C/svg%3E"
+        alt="Support icon with the word Support.">
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Decorative image ignored by assistive technology</h3>
+      <p>
+        This succeeds because the image is purely decorative and uses <code>alt=""</code>, allowing assistive technologies to ignore it.
+      </p>
+      <img
+        class="decorative-divider"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='24' viewBox='0 0 360 24'%3E%3Cline x1='0' y1='12' x2='360' y2='12' stroke='%23777777' stroke-width='2'/%3E%3Ccircle cx='180' cy='12' r='5' fill='%23777777'/%3E%3C/svg%3E"
+        alt="">
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Image submit button with text alternative describing its purpose</h3>
+      <p>
+        This succeeds because the image-based submit control has alternative text that identifies the action it performs.
+      </p>
+      <form class="image-submit-form" action="#" method="get">
+        <div>
+          <label for="search-pass">Search term</label>
+          <input id="search-pass" name="search-pass" type="text" autocomplete="off">
+        </div>
+        <input
+          type="image"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='6' fill='%23f0f0f0'/%3E%3Ccircle cx='18' cy='18' r='9' fill='none' stroke='%23000000' stroke-width='3'/%3E%3Cline x1='25' y1='25' x2='34' y2='34' stroke='%23000000' stroke-width='3'/%3E%3C/svg%3E"
+          alt="Search">
+      </form>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 4: Image map area with text alternative</h3>
+      <p>
+        This succeeds because the clickable <code>&lt;area&gt;</code> element has an <code>alt</code> attribute that identifies the destination of the mapped region.
+      </p>
+      <img
+        class="example-image"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120' viewBox='0 0 240 120'%3E%3Crect width='240' height='120' fill='%23f4f4f4'/%3E%3Crect x='18' y='24' width='84' height='72' fill='%23b7e4c7' stroke='%23000000'/%3E%3Crect x='138' y='24' width='84' height='72' fill='%23f4b6b6' stroke='%23000000'/%3E%3Ctext x='43' y='65' font-family='Arial' font-size='18' fill='%23000000'%3EEast%3C/text%3E%3Ctext x='162' y='65' font-family='Arial' font-size='18' fill='%23000000'%3EWest%3C/text%3E%3C/svg%3E"
+        alt="Two selectable regions: East and West."
+        usemap="#regions-pass">
+      <map name="regions-pass">
+        <area shape="rect" coords="18,24,102,96" href="#east-region" alt="East region">
+        <area shape="rect" coords="138,24,222,96" href="#west-region" alt="West region">
+      </map>
+      <p id="east-region">East region destination.</p>
+      <p id="west-region">West region destination.</p>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 5: Meaningful SVG with an accessible name</h3>
+      <p>
+        This succeeds because the meaningful SVG includes a non-empty <code>&lt;title&gt;</code> element that supplies an accessible name.
+      </p>
+      <svg role="img" width="180" height="100" viewBox="0 0 180 100" aria-labelledby="svg-pass-title">
+        <title id="svg-pass-title">Bar chart showing quarterly growth</title>
+        <rect x="20" y="55" width="24" height="25"></rect>
+        <rect x="60" y="45" width="24" height="35"></rect>
+        <rect x="100" y="30" width="24" height="50"></rect>
+        <rect x="140" y="20" width="24" height="60"></rect>
+      </svg>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Informative image missing alternative text</h3>
+      <p>
+        This fails because the image conveys information, but it has no <code>alt</code> attribute or other text alternative.
+      </p>
+      <img
+        class="example-image"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='140' viewBox='0 0 240 140'%3E%3Crect width='240' height='140' fill='%23e7f0ff'/%3E%3Ccircle cx='70' cy='70' r='36' fill='%231f5fbf'/%3E%3Ctext x='122' y='77' font-family='Arial' font-size='20' fill='%23000000'%3ESupport%3C/text%3E%3C/svg%3E">
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Image alternative text is a generic placeholder</h3>
+      <p>
+        This fails because the image conveys information, but the alternative text <code>alt="image"</code> does not provide an equivalent description of the content.
+      </p>
+      <img
+        class="example-image"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='140' viewBox='0 0 240 140'%3E%3Crect width='240' height='140' fill='%23e7f0ff'/%3E%3Ccircle cx='70' cy='70' r='36' fill='%231f5fbf'/%3E%3Ctext x='122' y='77' font-family='Arial' font-size='20' fill='%23000000'%3ESupport%3C/text%3E%3C/svg%3E"
+        alt="image">
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Image submit button missing alternative text</h3>
+      <p>
+        This fails because the image-based submit control has no text alternative to identify its purpose.
+      </p>
+      <form class="image-submit-form" action="#" method="get">
+        <div>
+          <label for="search-fail">Search term</label>
+          <input id="search-fail" name="search-fail" type="text" autocomplete="off">
+        </div>
+        <input
+          type="image"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='6' fill='%23f0f0f0'/%3E%3Ccircle cx='18' cy='18' r='9' fill='none' stroke='%23000000' stroke-width='3'/%3E%3Cline x1='25' y1='25' x2='34' y2='34' stroke='%23000000' stroke-width='3'/%3E%3C/svg%3E">
+      </form>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 4: Image map area missing alternative text</h3>
+      <p>
+        This fails because the clickable <code>&lt;area&gt;</code> element has no <code>alt</code> attribute to identify the purpose of that mapped region.
+      </p>
+      <img
+        class="example-image"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120' viewBox='0 0 240 120'%3E%3Crect width='240' height='120' fill='%23f4f4f4'/%3E%3Crect x='18' y='24' width='84' height='72' fill='%23b7e4c7' stroke='%23000000'/%3E%3Crect x='138' y='24' width='84' height='72' fill='%23f4b6b6' stroke='%23000000'/%3E%3Ctext x='43' y='65' font-family='Arial' font-size='18' fill='%23000000'%3ENorth%3C/text%3E%3Ctext x='160' y='65' font-family='Arial' font-size='18' fill='%23000000'%3ESouth%3C/text%3E%3C/svg%3E"
+        alt="Two selectable regions: North and South."
+        usemap="#regions-fail">
+      <map name="regions-fail">
+        <area shape="rect" coords="18,24,102,96" href="#north-region">
+        <area shape="rect" coords="138,24,222,96" href="#south-region" alt="South region">
+      </map>
+      <p id="north-region">North region destination.</p>
+      <p id="south-region">South region destination.</p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 5: Meaningful SVG with no accessible name</h3>
+      <p>
+        This fails because the meaningful SVG is exposed as an image-like graphic but does not provide an accessible name through <code>&lt;title&gt;</code>, <code>aria-label</code>, or a valid labeling reference.
+      </p>
+      <svg role="img" width="180" height="100" viewBox="0 0 180 100">
+        <rect x="20" y="55" width="24" height="25"></rect>
+        <rect x="60" y="45" width="24" height="35"></rect>
+        <rect x="100" y="30" width="24" height="50"></rect>
+        <rect x="140" y="20" width="24" height="60"></rect>
+      </svg>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=c33f205401327c9d91e4d16454bd90135ac132ae351bf5fcf71b991868ffb785';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
