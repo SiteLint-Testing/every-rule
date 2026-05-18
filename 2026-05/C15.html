@@ -1,0 +1,143 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C15: Changing the presentation of controls on focus</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.5rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .example-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .example-links a {
+      color: #000066;
+      display: inline-block;
+      padding: 0.35rem 0.5rem;
+    }
+
+    .passing-links a:hover,
+    .passing-links a:active,
+    .passing-links a:focus-visible {
+      background-color: #dcffff;
+      color: #000066;
+      outline: 0.2rem solid #0054ae;
+      outline-offset: 0.15rem;
+    }
+
+    .hover-only-links a {
+      outline: none;
+    }
+
+    .hover-only-links a:hover,
+    .hover-only-links a:active {
+      background-color: #dcffff;
+      color: #000066;
+    }
+
+    .no-focus-style a {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>C15: Using CSS to change the presentation of a user interface component when it receives focus</h1>
+
+    <p>
+      <strong>Technique:</strong> C15. This technique demonstrates using CSS to provide visible feedback when an interactive element receives keyboard focus.
+    </p>
+
+    <p>
+      <strong>Related WCAG Success Criteria:</strong>
+      1.4.1 Use of Color (Advisory) and 2.4.7 Focus Visible (Sufficient).
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Techniques/css/C15">View the W3C C15 technique</a>.
+    </p>
+
+    <section class="example passing-example">
+      <h2>Passing example</h2>
+      <p>
+        This succeeds because the links visibly change presentation when they receive keyboard focus. Tabbing to a link applies a background color, text color, and visible outline through <code>:focus-visible</code>.
+      </p>
+
+      <nav aria-label="Passing navigation example">
+        <ul class="example-links passing-links">
+          <li><a href="#passing-services">Services</a></li>
+          <li><a href="#passing-projects">Projects</a></li>
+          <li><a href="#passing-contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div id="passing-services"></div>
+      <div id="passing-projects"></div>
+      <div id="passing-contact"></div>
+    </section>
+
+    <section class="example failing-example">
+      <h2>Failing example 1: Visual styling appears on hover, but not on keyboard focus</h2>
+      <p>
+        This fails because the links change presentation when hovered with a mouse, but they do not receive an equivalent visible CSS focus treatment when reached with the keyboard. The default outline has also been removed, so keyboard users do not get a visible focus indicator.
+      </p>
+
+      <nav aria-label="Hover-only navigation example">
+        <ul class="example-links hover-only-links">
+          <li><a href="#hover-services">Services</a></li>
+          <li><a href="#hover-projects">Projects</a></li>
+          <li><a href="#hover-contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div id="hover-services"></div>
+      <div id="hover-projects"></div>
+      <div id="hover-contact"></div>
+    </section>
+
+    <section class="example failing-example">
+      <h2>Failing example 2: Focus styling is removed without replacement</h2>
+      <p>
+        This fails because the links remove the browser's default focus outline and do not replace it with any visible focus treatment. Tabbing to the links does not produce a visible change in presentation.
+      </p>
+
+      <nav aria-label="No focus style navigation example">
+        <ul class="example-links no-focus-style">
+          <li><a href="#plain-services">Services</a></li>
+          <li><a href="#plain-projects">Projects</a></li>
+          <li><a href="#plain-contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div id="plain-services"></div>
+      <div id="plain-projects"></div>
+      <div id="plain-contact"></div>
+    </section>
+  </main>
+</body>
+</html>
