@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 1.2.3 Audio Description or Media Alternative (Prerecorded) Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    video {
+      background-color: #000000;
+      display: block;
+      height: auto;
+      margin-block: 0.75rem;
+      max-width: 100%;
+      width: 24rem;
+    }
+
+    .media-alternative {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 52rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .media-alternative h4 {
+      margin-top: 0;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.2.3: Audio Description or Media Alternative (Prerecorded)</h1>
+
+    <p>
+      <strong>Brief summary:</strong> Prerecorded synchronized media with video content needs either an audio description of important visual information or a complete alternative for time-based media that presents the essential visual and auditory information in text form. This requirement does not apply when the media is clearly labeled as a media alternative for text.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded.html">View the W3C Understanding page for WCAG 1.2.3 Audio Description or Media Alternative (Prerecorded)</a>.
+    </p>
+
+    <p>
+      These examples focus on structural cases an automated accessibility tool may be able to evaluate. Whether an audio description or text alternative fully conveys the necessary visual information remains a human judgment.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Prerecorded synchronized media with an adjacent link to a full media alternative</h3>
+      <p>
+        This succeeds because a link immediately following the video points to a detailed alternative for time-based media that provides the essential visual and auditory information in text form.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint currently reports this passing example as a WCAG 1.2.1 issue because the video does not contain a <code>&lt;track&gt;</code> element or audio source. That is not a valid basis for failing this 1.2.3 example. WCAG 1.2.3 allows a full media alternative in text form, and this scenario provides one.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint needs explicit WCAG 1.2.3 coverage that recognizes both valid passing paths: audio description and a complete media alternative for time-based media. A generic “no track or audio source” finding should not be used as a confirmed failure when a full text alternative is present.
+      </p>
+
+      <video controls preload="metadata">
+        <source src="media/sample-training-video-with-audio.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+
+      <p>
+        <a href="#training-video-media-alternative">Read the full text alternative for the training video</a>.
+      </p>
+
+      <section class="media-alternative" id="training-video-media-alternative" aria-labelledby="training-video-media-alternative-heading">
+        <h4 id="training-video-media-alternative-heading">Full text alternative for the training video</h4>
+        <p><strong>Visual:</strong> A trainer stands beside a projected accessibility checklist. The first item, “Provide text alternatives,” is highlighted.</p>
+        <p><strong>Audio:</strong> The trainer says, “Our first check is whether meaningful images have useful text alternatives.”</p>
+        <p><strong>Visual:</strong> The trainer moves to the second item, “Describe important video content,” and places a checkmark beside it.</p>
+        <p><strong>Audio:</strong> The trainer says, “For videos, we need to account for information that is only communicated visually.”</p>
+      </section>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Media clearly labeled as an alternative for text</h3>
+      <p>
+        This succeeds under the 1.2.3 exception because the video is explicitly identified as a media alternative for the adjacent text. Additional audio description or a separate media alternative is not required when synchronized media is a clearly labeled media alternative for text.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint currently reports this passing example as a WCAG 1.2.1 issue, even though WCAG 1.2.3 does not require audio description or a separate media alternative when the synchronized media is itself clearly labeled as a media alternative for text.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> WCAG 1.2.3 coverage should account for the “media alternative for text” exception. If SiteLint cannot reliably confirm this exception automatically, it should not treat the absence of a <code>&lt;track&gt;</code> element or audio source as a confirmed failure.
+      </p>
+
+      <p id="text-version-for-media-alternative">
+        Text version: The accessibility review process has three steps. First, identify the WCAG requirement. Second, create representative passing and failing scenarios. Third, evaluate whether the automated tool responds appropriately.
+      </p>
+
+      <video controls preload="metadata" aria-describedby="media-alternative-label-123">
+        <source src="media/sample-media-alternative-for-text.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+
+      <p id="media-alternative-label-123">
+        This video is a media alternative for the preceding text version.
+      </p>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Prerecorded synchronized media with no audio description or media alternative</h3>
+      <p>
+        This fails because the video includes important visual information, but the page provides neither audio description nor a complete alternative for time-based media.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint flags this genuinely failing scenario, but it reports the issue under WCAG 1.2.1 rather than WCAG 1.2.3. The result is directionally useful, but it does not demonstrate accurate 1.2.3 coverage.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should have explicit WCAG 1.2.3 reporting for prerecorded synchronized media that lacks both audio description and a media alternative, whether through a dedicated rule or a broader media rule with correct SC mapping.
+      </p>
+
+      <video controls preload="metadata">
+        <source src="media/sample-training-video-without-description.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Current 1.2.3 coverage takeaway</h2>
+      <p>
+        <strong>Recommendation:</strong> SiteLint currently appears to use the same broad media rule across the 1.2.1, 1.2.2, and 1.2.3 test pages, but it reports these findings only as WCAG 1.2.1. See <a href="1-2-1.html">1.2.1</a>, <a href="1-2-2.html">1.2.2</a>, and this <a href="1-2-3.html">1.2.3</a> page for the related scenarios.
+      </p>
+      <p>
+        That approach creates both mapping and logic problems: the rule incorrectly flags valid 1.2.2 and 1.2.3 passing scenarios, misses at least one 1.2.2 failure scenario, and uses a single 1.2.1 label for distinct success criteria with different requirements. SiteLint needs clearer, accurately mapped media coverage across these SCs.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=c33f205401327c9d91e4d16454bd90135ac132ae351bf5fcf71b991868ffb785';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
