@@ -1,0 +1,194 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 1.2.2 Captions (Prerecorded) Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    video {
+      background-color: #000000;
+      display: block;
+      height: auto;
+      margin-block: 0.75rem;
+      max-width: 100%;
+      width: 24rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.2.2: Captions (Prerecorded)</h1>
+
+    <p>
+      <strong>Brief summary:</strong> Prerecorded synchronized media with audio, such as a video that includes speech or meaningful sounds, needs captions that provide equivalent access to the audio information. This requirement does not apply when the media is clearly labeled as a media alternative for text.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded.html">View the W3C Understanding page for WCAG 1.2.2 Captions (Prerecorded)</a>.
+    </p>
+
+    <p>
+      The examples below focus on structural cases an automated accessibility tool may reasonably evaluate: whether prerecorded video with audio includes an associated captions track. Whether the captions are accurate, complete, synchronized, and include important sounds remains a human judgment.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Prerecorded video with a captions track</h3>
+      <p>
+        This succeeds because the prerecorded video includes a <code>&lt;track kind="captions"&gt;</code> element that provides a captions file for the audio content.
+      </p>
+
+      <video controls preload="metadata">
+        <source src="media/sample-video-with-audio.mp4" type="video/mp4">
+        <track kind="captions" src="captions/sample-video-with-audio-en.vtt" srclang="en" label="English captions" default>
+        Your browser does not support the video element.
+      </video>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Prerecorded video clearly labeled as a media alternative for text</h3>
+      <p>
+        This succeeds under the 1.2.2 exception because the video is explicitly identified as a media alternative for the adjacent text content. A separate captions track is not required when synchronized media is a clearly labeled media alternative for text.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint currently reports this passing example as a media accessibility issue, even though WCAG 1.2.2 does not require captions when synchronized media is clearly labeled as a media alternative for text.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> 1.2.2 coverage should account for the “media alternative for text” exception. If SiteLint cannot reliably confirm that exception automatically, this should not be treated as a confirmed failure solely because a captions track is absent.
+      </p>
+
+      <p id="text-alternative-summary">
+        Text version: The presenter explains that the accessibility testing process has three steps: identify the WCAG requirement, create representative pass and fail examples, and evaluate whether the automated tool responds appropriately.
+      </p>
+
+      <video controls preload="metadata" aria-describedby="media-alternative-label">
+        <source src="media/sample-media-alternative-for-text.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+
+      <p id="media-alternative-label">
+        This video is a media alternative for the preceding text version.
+      </p>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Prerecorded video with audio and no captions track</h3>
+      <p>
+        This fails because the prerecorded video includes audio content but does not provide captions for that audio information.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint correctly flags this media element as lacking an expected accessibility alternative. However, the current report is mapped to WCAG 1.2.1 rather than WCAG 1.2.2, so it does not yet demonstrate direct 1.2.2 coverage.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should have explicit 1.2.2 coverage for prerecorded synchronized media that lacks captions, whether through a dedicated rule or a revised media rule with accurate SC mapping.
+      </p>
+
+      <video controls preload="metadata">
+        <source src="media/sample-video-with-audio-no-captions.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Prerecorded video with subtitles instead of captions</h3>
+      <p>
+        This fails as a 1.2.2 test case because a subtitles track is not the same as a captions track. Captions are intended to provide access to speech and relevant non-speech audio information, while subtitles may only translate dialogue.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this failing example. That suggests it is treating <code>&lt;track kind="subtitles"&gt;</code> as sufficient, even though subtitles are not automatically equivalent to captions for WCAG 1.2.2.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> 1.2.2 coverage should not treat <code>kind="subtitles"</code> as a guaranteed pass. A captions-specific check should distinguish <code>kind="captions"</code> from subtitles, or at minimum avoid treating subtitles alone as conclusive evidence of compliance.
+      </p>
+
+      <video controls preload="metadata">
+        <source src="media/sample-video-with-audio-subtitles-only.mp4" type="video/mp4">
+        <track kind="subtitles" src="captions/sample-video-subtitles-en.vtt" srclang="en" label="English subtitles" default>
+        Your browser does not support the video element.
+      </video>
+    </section>
+  </main>
+
+    <section class="sitelint-recommendation">
+      <h2>Current 1.2.2 coverage takeaway</h2>
+      <p>
+        <strong>Recommendation:</strong> SiteLint currently appears to have incomplete or misaligned coverage for WCAG 1.2.2. It flags a valid media-alternative-for-text exception, catches a missing-caption scenario only through a rule mapped to 1.2.1, and misses a subtitles-only scenario that should not be treated as equivalent to captions. SiteLint needs explicit, accurately mapped 1.2.2 coverage.
+      </p>
+    </section>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=c33f205401327c9d91e4d16454bd90135ac132ae351bf5fcf71b991868ffb785';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
