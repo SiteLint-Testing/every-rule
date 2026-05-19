@@ -55,6 +55,12 @@
     }
 
     .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
       background-color: #fff4cc;
       border-left: 0.25rem solid #8a6500;
       padding: 0.75rem 1rem;
@@ -108,7 +114,7 @@
       <p class="sitelint-observation">
         <strong>SiteLint observation:</strong> SiteLint currently reports this passing example as a 1.2.1 issue because the <code>&lt;video&gt;</code> does not include a <code>&lt;track&gt;</code> element or audio source. That appears overly narrow. WCAG 1.2.1 allows prerecorded video-only media to pass through either an equivalent text alternative or an equivalent audio track; this example demonstrates the text-alternative pathway.
       </p>
-      <p class="sitelint-observation">
+      <p class="sitelint-recommendation">
         <strong>Recommendation:</strong> The rule should not treat the absence of <code>&lt;track&gt;</code> or an audio source as sufficient evidence of a 1.2.1 failure when an associated text alternative is present. At minimum, this condition should not be reported as a confirmed failure without accounting for the text-alternative option.
       </p>
 
@@ -148,8 +154,8 @@
       <p class="sitelint-observation">
         <strong>SiteLint observation:</strong> This is an appropriate 1.2.1 failure case for SiteLint to report. Unlike the passing video-only example above, this media has neither an equivalent text alternative nor an equivalent audio track.
       </p>
-      <p class="sitelint-observation">
-        <strong>Broader rule concern:</strong> A 1.2.1 rule should distinguish audio-only media from video-only media and should not conflate 1.2.1 with captions or audio-description requirements that belong to other time-based media success criteria.
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> A 1.2.1 rule should distinguish audio-only media from video-only media and should not conflate 1.2.1 with captions or audio-description requirements that belong to other time-based media success criteria.
       </p>
 
       <video controls muted preload="metadata">

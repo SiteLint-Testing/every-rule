@@ -70,6 +70,18 @@
       display: block;
       margin-block: 0.75rem;
     }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      padding: 0.75rem 1rem;
+    }
   </style>
 </head>
 <body>
@@ -85,7 +97,7 @@
     </p>
 
     <p>
-      The examples below are intended to test common, web-relevant 1.1.1 scenarios that an automated accessibility tool may reasonably evaluate. Each example is labeled as passing or failing and includes a short explanation.
+      The examples below are intended to test common, web-relevant 1.1.1 scenarios that an automated accessibility tool may reasonably evaluate. Each example is labeled as passing or failing and includes a short explanation. Based on this page, SiteLint successfully detects the five intentionally failing examples below and does not appear to flag any of the intended passing examples.
     </p>
 
     <h2>Passing examples</h2>
@@ -94,6 +106,9 @@
       <h3>Passing example 1: Informative image with meaningful alternative text</h3>
       <p>
         This succeeds because the image conveys information and the <code>alt</code> attribute provides a concise text alternative that communicates the image's purpose.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this valid informative-image example as an issue, which is appropriate.
       </p>
       <img
         class="example-image"
@@ -106,6 +121,9 @@
       <p>
         This succeeds because the image is purely decorative and uses <code>alt=""</code>, allowing assistive technologies to ignore it.
       </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this valid decorative-image example as an issue, which is appropriate.
+      </p>
       <img
         class="decorative-divider"
         src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='24' viewBox='0 0 360 24'%3E%3Cline x1='0' y1='12' x2='360' y2='12' stroke='%23777777' stroke-width='2'/%3E%3Ccircle cx='180' cy='12' r='5' fill='%23777777'/%3E%3C/svg%3E"
@@ -116,6 +134,9 @@
       <h3>Passing example 3: Image submit button with text alternative describing its purpose</h3>
       <p>
         This succeeds because the image-based submit control has alternative text that identifies the action it performs.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this properly labeled image submit button as a 1.1.1 issue, which is appropriate.
       </p>
       <form class="image-submit-form" action="#" method="get">
         <div>
@@ -133,6 +154,9 @@
       <h3>Passing example 4: Image map area with text alternative</h3>
       <p>
         This succeeds because the clickable <code>&lt;area&gt;</code> element has an <code>alt</code> attribute that identifies the destination of the mapped region.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report the properly labeled image map areas as 1.1.1 issues, which is appropriate.
       </p>
       <img
         class="example-image"
@@ -152,6 +176,9 @@
       <p>
         This succeeds because the meaningful SVG includes a non-empty <code>&lt;title&gt;</code> element that supplies an accessible name.
       </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this named SVG as a 1.1.1 issue, which is appropriate.
+      </p>
       <svg role="img" width="180" height="100" viewBox="0 0 180 100" aria-labelledby="svg-pass-title">
         <title id="svg-pass-title">Bar chart showing quarterly growth</title>
         <rect x="20" y="55" width="24" height="25"></rect>
@@ -168,6 +195,9 @@
       <p>
         This fails because the image conveys information, but it has no <code>alt</code> attribute or other text alternative.
       </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint correctly reports this missing text alternative under its “Missing ALT on non-text elements” rule.
+      </p>
       <img
         class="example-image"
         src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='140' viewBox='0 0 240 140'%3E%3Crect width='240' height='140' fill='%23e7f0ff'/%3E%3Ccircle cx='70' cy='70' r='36' fill='%231f5fbf'/%3E%3Ctext x='122' y='77' font-family='Arial' font-size='20' fill='%23000000'%3ESupport%3C/text%3E%3C/svg%3E">
@@ -177,6 +207,9 @@
       <h3>Failing example 2: Image alternative text is a generic placeholder</h3>
       <p>
         This fails because the image conveys information, but the alternative text <code>alt="image"</code> does not provide an equivalent description of the content.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint correctly reports this placeholder alternative text under its “Generic placeholder alt text should be avoided” rule.
       </p>
       <img
         class="example-image"
@@ -188,6 +221,9 @@
       <h3>Failing example 3: Image submit button missing alternative text</h3>
       <p>
         This fails because the image-based submit control has no text alternative to identify its purpose.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint correctly reports this image submit button because it lacks alternative text describing its action.
       </p>
       <form class="image-submit-form" action="#" method="get">
         <div>
@@ -204,6 +240,9 @@
       <h3>Failing example 4: Image map area missing alternative text</h3>
       <p>
         This fails because the clickable <code>&lt;area&gt;</code> element has no <code>alt</code> attribute to identify the purpose of that mapped region.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint correctly reports the unlabeled image map area under its “Image map area must have a text alternative” rule.
       </p>
       <img
         class="example-image"
@@ -223,12 +262,25 @@
       <p>
         This fails because the meaningful SVG is exposed as an image-like graphic but does not provide an accessible name through <code>&lt;title&gt;</code>, <code>aria-label</code>, or a valid labeling reference.
       </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint correctly reports this unnamed meaningful SVG under its “SVG content must have an accessible name” rule.
+      </p>
       <svg role="img" width="180" height="100" viewBox="0 0 180 100">
         <rect x="20" y="55" width="24" height="25"></rect>
         <rect x="60" y="45" width="24" height="35"></rect>
         <rect x="100" y="30" width="24" height="50"></rect>
         <rect x="140" y="20" width="24" height="60"></rect>
       </svg>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Current 1.1.1 coverage takeaway</h2>
+      <p>
+        <strong>Recommendation:</strong> Based on this first-pass 1.1.1 page, SiteLint shows credible automated coverage for several common, machine-detectable non-text content failures: missing text alternatives on informative images, image submit buttons, and image map areas; placeholder alternative text; and meaningful SVGs without accessible names.
+      </p>
+      <p>
+        These results do not establish complete coverage of every possible 1.1.1 scenario, but they do provide concrete evidence that SiteLint meaningfully detects several important categories of automated 1.1.1 failures.
+      </p>
     </section>
   </main>
 
