@@ -1,0 +1,168 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 1.2.5 Audio Description (Prerecorded) Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    video {
+      background-color: #000000;
+      display: block;
+      height: auto;
+      margin-block: 0.75rem;
+      max-width: 100%;
+      width: 24rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.2.5: Audio Description (Prerecorded)</h1>
+
+    <p>
+      <strong>Brief summary:</strong> Prerecorded synchronized media with video content must provide audio description for important visual information that is not already conveyed through the existing audio track. If all important visual information is already communicated in the original audio, additional audio description is not required.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/audio-description-prerecorded.html">View the W3C Understanding page for WCAG 1.2.5 Audio Description (Prerecorded)</a>.
+    </p>
+
+    <p>
+      These examples focus on structural scenarios that may help reveal whether an automated tool is directionally aligned with WCAG 1.2.5. Whether a provided audio description is accurate, complete, and synchronized remains a human judgment.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Prerecorded synchronized media with an audio-description track</h3>
+      <p>
+        This succeeds because the video includes a <code>&lt;track kind="descriptions"&gt;</code> element intended to provide audio description for important visual content.
+      </p>
+
+      <video controls preload="metadata">
+        <source src="media/sample-video-with-audio-description.mp4" type="video/mp4">
+        <track kind="descriptions" src="descriptions/sample-video-audio-description-en.vtt" srclang="en" label="English audio description" default>
+        Your browser does not support the video element.
+      </video>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Important visual information is already conveyed in the main audio track</h3>
+      <p>
+        This succeeds because WCAG 1.2.5 does not require additional audio description when all important visual information is already conveyed through the video's existing audio. This is a valid exception, although an automated tool may not be able to verify it from markup alone.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint currently reports this passing example as a WCAG 1.2.1 issue because the video does not include a <code>&lt;track&gt;</code> element or audio source. That is not a valid basis for failing this 1.2.5 scenario. WCAG 1.2.5 does not require separate audio description when the existing audio already conveys all important visual information.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should not treat the absence of <code>&lt;track kind="descriptions"&gt;</code> as a confirmed 1.2.5 failure. At most, this may justify targeted manual verification for prerecorded synchronized media, because the need for audio description depends on the relationship between the visuals and the existing audio.
+      </p>
+
+      <video controls preload="metadata">
+        <source src="media/sample-video-visuals-described-in-audio.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Prerecorded synchronized media with important visual information and no audio description</h3>
+      <p>
+        This fails because the video includes important visual information that is not conveyed through the audio track, but no audio description is provided.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint flags this genuinely failing scenario, but it reports the issue under WCAG 1.2.1 rather than WCAG 1.2.5. The result is directionally useful, but it does not demonstrate accurate 1.2.5 coverage.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint needs explicit WCAG 1.2.5 coverage for prerecorded synchronized media where audio description may be required. Because the failure depends on media content, the most defensible automated result may often be a focused manual-verification prompt rather than a confirmed failure.
+      </p>
+
+      <video controls preload="metadata">
+        <source src="media/sample-video-without-audio-description.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Current 1.2.5 coverage takeaway</h2>
+      <p>
+        <strong>Recommendation:</strong> SiteLint appears to apply the same broad media rule used on the <a href="1-2-1.html">1.2.1</a>, <a href="1-2-2.html">1.2.2</a>, and <a href="1-2-3.html">1.2.3</a> pages, and it again reports results only as WCAG 1.2.1. On this 1.2.5 page, that causes a false positive on a valid passing scenario and a mis-mapped result on a genuine failing scenario.
+      </p>
+      <p>
+        For 1.2.5 specifically, the presence of a descriptions track can be useful positive evidence, but the absence of one is not enough to confirm failure. SiteLint needs more precise media-rule logic and more accurate WCAG success-criterion mapping.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=c33f205401327c9d91e4d16454bd90135ac132ae351bf5fcf71b991868ffb785';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
