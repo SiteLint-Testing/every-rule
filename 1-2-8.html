@@ -1,0 +1,234 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 1.2.8 Media Alternative (Prerecorded) Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    video {
+      background-color: #000000;
+      display: block;
+      height: auto;
+      margin-block: 0.75rem;
+      max-width: 100%;
+      width: 24rem;
+    }
+
+    .media-alternative {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 52rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .media-alternative h4 {
+      margin-top: 0;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.2.8: Media Alternative (Prerecorded)</h1>
+
+<p>
+      <a href="index.html">View main list</a>
+</p>
+
+
+    <p>
+      <strong>Brief summary:</strong> A full alternative for time-based media must be provided for all prerecorded synchronized media and all prerecorded video-only media. This alternative presents the essential visual and auditory information in text form and is more comprehensive than captions or ordinary audio description alone.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/media-alternative-prerecorded.html">View the W3C Understanding page for WCAG 1.2.8 Media Alternative (Prerecorded)</a>.
+    </p>
+
+    <p>
+      <strong>Caution:</strong> This page can test whether a clearly associated media alternative is present or absent, but it cannot verify whether that alternative fully captures all visual and auditory information in the media. A real conformance decision requires human review of both the media and the alternative.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Prerecorded synchronized media with a full media alternative</h3>
+      <p>
+        This succeeds because a link immediately following the video points to a full alternative for time-based media that presents the important visual and auditory information in text form.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint currently reports this passing example as a WCAG 1.2.1 issue because the video does not contain a <code>&lt;track&gt;</code> element or audio source. That is not a valid basis for failing this 1.2.8 scenario. WCAG 1.2.8 requires a media alternative, and this example provides one through an immediately available full text alternative.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint needs explicit WCAG 1.2.8 coverage that accounts for the presence of a full media alternative. A generic “no track or audio source” finding should not be used as a confirmed failure when a clearly associated media alternative is present.
+      </p>
+
+      <video controls preload="metadata">
+        <source src="media/sample-training-video-with-audio.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+
+      <p>
+        <a href="#synchronized-media-alternative">Read the full text alternative for the synchronized media</a>.
+      </p>
+
+      <section class="media-alternative" id="synchronized-media-alternative" aria-labelledby="synchronized-media-alternative-heading">
+        <h4 id="synchronized-media-alternative-heading">Full text alternative for the synchronized media</h4>
+        <p><strong>Visual:</strong> A presenter stands beside a projected accessibility checklist. The first item, “Provide equivalent alternatives,” is highlighted.</p>
+        <p><strong>Audio:</strong> The presenter says, “A full media alternative must capture the important information communicated by both the visuals and the audio.”</p>
+        <p><strong>Visual:</strong> The presenter advances to a second slide showing a video player beside a complete written alternative.</p>
+        <p><strong>Audio:</strong> The presenter says, “This is different from captions alone because it also describes relevant visual context, actions, and on-screen text.”</p>
+      </section>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Prerecorded video-only media with a full media alternative</h3>
+      <p>
+        This succeeds because the silent video-only media is accompanied by a full text alternative that describes the visual sequence in sufficient detail to convey the same information.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint currently reports this passing example as a WCAG 1.2.1 issue, even though the page provides the full media alternative that WCAG 1.2.8 requires for prerecorded video-only media.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should not treat video-only media as failing solely because it lacks embedded track or audio markup when a full media alternative is clearly provided nearby. If SiteLint cannot verify the quality of that alternative automatically, it should avoid presenting this as a confirmed failure.
+      </p>
+
+      <video controls muted preload="metadata">
+        <source src="media/sample-video-only-instructions.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+
+      <p>
+        <a href="#video-only-media-alternative">Read the full text alternative for the video-only media</a>.
+      </p>
+
+      <section class="media-alternative" id="video-only-media-alternative" aria-labelledby="video-only-media-alternative-heading">
+        <h4 id="video-only-media-alternative-heading">Full text alternative for the video-only media</h4>
+        <p>A hand places a printed accessibility checklist on a desk.</p>
+        <p>The hand points to the first checklist item, “Provide text alternatives for non-text content,” and checks it off.</p>
+        <p>The hand then points to the second item, “Provide media alternatives where required,” and checks it off.</p>
+      </section>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Prerecorded synchronized media with no media alternative</h3>
+      <p>
+        This fails because the page presents prerecorded synchronized media but provides no full alternative for time-based media.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint flags this genuinely failing scenario, but it reports the issue under WCAG 1.2.1 rather than WCAG 1.2.8. The result is directionally useful, but it does not demonstrate accurate 1.2.8 coverage.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should have explicit WCAG 1.2.8 reporting for prerecorded synchronized media that lacks a full media alternative, whether through a dedicated rule or a broader media rule with correct SC mapping.
+      </p>
+
+      <video controls preload="metadata">
+        <source src="media/sample-training-video-without-media-alternative.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Prerecorded video-only media with no media alternative</h3>
+      <p>
+        This fails because the page presents prerecorded video-only media but provides no full alternative for time-based media.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint flags this genuinely failing scenario, but again reports it under WCAG 1.2.1 rather than WCAG 1.2.8.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should distinguish 1.2.8 media-alternative requirements from 1.2.1 audio-only and video-only requirements. This scenario should only support a 1.2.8 finding if SiteLint is explicitly evaluating the absence of a full media alternative.
+      </p>
+
+      <video controls muted preload="metadata">
+        <source src="media/sample-video-only-without-media-alternative.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+    </section>
+  </main>
+
+    <section class="sitelint-recommendation">
+      <h2>Current 1.2.8 coverage takeaway</h2>
+      <p>
+        <strong>Recommendation:</strong> SiteLint appears to apply the same broad media rule used on the <a href="1-2-1.html">1.2.1</a>, <a href="1-2-2.html">1.2.2</a>, <a href="1-2-3.html">1.2.3</a>, and <a href="1-2-5.html">1.2.5</a> pages, and it again reports all four results here only as WCAG 1.2.1.
+      </p>
+      <p>
+        On this 1.2.8 page, that means SiteLint incorrectly flags both passing examples that provide full media alternatives, while the two genuinely failing examples are only caught through a mis-mapped 1.2.1 finding. SiteLint needs more precise, accurately mapped media coverage for 1.2.8 rather than reusing a generic “no track or audio source” heuristic.
+      </p>
+    </section>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=c33f205401327c9d91e4d16454bd90135ac132ae351bf5fcf71b991868ffb785';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
