@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 1.4.11 Non-text Contrast Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .form-row {
+      margin-block: 0.75rem;
+    }
+
+    .form-row label,
+    .form-row input {
+      display: block;
+    }
+
+    .form-row input {
+      margin-top: 0.25rem;
+      min-height: 2rem;
+      min-width: 18rem;
+      padding: 0.25rem 0.5rem;
+    }
+
+    .input-contrast-pass {
+      border: 2px solid #595959;
+    }
+
+    .input-contrast-fail {
+      border: 2px solid #d9d9d9;
+    }
+
+    .button-example {
+      background-color: #ffffff;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font: inherit;
+      margin-block: 0.75rem;
+      min-height: 2.75rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .button-contrast-pass {
+      border: 2px solid #595959;
+      color: #000000;
+    }
+
+    .button-contrast-fail {
+      border: 2px solid #d9d9d9;
+      color: #000000;
+    }
+
+    .focus-pass:focus {
+      outline: 3px solid #005fcc;
+      outline-offset: 3px;
+    }
+
+    .focus-fail:focus {
+      outline: 3px solid #cfcfcf;
+      outline-offset: 3px;
+    }
+
+    .icon-button {
+      align-items: center;
+      background-color: #ffffff;
+      border: 2px solid #595959;
+      border-radius: 0.25rem;
+      color: #000000;
+      display: inline-flex;
+      font: inherit;
+      gap: 0.5rem;
+      margin-block: 0.75rem;
+      min-height: 2.75rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .icon-button svg {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+
+    .meaningful-icon-pass svg {
+      fill: #595959;
+    }
+
+    .meaningful-icon-fail svg {
+      fill: #d9d9d9;
+    }
+
+    .decorative-icon-low-contrast svg {
+      fill: #d9d9d9;
+    }
+
+    .status-row {
+      align-items: center;
+      display: flex;
+      gap: 0.5rem;
+      margin-block: 0.75rem;
+    }
+
+    .status-dot {
+      border-radius: 50%;
+      display: inline-block;
+      height: 1rem;
+      width: 1rem;
+    }
+
+    .status-dot-pass {
+      background-color: #007a3d;
+    }
+
+    .status-dot-fail {
+      background-color: #cfcfcf;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.4.11: Non-text Contrast</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Visual information needed to identify user interface components, component states, and meaningful graphical objects should have at least 3:1 contrast against adjacent colors, with specific exceptions.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html">View the W3C Understanding page for WCAG 1.4.11 Non-text Contrast</a>.
+    </p>
+
+    <p>
+      These examples focus on machine-detectable contrast cases: input boundaries, button boundaries, focus indicators, meaningful icons, and status indicators. Decorative graphics are included as a control example because low-contrast decorative graphics should not automatically fail this success criterion.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Text input has sufficient boundary contrast</h3>
+      <p>
+        This succeeds because the input's visible border has sufficient contrast against the white page background, making the component boundary identifiable.
+      </p>
+
+      <div class="form-row">
+        <label for="name-pass">Full name</label>
+        <input class="input-contrast-pass" id="name-pass" name="name-pass" type="text" autocomplete="name">
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Button has sufficient boundary contrast</h3>
+      <p>
+        This succeeds because the button border has sufficient contrast against the adjacent white background.
+      </p>
+
+      <button class="button-example button-contrast-pass" type="button">Save changes</button>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Focus indicator has sufficient contrast</h3>
+      <p>
+        This succeeds because the keyboard focus indicator uses a high-contrast outline that is visible against the white background.
+      </p>
+
+      <button class="button-example button-contrast-pass focus-pass" type="button">Focus me</button>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 4: Meaningful icon has sufficient contrast</h3>
+      <p>
+        This succeeds because the icon communicates meaning and has sufficient contrast against the white background.
+      </p>
+
+      <button class="icon-button meaningful-icon-pass" type="button" aria-label="Search">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+          <path d="M9.5 3a6.5 6.5 0 0 1 5.16 10.45l4.45 4.44-1.42 1.42-4.44-4.45A6.5 6.5 0 1 1 9.5 3Zm0 2a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Z"></path>
+        </svg>
+        Search
+      </button>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 5: Decorative low-contrast icon is not needed to understand the control</h3>
+      <p>
+        This succeeds because the low-contrast icon is decorative. The visible button text communicates the control's purpose, so the icon itself is not required to identify the component or understand the action.
+      </p>
+
+      <button class="icon-button decorative-icon-low-contrast" type="button">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+          <path d="M12 2 9.5 8.5 3 9l5 4.2L6.5 20 12 16.3 17.5 20 16 13.2 21 9l-6.5-.5L12 2Z"></path>
+        </svg>
+        Save favorite
+      </button>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Text input boundary has insufficient contrast</h3>
+      <p>
+        This fails because the input's visible border is too light against the white background, making the component boundary difficult to identify.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this intentionally failing example. The text input boundary is defined with a very light border against a white background, creating a machine-detectable non-text contrast failure candidate.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should evaluate input boundaries used to identify form controls and report cases where the boundary has less than 3:1 contrast against the adjacent background.
+      </p>
+
+      <div class="form-row">
+        <label for="name-fail">Full name</label>
+        <input class="input-contrast-fail" id="name-fail" name="name-fail" type="text" autocomplete="name">
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Button boundary has insufficient contrast</h3>
+      <p>
+        This fails because the button depends on a visible border to identify the component boundary, but that border has insufficient contrast against the adjacent white background.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this intentionally failing example. The button relies on a visible border to identify its boundary, but that border has insufficient contrast against the adjacent background.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should check visible borders or other boundary indicators on buttons and controls when those indicators are needed to identify the component.
+      </p>
+
+      <button class="button-example button-contrast-fail" type="button">Save changes</button>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Focus indicator has insufficient contrast</h3>
+      <p>
+        This fails because the keyboard focus indicator is too light against the white background. To test this manually, tab to the button and inspect the focus outline.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this intentionally failing example. The focus indicator is defined in CSS with a low-contrast outline. This may require the auditor to evaluate focus-state styles rather than only the default rendered state.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should test or simulate focus states for interactive elements and evaluate whether the visible focus indicator meets the required non-text contrast threshold.
+      </p>
+
+      <button class="button-example button-contrast-pass focus-fail" type="button">Focus me</button>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 4: Meaningful icon has insufficient contrast</h3>
+      <p>
+        This fails because the search icon is meaningful and its shape has insufficient contrast against the white background.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this intentionally failing example. The icon is part of a labeled search control and is visually meaningful, but its SVG fill color has insufficient contrast against the adjacent background.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should consider evaluating SVG graphical objects used in controls when the icon contributes to identifying the control or its action. Decorative SVGs should remain excluded where the visible text already provides the necessary information.
+      </p>
+
+      <button class="icon-button meaningful-icon-fail" type="button" aria-label="Search">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+          <path d="M9.5 3a6.5 6.5 0 0 1 5.16 10.45l4.45 4.44-1.42 1.42-4.44-4.45A6.5 6.5 0 1 1 9.5 3Zm0 2a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Z"></path>
+        </svg>
+        Search
+      </button>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 5: Status indicator has insufficient contrast</h3>
+      <p>
+        This fails because the status dot is a meaningful graphical object and has insufficient contrast against the white background.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this intentionally failing example. The status indicator is a meaningful graphical object, but the dot has insufficient contrast against the adjacent white background.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should consider checking meaningful graphical status indicators for non-text contrast, especially when a shape, icon, or marker is used as part of the visual status presentation.
+      </p>
+
+      <p class="status-row">
+        <span class="status-dot status-dot-fail" aria-hidden="true"></span>
+        <span>System status: Offline</span>
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Current 1.4.11 coverage takeaway</h2>
+      <p>
+        <strong>Recommendation:</strong> SiteLint does not currently report any of the intentionally failing non-text contrast examples on this page. This suggests a significant WCAG 1.4.11 coverage gap for common machine-detectable patterns: low-contrast control boundaries, low-contrast focus indicators, low-contrast meaningful SVG icons, and low-contrast status indicators.
+      </p>
+      <p>
+        The strongest starting point would be control boundaries and focus indicators because those are usually available through computed CSS. Graphical objects may require more context to distinguish meaningful icons from decorative graphics, but common SVG-in-control and status-indicator patterns are still worth targeted evaluation.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
