@@ -1,0 +1,331 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 1.3.1 Info and Relationships Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+
+    table {
+      border-collapse: collapse;
+      margin-block: 0.75rem;
+      max-width: 42rem;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid #767676;
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .form-row {
+      margin-block: 0.75rem;
+    }
+
+    .form-row label,
+    .form-row input,
+    .form-row select {
+      display: block;
+    }
+
+    .form-row input,
+    .form-row select {
+      margin-top: 0.25rem;
+      min-height: 2rem;
+      min-width: 16rem;
+    }
+
+    .fake-label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    fieldset {
+      margin-block: 0.75rem;
+      max-width: 28rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.3.1: Info and Relationships</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Information, structure, and relationships that are conveyed visually should also be programmatically determinable or available in text. Common examples include headings, lists, form labels, grouped controls, and table headers.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html">View the W3C Understanding page for WCAG 1.3.1 Info and Relationships</a>.
+    </p>
+
+    <p>
+      These examples focus on structural relationships that an automated accessibility tool may reasonably evaluate from HTML. Broader 1.3.1 issues that depend mainly on visual presentation, author intent, or human interpretation are intentionally omitted from this page.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Visible section title uses a real heading element</h3>
+      <p>
+        This succeeds because the visible section title is marked up as a heading, so the structure is programmatically determinable.
+      </p>
+
+      <h4>Account settings</h4>
+      <p>Use this section to review notification and privacy preferences.</p>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Related items are marked up as a list</h3>
+      <p>
+        This succeeds because the related items are contained in a semantic unordered list using <code>&lt;ul&gt;</code> and <code>&lt;li&gt;</code> elements.
+      </p>
+
+      <ul>
+        <li>Review accessibility findings.</li>
+        <li>Prioritize confirmed failures.</li>
+        <li>Assign remediation tasks.</li>
+      </ul>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Form input has a programmatically associated label</h3>
+      <p>
+        This succeeds because the visible label is associated with the input using <code>for</code> and <code>id</code> attributes.
+      </p>
+
+      <div class="form-row">
+        <label for="full-name-pass">Full name</label>
+        <input id="full-name-pass" name="full-name-pass" type="text" autocomplete="name">
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 4: Radio buttons are grouped with a fieldset and legend</h3>
+      <p>
+        This succeeds because the radio buttons are programmatically grouped, and the group has a descriptive legend.
+      </p>
+
+      <fieldset>
+        <legend>Preferred contact method</legend>
+        <div>
+          <input id="contact-email-pass" name="contact-method-pass" type="radio" value="email">
+          <label for="contact-email-pass">Email</label>
+        </div>
+        <div>
+          <input id="contact-phone-pass" name="contact-method-pass" type="radio" value="phone">
+          <label for="contact-phone-pass">Phone</label>
+        </div>
+      </fieldset>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 5: Data table uses programmatic column headers</h3>
+      <p>
+        This succeeds because the table uses <code>&lt;th scope="col"&gt;</code> elements to identify the column headers for each data cell.
+      </p>
+
+      <table>
+        <caption>Accessibility task status</caption>
+        <thead>
+          <tr>
+            <th scope="col">Task</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Review image alternatives</td>
+            <td>Product</td>
+            <td>In progress</td>
+          </tr>
+          <tr>
+            <td>Fix missing form labels</td>
+            <td>Engineering</td>
+            <td>Planned</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <h2>Failing examples</h2>
+
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Visible form label is not programmatically associated with the input</h3>
+      <p>
+        This fails because the text label appears visually next to the input, but it is not a real <code>&lt;label&gt;</code> and is not programmatically associated with the control.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint correctly reports this unlabeled input, but the finding is mapped to WCAG 3.3.2 rather than 1.3.1. The failure is relevant to both labels/instructions and programmatic relationships, so this is useful detection but incomplete evidence of direct 1.3.1 coverage.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Consider whether this rule should also be mapped to 1.3.1, or whether SiteLint should have a separate 1.3.1-specific form-label relationship rule. The user-facing message should make clear that the visible label is not programmatically associated with the control.
+      </p>
+
+      <div class="form-row">
+        <span class="fake-label">Email address</span>
+        <input name="email-fail" type="email" autocomplete="email">
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Radio buttons are visually grouped but have no programmatic group label</h3>
+      <p>
+        This fails because the radio buttons are visually presented as a group, but there is no <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code> or equivalent programmatic group label.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint correctly reports this grouped-control failure under WCAG 1.3.1, but the rule message says “Checkboxes should be grouped together” even though this example uses radio buttons. The underlying issue is correct, but the message is too narrow or inaccurate for radio groups.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Update the rule title/message to cover grouped controls generically, such as “Related checkboxes or radio buttons should be grouped together.” The rule should avoid saying “checkboxes” when the failing control group is actually a radio group.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint also reports a separate WCAG 2.5.8 target-size issue on the radio buttons because the native controls render smaller than 24 by 24 CSS pixels. That is outside the purpose of this 1.3.1 test page.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> For a cleaner 1.3.1 test page, consider styling the radio controls or their clickable labels so the 2.5.8 finding does not distract from the grouping relationship being tested.
+      </p>
+
+      <p><strong>Choose a delivery method</strong></p>
+      <div>
+        <input id="delivery-standard-fail" name="delivery-method-fail" type="radio" value="standard">
+        <label for="delivery-standard-fail">Standard</label>
+      </div>
+      <div>
+        <input id="delivery-express-fail" name="delivery-method-fail" type="radio" value="express">
+        <label for="delivery-express-fail">Express</label>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Data table visually has headers but uses only data cells</h3>
+      <p>
+        This fails because the first row is visually acting as a header row, but it uses <code>&lt;td&gt;</code> cells instead of header cells. The column-header relationships are not programmatically determinable.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint correctly reports this table-header relationship failure under WCAG 1.3.1. This is strong evidence of useful automated coverage for at least one common 1.3.1 table-structure pattern.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Keep this as a strong automated 1.3.1 test scenario. It is a clear, machine-detectable relationship problem: a data table is present, but no header cells are defined.
+      </p>
+
+      <table>
+        <caption>Training completion status</caption>
+        <tbody>
+          <tr>
+            <td><strong>Training</strong></td>
+            <td><strong>Team</strong></td>
+            <td><strong>Complete</strong></td>
+          </tr>
+          <tr>
+            <td>Media alternatives</td>
+            <td>Product</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Form labels</td>
+            <td>Engineering</td>
+            <td>Yes</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Current 1.3.1 coverage takeaway</h2>
+      <p>
+        <strong>Recommendation:</strong> SiteLint shows useful 1.3.1-related coverage for some structural relationships, especially grouped controls and table headers. The first pass also shows two issues to address: the unlabeled input is reported under 3.3.2 rather than 1.3.1, and the grouped-control rule message should be generalized beyond “checkboxes.”
+      </p>
+      <p>
+        1.3.1 is broad, so this page intentionally focuses on machine-detectable structural relationships rather than scenarios that mostly depend on visual presentation or author intent.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
