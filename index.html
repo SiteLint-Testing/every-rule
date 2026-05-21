@@ -51,6 +51,19 @@
     .summary {
       max-width: 72rem;
     }
+
+    .highlight {
+      background-color: #fff4a3;
+    }
+
+    .recommendation-label {
+      font-weight: 700;
+    }
+
+    .recommendation-note {
+      margin-bottom: 0;
+      margin-top: 0.75rem;
+    }
   </style>
 </head>
 <body>
@@ -86,10 +99,10 @@
           <td>
             <ul class="issues-list">
               <li><strong>Caution:</strong> This success criterion is only partly testable through static markup. Whether the provided alternative is actually equivalent to the prerecorded audio-only or video-only content requires human review of the media and its alternative.</li>
-              <li>SiteLint incorrectly flags a passing video-only example that provides an associated text alternative, even though WCAG 1.2.1 allows prerecorded video-only content to pass through an alternative for time-based media.</li>
-              <li>The current media rule appears to treat the absence of a track element or audio source as sufficient evidence of failure, which is too narrow for 1.2.1.</li>
-              <li>Recommendation: 1.2.1 logic should account for the valid text-alternative pathway rather than treating the absence of embedded track/audio markup as conclusive.</li>
+              <li>SiteLint <span class="highlight">incorrectly flags a passing video-only example</span> that provides an associated text alternative, even though WCAG 1.2.1 allows prerecorded video-only content to pass through an alternative for time-based media.</li>
+              <li>The current media rule appears to treat the absence of a track element or audio source as sufficient evidence of failure, <span class="highlight">which is too narrow for 1.2.1</span>.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> 1.2.1 logic should account for the valid text-alternative pathway rather than treating the absence of embedded track/audio markup as conclusive.</p>
           </td>
         </tr>
         <tr class="status-created">
@@ -99,10 +112,10 @@
             <ul class="issues-list">
               <li><strong>Caution:</strong> A static page can test whether a captions mechanism appears to be present, but it cannot verify whether the captions are accurate, complete, synchronized, or include relevant non-speech audio.</li>
               <li>SiteLint incorrectly flags a passing example that is clearly labeled as a media alternative for text, which is an exception under WCAG 1.2.2.</li>
-              <li>SiteLint catches the missing-captions failing scenario only through a finding mapped to 1.2.1, not 1.2.2.</li>
-              <li>SiteLint misses the subtitles-only failing scenario, suggesting that subtitles may be treated as equivalent to captions.</li>
-              <li>Recommendation: SiteLint needs explicit, accurately mapped 1.2.2 coverage and should not treat <code>kind="subtitles"</code> as a guaranteed substitute for captions.</li>
+              <li>SiteLint catches the missing-captions failing scenario <span class="highlight">only through a finding mapped to 1.2.1, not 1.2.2</span>.</li>
+              <li>SiteLint <span class="highlight">misses the subtitles-only failing scenario</span>, suggesting that subtitles may be treated as equivalent to captions.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> SiteLint needs explicit, accurately mapped 1.2.2 coverage and should not treat <code>kind="subtitles"</code> as a guaranteed substitute for captions.</p>
           </td>
         </tr>
         <tr class="status-created">
@@ -111,11 +124,11 @@
           <td>
             <ul class="issues-list">
               <li><strong>Caution:</strong> This success criterion is only partly testable through static markup. Whether audio description or a media alternative fully conveys the necessary visual and auditory information requires human review of the media content.</li>
-              <li>SiteLint incorrectly flags a passing example that provides a full media alternative in text form.</li>
-              <li>SiteLint incorrectly flags a passing example that is clearly labeled as a media alternative for text.</li>
-              <li>SiteLint flags the genuine failing scenario, but reports it under WCAG 1.2.1 rather than 1.2.3.</li>
-              <li>Recommendation: SiteLint needs explicit 1.2.3 coverage that accounts for audio description, full media alternatives, and the media-alternative-for-text exception.</li>
+              <li>SiteLint <span class="highlight">incorrectly flags a passing example</span> that provides a full media alternative in text form.</li>
+              <li>SiteLint <span class="highlight">incorrectly flags a passing example</span> that is clearly labeled as a media alternative for text.</li>
+              <li>SiteLint flags the genuine failing scenario, but <span class="highlight">reports it under WCAG 1.2.1 rather than 1.2.3</span>.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> SiteLint needs explicit 1.2.3 coverage that accounts for audio description, full media alternatives, and the media-alternative-for-text exception.</p>
           </td>
         </tr>
         <tr class="status-skipped">
@@ -133,10 +146,10 @@
           <td>
             <ul class="issues-list">
               <li><strong>Caution:</strong> This success criterion is difficult to evaluate through automation because the need for audio description depends on whether important visual information is already conveyed in the existing audio track.</li>
-              <li>SiteLint incorrectly flags a passing example where important visual information is already conveyed in the main audio track, a valid 1.2.5 scenario.</li>
-              <li>SiteLint flags the genuine failing scenario, but again reports it under WCAG 1.2.1 rather than 1.2.5.</li>
-              <li>Recommendation: SiteLint should not treat the absence of a descriptions track as a confirmed 1.2.5 failure. This often requires focused manual verification.</li>
+              <li>SiteLint <span class="highlight">incorrectly flags a passing example</span> where important visual information is already conveyed in the main audio track, a valid 1.2.5 scenario.</li>
+              <li>SiteLint flags the genuine failing scenario, but again <span class="highlight">reports it under WCAG 1.2.1 rather than 1.2.5</span>.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> SiteLint should not treat the absence of a descriptions track as a confirmed 1.2.5 failure. This often requires focused manual verification.</p>
           </td>
         </tr>
         <tr class="status-skipped">
@@ -163,10 +176,10 @@
           <td>
             <ul class="issues-list">
               <li><strong>Caution:</strong> This success criterion is only partly testable through static markup. A page can show whether a clearly associated media alternative is present or absent, but whether that alternative fully captures the important visual and auditory information requires human review of the media and the alternative.</li>
-              <li>SiteLint incorrectly flags both passing examples that provide full media alternatives: one for prerecorded synchronized media and one for prerecorded video-only media.</li>
-              <li>SiteLint flags the two genuine failing scenarios, but reports them under WCAG 1.2.1 rather than WCAG 1.2.8.</li>
-              <li>Recommendation: SiteLint needs explicit, accurately mapped 1.2.8 coverage that accounts for full media alternatives rather than reusing the generic “no track or audio source” media heuristic.</li>
+              <li>SiteLint <span class="highlight">incorrectly flags both passing examples</span> that provide full media alternatives: one for prerecorded synchronized media and one for prerecorded video-only media.</li>
+              <li>SiteLint flags the two genuine failing scenarios, but <span class="highlight">reports them under WCAG 1.2.1 rather than WCAG 1.2.8</span>.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> SiteLint needs explicit, accurately mapped 1.2.8 coverage that accounts for full media alternatives rather than reusing the generic “no track or audio source” media heuristic.</p>
           </td>
         </tr>
         <tr class="status-skipped">
@@ -183,12 +196,12 @@
           <td>Info and Relationships</td>
           <td>
             <ul class="issues-list">
-              <li>SiteLint correctly flags the ungrouped radio-button example under WCAG 1.3.1, but the rule message says “Checkboxes should be grouped together” even though the controls are radio buttons.</li>
+              <li>SiteLint correctly flags the ungrouped radio-button example under WCAG 1.3.1, but the rule message says “Checkboxes should be grouped together” <span class="highlight">even though the controls are radio buttons</span>.</li>
               <li>SiteLint correctly flags the data table with visual headers but no programmatic header cells under WCAG 1.3.1.</li>
-              <li>SiteLint flags the visible-but-unassociated form label, but maps the finding to WCAG 3.3.2 rather than 1.3.1.</li>
+              <li>SiteLint flags the visible-but-unassociated form label, but <span class="highlight">maps the finding to WCAG 3.3.2 rather than 1.3.1</span>.</li>
               <li>SiteLint also reports a WCAG 2.5.8 target-size issue on the radio buttons, which is unrelated to this 1.3.1 test page and may need to be avoided through test-page styling.</li>
-              <li>Recommendation: Update the grouped-control rule message to include radio buttons, consider whether form-label relationship failures should also map to 1.3.1, and keep the page focused on machine-detectable structural relationship failures.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Update the grouped-control rule message to include radio buttons, consider whether form-label relationship failures should also map to 1.3.1, and keep the page focused on machine-detectable structural relationship failures.</p>
           </td>
         </tr>
         <tr class="status-created">
@@ -197,9 +210,9 @@
           <td>
             <ul class="issues-list">
               <li><strong>Caution:</strong> This success criterion is only partly testable through automation. Automated tests can detect some risky patterns where CSS changes visual order, but whether the changed sequence affects meaning may still require human review.</li>
-              <li>SiteLint does not currently report either failing example on the page, even though both use explicit CSS <code>order</code> values that make the visual order differ from the DOM order.</li>
-              <li>Recommendation: SiteLint should consider a targeted WCAG 1.3.2 manual-verification rule for flex/grid reordering patterns where source order and visual order may diverge.</li>
+              <li>SiteLint <span class="highlight">does not currently report either failing example</span> on the page, even though both use explicit CSS <code>order</code> values that make the visual order differ from the DOM order.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> SiteLint should consider a targeted WCAG 1.3.2 manual-verification rule for flex/grid reordering patterns where source order and visual order may diverge.</p>
           </td>
         </tr>
         <tr class="status-skipped">
@@ -226,11 +239,11 @@
           <td>
             <ul class="issues-list">
               <li>SiteLint correctly reports an invalid autocomplete token under WCAG 1.3.5.</li>
-              <li>SiteLint does not report missing autocomplete tokens on common user-information fields, such as full name.</li>
-              <li>SiteLint does not report <code>autocomplete="off"</code> on a user-information field where a valid input-purpose token should be provided.</li>
-              <li>SiteLint does not report an obvious mismatch where a ZIP or postal code field uses <code>autocomplete="street-address"</code>.</li>
-              <li>Recommendation: Broaden 1.3.5 coverage beyond token validation to include missing, disabled, or mismatched autocomplete values on common user-information fields.</li>
+              <li>SiteLint <span class="highlight">does not report missing autocomplete tokens</span> on common user-information fields, such as full name.</li>
+              <li>SiteLint <span class="highlight">does not report <code>autocomplete="off"</code></span> on a user-information field where a valid input-purpose token should be provided.</li>
+              <li>SiteLint <span class="highlight">does not report an obvious mismatch</span> where a ZIP or postal code field uses <code>autocomplete="street-address"</code>.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Broaden 1.3.5 coverage beyond token validation to include missing, disabled, or mismatched autocomplete values on common user-information fields.</p>
           </td>
         </tr>
       </tbody>
