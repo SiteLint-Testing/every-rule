@@ -191,6 +191,48 @@
             </ul>
           </td>
         </tr>
+        <tr class="status-created">
+          <th scope="row"><a href="1-3-2.html">1.3.2</a></th>
+          <td>Meaningful Sequence</td>
+          <td>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. Automated tests can detect some risky patterns where CSS changes visual order, but whether the changed sequence affects meaning may still require human review.</li>
+              <li>SiteLint does not currently report either failing example on the page, even though both use explicit CSS <code>order</code> values that make the visual order differ from the DOM order.</li>
+              <li>Recommendation: SiteLint should consider a targeted WCAG 1.3.2 manual-verification rule for flex/grid reordering patterns where source order and visual order may diverge.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <th scope="row">1.3.3</th>
+          <td>Sensory Characteristics</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion depends on determining whether instructions rely only on sensory characteristics such as shape, color, size, visual location, orientation, or sound. Automated tests may detect risky language patterns, but confirming a true failure usually requires human judgment.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <th scope="row">1.3.4</th>
+          <td>Orientation</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion depends on whether content restricts view or operation to a single display orientation. A meaningful automated test would require evaluating portrait and landscape states or detecting orientation-specific blocking patterns, which is outside the current static-page test approach.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-created">
+          <th scope="row"><a href="1-3-5.html">1.3.5</a></th>
+          <td>Identify Input Purpose</td>
+          <td>
+            <ul class="issues-list">
+              <li>SiteLint correctly reports an invalid autocomplete token under WCAG 1.3.5.</li>
+              <li>SiteLint does not report missing autocomplete tokens on common user-information fields, such as full name.</li>
+              <li>SiteLint does not report <code>autocomplete="off"</code> on a user-information field where a valid input-purpose token should be provided.</li>
+              <li>SiteLint does not report an obvious mismatch where a ZIP or postal code field uses <code>autocomplete="street-address"</code>.</li>
+              <li>Recommendation: Broaden 1.3.5 coverage beyond token validation to include missing, disabled, or mismatched autocomplete values on common user-information fields.</li>
+            </ul>
+          </td>
+        </tr>
       </tbody>
     </table>
     <script>

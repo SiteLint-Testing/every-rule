@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 1.3.5 Identify Input Purpose Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .form-row {
+      margin-block: 0.75rem;
+    }
+
+    .form-row label,
+    .form-row input {
+      display: block;
+    }
+
+    .form-row input {
+      margin-top: 0.25rem;
+      min-height: 2rem;
+      min-width: 18rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.3.5: Identify Input Purpose</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Input fields that collect information about the user should expose their purpose programmatically when the purpose is included in the WCAG-defined list of input purposes. In HTML, this is commonly done with valid <code>autocomplete</code> tokens such as <code>name</code>, <code>email</code>, <code>tel</code>, <code>street-address</code>, and <code>postal-code</code>.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html">View the W3C Understanding page for WCAG 1.3.5 Identify Input Purpose</a>.
+    </p>
+
+    <p>
+      These examples focus on user-information fields where an automated accessibility tool can reasonably inspect whether a valid and appropriate <code>autocomplete</code> token is present. The page intentionally avoids fields that do not collect information about the user, because those are outside the intended scope of this success criterion.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Full name field has a valid input-purpose token</h3>
+      <p>
+        This succeeds because the field collects the user's full name and uses <code>autocomplete="name"</code> to expose that purpose programmatically.
+      </p>
+
+      <div class="form-row">
+        <label for="full-name-pass">Full name</label>
+        <input id="full-name-pass" name="full-name-pass" type="text" autocomplete="name">
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Email field has a valid input-purpose token</h3>
+      <p>
+        This succeeds because the field collects the user's email address and uses <code>autocomplete="email"</code>.
+      </p>
+
+      <div class="form-row">
+        <label for="email-pass">Email address</label>
+        <input id="email-pass" name="email-pass" type="email" autocomplete="email">
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Telephone field has a valid input-purpose token</h3>
+      <p>
+        This succeeds because the field collects the user's telephone number and uses <code>autocomplete="tel"</code>.
+      </p>
+
+      <div class="form-row">
+        <label for="phone-pass">Phone number</label>
+        <input id="phone-pass" name="phone-pass" type="tel" autocomplete="tel">
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 4: Address fields have valid input-purpose tokens</h3>
+      <p>
+        This succeeds because the address-related fields use valid tokens that identify the specific user information being requested.
+      </p>
+
+      <div class="form-row">
+        <label for="street-address-pass">Street address</label>
+        <input id="street-address-pass" name="street-address-pass" type="text" autocomplete="street-address">
+      </div>
+
+      <div class="form-row">
+        <label for="postal-code-pass">ZIP or postal code</label>
+        <input id="postal-code-pass" name="postal-code-pass" type="text" autocomplete="postal-code">
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Full name field is missing an input-purpose token</h3>
+      <p>
+        This fails because the field collects the user's full name, but it does not provide an <code>autocomplete</code> token to identify the input purpose programmatically.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this intentionally failing example. The field collects the user's full name, but no <code>autocomplete</code> token is present.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should consider detecting missing <code>autocomplete</code> tokens on common user-information fields, such as name, email, telephone, and address fields. This may require label/name/id heuristics, but it is central to meaningful WCAG 1.3.5 coverage.
+      </p>
+
+      <div class="form-row">
+        <label for="full-name-fail">Full name</label>
+        <input id="full-name-fail" name="full-name-fail" type="text">
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Email field uses an invalid autocomplete value</h3>
+      <p>
+        This fails because the field collects the user's email address, but the <code>autocomplete</code> value is not a valid token for identifying the input purpose.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint correctly reports this failing example under WCAG 1.3.5 because <code>autocomplete="email-address"</code> is not a valid autocomplete token.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Keep this as a strong automated 1.3.5 test scenario. Invalid autocomplete tokens are directly machine-detectable and should be reported confidently.
+      </p>
+
+      <div class="form-row">
+        <label for="email-invalid-fail">Email address</label>
+        <input id="email-invalid-fail" name="email-invalid-fail" type="email" autocomplete="email-address">
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Phone field disables autocomplete instead of identifying the purpose</h3>
+      <p>
+        This fails because the field collects the user's phone number, but it uses <code>autocomplete="off"</code> instead of a valid input-purpose token such as <code>tel</code>.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this intentionally failing example. The field collects the user's phone number, but <code>autocomplete="off"</code> does not identify the input purpose.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should not treat <code>autocomplete="off"</code> as satisfying WCAG 1.3.5 for user-information fields that have a defined autocomplete purpose. A field that asks for a phone number should expose that purpose with a token such as <code>tel</code>.
+      </p>
+
+      <div class="form-row">
+        <label for="phone-off-fail">Phone number</label>
+        <input id="phone-off-fail" name="phone-off-fail" type="tel" autocomplete="off">
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 4: Postal code field uses the wrong token</h3>
+      <p>
+        This fails because the field asks for the user's ZIP or postal code, but the token identifies a different input purpose.
+      </p>
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this intentionally failing example. The field asks for a ZIP or postal code but uses <code>autocomplete="street-address"</code>, which identifies a different input purpose.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should consider detecting likely mismatches between common field labels and autocomplete tokens. This may need heuristic confidence scoring, but obvious mismatches such as postal code fields using <code>street-address</code> are useful 1.3.5 candidates.
+      </p>
+
+      <div class="form-row">
+        <label for="postal-code-wrong-fail">ZIP or postal code</label>
+        <input id="postal-code-wrong-fail" name="postal-code-wrong-fail" type="text" autocomplete="street-address">
+      </div>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Current 1.3.5 coverage takeaway</h2>
+      <p>
+        <strong>Recommendation:</strong> SiteLint currently appears to detect invalid autocomplete tokens, but it does not detect missing tokens, <code>autocomplete="off"</code> on user-information fields, or likely mismatches between field purpose and autocomplete value. This means the current 1.3.5 coverage is useful but too narrow.
+      </p>
+      <p>
+        The strongest automated coverage is token validation. Broader 1.3.5 coverage should also inspect common user-information fields and determine whether the expected input purpose is absent, disabled, or mismatched.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

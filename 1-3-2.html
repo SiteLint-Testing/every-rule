@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 1.3.2 Meaningful Sequence Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .step-list,
+    .bad-step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      list-style-position: inside;
+      margin-block: 0.75rem;
+      max-width: 36rem;
+      padding-left: 0;
+    }
+
+    .step-list li,
+    .bad-step-list li {
+      border: 1px solid #767676;
+      padding: 0.75rem 1rem;
+    }
+
+    .bad-step-list .step-one {
+      order: 2;
+    }
+
+    .bad-step-list .step-two {
+      order: 1;
+    }
+
+    .bad-step-list .step-three {
+      order: 3;
+    }
+
+    .card-grid,
+    .bad-card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-block: 0.75rem;
+      max-width: 48rem;
+    }
+
+    .card-grid article,
+    .bad-card-grid article {
+      border: 1px solid #767676;
+      flex: 1 1 14rem;
+      padding: 1rem;
+    }
+
+    .bad-card-grid .intro-card {
+      order: 2;
+    }
+
+    .bad-card-grid .details-card {
+      order: 1;
+    }
+
+    .bad-card-grid .summary-card {
+      order: 3;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.3.2: Meaningful Sequence</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> When the sequence of content affects meaning, the correct reading sequence must be programmatically determinable. In practice, this often means the DOM/source order should match the meaningful reading order, even when CSS is used for visual layout.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html">View the W3C Understanding page for WCAG 1.3.2 Meaningful Sequence</a>.
+    </p>
+
+    <p>
+      <strong>Caution:</strong> This success criterion is only partly testable through automation. A tool can identify some risky patterns, such as CSS reordering that makes visual order differ from DOM order, but determining whether that sequence changes meaning may still require human judgment.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Step sequence appears visually and programmatically in the same order</h3>
+      <p>
+        This succeeds because the numbered steps appear in the same order visually and in the DOM. The sequence is meaningful and programmatically determinable.
+      </p>
+
+      <ol class="step-list">
+        <li>Step 1: Create the account.</li>
+        <li>Step 2: Verify the email address.</li>
+        <li>Step 3: Sign in to the dashboard.</li>
+      </ol>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Cards retain a meaningful DOM order</h3>
+      <p>
+        This succeeds because the cards are presented in a meaningful sequence in the DOM: introduction first, details second, and summary last.
+      </p>
+
+      <div class="card-grid">
+        <article>
+          <h4>Introduction</h4>
+          <p>Start by reviewing the purpose of the accessibility audit.</p>
+        </article>
+        <article>
+          <h4>Details</h4>
+          <p>Then review the specific findings and affected page elements.</p>
+        </article>
+        <article>
+          <h4>Summary</h4>
+          <p>Finally, summarize the next remediation steps.</p>
+        </article>
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: CSS changes the visual order of meaningful steps</h3>
+      <p>
+        This fails because the visual order is changed with CSS <code>order</code>, so the steps appear visually as Step 2, Step 1, Step 3 while the DOM order remains Step 1, Step 2, Step 3. When sequence matters, the meaningful order should be programmatically determinable and should not rely only on visual CSS reordering.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this intentionally failing example. The page uses CSS <code>order</code> to make the visual sequence differ from the DOM sequence, which is a concrete, machine-detectable risk pattern for WCAG 1.3.2.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Add or improve a 1.3.2-oriented rule that detects CSS reordering on meaningful content, such as flex or grid items using non-default <code>order</code> values. The finding may still require human confirmation, but this pattern is specific enough to warrant at least a targeted warning or manual-verification item.
+      </p>
+
+      <ol class="bad-step-list">
+        <li class="step-one">Step 1: Create the account.</li>
+        <li class="step-two">Step 2: Verify the email address.</li>
+        <li class="step-three">Step 3: Sign in to the dashboard.</li>
+      </ol>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: CSS reorders content cards into a different visual sequence</h3>
+      <p>
+        This fails because CSS changes the visual order of related content. The details card is visually presented before the introduction card, but the DOM order still presents the introduction first. This creates a mismatch between visual reading order and programmatic reading order.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>SiteLint observation:</strong> SiteLint does not report this intentionally failing example. The visual card order differs from the DOM order because CSS <code>order</code> is used, creating the same kind of meaningful-sequence risk in a layout pattern that is common on real sites.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should consider flagging CSS-reordered flex or grid content as a 1.3.2 manual-verification issue when the visual order may differ from the programmatic reading order. This would help identify likely meaningful-sequence problems without overclaiming that every use of CSS reordering is automatically a failure.
+      </p>
+
+      <div class="bad-card-grid">
+        <article class="intro-card">
+          <h4>Introduction</h4>
+          <p>Start by reviewing the purpose of the accessibility audit.</p>
+        </article>
+        <article class="details-card">
+          <h4>Details</h4>
+          <p>Then review the specific findings and affected page elements.</p>
+        </article>
+        <article class="summary-card">
+          <h4>Summary</h4>
+          <p>Finally, summarize the next remediation steps.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Current 1.3.2 coverage takeaway</h2>
+      <p>
+        <strong>Recommendation:</strong> SiteLint does not currently appear to detect the two CSS-reordering scenarios on this page. These are not purely subjective examples: both use explicit CSS <code>order</code> values that make visual order differ from DOM order. Because 1.3.2 still depends on whether the changed sequence affects meaning, the safest reporting approach may be manual verification rather than a confirmed failure.
+      </p>
+      <p>
+        This page suggests a potential coverage gap for WCAG 1.3.2. SiteLint should consider a targeted rule for flex/grid reordering patterns where source order and visual order may diverge.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
