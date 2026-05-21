@@ -75,9 +75,10 @@
     </p>
 
     <table>
-      <caption>Created (10) and skipped (10) WCAG test pages</caption>
+      <caption>Created (10) and skipped (61) WCAG test pages</caption>
       <thead>
         <tr>
+          <th scope="col">#</th>
           <th scope="col">SC</th>
           <th scope="col">Title</th>
           <th scope="col">Notes</th>
@@ -85,6 +86,7 @@
       </thead>
       <tbody>
         <tr class="status-created">
+          <td>1</td>
           <th scope="row"><a href="1-1-1.html">1.1.1</a></th>
           <td>Non-text Content</td>
           <td>
@@ -94,6 +96,7 @@
           </td>
         </tr>
         <tr class="status-created">
+          <td>2</td>
           <th scope="row"><a href="1-2-1.html">1.2.1</a></th>
           <td>Audio-only and Video-only (Prerecorded)</td>
           <td>
@@ -106,6 +109,7 @@
           </td>
         </tr>
         <tr class="status-created">
+          <td>3</td>
           <th scope="row"><a href="1-2-2.html">1.2.2</a></th>
           <td>Captions (Prerecorded)</td>
           <td>
@@ -119,6 +123,7 @@
           </td>
         </tr>
         <tr class="status-created">
+          <td>4</td>
           <th scope="row"><a href="1-2-3.html">1.2.3</a></th>
           <td>Audio Description or Media Alternative (Prerecorded)</td>
           <td>
@@ -132,15 +137,17 @@
           </td>
         </tr>
         <tr class="status-skipped">
+          <td>5</td>
           <th scope="row">1.2.4</th>
           <td>Captions (Live)</td>
           <td>
             <ul class="notes-list">
-              <li><strong>Skipped:</strong> This success criterion concerns live captions for live synchronized media.</li>
+              <li><strong>Skipped:</strong> This success criterion applies to live synchronized media. A meaningful test requires real-time or simulated-live audio/video and a judgment about whether captions are provided as the live content occurs. Reviewing the static HTML only cannot determine whether live captions are present, accurate, synchronized, or complete.</li>
             </ul>
           </td>
         </tr>
         <tr class="status-created">
+          <td>6</td>
           <th scope="row"><a href="1-2-5.html">1.2.5</a></th>
           <td>Audio Description (Prerecorded)</td>
           <td>
@@ -153,24 +160,27 @@
           </td>
         </tr>
         <tr class="status-skipped">
+          <td>7</td>
           <th scope="row">1.2.6</th>
           <td>Sign Language (Prerecorded)</td>
           <td>
             <ul class="notes-list">
-              <li><strong>Skipped:</strong> This success criterion concerns sign language interpretation for prerecorded synchronized media.</li>
+              <li><strong>Skipped:</strong> This success criterion requires reviewing the prerecorded video content to determine whether a sign language interpretation is actually provided and whether it covers the spoken audio. HTML can show that a video exists, but it cannot confirm that sign language interpretation appears in the media.</li>
             </ul>
           </td>
         </tr>
         <tr class="status-skipped">
+          <td>8</td>
           <th scope="row">1.2.7</th>
           <td>Extended Audio Description (Prerecorded)</td>
           <td>
             <ul class="notes-list">
-              <li><strong>Skipped:</strong> This success criterion depends on reviewing the prerecorded media itself to determine whether ordinary audio description cannot fit into the available pauses and extended audio description is therefore required.</li>
+              <li><strong>Skipped:</strong> This success criterion requires reviewing the timing and content of the prerecorded media to determine whether ordinary audio description cannot fit into the available pauses and extended audio description is therefore required. That judgment depends on the media timeline, not just the surrounding markup.</li>
             </ul>
           </td>
         </tr>
         <tr class="status-created">
+          <td>9</td>
           <th scope="row"><a href="1-2-8.html">1.2.8</a></th>
           <td>Media Alternative (Prerecorded)</td>
           <td>
@@ -183,15 +193,17 @@
           </td>
         </tr>
         <tr class="status-skipped">
+          <td>10</td>
           <th scope="row">1.2.9</th>
           <td>Audio-only (Live)</td>
           <td>
             <ul class="notes-list">
-              <li><strong>Skipped:</strong> This success criterion concerns alternatives for live audio-only content.</li>
+              <li><strong>Skipped:</strong> This success criterion applies to live audio-only content. A meaningful test requires live or simulated-live audio and a judgment about whether an equivalent real-time text alternative is available. Static HTML cannot confirm the live audio content or the accuracy and timing of its alternative.</li>
             </ul>
           </td>
         </tr>
         <tr class="status-created">
+          <td>11</td>
           <th scope="row"><a href="1-3-1.html">1.3.1</a></th>
           <td>Info and Relationships</td>
           <td>
@@ -205,6 +217,7 @@
           </td>
         </tr>
         <tr class="status-created">
+          <td>12</td>
           <th scope="row"><a href="1-3-2.html">1.3.2</a></th>
           <td>Meaningful Sequence</td>
           <td>
@@ -216,24 +229,27 @@
           </td>
         </tr>
         <tr class="status-skipped">
+          <td>13</td>
           <th scope="row">1.3.3</th>
           <td>Sensory Characteristics</td>
           <td>
             <ul class="notes-list">
-              <li><strong>Skipped:</strong> This success criterion depends on determining whether instructions rely only on sensory characteristics such as shape, color, size, visual location, orientation, or sound. Automated tests may detect risky language patterns, but confirming a true failure usually requires human judgment.</li>
+              <li><strong>Skipped:</strong> This success criterion requires deciding whether instructions rely only on sensory characteristics such as shape, color, size, visual location, orientation, or sound. A tool can search for risky words like “red,” “left,” or “round,” but a human still has to read the surrounding content and inspect the referenced control to determine whether a non-sensory identifier is also provided.</li>
             </ul>
           </td>
         </tr>
         <tr class="status-skipped">
+          <td>14</td>
           <th scope="row">1.3.4</th>
           <td>Orientation</td>
           <td>
             <ul class="notes-list">
-              <li><strong>Skipped:</strong> This success criterion depends on whether content restricts view or operation to a single display orientation. A meaningful automated test would require evaluating portrait and landscape states or detecting orientation-specific blocking patterns, which is outside the current static-page test approach.</li>
+              <li><strong>Skipped:</strong> This success criterion requires checking whether the page can be viewed and operated in both portrait and landscape orientation. A meaningful test would need to render or simulate the page in both orientations and determine whether content or functionality is blocked in one of them.</li>
             </ul>
           </td>
         </tr>
         <tr class="status-created">
+          <td>15</td>
           <th scope="row"><a href="1-3-5.html">1.3.5</a></th>
           <td>Identify Input Purpose</td>
           <td>
@@ -247,33 +263,109 @@
           </td>
         </tr>
         <tr class="status-skipped">
+          <td>16</td>
           <th scope="row">1.3.6</th>
           <td>Identify Purpose</td>
           <td>
             <ul class="notes-list">
-              <li><strong>Skipped:</strong> This success criterion concerns programmatically identifying the purpose of UI components, icons, regions, and controls to support personalization. Basic accessible-name failures are better tested under other SCs; meaningful 1.3.6 coverage would require a more specialized semantic or personalization testing strategy.</li>
+              <li><strong>Skipped:</strong> This success criterion is about whether the purpose of controls, icons, and regions can be programmatically identified for personalization. Basic accessible-name problems are covered elsewhere, but meaningful 1.3.6 testing requires a defined semantic purpose taxonomy and judgment about whether each component's purpose is exposed in a way personalization tools can use.</li>
             </ul>
           </td>
         </tr>
         <tr class="status-skipped">
+          <td>17</td>
           <th scope="row">1.4.1</th>
           <td>Use of Color</td>
           <td>
             <ul class="notes-list">
-              <li><strong>Skipped:</strong> This success criterion depends on determining whether color is the only visual means of conveying information, indicating an action, prompting a response, or distinguishing an element. Automated tests may detect risky color-only patterns, but confirming a true failure usually requires human judgment about the surrounding content and available non-color cues.</li>
+              <li><strong>Skipped:</strong> This success criterion requires deciding whether color is the only cue conveying meaning. A tool can detect red text, green status dots, or color changes, but a human must inspect the surrounding content to determine whether there is also text, an icon, a pattern, a label, or another non-color cue that communicates the same information.</li>
             </ul>
           </td>
         </tr>
         <tr class="status-skipped">
+          <td>18</td>
+          <th scope="row">1.4.2</th>
+          <td>Audio Control</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires observing whether audio starts automatically, continues for more than three seconds, and can be paused, stopped, or controlled independently of system volume. That requires running the page and testing playback behavior, not just inspecting the audio markup.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <th scope="row"><a href="1-4-3.html">1.4.3</a></th>
+          <td>Contrast (Minimum)</td>
+          <td></td>
+        </tr>
+        <tr class="status-skipped">
+          <td>20</td>
+          <th scope="row">1.4.4</th>
+          <td>Resize Text</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires increasing text size up to 200 percent and then checking whether content remains readable and functional without loss of information. The test depends on applying a zoom or text-resize condition and reviewing the rendered result, not just reading the original HTML and CSS.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>21</td>
+          <th scope="row">1.4.5</th>
+          <td>Images of Text</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires inspecting image content to determine whether the image contains text, whether that text is essential, and whether real text could be used instead. The HTML can expose an image element, but it does not reliably reveal the visual text inside the image.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>22</td>
+          <th scope="row"><a href="1-4-6.html">1.4.6</a></th>
+          <td>Contrast (Enhanced)</td>
+          <td></td>
+        </tr>
+        <tr class="status-skipped">
+          <td>23</td>
+          <th scope="row">1.4.7</th>
+          <td>Low or No Background Audio</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires listening to prerecorded audio to determine whether background sounds are absent, low enough, or controllable relative to speech. The required judgment depends on the actual audio track, not the presence of an audio element in markup.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>24</td>
+          <th scope="row">1.4.8</th>
+          <td>Visual Presentation</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires determining whether users can control visual presentation details such as colors, line width, text alignment, line spacing, and text size. A useful test would need to change those presentation settings or verify that the page supports them, then inspect whether the content remains usable.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>25</td>
+          <th scope="row">1.4.9</th>
+          <td>Images of Text (No Exception)</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires inspecting the image itself to determine whether it contains text and whether that text is essential or purely decorative. The markup alone cannot reliably identify text embedded inside images or decide whether an exception applies.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>26</td>
           <th scope="row">1.4.10</th>
           <td>Reflow</td>
           <td>
             <ul class="notes-list">
-              <li><strong>Skipped:</strong> This success criterion requires evaluating the page at a narrow viewport, commonly 320 CSS pixels wide. Our current static-page approach does not control viewport size, so this would not be a reliable SiteLint coverage test.</li>
+              <li><strong>Skipped:</strong> This success criterion requires rendering the page at a narrow viewport, commonly 320 CSS pixels wide, and checking whether content can reflow without two-dimensional scrolling. The result depends on the active viewport size and rendered layout, so the test runner would need to control or simulate that viewport.</li>
             </ul>
           </td>
         </tr>
         <tr class="status-created">
+          <td>27</td>
           <th scope="row"><a href="1-4-11.html">1.4.11</a></th>
           <td>Non-text Contrast</td>
           <td>
@@ -287,11 +379,546 @@
           </td>
         </tr>
         <tr class="status-skipped">
+          <td>28</td>
           <th scope="row">1.4.12</th>
           <td>Text Spacing</td>
           <td>
             <ul class="notes-list">
-              <li><strong>Skipped:</strong> This success criterion requires evaluating content after specific text-spacing overrides are applied. Our current static-page approach does not apply those spacing changes automatically, so this would not be a reliable SiteLint coverage test.</li>
+              <li><strong>Skipped:</strong> This success criterion requires applying specific text-spacing overrides for line height, paragraph spacing, letter spacing, and word spacing, then checking for clipping, overlap, or loss of content/functionality. The test depends on rendering the page after those overrides are applied.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>29</td>
+          <th scope="row">1.4.13</th>
+          <td>Content on Hover or Focus</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires triggering hover and keyboard focus states, then checking whether the revealed content can be dismissed, hovered, and kept visible long enough to use. A meaningful test would need to move the pointer, tab to controls, press Escape, and observe the resulting behavior.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>30</td>
+          <th scope="row">2.1.1</th>
+          <td>Keyboard</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires operating every interactive feature with the keyboard and confirming the same functionality is available without a mouse. The HTML can suggest whether controls are focusable, but a human or interaction test must actually tab, activate controls, and verify behavior.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>31</td>
+          <th scope="row">2.1.2</th>
+          <td>No Keyboard Trap</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires moving keyboard focus into and out of components to confirm the user is not trapped. The key issue is runtime focus behavior, including modals, widgets, embedded content, and scripts that may intercept keyboard input.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>32</td>
+          <th scope="row">2.1.3</th>
+          <td>Keyboard (No Exception)</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires testing all functionality with a keyboard and does not allow the usual path-dependent exception. Evaluation requires activating controls and workflows directly, because markup alone cannot prove that every scripted function is keyboard-operable.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>33</td>
+          <th scope="row">2.1.4</th>
+          <td>Character Key Shortcuts</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires identifying character-key shortcuts and testing whether they can be turned off, remapped, or limited to focused components. The issue is usually implemented through JavaScript keyboard event behavior, so it must be exercised interactively.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>34</td>
+          <th scope="row">2.2.1</th>
+          <td>Timing Adjustable</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires identifying time limits and testing whether the user can turn them off, adjust them, or extend them before expiration. The evaluation depends on workflow timing, warnings, and available controls during runtime.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>35</td>
+          <th scope="row">2.2.2</th>
+          <td>Pause, Stop, Hide</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires observing content that moves, blinks, scrolls, or auto-updates for long enough to determine whether it starts automatically and whether pause, stop, or hide controls work. The relevant behavior occurs over time after the page loads.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>36</td>
+          <th scope="row">2.2.3</th>
+          <td>No Timing</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires understanding whether time limits are part of the activity and whether timing is essential. That usually depends on the task, workflow, and user interaction, not just the presence of timers in code.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>37</td>
+          <th scope="row">2.2.4</th>
+          <td>Interruptions</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires triggering or waiting for interruptions such as alerts, popups, or forced context changes, then determining whether users can postpone or suppress them. The issue depends on behavior that occurs after page load or during a workflow.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>38</td>
+          <th scope="row">2.2.5</th>
+          <td>Re-authenticating</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires testing a real or simulated authenticated session, letting it expire, re-authenticating, and confirming whether the user can continue without data loss. That cannot be determined from a standalone page's markup.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>39</td>
+          <th scope="row">2.2.6</th>
+          <td>Timeouts</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires identifying inactivity timeouts that could cause data loss and confirming whether users are warned about the duration. Testing requires a running workflow with timeout behavior, not just static code inspection.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>40</td>
+          <th scope="row">2.3.1</th>
+          <td>Three Flashes or Below Threshold</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires observing flashing content over time and measuring whether flashes exceed the allowed threshold. The relevant information is frequency, area, and timing of visual changes, which are not available from a single static DOM snapshot.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>41</td>
+          <th scope="row">2.3.2</th>
+          <td>Three Flashes</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires measuring flashing behavior over time and confirming that no content flashes more than three times in one second. A test must observe animation/video frames or scripted visual changes, not just markup.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>42</td>
+          <th scope="row">2.3.3</th>
+          <td>Animation from Interactions</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires performing user interactions that trigger motion animation and checking whether non-essential animation can be disabled. The test depends on interaction-triggered behavior and user preferences such as reduced motion.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>43</td>
+          <th scope="row"><a href="2-4-1.html">2.4.1</a></th>
+          <td>Bypass Blocks</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>44</td>
+          <th scope="row"><a href="2-4-2.html">2.4.2</a></th>
+          <td>Page Titled</td>
+          <td></td>
+        </tr>
+        <tr class="status-skipped">
+          <td>45</td>
+          <th scope="row">2.4.3</th>
+          <td>Focus Order</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires tabbing through the page and judging whether the resulting focus order preserves meaning and operability. DOM order and tabindex values can suggest risks, but the real question is the experienced focus sequence in the rendered page.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>46</td>
+          <th scope="row"><a href="2-4-4.html">2.4.4</a></th>
+          <td>Link Purpose (In Context)</td>
+          <td></td>
+        </tr>
+        <tr class="status-skipped">
+          <td>47</td>
+          <th scope="row">2.4.5</th>
+          <td>Multiple Ways</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion applies across a set of web pages. Testing requires reviewing site navigation, search, sitemap, related links, or other page-finding mechanisms across the site, not a single isolated HTML page.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>48</td>
+          <th scope="row"><a href="2-4-6.html">2.4.6</a></th>
+          <td>Headings and Labels</td>
+          <td></td>
+        </tr>
+        <tr class="status-skipped">
+          <td>49</td>
+          <th scope="row">2.4.7</th>
+          <td>Focus Visible</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires moving keyboard focus to each interactive component and confirming that a visible focus indicator appears. CSS can hint at focus styling, but testing must exercise the actual focused state in the rendered page.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>50</td>
+          <th scope="row">2.4.8</th>
+          <td>Location</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion applies across a set of web pages and requires determining whether users can identify their location within the site or process. Testing requires reviewing navigation state, breadcrumbs, page hierarchy, or other location cues across multiple pages.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>51</td>
+          <th scope="row"><a href="2-4-9.html">2.4.9</a></th>
+          <td>Link Purpose (Link Only)</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>52</td>
+          <th scope="row"><a href="2-4-10.html">2.4.10</a></th>
+          <td>Section Headings</td>
+          <td></td>
+        </tr>
+        <tr class="status-skipped">
+          <td>53</td>
+          <th scope="row">2.4.11</th>
+          <td>Focus Not Obscured (Minimum)</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires moving focus through the rendered page and checking whether each focused component is at least partly visible and not covered by sticky headers, dialogs, banners, or other overlays. The result depends on viewport size, scroll position, and focus behavior.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>54</td>
+          <th scope="row">2.4.12</th>
+          <td>Focus Not Obscured (Enhanced)</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires confirming that no part of the focused component is obscured by author-created content. Testing must move focus through the rendered page at relevant viewport sizes and inspect overlap with sticky or floating UI.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>55</td>
+          <th scope="row">2.4.13</th>
+          <td>Focus Appearance</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires focusing components, measuring the visible focus indicator's area and thickness, and checking its contrast. The requirement depends on the rendered focus state, not just the component's default DOM state.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>56</td>
+          <th scope="row">2.5.1</th>
+          <td>Pointer Gestures</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires performing path-based or multipoint gestures, such as swiping, dragging, pinching, or drawing a path, and checking whether a single-pointer alternative exists. The relevant evidence is the interaction behavior, not the static elements alone.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>57</td>
+          <th scope="row">2.5.2</th>
+          <td>Pointer Cancellation</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires testing what happens on pointer down, pointer up, cancellation, and movement away from the target. It depends on event timing and interaction behavior, especially whether actions fire too early or can be cancelled.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>58</td>
+          <th scope="row"><a href="2-5-3.html">2.5.3</a></th>
+          <td>Label in Name</td>
+          <td></td>
+        </tr>
+        <tr class="status-skipped">
+          <td>59</td>
+          <th scope="row">2.5.4</th>
+          <td>Motion Actuation</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires testing features activated by device motion or user motion, such as shaking, tilting, or camera-based gestures, and confirming that conventional controls are also available. This requires device or sensor behavior, not just markup inspection.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>60</td>
+          <th scope="row"><a href="2-5-5.html">2.5.5</a></th>
+          <td>Target Size (Enhanced)</td>
+          <td></td>
+        </tr>
+        <tr class="status-skipped">
+          <td>61</td>
+          <th scope="row">2.5.6</th>
+          <td>Concurrent Input Mechanisms</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires testing whether the page prevents use of available input methods such as keyboard, mouse, touch, stylus, or assistive technology. The issue depends on platform input behavior and any scripts that block or restrict specific modalities.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>62</td>
+          <th scope="row">2.5.7</th>
+          <td>Dragging Movements</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires performing drag actions and checking whether the same result can be achieved without dragging, such as through buttons, menus, or single-click controls. The required evidence is interaction behavior, not the presence of draggable markup alone.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>63</td>
+          <th scope="row"><a href="2-5-8.html">2.5.8</a></th>
+          <td>Target Size (Minimum)</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>64</td>
+          <th scope="row"><a href="3-1-1.html">3.1.1</a></th>
+          <td>Language of Page</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>65</td>
+          <th scope="row"><a href="3-1-2.html">3.1.2</a></th>
+          <td>Language of Parts</td>
+          <td></td>
+        </tr>
+        <tr class="status-skipped">
+          <td>66</td>
+          <th scope="row">3.1.3</th>
+          <td>Unusual Words</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires reading the content, identifying words or phrases that may be unusual for the intended audience, and judging whether definitions are provided. That depends on audience, context, and language knowledge rather than markup structure alone.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>67</td>
+          <th scope="row">3.1.4</th>
+          <td>Abbreviations</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires identifying abbreviations and deciding whether their meaning is unclear without an expansion or definition. A tool can find abbreviation-like text, but a human must judge whether the abbreviation is understandable in context.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>68</td>
+          <th scope="row">3.1.5</th>
+          <td>Reading Level</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires evaluating the reading level of the main content and deciding whether supplemental content is needed. Automated readability formulas may assist, but the actual judgment depends on subject matter, audience, and whether simpler explanations are available.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>69</td>
+          <th scope="row">3.1.6</th>
+          <td>Pronunciation</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires identifying words where pronunciation affects meaning and determining whether pronunciation guidance is provided. That requires language and context judgment; the markup alone cannot tell whether pronunciation is necessary for comprehension.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>70</td>
+          <th scope="row">3.2.1</th>
+          <td>On Focus</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires moving focus to controls and observing whether focus alone triggers a context change, such as navigation, form submission, opening a new window, or major content replacement. The issue is triggered by focus behavior, not by static markup alone.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>71</td>
+          <th scope="row">3.2.2</th>
+          <td>On Input</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires changing form controls, selections, or settings and observing whether that input unexpectedly triggers navigation, submission, focus movement, or other context changes. The relevant behavior occurs only when the control is operated.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>72</td>
+          <th scope="row">3.2.3</th>
+          <td>Consistent Navigation</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires comparing repeated navigation components across multiple pages to confirm they appear in the same relative order. A single page cannot show whether navigation is consistent across a site or application.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>73</td>
+          <th scope="row">3.2.4</th>
+          <td>Consistent Identification</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires comparing components that have the same functionality across multiple pages and confirming they are identified consistently. The test depends on cross-page comparison, not a single isolated DOM.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>74</td>
+          <th scope="row">3.2.5</th>
+          <td>Change on Request</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires triggering possible context changes and determining whether they happen only after an explicit user request or with prior warning. The relevant evidence is interactive behavior during use, such as navigation, window changes, focus changes, or content replacement.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>75</td>
+          <th scope="row">3.2.6</th>
+          <td>Consistent Help</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires checking whether help mechanisms appear in a consistent relative order across a set of pages. A single page cannot establish consistency; the test requires cross-page comparison.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>76</td>
+          <th scope="row"><a href="3-3-1.html">3.3.1</a></th>
+          <td>Error Identification</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>77</td>
+          <th scope="row"><a href="3-3-2.html">3.3.2</a></th>
+          <td>Labels or Instructions</td>
+          <td></td>
+        </tr>
+        <tr class="status-skipped">
+          <td>78</td>
+          <th scope="row">3.3.3</th>
+          <td>Error Suggestion</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires causing input errors, reviewing the resulting error messages, and judging whether helpful correction suggestions are provided when known. The test depends on validation behavior and content quality, not just the initial form markup.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>79</td>
+          <th scope="row">3.3.4</th>
+          <td>Error Prevention (Legal, Financial, Data)</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires completing or simulating legal, financial, or user-data transactions and checking for reversibility, review, confirmation, or error checking before submission. The requirement applies to the workflow, not just an individual form page.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>80</td>
+          <th scope="row">3.3.5</th>
+          <td>Help</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires determining whether appropriate help is available for the task being performed, such as instructions, contact options, or context-specific guidance. The judgment depends on the user's task and whether the provided help is relevant and sufficient.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>81</td>
+          <th scope="row">3.3.6</th>
+          <td>Error Prevention (All)</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires submitting or simulating form workflows and checking whether users can reverse, review, confirm, or correct information before final submission. The requirement depends on end-to-end process behavior, not only visible fields.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>82</td>
+          <th scope="row">3.3.7</th>
+          <td>Redundant Entry</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires moving through a multi-step process and checking whether information already entered is reused or made available rather than requested again. The issue depends on process state across steps, not a single static page.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>83</td>
+          <th scope="row">3.3.8</th>
+          <td>Accessible Authentication (Minimum)</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires performing the authentication process and determining whether it depends on a cognitive function test, such as memorization, transcription, puzzle solving, or calculation, and whether an acceptable alternative is available.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>84</td>
+          <th scope="row">3.3.9</th>
+          <td>Accessible Authentication (Enhanced)</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires testing the authentication flow and confirming it does not require a cognitive function test, unless the exception applies. The evaluation depends on the actual sign-in process and available alternatives.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <td>85</td>
+          <th scope="row">4.1.1</th>
+          <td>Parsing</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion is obsolete and removed in WCAG 2.2. It should not be used as a current SiteLint WCAG 2.2 coverage target.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>86</td>
+          <th scope="row"><a href="4-1-2.html">4.1.2</a></th>
+          <td>Name, Role, Value</td>
+          <td></td>
+        </tr>
+        <tr class="status-skipped">
+          <td>87</td>
+          <th scope="row">4.1.3</th>
+          <td>Status Messages</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires triggering dynamic status messages, such as validation results, save confirmations, loading states, or search results counts, and checking whether assistive technologies can receive them without moving focus. The relevant content appears or changes during interaction.</li>
             </ul>
           </td>
         </tr>

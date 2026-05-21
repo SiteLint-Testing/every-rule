@@ -1,0 +1,268 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 1.4.3 Contrast (Minimum) Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .sample {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 42rem;
+      padding: 1rem;
+    }
+
+    .normal-pass {
+      background-color: #ffffff;
+      color: #595959;
+    }
+
+    .normal-fail {
+      background-color: #ffffff;
+      color: #777777;
+    }
+
+    .large-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .large-pass {
+      background-color: #ffffff;
+      color: #777777;
+    }
+
+    .large-fail {
+      background-color: #ffffff;
+      color: #999999;
+    }
+
+    .button-pass {
+      background-color: #005fcc;
+      border: 0;
+      border-radius: 0.25rem;
+      color: #ffffff;
+      font: inherit;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .button-fail {
+      background-color: #d9ecff;
+      border: 0;
+      border-radius: 0.25rem;
+      color: #ffffff;
+      font: inherit;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .link-pass {
+      color: #005fcc;
+    }
+
+    .link-fail {
+      color: #8cc8ff;
+    }
+
+    .placeholder-fail::placeholder {
+      color: #b5b5b5;
+      opacity: 1;
+    }
+
+    .decorative-low-contrast {
+      color: #b5b5b5;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.4.3: Contrast (Minimum)</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Text and images of text should have sufficient contrast against adjacent background colors. Normal text generally requires at least 4.5:1 contrast, while large-scale text generally requires at least 3:1 contrast.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html">View the W3C Understanding page for WCAG 1.4.3 Contrast (Minimum)</a>.
+    </p>
+
+    <p>
+      These examples focus on machine-detectable text contrast cases. This page does not attempt to test contrast inside images of text, because that requires image analysis or human review.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Normal text has sufficient contrast</h3>
+      <p>
+        This succeeds because the normal-size text has at least 4.5:1 contrast against the white background.
+      </p>
+
+      <div class="sample normal-pass">
+        This paragraph uses normal-size gray text with sufficient contrast against a white background.
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Large text meets the lower contrast threshold</h3>
+      <p>
+        This succeeds because the text is large and bold, so it needs at least 3:1 contrast rather than 4.5:1.
+      </p>
+
+      <div class="sample large-text large-pass">
+        Large bold text may pass at a lower contrast ratio.
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Button text has sufficient contrast</h3>
+      <p>
+        This succeeds because the button text has sufficient contrast against the button background.
+      </p>
+
+      <button class="button-pass" type="button">Submit form</button>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 4: Link text has sufficient contrast against the page background</h3>
+      <p>
+        This succeeds because the linked text itself has sufficient contrast against the white background.
+      </p>
+
+      <p>
+        Read the <a class="link-pass" href="#passing-link-target">accessibility report summary</a> before publishing.
+      </p>
+      <div id="passing-link-target" hidden>Passing link target</div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 5: Decorative low-contrast text is not needed for understanding</h3>
+      <p>
+        This succeeds because the low-contrast characters are decorative and are not needed to understand the content.
+      </p>
+
+      <p>
+        <span class="decorative-low-contrast" aria-hidden="true">————</span>
+        Section divider
+        <span class="decorative-low-contrast" aria-hidden="true">————</span>
+      </p>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Normal text has insufficient contrast</h3>
+      <p>
+        This fails because the normal-size text does not meet the 4.5:1 minimum contrast ratio against the white background.
+      </p>
+
+      <div class="sample normal-fail">
+        This paragraph uses normal-size gray text with insufficient contrast against a white background.
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Large text has insufficient contrast</h3>
+      <p>
+        This fails because even though the text is large and bold, it does not meet the 3:1 minimum contrast ratio for large-scale text.
+      </p>
+
+      <div class="sample large-text large-fail">
+        Large bold text still needs at least 3:1 contrast.
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Button text has insufficient contrast</h3>
+      <p>
+        This fails because the white button text has insufficient contrast against the light blue button background.
+      </p>
+
+      <button class="button-fail" type="button">Submit form</button>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 4: Link text has insufficient contrast</h3>
+      <p>
+        This fails because the linked text has insufficient contrast against the white background.
+      </p>
+
+      <p>
+        Read the <a class="link-fail" href="#failing-link-target">accessibility report summary</a> before publishing.
+      </p>
+      <div id="failing-link-target" hidden>Failing link target</div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 5: Placeholder text has insufficient contrast</h3>
+      <p>
+        This fails because placeholder text can provide instructions or examples and must meet the same contrast requirements when it is used to convey information.
+      </p>
+
+      <div class="form-row">
+        <label for="search-fail">Search</label>
+        <input class="placeholder-fail" id="search-fail" name="search-fail" type="search" placeholder="Search by keyword">
+      </div>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
