@@ -34,16 +34,12 @@
       vertical-align: top;
     }
 
-    th {
+    thead th {
       background-color: #f2f2f2;
     }
 
-    .status-created {
-      background-color: #e8f1ff;
-    }
-
     .status-skipped {
-      background-color: #fff4cc;
+      background-color: #f2f2f2;
     }
 
     .issues-list,
@@ -128,7 +124,6 @@
           <td>
             <ul class="notes-list">
               <li><strong>Skipped:</strong> This success criterion concerns live captions for live synchronized media.</li>
-              <li>Not a good fit for a static HTML test-page corpus.</li>
             </ul>
           </td>
         </tr>
@@ -150,7 +145,6 @@
           <td>
             <ul class="notes-list">
               <li><strong>Skipped:</strong> This success criterion concerns sign language interpretation for prerecorded synchronized media.</li>
-              <li>Not a good fit for static HTML test pages or reliable markup-only automated evaluation.</li>
             </ul>
           </td>
         </tr>
@@ -160,7 +154,6 @@
           <td>
             <ul class="notes-list">
               <li><strong>Skipped:</strong> This success criterion depends on reviewing the prerecorded media itself to determine whether ordinary audio description cannot fit into the available pauses and extended audio description is therefore required.</li>
-              <li>Not a good fit for a static HTML test-page corpus or reliable markup-only automated evaluation.</li>
             </ul>
           </td>
         </tr>
@@ -182,7 +175,19 @@
           <td>
             <ul class="notes-list">
               <li><strong>Skipped:</strong> This success criterion concerns alternatives for live audio-only content.</li>
-              <li>Not a good fit for a static HTML test-page corpus or reliable markup-only automated evaluation.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="status-created">
+          <th scope="row"><a href="1-3-1.html">1.3.1</a></th>
+          <td>Info and Relationships</td>
+          <td>
+            <ul class="issues-list">
+              <li>SiteLint correctly flags the ungrouped radio-button example under WCAG 1.3.1, but the rule message says “Checkboxes should be grouped together” even though the controls are radio buttons.</li>
+              <li>SiteLint correctly flags the data table with visual headers but no programmatic header cells under WCAG 1.3.1.</li>
+              <li>SiteLint flags the visible-but-unassociated form label, but maps the finding to WCAG 3.3.2 rather than 1.3.1.</li>
+              <li>SiteLint also reports a WCAG 2.5.8 target-size issue on the radio buttons, which is unrelated to this 1.3.1 test page and may need to be avoided through test-page styling.</li>
+              <li>Recommendation: Update the grouped-control rule message to include radio buttons, consider whether form-label relationship failures should also map to 1.3.1, and keep the page focused on machine-detectable structural relationship failures.</li>
             </ul>
           </td>
         </tr>
