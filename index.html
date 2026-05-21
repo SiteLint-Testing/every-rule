@@ -75,7 +75,7 @@
     </p>
 
     <table>
-      <caption>Created (10) and skipped (9) WCAG test pages</caption>
+      <caption>Created (10) and skipped (10) WCAG test pages</caption>
       <thead>
         <tr>
           <th scope="col">SC</th>
@@ -279,11 +279,20 @@
           <td>
             <ul class="issues-list">
               <li>SiteLint <span class="highlight">does not currently report any of the intentionally failing non-text contrast examples</span> on the page.</li>
-              <li>SiteLint does not report low-contrast form control boundaries, including an input border and button border with insufficient contrast against the adjacent background.</li>
-              <li>SiteLint does not report a low-contrast focus indicator defined in CSS.</li>
-              <li>SiteLint does not report low-contrast meaningful graphical objects, including an SVG icon and a status indicator.</li>
+              <li>SiteLint <span class="highlight">does not report low-contrast form control boundaries</span>, including an input border and button border with insufficient contrast against the adjacent background.</li>
+              <li>SiteLint <span class="highlight">does not report a low-contrast focus indicator</span> defined in CSS.</li>
+              <li>SiteLint <span class="highlight">does not report low-contrast meaningful graphical objects</span>, including an SVG icon and a status indicator.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Add WCAG 1.4.11 coverage for common machine-detectable non-text contrast patterns, starting with control boundaries and focus indicators, then expanding to meaningful SVG icons and status indicators where context supports evaluation.</p>
+          </td>
+        </tr>
+        <tr class="status-skipped">
+          <th scope="row">1.4.12</th>
+          <td>Text Spacing</td>
+          <td>
+            <ul class="notes-list">
+              <li><strong>Skipped:</strong> This success criterion requires evaluating content after specific text-spacing overrides are applied. Our current static-page approach does not apply those spacing changes automatically, so this would not be a reliable SiteLint coverage test.</li>
+            </ul>
           </td>
         </tr>
       </tbody>
