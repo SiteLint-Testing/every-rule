@@ -70,12 +70,16 @@
   <main>
     <h1>WCAG Test Page Index</h1>
 
+    <p>
+      <a href="translations.html">View SiteLint rule title translation map</a>
+    </p>
+
     <p class="summary">
       This index tracks the WCAG success-criterion test pages being created to evaluate SiteLint coverage. Each linked page contains representative passing and failing scenarios for that success criterion, followed by observations and recommendations when SiteLint behavior has been reviewed.
     </p>
 
     <table>
-      <caption>Created (10) and skipped (61) WCAG test pages</caption>
+      <caption>Created (12) and skipped (59) WCAG test pages</caption>
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -300,15 +304,21 @@
             </ul>
           </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>18</td>
           <td>A</td>
-          <th scope="row">1.4.2</th>
+          <th scope="row"><a href="1-4-2.html">1.4.2</a></th>
           <td>Audio Control</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires observing whether audio starts automatically, continues for more than three seconds, and can be paused, stopped, or controlled independently of system volume. That requires running the page and testing playback behavior, not just inspecting the audio markup.</li>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. SiteLint's autoplay rule detects explicit autoplay patterns such as <code>autoplay</code> attributes and iframe URLs containing <code>autoplay=1</code>, but it does not fully determine audibility, duration, playback behavior, or whether user controls satisfy the requirement.</li>
+              <li>SiteLint reports the expected autoplay examples, including <code>audio autoplay</code>, <code>video autoplay</code>, iframe <code>src</code> values containing <code>autoplay=1</code>, and iframe <code>allow</code> values containing <code>autoplay=1</code>.</li>
+              <li>SiteLint does not report the examples without autoplay declarations.</li>
+              <li>SiteLint also reports muted autoplay video and autoplaying audio with controls because the current rule flags the autoplay pattern itself. These reports need nuance because muted media and available controls affect the final WCAG 1.4.2 judgment.</li>
+              <li>Secondary media findings, such as captions or descriptions, are acceptable on this page because the same media element can legitimately trigger separate WCAG issues. They should be interpreted separately from the autoplay findings.</li>
+              <li>Reported media elements did not reliably highlight on the page. This may be affected by placeholder media paths and <code>about:blank</code> iframes, but SiteLint should ideally highlight rendered media elements or provide a fallback selector, DOM path, or source snippet.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat the autoplay rule as useful partial WCAG 1.4.2 coverage. Consider future improvements for muted autoplay handling, media duration checks, iframe parameter coverage, visual highlighting or fallback location messaging, and a separate real-media test page for playback and highlighting behavior.</p>
           </td>
         </tr>
         <tr>
@@ -483,15 +493,20 @@
             </ul>
           </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>35</td>
           <td>A</td>
-          <th scope="row">2.2.2</th>
+          <th scope="row"><a href="2-2-2.html">2.2.2</a></th>
           <td>Pause, Stop, Hide</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires observing content that moves, blinks, scrolls, or auto-updates for long enough to determine whether it starts automatically and whether pause, stop, or hide controls work. The relevant behavior occurs over time after the page loads.</li>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. SiteLint's <code>animation.ts</code> can detect long-running or infinite CSS animations, but it does not fully determine whether users have a working pause, stop, or hide mechanism.</li>
+              <li>SiteLint should report the CSS animation examples with durations longer than five seconds or infinite iteration counts.</li>
+              <li>SiteLint should not report the short, paused, zero-iteration, or zero-duration animation examples.</li>
+              <li>SiteLint correctly reports the infinite scrolling text scenario because it uses an infinite CSS animation with a duration longer than five seconds.</li>
+              <li>SiteLint does not fully evaluate auto-updating content, JavaScript-driven visual changes, user-triggered animation, or whether pause/resume controls actually operate the moving content.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>animation.ts</code> as useful partial WCAG 2.2.2 coverage. Consider future runtime checks for pause, stop, or hide controls and a separate rule for auto-updating content, while recognizing that some cases still require human judgment.</p>
           </td>
         </tr>
         <tr class="status-skipped">

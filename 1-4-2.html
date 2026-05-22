@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 1.4.2 Audio Control Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 82rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    iframe,
+    video,
+    audio {
+      display: block;
+      margin-block: 0.75rem;
+      max-width: 100%;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 48rem;
+      padding: 1rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .media-placeholder {
+      align-items: center;
+      background-color: #f4f4f4;
+      border: 1px dashed #767676;
+      display: flex;
+      min-height: 5rem;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.4.2: Audio Control</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> If audio plays automatically for more than three seconds, users need a way to pause or stop it, or a way to control its volume independently from the system volume.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/audio-control.html">View the W3C Understanding page for WCAG 1.4.2 Audio Control</a>.
+    </p>
+
+    <p>
+      This page separates examples SiteLint can evaluate effectively from examples that require additional runtime, media, or human judgment. SiteLint's current autoplay rule detects explicit autoplay patterns such as an <code>autoplay</code> attribute or iframe URLs containing <code>autoplay=1</code>. That is useful partial coverage of WCAG 1.4.2, but it is not full conformance testing.
+    </p>
+
+    <p>
+      <strong>Important testing note:</strong> These examples use placeholder media paths and <code>about:blank</code> iframe sources so the page can test markup patterns without requiring real media assets. That is enough to test whether SiteLint detects autoplay attributes and parameters. It is not enough to test actual playback behavior, media duration, audibility, or whether the reported media elements can be reliably highlighted in the page UI.
+    </p>
+
+    <h2>Examples where SiteLint is effective</h2>
+
+    <h3>Passing examples that should not be reported</h3>
+
+    <section class="example passing-example">
+      <h4>Passing example 1: Audio element does not autoplay</h4>
+      <p>
+        This should not be reported by SiteLint's autoplay rule because the audio element includes controls but does not include the <code>autoplay</code> attribute.
+      </p>
+
+      <div class="sample-area">
+        <audio controls src="media/sample-audio.mp3">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h4>Passing example 2: Video element does not autoplay</h4>
+      <p>
+        This should not be reported because the video element has controls but does not include the <code>autoplay</code> attribute.
+      </p>
+
+      <div class="sample-area">
+        <video controls width="360" src="media/sample-video.mp4">
+          Your browser does not support the video element.
+        </video>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h4>Passing example 3: Embedded media iframe does not request autoplay</h4>
+      <p>
+        This should not be reported by the current selector because the iframe <code>src</code> does not include <code>autoplay=1</code> and the iframe does not explicitly grant or request autoplay.
+      </p>
+
+      <div class="sample-area">
+        <iframe title="Example embedded media without autoplay" width="360" height="203" src="about:blank"></iframe>
+      </div>
+    </section>
+
+    <h3>Failing examples that should be reported</h3>
+
+    <section class="example failing-example">
+      <h4>Failing example 1: Audio element has <code>autoplay</code></h4>
+      <p>
+        This should be reported by SiteLint because the element has an explicit <code>autoplay</code> attribute. This is a high-risk WCAG 1.4.2 pattern because audio may start without user request.
+      </p>
+
+      <div class="sample-area">
+        <audio controls autoplay src="media/sample-audio.mp3">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h4>Failing example 2: Video element has <code>autoplay</code></h4>
+      <p>
+        This should be reported by SiteLint because the element has an explicit <code>autoplay</code> attribute. This is relevant to WCAG 1.4.2 when the video includes audio that starts automatically.
+      </p>
+
+      <div class="sample-area">
+        <video controls autoplay width="360" src="media/sample-video.mp4">
+          Your browser does not support the video element.
+        </video>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h4>Failing example 3: Iframe URL contains <code>autoplay=1</code></h4>
+      <p>
+        This should be reported by SiteLint because the iframe <code>src</code> contains <code>autoplay=1</code>, which commonly indicates embedded media configured to play automatically.
+      </p>
+
+      <div class="sample-area">
+        <iframe title="Example embedded media with autoplay in the URL" width="360" height="203" src="about:blank?autoplay=1"></iframe>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h4>Failing example 4: Iframe <code>allow</code> value contains <code>autoplay=1</code></h4>
+      <p>
+        This should be reported if SiteLint checks the current selector <code>iframe[allow*="autoplay=1"]</code>. This is a narrow iframe-permission pattern.
+      </p>
+
+      <div class="sample-area">
+        <iframe title="Example iframe with autoplay allow value" width="360" height="203" allow="autoplay=1" src="about:blank"></iframe>
+      </div>
+    </section>
+
+    <section class="sitelint-observation">
+      <h3>Current SiteLint coverage expectation</h3>
+      <p>
+        SiteLint reports the examples with <code>autoplay</code> and <code>autoplay=1</code>. It does not report the examples without autoplay declarations. This confirms useful partial coverage: the rule can identify explicit autoplay declarations directly from the DOM.
+      </p>
+      <p>
+        In the reviewed result, SiteLint reported six autoplay issues. That is expected for this page: the four direct failing examples plus the muted autoplay video and autoplaying audio with controls in the later partial-coverage section. The current rule flags the autoplay pattern itself; it does not make the full WCAG judgment about audibility, duration, or whether controls satisfy the requirement.
+      </p>
+    </section>
+
+    <section class="sitelint-observation">
+      <h3>Observed secondary SiteLint findings</h3>
+      <p>
+        This page can also trigger SiteLint findings for media alternatives, such as captions, descriptions, or transcripts. Those findings are related to separate WCAG media requirements, not to WCAG 1.4.2 Audio Control.
+      </p>
+      <p>
+        This is not necessarily rule overlap or a mapping error. A single <code>audio</code>, <code>video</code>, or media iframe element can legitimately trigger more than one accessibility rule. For example, autoplay may be relevant to WCAG 1.4.2, while missing captions or descriptions may be relevant to WCAG 1.2.x. For this test page, the secondary media-alternative findings are acceptable and should be expected, but they should be interpreted separately from the autoplay findings.
+      </p>
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> The rules do not need to be merged or removed simply because the same element triggers multiple issues. However, SiteLint should make the WCAG mapping, issue title, and remediation guidance clear enough that users understand these are separate problems on the same media element, not duplicate reports for the same requirement.
+      </p>
+    </section>
+
+    <section class="sitelint-observation">
+      <h3>Observed element-highlighting behavior</h3>
+      <p>
+        In the reviewed result, the reported <code>audio</code>, <code>video</code>, and <code>iframe</code> elements did not reliably highlight on the page. SiteLint should ideally be able to highlight the affected element whenever the element has a rendered box. If highlighting is not possible or is unreliable for native media controls, empty iframes, or placeholder media, SiteLint should provide a fallback message that explains the element cannot be visually highlighted and directs the user to the selector, DOM path, or source snippet.
+      </p>
+      <p>
+        The test page may also be improved later by referencing actual short media files and real embedded media examples. Real media would help evaluate playback behavior, duration, controls, and highlighting against rendered media. Placeholder paths are still appropriate for testing static autoplay detection, but they are not sufficient for testing the complete user experience of locating and evaluating media playback issues.
+      </p>
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Keep this page focused on markup-level autoplay detection for now, but improve the test page later with actual media files and rendered iframe content so SiteLint highlighting can be demonstrated and evaluated. If the goal expands to testing playback behavior, create a separate version that uses real media assets with known durations, muted and unmuted variants, and working controls.
+      </p>
+    </section>
+
+    <h2>Examples that are detected but only partially evaluated, or outside the current rule's scope</h2>
+
+    <p>
+      WCAG 1.4.2 is not fully determined by the presence of an autoplay attribute. A complete evaluation requires knowing whether audible audio actually starts automatically, whether it continues for more than three seconds, and whether users have a working way to pause, stop, mute, or independently control volume. Some examples below are detected by SiteLint because they contain autoplay markup, but they still require additional context before they can be treated as confirmed WCAG 1.4.2 failures.
+    </p>
+
+    <section class="example manual-example">
+      <h3>Scenario 1: Muted autoplaying video</h3>
+      <p>
+        This video has an <code>autoplay</code> attribute, but it is also muted. WCAG 1.4.2 is specifically about audio. If no audio is played, this may not be a true 1.4.2 failure, though it may still be relevant to other motion or distraction concerns.
+      </p>
+      <p>
+        <strong>Observed SiteLint result:</strong> SiteLint reports this because it contains the <code>autoplay</code> attribute. That is expected under the current rule, but the result needs nuance because the media is muted.
+      </p>
+
+      <div class="sample-area">
+        <video controls autoplay muted width="360" src="media/sample-video.mp4">
+          Your browser does not support the video element.
+        </video>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should consider checking whether autoplaying video is muted. A muted autoplay video should not automatically be treated as a confirmed WCAG 1.4.2 failure, although it may still be useful to report as a caution or evaluate under a separate motion-related rule.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 2: Autoplaying audio with controls</h3>
+      <p>
+        This audio element has both <code>autoplay</code> and <code>controls</code>. The current rule should report the autoplay attribute. A full WCAG 1.4.2 judgment requires determining whether the controls are available quickly enough and whether the audio lasts more than three seconds.
+      </p>
+      <p>
+        <strong>Observed SiteLint result:</strong> SiteLint reports this because it contains the <code>autoplay</code> attribute. That is expected under the current rule. The presence of native controls does not prove compliance unless the controls are available and sufficient for the user before or during playback.
+      </p>
+
+      <div class="sample-area">
+        <audio controls autoplay src="media/short-audio.mp3">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Keep reporting this as an autoplay issue, but do not claim full WCAG failure from markup alone. SiteLint could improve the message by saying the rule detects autoplay and that duration and control behavior may require verification.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 3: Audio is shorter than three seconds</h3>
+      <p>
+        WCAG 1.4.2 applies when audio plays automatically for more than three seconds. Static HTML does not reveal the media duration unless the browser loads metadata or the tool inspects the media file.
+      </p>
+
+      <div class="sample-area media-placeholder">
+        Example: <code>&lt;audio autoplay src="media/two-second-sound.mp3"&gt;&lt;/audio&gt;</code>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint could expand coverage by loading media metadata and checking duration when feasible. This is possible in some browser contexts, but it may fail for cross-origin media, blocked resources, streaming content, or media that does not expose duration reliably.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 4: Iframe allows autoplay but does not actually autoplay</h3>
+      <p>
+        A common iframe permission pattern is <code>allow="autoplay; fullscreen"</code>. This grants autoplay permission, but it does not necessarily mean the embedded media starts automatically. The current selector appears to look for <code>allow*="autoplay=1"</code>, which is narrower than this common pattern.
+      </p>
+
+      <div class="sample-area">
+        <iframe title="Example iframe with autoplay permission but no autoplay parameter" width="360" height="203" allow="autoplay; fullscreen" src="about:blank"></iframe>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Do not automatically fail all iframes with <code>allow="autoplay"</code>. SiteLint could flag them as a caution only when the iframe also appears to request autoplay through its URL or known provider parameters. The mere permission is not enough to prove audio starts automatically.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 5: Autoplay starts only after user interaction</h3>
+      <p>
+        Modern browser policies often block audible autoplay until the user interacts with the page. A page may include autoplay markup, but actual playback behavior may depend on the browser, media state, user settings, and prior interaction.
+      </p>
+
+      <div class="sample-area media-placeholder">
+        Example: a media player script calls <code>play()</code> only after the user presses a button or after browser permission is granted.
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> This cannot be fully determined by static markup. A stronger test would need runtime playback observation: load the page, avoid user interaction, observe whether audible media starts, and determine whether playback continues for more than three seconds.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 6: Volume control is custom or independent from system volume</h3>
+      <p>
+        WCAG 1.4.2 allows a mechanism to control audio volume independently from the overall system volume. A page may provide custom media controls that satisfy this requirement, but a static scan cannot reliably determine whether those controls work.
+      </p>
+
+      <div class="sample-area media-placeholder">
+        Example: a custom player has buttons labeled <code>Mute</code>, <code>Pause</code>, and <code>Volume</code>, but the tool would need interaction testing to confirm those controls affect the audio.
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint could identify candidate controls by accessible names such as “mute,” “pause,” or “volume,” but it should not treat their presence as proof of compliance. Confirming this requires activating controls and observing playback or volume changes.
+      </p>
+    </section>
+
+    <section>
+      <h2>Recommended SiteLint rule treatment</h2>
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Treat the autoplay rule as partial WCAG 1.4.2 coverage. It is valuable because explicit autoplay declarations are machine-detectable and high risk. The rule should avoid claiming full conformance coverage because it does not currently confirm audibility, duration, working controls, iframe playback behavior, or independent volume control.
+      </p>
+      <p class="sitelint-recommendation">
+        Useful expansions would include detecting muted autoplay separately, improving iframe parameter coverage, checking media duration when metadata is available, improving visual highlighting or fallback location messaging for native media and iframe elements, and optionally adding runtime playback checks. Some aspects will still require manual or interactive verification because the tool must determine whether audio actually plays, whether user controls work, and whether custom controls satisfy the SC.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

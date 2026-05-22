@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 2.2.2 Pause, Stop, Hide Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 82rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 44rem;
+      min-height: 4rem;
+      padding: 1rem;
+    }
+
+    .box {
+      align-items: center;
+      background-color: #005fcc;
+      color: #ffffff;
+      display: inline-flex;
+      font-weight: 700;
+      height: 3rem;
+      justify-content: center;
+      margin: 0.5rem;
+      width: 3rem;
+    }
+
+    @keyframes short-slide {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(8rem);
+      }
+    }
+
+    @keyframes long-slide {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(12rem);
+      }
+    }
+
+    @keyframes pulse {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0.35;
+      }
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-16rem);
+      }
+    }
+
+    .short-animation-pass {
+      animation-duration: 4s;
+      animation-iteration-count: 1;
+      animation-name: short-slide;
+      animation-timing-function: linear;
+    }
+
+    .paused-animation-pass {
+      animation-duration: 8s;
+      animation-iteration-count: infinite;
+      animation-name: pulse;
+      animation-play-state: paused;
+    }
+
+    .zero-iteration-pass {
+      animation-duration: 8s;
+      animation-iteration-count: 0;
+      animation-name: pulse;
+    }
+
+    .zero-duration-pass {
+      animation-duration: 0s;
+      animation-iteration-count: infinite;
+      animation-name: pulse;
+    }
+
+    .long-animation-fail {
+      animation-duration: 6s;
+      animation-iteration-count: 1;
+      animation-name: long-slide;
+      animation-timing-function: linear;
+    }
+
+    .infinite-animation-fail {
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-name: pulse;
+      animation-direction: alternate;
+    }
+
+    .long-millisecond-animation-fail {
+      animation-duration: 6000ms;
+      animation-iteration-count: 1;
+      animation-name: long-slide;
+      animation-timing-function: linear;
+    }
+
+    .manual-marquee-fail {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 18rem;
+    }
+
+    .manual-marquee-fail span {
+      display: inline-block;
+      animation-duration: 12s;
+      animation-iteration-count: infinite;
+      animation-name: marquee;
+      animation-timing-function: linear;
+    }
+
+    .manual-marquee-pass {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 18rem;
+    }
+
+    .manual-marquee-pass span {
+      display: inline-block;
+      animation-duration: 12s;
+      animation-iteration-count: infinite;
+      animation-name: marquee;
+      animation-play-state: paused;
+      animation-timing-function: linear;
+    }
+
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-block: 0.75rem;
+    }
+
+    button {
+      font: inherit;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .auto-update-box {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 34rem;
+      padding: 1rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 2.2.2: Pause, Stop, Hide</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Moving, blinking, scrolling, or auto-updating content that starts automatically, lasts more than five seconds, and is presented with other content generally needs a way for users to pause, stop, or hide it.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html">View the W3C Understanding page for WCAG 2.2.2 Pause, Stop, Hide</a>.
+    </p>
+
+    <p>
+      This page separates two kinds of coverage: examples currently covered by SiteLint's <code>animation.ts</code> rule, followed by examples that are partially covered or outside the current rule's scope.
+    </p>
+
+    <h2>Examples currently covered by <code>animation.ts</code></h2>
+
+    <p>
+      SiteLint's current animation rule appears to detect CSS animations applied to visible DOM elements when the animation is running and either lasts longer than five seconds or repeats infinitely. This is useful partial coverage of WCAG 2.2.2, but it does not fully determine whether a pause, stop, or hide mechanism exists or works.
+    </p>
+
+    <h3>Passing examples covered by the current rule</h3>
+
+    <section class="example passing-example">
+      <h4>Passing example 1: Animation lasts less than five seconds and runs once</h4>
+      <p>
+        This should not be reported by <code>animation.ts</code> because the animation lasts <code>4s</code> and does not repeat infinitely.
+      </p>
+
+      <div class="sample-area">
+        <div class="box short-animation-pass">4s</div>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h4>Passing example 2: Long animation is paused</h4>
+      <p>
+        This should not be reported by <code>animation.ts</code> because the computed <code>animation-play-state</code> is <code>paused</code>, even though the duration is longer than five seconds and the iteration count is infinite.
+      </p>
+
+      <div class="sample-area">
+        <div class="box paused-animation-pass">Paused</div>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h4>Passing example 3: Animation has zero iterations</h4>
+      <p>
+        This should not be reported by <code>animation.ts</code> because the computed <code>animation-iteration-count</code> is <code>0</code>.
+      </p>
+
+      <div class="sample-area">
+        <div class="box zero-iteration-pass">0x</div>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h4>Passing example 4: Animation has zero duration</h4>
+      <p>
+        This should not be reported by <code>animation.ts</code> because the computed <code>animation-duration</code> is <code>0s</code>.
+      </p>
+
+      <div class="sample-area">
+        <div class="box zero-duration-pass">0s</div>
+      </div>
+    </section>
+
+    <h3>Failing examples covered by the current rule</h3>
+
+    <section class="example failing-example">
+      <h4>Failing example 1: CSS animation lasts longer than five seconds</h4>
+      <p>
+        This should be reported by <code>animation.ts</code> because the animation duration is <code>6s</code>, which is longer than the five-second threshold used by WCAG 2.2.2.
+      </p>
+
+      <div class="sample-area">
+        <div class="box long-animation-fail">6s</div>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h4>Failing example 2: CSS animation repeats infinitely</h4>
+      <p>
+        This should be reported by <code>animation.ts</code> because the animation iteration count is <code>infinite</code>.
+      </p>
+
+      <div class="sample-area">
+        <div class="box infinite-animation-fail">∞</div>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h4>Failing example 3: CSS animation duration is expressed in milliseconds</h4>
+      <p>
+        This should be reported by <code>animation.ts</code> if it correctly normalizes <code>6000ms</code> to six seconds.
+      </p>
+
+      <div class="sample-area">
+        <div class="box long-millisecond-animation-fail">6000ms</div>
+      </div>
+    </section>
+
+    <section class="sitelint-observation">
+      <h3>Current SiteLint coverage expectation</h3>
+      <p>
+        SiteLint should report the three failing CSS-animation examples above. It should not report the four passing examples above. This confirms that the current rule is useful for detecting a narrow class of automatically moving content: CSS animations that are long-running or infinite.
+      </p>
+    </section>
+
+    <h2>Examples that are partially covered or outside the current <code>animation.ts</code> scope</h2>
+
+    <p>
+      The following examples demonstrate scenarios relevant to WCAG 2.2.2 where SiteLint may detect the animation pattern, but cannot always evaluate the full pass/fail condition. The current rule can identify long-running or infinite CSS animation. It does not fully verify whether the page provides a working pause, stop, or hide mechanism, or whether the motion is essential.
+    </p>
+
+    <section class="example manual-example">
+      <h3>Scenario 1: Infinite scrolling text with no pause control</h3>
+      <p>
+        This is a likely WCAG 2.2.2 failure because the scrolling text starts automatically, repeats forever, and has no pause, stop, or hide control. SiteLint does detect this scenario through <code>animation.ts</code> because the scrolling text uses an infinite CSS animation with a duration longer than five seconds.
+      </p>
+
+      <div class="sample-area manual-marquee-fail">
+        <span>Breaking news: This announcement scrolls continuously without a pause, stop, or hide control.</span>
+      </div>
+
+      <p class="sitelint-observation">
+        <strong>Observed SiteLint result:</strong> SiteLint reports this scenario as an animation issue. This is appropriate for the current rule because the computed animation has a <code>12s</code> duration and an <code>infinite</code> iteration count. The rule correctly catches the risky animation pattern, even though it is not proving the entire WCAG 2.2.2 failure condition by checking for the absence of a working pause, stop, or hide control.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Keep reporting this as an animation issue. This is useful partial WCAG 2.2.2 coverage. If the rule is expanded later, it should separately evaluate whether a pause, stop, or hide mechanism exists and works, rather than assuming the presence or absence of a nearby button is sufficient.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 2: Infinite scrolling text with a pause control</h3>
+      <p>
+        This may pass WCAG 2.2.2 if the pause control works and is available to keyboard and assistive technology users. The current <code>animation.ts</code> rule may still report the animation because it does not verify the relationship between the control and the moving content.
+      </p>
+
+      <div class="sample-area manual-marquee-pass" id="controlled-marquee">
+        <span>Service alert: This scrolling message includes a visible pause/resume control.</span>
+      </div>
+
+      <div class="control-row">
+        <button type="button" aria-controls="controlled-marquee" onclick="pauseControlledMarquee()">Pause scrolling message</button>
+        <button type="button" aria-controls="controlled-marquee" onclick="resumeControlledMarquee()">Resume scrolling message</button>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should not automatically pass or fail this scenario from static markup alone. A stronger automated test would need to activate the pause button, confirm the animation stops, activate resume, and confirm the animation restarts. Without interaction testing, the tool can only identify this as a candidate for review or report the animation pattern.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 3: Auto-updating content</h3>
+      <p>
+        WCAG 2.2.2 also covers auto-updating content, not just CSS animation. This example updates a timestamp every second. The current <code>animation.ts</code> rule should not detect it because no CSS animation is involved.
+      </p>
+
+      <div class="auto-update-box">
+        <p><strong>Live dashboard value:</strong> <span id="auto-update-value">Waiting for update...</span></p>
+      </div>
+
+      <p>
+        This could fail WCAG 2.2.2 if the content updates automatically, is presented with other content, and users do not have a way to pause, stop, or hide the updates.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint could potentially expand coverage by detecting common auto-update patterns such as repeated DOM mutations, timers, or polling behavior. However, a reliable rule would need runtime observation, not a static DOM scan. It would also need to avoid false positives for harmless updates, such as clocks, timers that are essential, or content that updates only after user request.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 4: Blinking or moving content caused by JavaScript</h3>
+      <p>
+        A script can create blinking or moving content without using CSS <code>animation-name</code>. The current <code>animation.ts</code> rule should not detect this kind of behavior unless it results in computed CSS animation properties.
+      </p>
+
+      <div class="sample-area">
+        <div id="script-blink-box" class="box">JS</div>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint could expand coverage by observing style, class, or DOM changes over time and detecting repeated visual changes. This is possible in a browser-based auditor, but it is more complex than the current CSS animation check because the tool must observe time-based behavior and decide whether the visual change is significant enough to matter.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 5: Motion that lasts more than five seconds but is essential or user-triggered</h3>
+      <p>
+        Some motion may be allowed if it is essential, or if it does not start automatically. For example, an instructional animation that plays only after a user presses a button may not fail this SC in the same way as automatically moving content. The current <code>animation.ts</code> rule does not distinguish user-triggered animation from automatically running animation once the computed animation is active.
+      </p>
+
+      <div class="control-row">
+        <button type="button" onclick="startUserTriggeredAnimation()">Start demonstration animation</button>
+      </div>
+      <div class="sample-area">
+        <div id="user-triggered-box" class="box">Demo</div>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> This is not a good candidate for a simple static rule. SiteLint would need to know whether the animation started automatically or only after a user request, and whether the animation is essential. The first question can be tested with runtime observation; the second often requires human judgment about the content's purpose.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint rule expansion</h2>
+      <p>
+        <strong>Recommendation:</strong> Keep <code>animation.ts</code> as a focused, non-manual rule for long-running and infinite CSS animations, but describe it as partial WCAG 2.2.2 coverage rather than full SC coverage.
+      </p>
+      <p>
+        Potential rule expansion should happen in stages. First, detect more CSS-based moving or blinking patterns and account for multiple animation durations and iteration counts. Second, add optional runtime checks for whether pause, stop, or hide controls actually change the animation state. Third, consider a separate rule for auto-updating regions, based on repeated DOM mutations or timer-driven updates. Full WCAG 2.2.2 conformance still requires human judgment in some cases because the tool may not know whether movement is essential, whether it is presented in parallel with other content, or whether a control is sufficient for the user's task.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    function pauseControlledMarquee() {
+      const marquee = document.querySelector('#controlled-marquee span');
+      if (marquee) {
+        marquee.style.animationPlayState = 'paused';
+      }
+    }
+
+    function resumeControlledMarquee() {
+      const marquee = document.querySelector('#controlled-marquee span');
+      if (marquee) {
+        marquee.style.animationPlayState = 'running';
+      }
+    }
+
+    function startUserTriggeredAnimation() {
+      const box = document.getElementById('user-triggered-box');
+      if (box) {
+        box.style.animationName = 'long-slide';
+        box.style.animationDuration = '6s';
+        box.style.animationIterationCount = '1';
+        box.style.animationTimingFunction = 'linear';
+      }
+    }
+
+    let counter = 0;
+    window.setInterval(function () {
+      counter += 1;
+      const autoUpdateValue = document.getElementById('auto-update-value');
+      if (autoUpdateValue) {
+        autoUpdateValue.textContent = 'Updated ' + counter + ' time' + (counter === 1 ? '' : 's') + '.';
+      }
+    }, 1000);
+
+    window.setInterval(function () {
+      const box = document.getElementById('script-blink-box');
+      if (box) {
+        box.style.opacity = box.style.opacity === '0.35' ? '1' : '0.35';
+      }
+    }, 700);
+  </script>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
