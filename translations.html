@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,6 +38,38 @@
     th {
       background: #f3f3f3;
     }
+    th:first-child,
+    td:first-child {
+      width: 5rem;
+      white-space: nowrap;
+    }
+
+    th button {
+      align-items: center;
+      background: transparent;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      font: inherit;
+      font-weight: 700;
+      gap: 0.35rem;
+      padding: 0;
+      text-align: left;
+    }
+
+    th button::after {
+      content: "↕";
+      font-size: 0.85em;
+    }
+
+    th[aria-sort="ascending"] button::after {
+      content: "↑";
+    }
+
+    th[aria-sort="descending"] button::after {
+      content: "↓";
+    }
     code {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
@@ -48,6 +78,9 @@
 <body>
   <main>
     <h1>SiteLint Rule Title Translation Map</h1>
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
     <p>
       This table maps each rule file name to the title shown in the English translation file.
       For example, <code>color_contrast_aa_title</code> maps to the file name
@@ -59,205 +92,249 @@
       <caption>Rule file names and displayed titles</caption>
       <thead>
         <tr>
-          <th scope="col">Rule file name</th>
-          <th scope="col">Displayed title</th>
+          <th scope="col" aria-sort="none"><button type="button">WCAG</button></th>
+          <th scope="col" aria-sort="none"><button type="button">Rule file name</button></th>
+          <th scope="col" aria-sort="none"><button type="button">Displayed title</button></th>
         </tr>
       </thead>
       <tbody>
-          <tr><td><code>abbreviations</code></td><td>Verify abbreviation expansions</td></tr>
-          <tr><td><code>accessible_authentication</code></td><td>Verify accessible authentication</td></tr>
-          <tr><td><code>accessible_authentication_enhanced</code></td><td>Verify accessible authentication (enhanced)</td></tr>
-          <tr><td><code>accessible_name_mismatch_element_description</code></td><td>Accessible name should match the control&#x27;s label</td></tr>
-          <tr><td><code>accessible_svg</code></td><td>SVG content must have an accessible name.</td></tr>
-          <tr><td><code>alt_text_include_filename</code></td><td>The alt text of an image should describe the image&#x27;s content, not its filename.</td></tr>
-          <tr><td><code>animation</code></td><td>Animations should not loop indefinitely.</td></tr>
-          <tr><td><code>animation_interaction</code></td><td>Verify animation from interactions</td></tr>
-          <tr><td><code>applet_missing_alt</code></td><td>Applets must have a text alternative when not supported.</td></tr>
-          <tr><td><code>applet_missing_body</code></td><td>Applets need a text alternative.</td></tr>
-          <tr><td><code>area_missing_alt</code></td><td>Image map area must have a text alternative.</td></tr>
-          <tr><td><code>aria_attribute_conflict</code></td><td>Both native HTML attributes and ARIA attributes should not be used together.</td></tr>
-          <tr><td><code>aria_describedby_association</code></td><td>Use aria-describedby to provide additional descriptions and context for elements that need it.</td></tr>
-          <tr><td><code>aria_hidden_false</code></td><td>Use caution with aria-hidden=&quot;false&quot; because content may still be exposed unintentionally.</td></tr>
-          <tr><td><code>aria_hidden_true_focusable_descendants</code></td><td>Focusable elements should not be hidden from assistive technologies.</td></tr>
-          <tr><td><code>aria_labelledby_association</code></td><td>The aria-labelledby attribute must reference an existing element.</td></tr>
-          <tr><td><code>aria_labelledby_association_empty_element</code></td><td>An aria-labelledby attribute must reference an element that contains meaningful content.</td></tr>
-          <tr><td><code>aria_role_dialog</code></td><td>Pop-ups and modals must have accessible names.</td></tr>
-          <tr><td><code>audio_control</code></td><td>Verify audio controls</td></tr>
-          <tr><td><code>audio_description_or_media_alternative</code></td><td>Verify audio description or media alternative</td></tr>
-          <tr><td><code>audio_description_prerecorded</code></td><td>Verify audio description (Prerecorded)</td></tr>
-          <tr><td><code>audio_only_live</code></td><td>Verify audio-only (live)</td></tr>
-          <tr><td><code>autocomplete_attribute_usage</code></td><td>Add autocomplete attribute to form controls to help users fill out forms more efficiently.</td></tr>
-          <tr><td><code>autoplay_audio_video</code></td><td>Audio and video content should not play automatically.</td></tr>
-          <tr><td><code>broken_data_url_image</code></td><td>Broken or malformed data URL images</td></tr>
-          <tr><td><code>broken_same_page_link</code></td><td>Same-page links must have a corresponding target.</td></tr>
-          <tr><td><code>bypass_blocks</code></td><td>Verify bypass blocks</td></tr>
-          <tr><td><code>capital_letters_words</code></td><td>Limit use of long uppercase words.</td></tr>
-          <tr><td><code>captions_live</code></td><td>Verify live captions</td></tr>
-          <tr><td><code>captions_prerecorded</code></td><td>Prerecorded video must have synchronized captions.</td></tr>
-          <tr><td><code>change_on_request</code></td><td>Verify change on request</td></tr>
-          <tr><td><code>character_key_shortcuts</code></td><td>Verify character key shortcuts</td></tr>
-          <tr><td><code>color_contrast_aa</code></td><td>The contrast ratio should be at least 4.5:1 for normal text and 3:1 for large text against a background.</td></tr>
-          <tr><td><code>color_contrast_aaa</code></td><td>The contrast ratio should be at least 7:1 for normal text and 4.5:1 for large text against a background.</td></tr>
-          <tr><td><code>concurrent_input_mechanisms</code></td><td>Verify concurrent input mechanisms</td></tr>
-          <tr><td><code>consistent_help</code></td><td>Verify consistent help</td></tr>
-          <tr><td><code>consistent_identification</code></td><td>Verify consistent identification</td></tr>
-          <tr><td><code>consistent_navigation</code></td><td>Verify consistent navigation</td></tr>
-          <tr><td><code>content_editable_missing_attributes</code></td><td>Editable elements with contenteditable must expose the textbox role, declare whether they are single or multi-line, and provide an accessible name.</td></tr>
-          <tr><td><code>content_on_hover_focus</code></td><td>Verify content on hover or focus</td></tr>
-          <tr><td><code>content_wider_than_screen</code></td><td>The page content width is wider than the screen width.</td></tr>
-          <tr><td><code>contentinfo_landmark_only_one</code></td><td>Only one element may have role=&quot;contentinfo&quot;.</td></tr>
-          <tr><td><code>dragging_movements</code></td><td>Verify dragging movements</td></tr>
-          <tr><td><code>duplicated_for_attribute</code></td><td>A single label element should only describe one form control.</td></tr>
-          <tr><td><code>duplicated_id_attribute</code></td><td>ID attribute must be unique within the document.</td></tr>
-          <tr><td><code>elements_not_allowed_in_head</code></td><td>Invalid HTML elements in the HEAD section.</td></tr>
-          <tr><td><code>empty_button_description</code></td><td>BUTTON must have an accessible name that describes its action.</td></tr>
-          <tr><td><code>empty_heading</code></td><td>Heading element exists but has no content.</td></tr>
-          <tr><td><code>empty_label_element</code></td><td>Labels should always contain meaningful text describing the associated form control.</td></tr>
-          <tr><td><code>empty_link_element</code></td><td>Links should have meaningful, descriptive content.</td></tr>
-          <tr><td><code>empty_title_attribute</code></td><td>Tooltip content must not be empty.</td></tr>
-          <tr><td><code>error_identification</code></td><td>Verify error identification</td></tr>
-          <tr><td><code>error_prevention</code></td><td>Verify error prevention</td></tr>
-          <tr><td><code>error_prevention_all_forms</code></td><td>Verify error prevention (all)</td></tr>
-          <tr><td><code>error_suggestion</code></td><td>Verify error suggestion</td></tr>
-          <tr><td><code>excessive_css_classes_size</code></td><td>Avoid excessive CSS classes usage.</td></tr>
-          <tr><td><code>extended_audio_description_prerecorded</code></td><td>Verify extended audio description (prerecorded)</td></tr>
-          <tr><td><code>fieldset_no_legend</code></td><td>Grouped form controls need a defined caption or description.</td></tr>
-          <tr><td><code>first_contentful_paint</code></td><td>The user waits a long time before it sees the first content on the screen.</td></tr>
-          <tr><td><code>focus_appearance</code></td><td>Verify focus appearance (AAA)</td></tr>
-          <tr><td><code>focus_not_obscured_enhanced</code></td><td>Verify focus not obscured (enhanced)</td></tr>
-          <tr><td><code>focus_not_obscured_minimum</code></td><td>Verify focus not obscured (minimum)</td></tr>
-          <tr><td><code>focus_order_preserved</code></td><td>Verify focus order is preserved</td></tr>
-          <tr><td><code>focus_visible</code></td><td>Verify visible focus</td></tr>
-          <tr><td><code>font_style_italic</code></td><td>Avoid excessive use of italic text.</td></tr>
-          <tr><td><code>group_elements_name_attribute</code></td><td>Checkboxes should be grouped together.</td></tr>
-          <tr><td><code>h1_length</code></td><td>The length of the first heading H1 should be at least 20 characters.</td></tr>
-          <tr><td><code>h1_must_be</code></td><td>Page must contain one H1 heading.</td></tr>
-          <tr><td><code>h1_only_one</code></td><td>There should only be one heading H1 on the page.</td></tr>
-          <tr><td><code>heading_semantics_incorrect</code></td><td>Heading semantics are incorrect.</td></tr>
-          <tr><td><code>headings_hierarchy</code></td><td>Headings must not skip levels.</td></tr>
-          <tr><td><code>headings_sibling_unique</code></td><td>Sibling heading elements must not repeat the same text.</td></tr>
-          <tr><td><code>help_provided</code></td><td>Verify help</td></tr>
-          <tr><td><code>horizontal_rule</code></td><td>Use horizontal rule HR sparingly.</td></tr>
-          <tr><td><code>html_lang_attr</code></td><td>Page must declare LANG attribute on the HTML element.</td></tr>
-          <tr><td><code>identify_component_purpose</code></td><td>Verify Identification of Component Purpose</td></tr>
-          <tr><td><code>identify_input_purpose</code></td><td>INPUT purpose must be declared with correct autocomplete attribute.</td></tr>
-          <tr><td><code>identify_purpose</code></td><td>Verify identify purpose</td></tr>
-          <tr><td><code>illegal_character_in_link_domain</code></td><td>Illegal character in the domain for the attribute href.</td></tr>
-          <tr><td><code>images_of_text</code></td><td>Verify images of text</td></tr>
-          <tr><td><code>images_of_text_no_exception</code></td><td>Verify images of text (no exception)</td></tr>
-          <tr><td><code>img_adjacent_duplicate_text_link</code></td><td>Adjacent IMG and TEXT links must share the same destination.</td></tr>
-          <tr><td><code>img_alt_duplicate_text_link</code></td><td>A link and its image may not have duplicate text content.</td></tr>
-          <tr><td><code>img_empty_alt_in_link</code></td><td>Image inside of a link needs an alternative description.</td></tr>
-          <tr><td><code>img_empty_alt_with_empty_title</code></td><td>Decorative images should not have a title attribute.</td></tr>
-          <tr><td><code>incorrect_document_mime_type</code></td><td>Incorrect mime-type for the document.</td></tr>
-          <tr><td><code>incorrect_technique_for_hiding_content</code></td><td>Do not use CSS text-indent to hide text.</td></tr>
-          <tr><td><code>input_image_missing_alt</code></td><td>Image button must declare alt text describing its action.</td></tr>
-          <tr><td><code>interruptions_postponed</code></td><td>Verify postponement of interruptions</td></tr>
-          <tr><td><code>invalid_attribute_dir_value</code></td><td>Invalid value found in DIR attribute.</td></tr>
-          <tr><td><code>invisible_image_loaded</code></td><td>Do not load IMG that remains invisible for the user.</td></tr>
-          <tr><td><code>invisible_media_loaded</code></td><td>Do not load media that remains invisible for the user.</td></tr>
-          <tr><td><code>keyboard_functionality</code></td><td>Verify keyboard accessibility</td></tr>
-          <tr><td><code>keyboard_no_exception</code></td><td>Verify full keyboard operation (no exception)</td></tr>
-          <tr><td><code>label_duplicated_content_title</code></td><td>Avoid repeating LABEL text inside its title attribute.</td></tr>
-          <tr><td><code>label_implicitly_associated</code></td><td>Implicit LABEL must be clear and sufficient.</td></tr>
-          <tr><td><code>label_inappropriate_association</code></td><td>LABEL association must point to an existing form control.</td></tr>
-          <tr><td><code>landmarks_none</code></td><td>No landmarks found on page.</td></tr>
-          <tr><td><code>language_of_parts</code></td><td>Verify language of parts</td></tr>
-          <tr><td><code>layout_shifts_with_font_display</code></td><td>Avoid layout shift from FONT loading.</td></tr>
-          <tr><td><code>legend_first_child_of_fieldset</code></td><td>LEGEND must be first child of FIELDSET.</td></tr>
-          <tr><td><code>link_purpose_in_context</code></td><td>Verify link purpose in context</td></tr>
-          <tr><td><code>link_with_unclear_purpose</code></td><td>Links should have descriptive, meaningful text that makes sense even when taken out of context.</td></tr>
-          <tr><td><code>links_not_visually_evident_without_color_vision</code></td><td>Links need to be understandable and distinguishable from their surrounding text.</td></tr>
-          <tr><td><code>links_same_content_different_url</code></td><td>Avoid link elements that have the same content, but different destination URLs.</td></tr>
-          <tr><td><code>local_resource_leak</code></td><td>Local development resource detected.</td></tr>
-          <tr><td><code>location_indicator</code></td><td>Verify location indicator</td></tr>
-          <tr><td><code>low_background_audio</code></td><td>Verify background audio</td></tr>
-          <tr><td><code>low_or_no_background_audio</code></td><td>Verify low or no background audio</td></tr>
-          <tr><td><code>main_element_only_one</code></td><td>The MAIN element should only be defined once on a page.</td></tr>
-          <tr><td><code>main_landmark_must_be_top_level</code></td><td>MAIN element must be a top-level landmark (i.e., not nested inside any other landmark region).</td></tr>
-          <tr><td><code>malformed_json_ld</code></td><td>Malformed JSON-LD found.</td></tr>
-          <tr><td><code>manifest_extension</code></td><td>Non-standard file extensions used for the web app manifest file.</td></tr>
-          <tr><td><code>meaningful_sequence</code></td><td>Verify meaningful sequence</td></tr>
-          <tr><td><code>media_alternative_prerecorded</code></td><td>Verify media alternative (prerecorded)</td></tr>
-          <tr><td><code>meta_description_too_long_or_too_short</code></td><td>Meta Description of the page is too long or too short.</td></tr>
-          <tr><td><code>meta_description_truncation</code></td><td>Avoid Meta Description truncation.</td></tr>
-          <tr><td><code>minimum_font_size</code></td><td>BODY text must not be smaller than 16 px.</td></tr>
-          <tr><td><code>missing_alt_attribute</code></td><td>Missing ALT on non-text elements.</td></tr>
-          <tr><td><code>missing_canonical_url</code></td><td>Missing defined canonical URL.</td></tr>
-          <tr><td><code>missing_charset</code></td><td>Missing charset declaration or it is not defined in the first 1024 bytes of the HTML.</td></tr>
-          <tr><td><code>missing_favicon</code></td><td>Page should define a favicon</td></tr>
-          <tr><td><code>missing_href_on_a</code></td><td>A link needs a destination to function properly.</td></tr>
-          <tr><td><code>missing_https_protocol</code></td><td>Missing https protocol to protect privacy and integrity of the exchanged data.</td></tr>
-          <tr><td><code>missing_label</code></td><td>Form controls need labels.</td></tr>
-          <tr><td><code>missing_opengraph</code></td><td>Page should define Open Graph tags</td></tr>
-          <tr><td><code>missing_protocol_http2</code></td><td>Missing protocol HTTP2 that make your site faster, simpler, and more robust.</td></tr>
-          <tr><td><code>missing_rel_noopener</code></td><td>Links to cross-origin destinations are unsafe.</td></tr>
-          <tr><td><code>missing_submit_button</code></td><td>Ensure FORM can be submitted without a pointer.</td></tr>
-          <tr><td><code>misused_aria_on_focusable_element</code></td><td>ARIA attributes redundant on native focusable element.</td></tr>
-          <tr><td><code>misused_input_attribute</code></td><td>Misused attribute found on INPUT.</td></tr>
-          <tr><td><code>misused_required_attribute</code></td><td>The &quot;required&quot; and &quot;aria-required&quot; attributes should not be combined on the same element.</td></tr>
-          <tr><td><code>misused_tabindex_attribute</code></td><td>Attribute tabindex=&quot;0&quot; is redundant on natively focusable elements.</td></tr>
-          <tr><td><code>mixed_content_on_https</code></td><td>The site uses insecure HTTP connections on HTTPS (Mixed Content).</td></tr>
-          <tr><td><code>motion_actuation</code></td><td>Verify motion actuation</td></tr>
-          <tr><td><code>multiple_ways</code></td><td>Verify multiple ways to locate pages</td></tr>
-          <tr><td><code>navigation_landmark_restrictions</code></td><td>NAV landmark must contain only region or search landmarks.</td></tr>
-          <tr><td><code>no_headings</code></td><td>No headings found on page.</td></tr>
-          <tr><td><code>no_keyboard_trap</code></td><td>Verify keyboard trap</td></tr>
-          <tr><td><code>no_meta_http_equiv_refresh</code></td><td>Pages must not automatically refresh or redirect without user control.</td></tr>
-          <tr><td><code>no_timing</code></td><td>Verify absence of timing</td></tr>
-          <tr><td><code>noindex_follow_conflict</code></td><td>Prevent search engines from indexing pages with noindex meta tag conflicts.</td></tr>
-          <tr><td><code>non_text_contrast</code></td><td>Verify non-text contrast</td></tr>
-          <tr><td><code>object_missing_body</code></td><td>Missing alternative content for OBJECT element.</td></tr>
-          <tr><td><code>obsolete_html_attributes</code></td><td>Obsolete attribute found.</td></tr>
-          <tr><td><code>obsolete_html_elements</code></td><td>Obsolete HTML elements found.</td></tr>
-          <tr><td><code>on_focus</code></td><td>Verify on focus behavior</td></tr>
-          <tr><td><code>on_input</code></td><td>Verify on input behavior</td></tr>
-          <tr><td><code>orientation</code></td><td>Verify orientation</td></tr>
-          <tr><td><code>overlay</code></td><td>Avoid using accessibility overlays.</td></tr>
-          <tr><td><code>oversized_images</code></td><td>Avoid displaying oversized images.</td></tr>
-          <tr><td><code>page_title_length</code></td><td>The page title should not exceed 120 characters to reduce the chance of being cut off in search results.</td></tr>
-          <tr><td><code>page_title_words_not_included_in_url</code></td><td>The page title words are not included in the page url.</td></tr>
-          <tr><td><code>parsing</code></td><td>Parsing (Deprecated)</td></tr>
-          <tr><td><code>pointer_cancellation</code></td><td>Verify pointer cancellation</td></tr>
-          <tr><td><code>pointer_gestures</code></td><td>Verify pointer gestures</td></tr>
-          <tr><td><code>positive_tabindex</code></td><td>Do not use positive tabindex.</td></tr>
-          <tr><td><code>pronunciation_clarification</code></td><td>Verify pronunciation</td></tr>
-          <tr><td><code>re_authentication_state_persistence</code></td><td>Verify re-authentication data preservation</td></tr>
-          <tr><td><code>reading_level_summary</code></td><td>Verify reading level</td></tr>
-          <tr><td><code>redundant_entry</code></td><td>Verify redundant entry</td></tr>
-          <tr><td><code>reflow_content</code></td><td>Verify reflow</td></tr>
-          <tr><td><code>rtl_content</code></td><td>Features must accommodate right-to-left languages.</td></tr>
-          <tr><td><code>same_target_anchor_text_more_than_once</code></td><td>Don&#x27;t use the same target anchor text more than once.</td></tr>
-          <tr><td><code>sensory_characteristics</code></td><td>Verify sensory characteristics</td></tr>
-          <tr><td><code>sign_language_prerecorded</code></td><td>Verify sign language (prerecorded)</td></tr>
-          <tr><td><code>status_messages</code></td><td>Verify status messages</td></tr>
-          <tr><td><code>subresource_integrity</code></td><td>Missing defined INTEGRITY attribute that enables browsers to verify that resources they fetch are delivered without unexpected manipulation.</td></tr>
-          <tr><td><code>svg_incorrect_size_unit</code></td><td>Unsupported size unit for SVG.</td></tr>
-          <tr><td><code>svg_sprite_missing</code></td><td>Consider combining inline SVG elements into a sprite</td></tr>
-          <tr><td><code>svg_too_large</code></td><td>Avoid including large SVG elements.</td></tr>
-          <tr><td><code>tab_missing_tablist_owner</code></td><td>Tab element is not owned by a tablist</td></tr>
-          <tr><td><code>table_caption_summary_identical</code></td><td>TABLE summary and caption content should be different.</td></tr>
-          <tr><td><code>table_missing_description</code></td><td>TABLE should include a description.</td></tr>
-          <tr><td><code>table_row_and_column_headers</code></td><td>TABLE should have elements that define headers for each column or row.</td></tr>
-          <tr><td><code>target_size_enhanced</code></td><td>Verify target size (enhanced)</td></tr>
-          <tr><td><code>target_size_minimum</code></td><td>Interactive elements must have an area of at least 24 by 24 pixels.</td></tr>
-          <tr><td><code>text_color_convey_information</code></td><td>Information conveyed by color must also be available in text.</td></tr>
-          <tr><td><code>text_spacing</code></td><td>Verify text spacing</td></tr>
-          <tr><td><code>three_flashes_no_exception</code></td><td>Verify three flashes (no exceptions)</td></tr>
-          <tr><td><code>three_flashes_threshold</code></td><td>Verify three flashes threshold</td></tr>
-          <tr><td><code>timeouts_data_loss_prevention</code></td><td>Verify timeout data loss prevention</td></tr>
-          <tr><td><code>title_for_abbr</code></td><td>Missing TITLE attribute for ABBR element.</td></tr>
-          <tr><td><code>title_iframe</code></td><td>Missing the title attribute on iframe.</td></tr>
-          <tr><td><code>unclear_anchor_url</code></td><td>Links must have a clear, valid destination.</td></tr>
-          <tr><td><code>unclear_image_description</code></td><td>Generic placeholder alt text should be avoided. Use descriptions that convey the image&#x27;s purpose or content.</td></tr>
-          <tr><td><code>unclear_page_title</code></td><td>The TITLE element should clearly describe the content or purpose of the page.</td></tr>
-          <tr><td><code>unsupported_role_on_element</code></td><td>Do not use unsupported or incorrect role attribute on an element.</td></tr>
-          <tr><td><code>unusual_words_definition</code></td><td>Verify definitions for unusual words</td></tr>
-          <tr><td><code>video_audio_descriptions</code></td><td>Audio, video, and other media need captions or descriptions.</td></tr>
-          <tr><td><code>visual_presentation_customization</code></td><td>Verify text presentation (no exceptions)</td></tr>
-          <tr><td><code>zoom_disabled</code></td><td>User must be able to zoom the page content.</td></tr>
-      </tbody>
-    </table>
+<tr>	<td>	3.1.4	</td>	<td>	<code>	abbreviations	</code>	</td>	<td>	Verify abbreviation expansions	</td>	</tr>
+<tr>	<td>	3.3.8	</td>	<td>	<code>	accessible-authentication	</code>	</td>	<td>	Verify accessible authentication	</td>	</tr>
+<tr>	<td>	3.3.9	</td>	<td>	<code>	accessible-authentication-enhanced	</code>	</td>	<td>	Verify accessible authentication (enhanced)	</td>	</tr>
+<tr>	<td>	2.5.3	</td>	<td>	<code>	accessible-name-mismatch-element-description	</code>	</td>	<td>	Accessible name should match the control’s label	</td>	</tr>
+<tr>	<td>	1.1.1	</td>	<td>	<code>	accessible-svg	</code>	</td>	<td>	SVG content must have an accessible name.	</td>	</tr>
+<tr>	<td>	1.1.1	</td>	<td>	<code>	alt-text-include-filename	</code>	</td>	<td>	The alt text of an image should describe the image’s content, not its filename.	</td>	</tr>
+<tr>	<td>	2.2.2	</td>	<td>	<code>	animation	</code>	</td>	<td>	Animations should not loop indefinitely.	</td>	</tr>
+<tr>	<td>	2.3.3	</td>	<td>	<code>	animation-interaction	</code>	</td>	<td>	Verify animation from interactions	</td>	</tr>
+<tr>	<td>	1.1.1	</td>	<td>	<code>	applet-missing-alt	</code>	</td>	<td>	Applets must have a text alternative when not supported.	</td>	</tr>
+<tr>	<td>	1.1.1	</td>	<td>	<code>	applet-missing-body	</code>	</td>	<td>	Applets need a text alternative.	</td>	</tr>
+<tr>	<td>	1.1.1	</td>	<td>	<code>	area-missing-alt	</code>	</td>	<td>	Image map area must have a text alternative.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	aria-attribute-conflict	</code>	</td>	<td>	Both native HTML attributes and ARIA attributes should not be used together.	</td>	</tr>
+<tr>	<td>	1.3.1	</td>	<td>	<code>	aria-describedby-association	</code>	</td>	<td>	Use aria-describedby to provide additional descriptions and context for elements that need it.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	aria-hidden-false	</code>	</td>	<td>	Use caution with aria-hidden=“false” because content may still be exposed unintentionally.	</td>	</tr>
+<tr>	<td>	4.1.2	</td>	<td>	<code>	aria-hidden-true-focusable-descendants	</code>	</td>	<td>	Focusable elements should not be hidden from assistive technologies.	</td>	</tr>
+<tr>	<td>	2.4.4	</td>	<td>	<code>	aria-labelledby-association	</code>	</td>	<td>	The aria-labelledby attribute must reference an existing element.	</td>	</tr>
+<tr>	<td>	2.4.4	</td>	<td>	<code>	aria-labelledby-association-empty-element	</code>	</td>	<td>	An aria-labelledby attribute must reference an element that contains meaningful content.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	aria-role-dialog	</code>	</td>	<td>	Pop-ups and modals must have accessible names.	</td>	</tr>
+<tr>	<td>	1.4.2	</td>	<td>	<code>	audio-control	</code>	</td>	<td>	Verify audio controls	</td>	</tr>
+<tr>	<td>	1.2.3	</td>	<td>	<code>	audio-description-or-media-alternative	</code>	</td>	<td>	Verify audio description or media alternative	</td>	</tr>
+<tr>	<td>	1.2.5	</td>	<td>	<code>	audio-description-prerecorded	</code>	</td>	<td>	Verify audio description (Prerecorded)	</td>	</tr>
+<tr>	<td>	1.2.9	</td>	<td>	<code>	audio-only-live	</code>	</td>	<td>	Verify audio-only (live)	</td>	</tr>
+<tr>	<td>	1.3.5	</td>	<td>	<code>	autocomplete-attribute-usage	</code>	</td>	<td>	Add autocomplete attribute to form controls to help users fill out forms more efficiently.	</td>	</tr>
+<tr>	<td>	1.4.2	</td>	<td>	<code>	autoplay-audio-video	</code>	</td>	<td>	Audio and video content should not play automatically.	</td>	</tr>
+<tr>	<td>	2.1.1	</td>	<td>	<code>	broken-same-page-link	</code>	</td>	<td>	Same-page links must have a corresponding target.	</td>	</tr>
+<tr>	<td>	2.4.1	</td>	<td>	<code>	bypass-blocks	</code>	</td>	<td>	Verify bypass blocks	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	capital-letters-words	</code>	</td>	<td>	Limit use of long uppercase words.	</td>	</tr>
+<tr>	<td>	1.2.4	</td>	<td>	<code>	captions-live	</code>	</td>	<td>	Verify live captions	</td>	</tr>
+<tr>	<td>	1.2.2	</td>	<td>	<code>	captions-prerecorded	</code>	</td>	<td>	Prerecorded video must have synchronized captions.	</td>	</tr>
+<tr>	<td>	3.2.5	</td>	<td>	<code>	change-on-request	</code>	</td>	<td>	Verify change on request	</td>	</tr>
+<tr>	<td>	2.1.4	</td>	<td>	<code>	character-key-shortcuts	</code>	</td>	<td>	Verify character key shortcuts	</td>	</tr>
+<tr>	<td>	1.4.3	</td>	<td>	<code>	color-contrast-aa	</code>	</td>	<td>	The contrast ratio should be at least 4.5:1 for normal text and 3:1 for large text against a background.	</td>	</tr>
+<tr>	<td>	1.4.6	</td>	<td>	<code>	color-contrast-aaa	</code>	</td>	<td>	The contrast ratio should be at least 7:1 for normal text and 4.5:1 for large text against a background.	</td>	</tr>
+<tr>	<td>	2.5.6	</td>	<td>	<code>	concurrent-input-mechanisms	</code>	</td>	<td>	Verify concurrent input mechanisms	</td>	</tr>
+<tr>	<td>	3.2.6	</td>	<td>	<code>	consistent-help	</code>	</td>	<td>	Verify consistent help	</td>	</tr>
+<tr>	<td>	3.2.4	</td>	<td>	<code>	consistent-identification	</code>	</td>	<td>	Verify consistent identification	</td>	</tr>
+<tr>	<td>	3.2.3	</td>	<td>	<code>	consistent-navigation	</code>	</td>	<td>	Verify consistent navigation	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	content-editable-missing-attributes	</code>	</td>	<td>	Editable elements with contenteditable must expose the textbox role, declare whether they are single or multi-line, and provide an accessible name.	</td>	</tr>
+<tr>	<td>	1.4.13	</td>	<td>	<code>	content-on-hover-focus	</code>	</td>	<td>	Verify content on hover or focus	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	content-wider-than-screen	</code>	</td>	<td>	The page content width is wider than the screen width.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	contentinfo-landmark-only-one	</code>	</td>	<td>	Only one element may have role=“contentinfo”.	</td>	</tr>
+<tr>	<td>	2.5.7	</td>	<td>	<code>	dragging-movements	</code>	</td>	<td>	Verify dragging movements	</td>	</tr>
+<tr>	<td>	1.3.1	</td>	<td>	<code>	duplicated-for-attribute	</code>	</td>	<td>	A single label element should only describe one form control.	</td>	</tr>
+<tr>	<td>	4.1.1	</td>	<td>	<code>	duplicated-id-attribute	</code>	</td>	<td>	ID attribute must be unique within the document.	</td>	</tr>
+<tr>	<td>	4.1.2	</td>	<td>	<code>	empty-button-description	</code>	</td>	<td>	BUTTON must have an accessible name that describes its action.	</td>	</tr>
+<tr>	<td>	2.4.6	</td>	<td>	<code>	empty-heading	</code>	</td>	<td>	Heading element exists but has no content.	</td>	</tr>
+<tr>	<td>	1.3.1	</td>	<td>	<code>	empty-label-element	</code>	</td>	<td>	Labels should always contain meaningful text describing the associated form control.	</td>	</tr>
+<tr>	<td>	2.4.4	</td>	<td>	<code>	empty-link-element	</code>	</td>	<td>	Links should have meaningful, descriptive content.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	empty-title-attribute	</code>	</td>	<td>	Tooltip content must not be empty.	</td>	</tr>
+<tr>	<td>	3.3.1	</td>	<td>	<code>	error-identification	</code>	</td>	<td>	Verify error identification	</td>	</tr>
+<tr>	<td>	3.3.4	</td>	<td>	<code>	error-prevention	</code>	</td>	<td>	Verify error prevention	</td>	</tr>
+<tr>	<td>	3.3.6	</td>	<td>	<code>	error-prevention-all-forms	</code>	</td>	<td>	Verify error prevention (all)	</td>	</tr>
+<tr>	<td>	3.3.3	</td>	<td>	<code>	error-suggestion	</code>	</td>	<td>	Verify error suggestion	</td>	</tr>
+<tr>	<td>	1.2.7	</td>	<td>	<code>	extended-audio-description-prerecorded	</code>	</td>	<td>	Verify extended audio description (prerecorded)	</td>	</tr>
+<tr>	<td>	1.3.1	</td>	<td>	<code>	fieldset-no-legend	</code>	</td>	<td>	Grouped form controls need a defined caption or description.	</td>	</tr>
+<tr>	<td>	2.4.13	</td>	<td>	<code>	focus-appearance	</code>	</td>	<td>	Verify focus appearance (AAA)	</td>	</tr>
+<tr>	<td>	2.4.12	</td>	<td>	<code>	focus-not-obscured-enhanced	</code>	</td>	<td>	Verify focus not obscured (enhanced)	</td>	</tr>
+<tr>	<td>	2.4.11	</td>	<td>	<code>	focus-not-obscured-minimum	</code>	</td>	<td>	Verify focus not obscured (minimum)	</td>	</tr>
+<tr>	<td>	2.4.3	</td>	<td>	<code>	focus-order-preserved	</code>	</td>	<td>	Verify focus order is preserved	</td>	</tr>
+<tr>	<td>	2.4.7	</td>	<td>	<code>	focus-visible	</code>	</td>	<td>	Verify visible focus	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	font-style-italic	</code>	</td>	<td>	Avoid excessive use of italic text.	</td>	</tr>
+<tr>	<td>	1.3.1	</td>	<td>	<code>	group-elements-name-attribute	</code>	</td>	<td>	Checkboxes should be grouped together.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	h1-length	</code>	</td>	<td>	The length of the first heading H1 should be at least 20 characters.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	h1-must-be	</code>	</td>	<td>	Page must contain one H1 heading.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	h1-only-one	</code>	</td>	<td>	There should only be one heading H1 on the page.	</td>	</tr>
+<tr>	<td>	1.3.1	</td>	<td>	<code>	heading-semantics-incorrect	</code>	</td>	<td>	Heading semantics are incorrect.	</td>	</tr>
+<tr>	<td>	1.3.1	</td>	<td>	<code>	headings-hierarchy	</code>	</td>	<td>	Headings must not skip levels.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	headings-sibling-unique	</code>	</td>	<td>	Sibling heading elements must not repeat the same text.	</td>	</tr>
+<tr>	<td>	3.3.5	</td>	<td>	<code>	help-provided	</code>	</td>	<td>	Verify help	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	horizontal-rule	</code>	</td>	<td>	Use horizontal rule HR sparingly.	</td>	</tr>
+<tr>	<td>	3.1.1	</td>	<td>	<code>	html-lang-attr	</code>	</td>	<td>	Page must declare LANG attribute on the HTML element.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	identify-component-purpose	</code>	</td>	<td>	Verify Identification of Component Purpose	</td>	</tr>
+<tr>	<td>	1.3.5	</td>	<td>	<code>	identify-input-purpose	</code>	</td>	<td>	INPUT purpose must be declared with correct autocomplete attribute.	</td>	</tr>
+<tr>	<td>	1.3.6	</td>	<td>	<code>	identify-purpose	</code>	</td>	<td>	Verify identify purpose	</td>	</tr>
+<tr>	<td>	1.4.5	</td>	<td>	<code>	images-of-text	</code>	</td>	<td>	Verify images of text	</td>	</tr>
+<tr>	<td>	1.4.9	</td>	<td>	<code>	images-of-text-no-exception	</code>	</td>	<td>	Verify images of text (no exception)	</td>	</tr>
+<tr>	<td>	1.1.1	</td>	<td>	<code>	img-adjacent-duplicate-text-link	</code>	</td>	<td>	Adjacent IMG and TEXT links must share the same destination.	</td>	</tr>
+<tr>	<td>	2.4.4	</td>	<td>	<code>	img-alt-duplicate-text-link	</code>	</td>	<td>	A link and its image may not have duplicate text content.	</td>	</tr>
+<tr>	<td>	1.1.1	</td>	<td>	<code>	img-empty-alt-in-link	</code>	</td>	<td>	Image inside of a link needs an alternative description.	</td>	</tr>
+<tr>	<td>	1.1.1	</td>	<td>	<code>	img-empty-alt-with-empty-title	</code>	</td>	<td>	Decorative images should not have a title attribute.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	incorrect-technique-for-hiding-content	</code>	</td>	<td>	Do not use CSS text-indent to hide text.	</td>	</tr>
+<tr>	<td>	1.1.1	</td>	<td>	<code>	input-image-missing-alt	</code>	</td>	<td>	Image button must declare alt text describing its action.	</td>	</tr>
+<tr>	<td>	2.2.4	</td>	<td>	<code>	interruptions-postponed	</code>	</td>	<td>	Verify postponement of interruptions	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	invalid-attribute-dir-value	</code>	</td>	<td>	Invalid value found in DIR attribute.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	invisible-image-loaded	</code>	</td>	<td>	Do not load IMG that remains invisible for the user.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	invisible-media-loaded	</code>	</td>	<td>	Do not load media that remains invisible for the user.	</td>	</tr>
+<tr>	<td>	2.1.1	</td>	<td>	<code>	keyboard-functionality	</code>	</td>	<td>	Verify keyboard accessibility	</td>	</tr>
+<tr>	<td>	2.1.3	</td>	<td>	<code>	keyboard-no-exception	</code>	</td>	<td>	Verify full keyboard operation (no exception)	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	label-duplicated-content-title	</code>	</td>	<td>	Avoid repeating LABEL text inside its title attribute.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	label-implicitly-associated	</code>	</td>	<td>	Implicit LABEL must be clear and sufficient.	</td>	</tr>
+<tr>	<td>	1.3.1	</td>	<td>	<code>	label-inappropriate-association	</code>	</td>	<td>	LABEL association must point to an existing form control.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	landmarks-none	</code>	</td>	<td>	No landmarks found on page.	</td>	</tr>
+<tr>	<td>	3.1.2	</td>	<td>	<code>	language-of-parts	</code>	</td>	<td>	Verify language of parts	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	layout-shifts-with-font-display	</code>	</td>	<td>	Avoid layout shift from FONT loading.	</td>	</tr>
+<tr>	<td>	3.3.2	</td>	<td>	<code>	legend-first-child-of-fieldset	</code>	</td>	<td>	LEGEND must be first child of FIELDSET.	</td>	</tr>
+<tr>	<td>	2.4.4	</td>	<td>	<code>	link-purpose-in-context	</code>	</td>	<td>	Verify link purpose in context	</td>	</tr>
+<tr>	<td>	2.4.9	</td>	<td>	<code>	link-with-unclear-purpose	</code>	</td>	<td>	Links should have descriptive, meaningful text that makes sense even when taken out of context.	</td>	</tr>
+<tr>	<td>	1.4.1	</td>	<td>	<code>	links-not-visually-evident-without-color-vision	</code>	</td>	<td>	Links need to be understandable and distinguishable from their surrounding text.	</td>	</tr>
+<tr>	<td>	2.4.4	</td>	<td>	<code>	links-same-content-different-url	</code>	</td>	<td>	Avoid link elements that have the same content, but different destination URLs.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	local-resource-leak	</code>	</td>	<td>	Local development resource detected.	</td>	</tr>
+<tr>	<td>	2.4.8	</td>	<td>	<code>	location-indicator	</code>	</td>	<td>	Verify location indicator	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	low-background-audio	</code>	</td>	<td>	Verify background audio	</td>	</tr>
+<tr>	<td>	1.4.7	</td>	<td>	<code>	low-or-no-background-audio	</code>	</td>	<td>	Verify low or no background audio	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	main-element-only-one	</code>	</td>	<td>	The MAIN element should only be defined once on a page.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	main-landmark-must-be-top-level	</code>	</td>	<td>	MAIN element must be a top-level landmark (i.e., not nested inside any other landmark region).	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	malformed-json-ld	</code>	</td>	<td>	Malformed JSON-LD found.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	manifest-extension	</code>	</td>	<td>	Non-standard file extensions used for the web app manifest file.	</td>	</tr>
+<tr>	<td>	1.3.2	</td>	<td>	<code>	meaningful-sequence	</code>	</td>	<td>	Verify meaningful sequence	</td>	</tr>
+<tr>	<td>	1.2.8	</td>	<td>	<code>	media-alternative-prerecorded	</code>	</td>	<td>	Verify media alternative (prerecorded)	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	meta-description-too-long-or-too-short	</code>	</td>	<td>	Meta Description of the page is too long or too short.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	meta-description-truncation	</code>	</td>	<td>	Avoid Meta Description truncation.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	minimum-font-size	</code>	</td>	<td>	BODY text must not be smaller than 16 px.	</td>	</tr>
+<tr>	<td>	1.1.1	</td>	<td>	<code>	missing-alt-attribute	</code>	</td>	<td>	Missing ALT on non-text elements.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	missing-canonical-url	</code>	</td>	<td>	Missing defined canonical URL.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	missing-charset	</code>	</td>	<td>	Missing charset declaration or it is not defined in the first 1024 bytes of the HTML.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	missing-favicon	</code>	</td>	<td>	Page should define a favicon	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	missing-href-on-a	</code>	</td>	<td>	A link needs a destination to function properly.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	missing-https-protocol	</code>	</td>	<td>	Missing https protocol to protect privacy and integrity of the exchanged data.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	missing-label	</code>	</td>	<td>	Form controls need labels.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	missing-opengraph	</code>	</td>	<td>	Page should define Open Graph tags	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	missing-protocol-http2	</code>	</td>	<td>	Missing protocol HTTP2 that make your site faster, simpler, and more robust.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	missing-rel-noopener	</code>	</td>	<td>	Links to cross-origin destinations are unsafe.	</td>	</tr>
+<tr>	<td>	3.2.2	</td>	<td>	<code>	missing-submit-button	</code>	</td>	<td>	Ensure FORM can be submitted without a pointer.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	misused-aria-on-focusable-element	</code>	</td>	<td>	ARIA attributes redundant on native focusable element.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	misused-input-attribute	</code>	</td>	<td>	Misused attribute found on INPUT.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	misused-required-attribute	</code>	</td>	<td>	The “required” and “aria-required” attributes should not be combined on the same element.	</td>	</tr>
+<tr>	<td>	2.4.3	</td>	<td>	<code>	misused-tabindex-attribute	</code>	</td>	<td>	Attribute tabindex=“0” is redundant on natively focusable elements.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	mixed-content-on-https	</code>	</td>	<td>	The site uses insecure HTTP connections on HTTPS (Mixed Content).	</td>	</tr>
+<tr>	<td>	2.5.4	</td>	<td>	<code>	motion-actuation	</code>	</td>	<td>	Verify motion actuation	</td>	</tr>
+<tr>	<td>	2.4.5	</td>	<td>	<code>	multiple-ways	</code>	</td>	<td>	Verify multiple ways to locate pages	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	navigation-landmark-restrictions	</code>	</td>	<td>	NAV landmark must contain only region or search landmarks.	</td>	</tr>
+<tr>	<td>	2.4.10	</td>	<td>	<code>	no-headings	</code>	</td>	<td>	No headings found on page.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	no-keyboard-trap	</code>	</td>	<td>	Verify keyboard trap	</td>	</tr>
+<tr>	<td>	2.2.1	</td>	<td>	<code>	no-meta-http-equiv-refresh	</code>	</td>	<td>	Pages must not automatically refresh or redirect without user control.	</td>	</tr>
+<tr>	<td>	2.2.3	</td>	<td>	<code>	no-timing	</code>	</td>	<td>	Verify absence of timing	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	noindex-follow-conflict	</code>	</td>	<td>	Prevent search engines from indexing pages with noindex meta tag conflicts.	</td>	</tr>
+<tr>	<td>	1.4.11	</td>	<td>	<code>	non-text-contrast	</code>	</td>	<td>	Verify non-text contrast	</td>	</tr>
+<tr>	<td>	1.1.1	</td>	<td>	<code>	object-missing-body	</code>	</td>	<td>	Missing alternative content for OBJECT element.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	obsolete-html-attributes	</code>	</td>	<td>	Obsolete attribute found.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	obsolete-html-elements	</code>	</td>	<td>	Obsolete HTML elements found.	</td>	</tr>
+<tr>	<td>	3.2.1	</td>	<td>	<code>	on-focus	</code>	</td>	<td>	Verify on focus behavior	</td>	</tr>
+<tr>	<td>	3.2.2	</td>	<td>	<code>	on-input	</code>	</td>	<td>	Verify on input behavior	</td>	</tr>
+<tr>	<td>	1.3.4	</td>	<td>	<code>	orientation	</code>	</td>	<td>	Verify orientation	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	overlay	</code>	</td>	<td>	Avoid using accessibility overlays.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	oversized-images	</code>	</td>	<td>	Avoid displaying oversized images.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	page-title-length	</code>	</td>	<td>	The page title should not exceed 120 characters to reduce the chance of being cut off in search results.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	page-title-words-not-included-in-url	</code>	</td>	<td>	The page title words are not included in the page url.	</td>	</tr>
+<tr>	<td>	4.1.1	</td>	<td>	<code>	parsing	</code>	</td>	<td>	Parsing (Deprecated)	</td>	</tr>
+<tr>	<td>	2.5.2	</td>	<td>	<code>	pointer-cancellation	</code>	</td>	<td>	Verify pointer cancellation	</td>	</tr>
+<tr>	<td>	2.5.1	</td>	<td>	<code>	pointer-gestures	</code>	</td>	<td>	Verify pointer gestures	</td>	</tr>
+<tr>	<td>	2.4.3	</td>	<td>	<code>	positive-tabindex	</code>	</td>	<td>	Do not use positive tabindex.	</td>	</tr>
+<tr>	<td>	3.1.6	</td>	<td>	<code>	pronunciation-clarification	</code>	</td>	<td>	Verify pronunciation	</td>	</tr>
+<tr>	<td>	2.2.5	</td>	<td>	<code>	re-authentication-state-persistence	</code>	</td>	<td>	Verify re-authentication data preservation	</td>	</tr>
+<tr>	<td>	3.1.5	</td>	<td>	<code>	reading-level-summary	</code>	</td>	<td>	Verify reading level	</td>	</tr>
+<tr>	<td>	3.3.7	</td>	<td>	<code>	redundant-entry	</code>	</td>	<td>	Verify redundant entry	</td>	</tr>
+<tr>	<td>	1.4.10	</td>	<td>	<code>	reflow-content	</code>	</td>	<td>	Verify reflow	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	rtl-content	</code>	</td>	<td>	Features must accommodate right-to-left languages.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	same-target-anchor-text-more-than-once	</code>	</td>	<td>	Don’t use the same target anchor text more than once.	</td>	</tr>
+<tr>	<td>	1.3.3	</td>	<td>	<code>	sensory-characteristics	</code>	</td>	<td>	Verify sensory characteristics	</td>	</tr>
+<tr>	<td>	1.2.6	</td>	<td>	<code>	sign-language-prerecorded	</code>	</td>	<td>	Verify sign language (prerecorded)	</td>	</tr>
+<tr>	<td>	4.1.3	</td>	<td>	<code>	status-messages	</code>	</td>	<td>	Verify status messages	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	subresource-integrity	</code>	</td>	<td>	Missing defined INTEGRITY attribute that enables browsers to verify that resources they fetch are delivered without unexpected manipulation.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	svg-incorrect-size-unit	</code>	</td>	<td>	Unsupported size unit for SVG.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	svg-sprite-missing	</code>	</td>	<td>	Consider combining inline SVG elements into a sprite	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	svg-too-large	</code>	</td>	<td>	Avoid including large SVG elements.	</td>	</tr>
+<tr>	<td>	1.3.1	</td>	<td>	<code>	tab-missing-tablist-owner	</code>	</td>	<td>	Tab element is not owned by a tablist	</td>	</tr>
+<tr>	<td>	1.3.1	</td>	<td>	<code>	table-caption-summary-identical	</code>	</td>	<td>	TABLE summary and caption content should be different.	</td>	</tr>
+<tr>	<td>	1.3.1	</td>	<td>	<code>	table-missing-description	</code>	</td>	<td>	TABLE should include a description.	</td>	</tr>
+<tr>	<td>	1.3.1	</td>	<td>	<code>	table-row-and-column-headers	</code>	</td>	<td>	TABLE should have elements that define headers for each column or row.	</td>	</tr>
+<tr>	<td>	2.5.5	</td>	<td>	<code>	target-size-enhanced	</code>	</td>	<td>	Verify target size (enhanced)	</td>	</tr>
+<tr>	<td>	2.5.8	</td>	<td>	<code>	target-size-minimum	</code>	</td>	<td>	Interactive elements must have an area of at least 24 by 24 pixels.	</td>	</tr>
+<tr>	<td>	1.4.1	</td>	<td>	<code>	text-color-convey-information	</code>	</td>	<td>	Information conveyed by color must also be available in text.	</td>	</tr>
+<tr>	<td>	1.4.12	</td>	<td>	<code>	text-spacing	</code>	</td>	<td>	Verify text spacing	</td>	</tr>
+<tr>	<td>	2.3.2	</td>	<td>	<code>	three-flashes-no-exception	</code>	</td>	<td>	Verify three flashes (no exceptions)	</td>	</tr>
+<tr>	<td>	2.3.1	</td>	<td>	<code>	three-flashes-threshold	</code>	</td>	<td>	Verify three flashes threshold	</td>	</tr>
+<tr>	<td>	2.2.6	</td>	<td>	<code>	timeouts-data-loss-prevention	</code>	</td>	<td>	Verify timeout data loss prevention	</td>	</tr>
+<tr>	<td>	3.1.4	</td>	<td>	<code>	title-for-abbr	</code>	</td>	<td>	Missing TITLE attribute for ABBR element.	</td>	</tr>
+<tr>	<td>	4.1.2	</td>	<td>	<code>	title-iframe	</code>	</td>	<td>	Missing the title attribute on iframe.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	unclear-anchor-url	</code>	</td>	<td>	Links must have a clear, valid destination.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	unclear-image-description	</code>	</td>	<td>	Generic placeholder alt text should be avoided. Use descriptions that convey the image’s purpose or content.	</td>	</tr>
+<tr>	<td>	2.4.2	</td>	<td>	<code>	unclear-page-title	</code>	</td>	<td>	The TITLE element should clearly describe the content or purpose of the page.	</td>	</tr>
+<tr>	<td>		</td>	<td>	<code>	unsupported-role-on-element	</code>	</td>	<td>	Do not use unsupported or incorrect role attribute on an element.	</td>	</tr>
+<tr>	<td>	3.1.3	</td>	<td>	<code>	unusual-words-definition	</code>	</td>	<td>	Verify definitions for unusual words	</td>	</tr>
+<tr>	<td>	1.2.1	</td>	<td>	<code>	video-audio-descriptions	</code>	</td>	<td>	Audio, video, and other media need captions or descriptions.	</td>	</tr>
+<tr>	<td>	1.4.8	</td>	<td>	<code>	visual-presentation-customization	</code>	</td>	<td>	Verify text presentation (no exceptions)	</td>	</tr>
+<tr>	<td>	1.4.4	</td>	<td>	<code>	zoom-disabled	</code>	</td>	<td>	User must be able to zoom the page content.	</td>	</tr>    </table>
   </main>
+  <script>
+    (function () {
+      const table = document.querySelector('table');
+      const tbody = table.querySelector('tbody');
+      const headers = Array.from(table.querySelectorAll('thead th'));
+
+      function getCellText(row, columnIndex) {
+        const cell = row.children[columnIndex];
+        return cell ? cell.textContent.trim().toLowerCase() : '';
+      }
+
+      function sortTable(columnIndex, direction) {
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+
+        rows.sort(function (rowA, rowB) {
+          const valueA = getCellText(rowA, columnIndex);
+          const valueB = getCellText(rowB, columnIndex);
+
+          if (valueA === valueB) {
+            return 0;
+          }
+
+          if (direction === 'ascending') {
+            return valueA.localeCompare(valueB, undefined, { numeric: true, sensitivity: 'base' });
+          }
+
+          return valueB.localeCompare(valueA, undefined, { numeric: true, sensitivity: 'base' });
+        });
+
+        rows.forEach(function (row) {
+          tbody.appendChild(row);
+        });
+      }
+
+      headers.forEach(function (header, columnIndex) {
+        const button = header.querySelector('button');
+
+        button.addEventListener('click', function () {
+          const currentSort = header.getAttribute('aria-sort');
+          const nextSort = currentSort === 'ascending' ? 'descending' : 'ascending';
+
+          headers.forEach(function (otherHeader) {
+            otherHeader.setAttribute('aria-sort', 'none');
+          });
+
+          header.setAttribute('aria-sort', nextSort);
+          sortTable(columnIndex, nextSort);
+        });
+      });
+    }());
+  </script>
 </body>
 </html>
