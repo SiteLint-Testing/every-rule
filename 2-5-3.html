@@ -1,0 +1,374 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 2.5.3 Label in Name Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    pre {
+      background-color: #f4f4f4;
+      overflow-x: auto;
+      padding: 1rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-block: 0.75rem;
+    }
+
+    .icon-button {
+      align-items: center;
+      display: inline-flex;
+      gap: 0.35rem;
+    }
+
+    .field-row {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-block: 0.75rem;
+    }
+
+    .fake-switch {
+      border: 1px solid #767676;
+      border-radius: 999px;
+      display: inline-block;
+      min-height: 28px;
+      min-width: 4rem;
+      padding: 0.35rem 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 2.5.3: Label in Name</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> For user interface components with visible text labels, the accessible name should contain the visible label text. This helps speech-input users activate controls by speaking the label they can see.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html">View the W3C Understanding page for WCAG 2.5.3 Label in Name</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>What SiteLint can test effectively</h2>
+      <p>
+        SiteLint's rule for this success criterion appears to compare a control's visible text label with the accessible name exposed through markup such as <code>aria-label</code>, <code>aria-labelledby</code>, native labels, or text content. This is useful automated coverage because the tool can often determine when visible label text is absent from the computed accessible name.
+      </p>
+      <p>
+        This is still partial coverage. The rule can evaluate common markup patterns, but full conformance may require judgment when the visible label is graphical, split across multiple elements, hidden by responsive layout, changed dynamically, or not straightforward to identify from the DOM.
+      </p>
+    </section>
+
+    <h2>Examples where SiteLint should be effective</h2>
+
+    <h3>Passing examples that should not be reported</h3>
+
+    <section class="example passing-example">
+      <h4>Passing example 1: Button text is the accessible name</h4>
+      <p>
+        This should not be reported because the visible label and accessible name are both “Save”.
+      </p>
+
+      <div class="sample-area">
+        <button type="button">Save</button>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h4>Passing example 2: <code>aria-label</code> includes the visible label</h4>
+      <p>
+        This should not be reported because the visible label “Search” is included in the accessible name “Search this site”.
+      </p>
+
+      <div class="sample-area">
+        <button type="button" aria-label="Search this site">Search</button>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h4>Passing example 3: Input label matches the accessible name</h4>
+      <p>
+        This should not be reported because the visible label is programmatically associated with the input and becomes the accessible name.
+      </p>
+
+      <div class="sample-area">
+        <div class="field-row">
+          <label for="passing-email">Email address</label>
+          <input id="passing-email" name="passing-email" type="email" autocomplete="email">
+        </div>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h4>Passing example 4: <code>aria-labelledby</code> references the visible label</h4>
+      <p>
+        This should not be reported because the accessible name comes from the same visible text shown next to the control.
+      </p>
+
+      <div class="sample-area">
+        <div class="field-row">
+          <span id="notifications-label">Notifications</span>
+          <button type="button" aria-labelledby="notifications-label" class="fake-switch">On</button>
+        </div>
+      </div>
+    </section>
+
+    <h3>Observed failing examples SiteLint reports</h3>
+
+    <section class="example failing-example">
+      <h4>Observed failing example 1: Button visible label does not match <code>aria-label</code></h4>
+      <p>
+        This should be reported because the visible label is “Delete”, but the accessible name is “Remove item”. A speech-input user may say “Delete” and fail to activate the button by its accessible name.
+      </p>
+
+      <div class="sample-area">
+        <button type="button" aria-label="Remove item">Delete</button>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h4>Observed failing example 2: Visible link text is replaced by an unrelated accessible name</h4>
+      <p>
+        This should be reported because the visible link text is “Pricing”, but the accessible name is “Plans and costs”. The accessible name does not contain the visible label text.
+      </p>
+
+      <div class="sample-area">
+        <a href="https://example.com/pricing" aria-label="Plans and costs">Pricing</a>
+      </div>
+    </section>
+
+
+    <section class="example failing-example">
+      <h4>Observed failing example 3: Icon button with visible text and mismatched accessible name</h4>
+      <p>
+        This should be reported because the visible label is “Print”, but the accessible name is “Open document actions”.
+      </p>
+
+      <div class="sample-area">
+        <button type="button" class="icon-button" aria-label="Open document actions">
+          <span aria-hidden="true">🖨</span>
+          <span>Print</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="sitelint-observation">
+      <h3>Current SiteLint coverage expectation</h3>
+      <p>
+        SiteLint reports controls where the accessible name does not contain the visible label text, especially when the mismatch is caused by <code>aria-label</code> overriding visible text on buttons and links. SiteLint does not report controls where the visible label is contained in the accessible name or is the accessible name. A native input example that SiteLint does not currently catch is listed below in the “Not currently reported” section.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h3>Recommendation for the current rule</h3>
+      <p>
+        <strong>Recommendation:</strong> Treat this as useful automated WCAG 2.5.3 coverage for common text-based controls, especially buttons and links with visible text overridden by mismatched <code>aria-label</code> values. The rule can catch many concrete mismatches between visible labels and accessible names, but it should not be presented as complete coverage for every possible visual-label scenario. The native input example should be considered a potential rule expansion area.
+      </p>
+    </section>
+
+    <h2>Additional scenarios and observed SiteLint behavior</h2>
+
+    <h3>Not currently reported by SiteLint</h3>
+
+    <p>
+      The following examples are relevant to WCAG 2.5.3. Some are not fully covered by SiteLint, while others were reported even though they were originally listed as manual/contextual scenarios. The distinction matters because clear visible-text/accesssible-name mismatches can often be tested automatically, while graphical, responsive, or ambiguous visual-label scenarios may still require review.
+    </p>
+
+    <section class="example manual-example">
+      <h4>Not currently reported example 1: Input has a visible label but an overriding <code>aria-label</code></h4>
+      <p>
+        This is a meaningful Label in Name risk because the visible label is “Phone number”, but the input's accessible name is overridden as “Mobile contact”. However, SiteLint did not report this scenario during testing, so it should not be listed as a current failing example for the rule.
+      </p>
+
+      <div class="sample-area">
+        <div class="field-row">
+          <label for="failing-phone">Phone number</label>
+          <input id="failing-phone" name="failing-phone" type="tel" autocomplete="tel" aria-label="Mobile contact">
+        </div>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Consider expanding the rule so it compares visible native <code>label</code> text against an overriding <code>aria-label</code> on the associated input. This is a clear text-label/accesssible-name mismatch, but it is not currently caught by SiteLint.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h4>Not currently reported example 2: Visible label is graphical rather than text</h4>
+      <p>
+        The visible label may be an icon, symbol, or image of text. A DOM-based rule may not know what the visual label says unless the image or icon has reliable text equivalents.
+      </p>
+
+      <div class="sample-area">
+        <button type="button" aria-label="Search">
+          <span aria-hidden="true">🔍</span>
+        </button>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint can verify that the control has an accessible name, but determining whether that name matches a visible icon or image may require image/icon interpretation or human judgment.
+      </p>
+    </section>
+
+    <h3>Additional observed failing examples SiteLint reports</h3>
+    <section class="example failing-example">
+      <h4>Observed failing example 4: Initial-state visible label mismatch</h4>
+      <p>
+        SiteLint reports this example because the initial visible label is “Show details”, while the accessible name is “Expand details”. That is a clear initial-state Label in Name mismatch. The dynamic-state concern is separate: after activation, a control may change visible text or accessible name, and a static scan may not verify every later state.
+      </p>
+
+      <div class="sample-area">
+        <button type="button" aria-label="Expand details">Show details</button>
+        <p>This example also represents a control whose visible text could change from “Show details” to “Hide details” after activation.</p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Keep this as an observed failing example for the initial state. For complete dynamic-state coverage, SiteLint would still need interaction testing or DOM-change observation after controls are activated.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h4>Not currently verified example 3: Responsive layout changes the visible label</h4>
+      <p>
+        A full label may be visible on desktop, while only an icon or abbreviated text appears on mobile. The accessible name may be correct in one viewport and mismatched in another.
+      </p>
+
+      <div class="sample-area">
+        <button type="button" aria-label="Download annual report">Download report</button>
+        <p>This example represents a control whose visible text could be shortened or replaced by an icon at a narrow viewport.</p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> A stronger rule would need to test multiple viewport sizes and compare the visible label and accessible name in each rendered state.
+      </p>
+    </section>
+
+    <h3>Additional observed failing examples continued</h3>
+    <section class="example failing-example">
+      <h4>Observed failing example 5: Button text does not match accessible name</h4>
+      <p>
+        SiteLint reports this example because the button's own visible text is “Join now”, while its accessible name is “Subscribe”. Although there is nearby heading text, the direct button-text mismatch is clear enough for automated detection.
+      </p>
+
+      <div class="sample-area">
+        <h4>Newsletter subscription</h4>
+        <button type="button" aria-label="Subscribe">Join now</button>
+        <p>The nearby heading provides context, but the visible label on the button itself is still “Join now”.</p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Keep this as an observed failing example. Ambiguous layout-based labels may still require manual review, but when the control itself has visible text that is absent from the accessible name, SiteLint can treat that as a concrete mismatch.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Keep the current rule as automated WCAG 2.5.3 coverage for clear text-label/accesssible-name mismatches. It is stronger than a generic manual prompt because it can detect concrete mismatches in common controls. Expand the rule to catch visible native <code>label</code> text that is overridden by a mismatched <code>aria-label</code> on the associated input.
+      </p>
+      <p>
+        Future expansion could include dynamic-state testing, responsive viewport checks, OCR or icon-label analysis, and more nuanced handling for controls whose visible label is ambiguous or distributed across surrounding content.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

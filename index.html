@@ -38,6 +38,33 @@
       background-color: #f2f2f2;
     }
 
+    thead th button {
+      align-items: center;
+      background: transparent;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      font: inherit;
+      gap: 0.35rem;
+      min-height: 28px;
+      padding: 0;
+      text-align: left;
+    }
+
+    thead th button::after {
+      content: "↕";
+      font-size: 0.85em;
+    }
+
+    thead th[aria-sort="ascending"] button::after {
+      content: "↑";
+    }
+
+    thead th[aria-sort="descending"] button::after {
+      content: "↓";
+    }
+
     .status-skipped {
       background-color: #f2f2f2;
     }
@@ -79,14 +106,14 @@
     </p>
 
     <table>
-      <caption>Created (16) and skipped (55) WCAG test pages</caption>
+      <caption>Created (18) and skipped (54) WCAG test pages</caption>
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Level</th>
-          <th scope="col">SC</th>
-          <th scope="col">Title</th>
-          <th scope="col">Notes</th>
+          <th scope="col" aria-sort="ascending"><button type="button" data-sort-column="0" aria-label="Sort by row number">#</button></th>
+          <th scope="col"><button type="button" data-sort-column="1" aria-label="Sort by level">Level</button></th>
+          <th scope="col"><button type="button" data-sort-column="2" aria-label="Sort by success criterion">SC</button></th>
+          <th scope="col"><button type="button" data-sort-column="3" aria-label="Sort by title">Title</button></th>
+          <th scope="col"><button type="button" data-sort-column="4" aria-label="Sort by notes">Notes</button></th>
         </tr>
       </thead>
       <tbody>
@@ -300,13 +327,13 @@
           <td>Use of Color</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. SiteLint's current rule can detect a narrow link-specific pattern where links are visually indistinguishable from surrounding text, but it does not fully evaluate all uses of color.</li>
+              <li><strong>Caution:</strong> This success criterion is <span class="highlight">only partly testable through automation</span>. SiteLint's current rule can detect a narrow link-specific pattern where links are visually indistinguishable from surrounding text, but it <span class="highlight">does not fully evaluate all uses of color</span>.</li>
               <li>SiteLint correctly reports the failing examples where non-empty links inherit the surrounding paragraph text color and remove text decoration, making them visually difficult to identify as links.</li>
               <li>SiteLint does not report the passing examples with an underline, a font-style difference, or button-like styling because those links provide non-color visual cues or otherwise differ from the surrounding text in ways the current rule evaluates.</li>
-              <li>SiteLint's current rule does not fully evaluate other 1.4.1 scenarios, including non-underlined links distinguished only by color, error information conveyed only by color, red/green status indicators, chart legends, or selected states shown only through color.</li>
+              <li>SiteLint's <span class="highlight">current rule does not fully evaluate other 1.4.1 scenarios</span>, including non-underlined links distinguished only by color, error information conveyed only by color, red/green status indicators, chart legends, or selected states shown only through color.</li>
               <li>Several broader 1.4.1 scenarios require context, visual comparison, interaction testing, or human judgment to determine whether color is the only cue conveying meaning.</li>
             </ul>
-            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat the current rule as useful partial WCAG 1.4.1 coverage for visually indistinguishable links. Consider future heuristics for color-only links, form errors, status indicators, selected states, and chart/data-visualization review candidates, but avoid presenting those as confirmed failures without sufficient context.</p>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat the current rule as useful <span class="highlight">partial WCAG 1.4.1 coverage</span> for visually indistinguishable links. Consider future heuristics for color-only links, form errors, status indicators, selected states, and chart/data-visualization review candidates, but avoid presenting those as confirmed failures without sufficient context.</p>
           </td>
         </tr>
         <tr class="status-created">
@@ -316,32 +343,47 @@
           <td>Audio Control</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. SiteLint's autoplay rule detects explicit autoplay patterns such as <code>autoplay</code> attributes and iframe URLs containing <code>autoplay=1</code>, but it does not fully determine audibility, duration, playback behavior, or whether user controls satisfy the requirement.</li>
+              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. SiteLint's autoplay rule detects explicit autoplay patterns such as <code>autoplay</code> attributes and iframe URLs containing <code>autoplay=1</code>, but it <span class="highlight">does not fully determine audibility, duration, playback behavior, or whether user controls satisfy the requirement</span>.</li>
               <li>SiteLint reports the expected autoplay examples, including <code>audio autoplay</code>, <code>video autoplay</code>, iframe <code>src</code> values containing <code>autoplay=1</code>, and iframe <code>allow</code> values containing <code>autoplay=1</code>.</li>
               <li>SiteLint does not report the examples without autoplay declarations.</li>
-              <li>SiteLint also reports muted autoplay video and autoplaying audio with controls because the current rule flags the autoplay pattern itself. These reports need nuance because muted media and available controls affect the final WCAG 1.4.2 judgment.</li>
+              <li>SiteLint also reports muted autoplay video and autoplaying audio with controls because the current rule flags the autoplay pattern itself. <span class="highlight">These reports need nuance</span> because muted media and available controls affect the final WCAG 1.4.2 judgment.</li>
               <li>Secondary media findings, such as captions or descriptions, are acceptable on this page because the same media element can legitimately trigger separate WCAG issues. They should be interpreted separately from the autoplay findings.</li>
-              <li>Reported media elements did not reliably highlight on the page. This may be affected by placeholder media paths and <code>about:blank</code> iframes, but SiteLint should ideally highlight rendered media elements or provide a fallback selector, DOM path, or source snippet.</li>
+              <li>Reported media elements did not reliably highlight on the page. This may be affected by placeholder media paths and <code>about:blank</code> iframes, but <span class="highlight">SiteLint should ideally highlight rendered media elements or provide a fallback selector</span>, DOM path, or source snippet.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat the autoplay rule as useful partial WCAG 1.4.2 coverage. Consider future improvements for muted autoplay handling, media duration checks, iframe parameter coverage, visual highlighting or fallback location messaging, and a separate real-media test page for playback and highlighting behavior.</p>
           </td>
         </tr>
-        <tr>
+        <tr class="status-created">
           <td>19</td>
           <td>AA</td>
           <th scope="row"><a href="1-4-3.html">1.4.3</a></th>
           <td>Contrast (Minimum)</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> SiteLint provides useful automated WCAG 1.4.3 coverage for many ordinary HTML text contrast cases, but the rule does not fully evaluate every rendered contrast scenario.</li>
+              <li>SiteLint correctly reports several intended text contrast failures on the page, including normal text, large text, button text, and link text with insufficient contrast.</li>
+              <li>SiteLint incorrectly reports the decorative low-contrast divider characters as a confirmed 1.4.3 issue, even though those characters are marked <code>aria-hidden="true"</code> and are not needed to understand the content.</li>
+              <li>SiteLint did not report the low-contrast placeholder text example, even though placeholder text can communicate instructions or examples and should meet the applicable contrast threshold when it conveys information.</li>
+              <li>Additional difficult or potentially missed cases include text over gradients or images, text affected by ancestor opacity, and visible SVG <code>&lt;text&gt;</code>.</li>
+              <li>If the WCAG AAA filter is enabled, SiteLint may also report WCAG 1.4.6 Contrast (Enhanced) on this page. That is expected because text that fails 1.4.3 AA will also fail the stricter AAA threshold.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep 1.4.3 as an automated contrast rule, but refine it so decorative <code>aria-hidden</code> text is not reported as a confirmed failure, add placeholder contrast support, and consider rendered-background, opacity/compositing, and SVG text contrast enhancements.</p>
+          </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>20</td>
           <td>AA</td>
-          <th scope="row">1.4.4</th>
+          <th scope="row"><a href="1-4-4.html">1.4.4</a></th>
           <td>Resize Text</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires increasing text size up to 200 percent and then checking whether content remains readable and functional without loss of information. The test depends on applying a zoom or text-resize condition and reviewing the rendered result, not just reading the original HTML and CSS.</li>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. SiteLint's current <code>zoom-disabled</code> rule detects one narrow pattern: viewport metadata that disables or restricts browser zoom.</li>
+              <li>SiteLint should report the active viewport meta tag in the document <code>head</code> because it includes <code>user-scalable=no</code>.</li>
+              <li>The reported viewport <code>meta</code> element cannot be visually highlighted on the page because it is a non-rendered <code>head</code> element. SiteLint should rely on the DOM path, source snippet, or DevTools location for these findings.</li>
+              <li>SiteLint's current rule does not evaluate whether text can actually be resized to 200 percent without clipping, overlap, or loss of functionality.</li>
+              <li>SiteLint's current rule does not detect layout problems after zoom, such as fixed-height containers clipping text, absolutely positioned text overlapping, very small fixed-size text, or controls becoming unusable after resizing.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>zoom-disabled</code> as useful partial WCAG 1.4.4 coverage for viewport zoom restrictions. Consider a separate rendered-page/runtime test that evaluates layout at 200 percent zoom or increased text size, checks for clipping and overlap, and verifies that controls remain operable.</p>
           </td>
         </tr>
         <tr class="status-skipped">
@@ -738,12 +780,21 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr class="status-created">
           <td>58</td>
           <td>A</td>
           <th scope="row"><a href="2-5-3.html">2.5.3</a></th>
           <td>Label in Name</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> This success criterion is partly testable through automation. SiteLint can detect clear cases where a control's accessible name does not contain the visible text label, especially when <code>aria-label</code> overrides visible button or link text.</li>
+              <li>SiteLint reports the observed failing button, link, icon-button, initial-state mismatch, and “Join now” button examples where visible text is absent from the accessible name.</li>
+              <li>SiteLint does not report the passing examples where the visible label is the accessible name or is included in the accessible name.</li>
+              <li>SiteLint did not report the native input example where visible <code>label</code> text “Phone number” is overridden by a mismatched <code>aria-label="Mobile contact"</code>. This is a meaningful Label in Name risk and should be considered a rule-expansion area.</li>
+              <li>SiteLint's current rule does not fully evaluate graphical labels, responsive label changes, dynamic post-interaction states, or ambiguous labels distributed across surrounding layout regions.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep this as useful automated WCAG 2.5.3 coverage for clear visible-text/accesssible-name mismatches. Expand the rule to compare visible native <code>label</code> text against overriding <code>aria-label</code> values on associated inputs, and consider future dynamic-state and responsive-viewport testing.</p>
+          </td>
         </tr>
         <tr class="status-skipped">
           <td>59</td>
@@ -1048,6 +1099,102 @@
         </tr>
       </tbody>
     </table>
+    <script>
+      (function () {
+        const table = document.querySelector('table');
+        const tbody = table.querySelector('tbody');
+        const headers = Array.from(table.querySelectorAll('thead th'));
+        const buttons = Array.from(table.querySelectorAll('thead button[data-sort-column]'));
+        const levelOrder = {
+          A: 1,
+          AA: 2,
+          AAA: 3
+        };
+
+        function getCellText(row, columnIndex) {
+          const cell = row.children[columnIndex];
+          return cell ? cell.textContent.trim() : '';
+        }
+
+        function getSortValue(row, columnIndex) {
+          const text = getCellText(row, columnIndex);
+
+          if (columnIndex === 0) {
+            return Number.parseInt(text, 10) || 0;
+          }
+
+          if (columnIndex === 1) {
+            return levelOrder[text] || 999;
+          }
+
+          if (columnIndex === 2) {
+            return text.split('.').map(function (part) {
+              return Number.parseInt(part, 10) || 0;
+            });
+          }
+
+          return text.toLocaleLowerCase();
+        }
+
+        function compareValues(firstValue, secondValue, columnIndex) {
+          if (columnIndex === 2) {
+            const maxLength = Math.max(firstValue.length, secondValue.length);
+
+            for (let index = 0; index < maxLength; index += 1) {
+              const firstPart = firstValue[index] || 0;
+              const secondPart = secondValue[index] || 0;
+
+              if (firstPart !== secondPart) {
+                return firstPart - secondPart;
+              }
+            }
+
+            return 0;
+          }
+
+          if (typeof firstValue === 'number' && typeof secondValue === 'number') {
+            return firstValue - secondValue;
+          }
+
+          return String(firstValue).localeCompare(String(secondValue), undefined, {
+            numeric: true,
+            sensitivity: 'base'
+          });
+        }
+
+        function sortTable(columnIndex, direction) {
+          const rows = Array.from(tbody.querySelectorAll('tr'));
+
+          rows.sort(function (firstRow, secondRow) {
+            const firstValue = getSortValue(firstRow, columnIndex);
+            const secondValue = getSortValue(secondRow, columnIndex);
+            const result = compareValues(firstValue, secondValue, columnIndex);
+
+            return direction === 'ascending' ? result : result * -1;
+          });
+
+          rows.forEach(function (row) {
+            tbody.appendChild(row);
+          });
+
+          headers.forEach(function (header) {
+            header.removeAttribute('aria-sort');
+          });
+
+          headers[columnIndex].setAttribute('aria-sort', direction);
+        }
+
+        buttons.forEach(function (button) {
+          button.addEventListener('click', function () {
+            const columnIndex = Number.parseInt(button.dataset.sortColumn, 10);
+            const currentDirection = headers[columnIndex].getAttribute('aria-sort');
+            const nextDirection = currentDirection === 'ascending' ? 'descending' : 'ascending';
+
+            sortTable(columnIndex, nextDirection);
+          });
+        });
+      })();
+    </script>
     <script>
     (function(w,d,s,a,m,t) {
       a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';

@@ -16,6 +16,13 @@
       max-width: 78rem;
     }
 
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
     .example {
       border-left: 0.5rem solid;
       margin-block: 1.75rem;
@@ -95,8 +102,51 @@
       opacity: 1;
     }
 
+    .gradient-background-example {
+      background-image: linear-gradient(90deg, #ffffff, #d9ecff);
+      border: 1px solid #767676;
+      padding: 1rem;
+    }
+
+    .gradient-background-example p {
+      color: #777777;
+      margin: 0;
+    }
+
+    .opacity-wrapper {
+      border: 1px solid #767676;
+      opacity: 0.45;
+      padding: 1rem;
+    }
+
+    .opacity-wrapper p {
+      color: #000000;
+      margin: 0;
+    }
+
+    .svg-text-example {
+      border: 1px solid #767676;
+      display: block;
+      margin-block: 0.75rem;
+      max-width: 100%;
+    }
+
     .decorative-low-contrast {
       color: #b5b5b5;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
     }
   </style>
 </head>
@@ -120,16 +170,23 @@
       These examples focus on machine-detectable text contrast cases. This page does not attempt to test contrast inside images of text, because that requires image analysis or human review.
     </p>
 
+    <section class="sitelint-observation">
+      <h2>Expected secondary contrast result when AAA is enabled</h2>
+      <p>
+        If the WCAG AAA filter is enabled, SiteLint may also report WCAG 1.4.6 Contrast (Enhanced) on this page. That is expected because any text that fails WCAG 1.4.3 AA contrast will also fail the stricter AAA contrast threshold. To isolate only WCAG 1.4.3 results, disable AAA in the SiteLint filter or treat 1.4.6 as an unavoidable secondary contrast finding on this page.
+      </p>
+    </section>
+
     <h2>Passing examples</h2>
 
     <section class="example passing-example">
       <h3>Passing example 1: Normal text has sufficient contrast</h3>
       <p>
-        This succeeds because the normal-size text has at least 4.5:1 contrast against the white background.
+        This succeeds because the normal-size text has at least 4.5:1 contrast against its background.
       </p>
 
       <div class="sample normal-pass">
-        This paragraph uses normal-size gray text with sufficient contrast against a white background.
+        This paragraph uses normal-size text with sufficient contrast against the page background.
       </div>
     </section>
 
@@ -156,7 +213,7 @@
     <section class="example passing-example">
       <h3>Passing example 4: Link text has sufficient contrast against the page background</h3>
       <p>
-        This succeeds because the linked text itself has sufficient contrast against the white background.
+        This succeeds because the linked text itself has sufficient contrast against its background.
       </p>
 
       <p>
@@ -168,13 +225,21 @@
     <section class="example passing-example">
       <h3>Passing example 5: Decorative low-contrast text is not needed for understanding</h3>
       <p>
-        This succeeds because the low-contrast characters are decorative and are not needed to understand the content.
+        This should pass because the low-contrast divider characters are decorative and are marked <code>aria-hidden="true"</code>. The visible text “Section divider” remains available and has sufficient contrast.
       </p>
 
       <p>
         <span class="decorative-low-contrast" aria-hidden="true">————</span>
         Section divider
         <span class="decorative-low-contrast" aria-hidden="true">————</span>
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> SiteLint incorrectly reports the decorative low-contrast divider characters as a WCAG 1.4.3 contrast issue, even though those characters are marked <code>aria-hidden="true"</code> and are not needed to understand the content.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should avoid reporting low-contrast text nodes that are hidden from assistive technologies and purely decorative, or it should downgrade this pattern to a manual-review item when it cannot determine whether the visible low-contrast content is meaningful.
       </p>
     </section>
 
@@ -183,11 +248,11 @@
     <section class="example failing-example">
       <h3>Failing example 1: Normal text has insufficient contrast</h3>
       <p>
-        This fails because the normal-size text does not meet the 4.5:1 minimum contrast ratio against the white background.
+        This fails because the normal-size text does not meet the 4.5:1 minimum contrast ratio against the page background.
       </p>
 
       <div class="sample normal-fail">
-        This paragraph uses normal-size gray text with insufficient contrast against a white background.
+        This paragraph uses normal-size text with insufficient contrast against the page background.
       </div>
     </section>
 
@@ -205,7 +270,7 @@
     <section class="example failing-example">
       <h3>Failing example 3: Button text has insufficient contrast</h3>
       <p>
-        This fails because the white button text has insufficient contrast against the light blue button background.
+        This fails because the button text has insufficient contrast against the button background.
       </p>
 
       <button class="button-fail" type="button">Submit form</button>
@@ -214,7 +279,7 @@
     <section class="example failing-example">
       <h3>Failing example 4: Link text has insufficient contrast</h3>
       <p>
-        This fails because the linked text has insufficient contrast against the white background.
+        This fails because the linked text has insufficient contrast against its background.
       </p>
 
       <p>
@@ -224,15 +289,106 @@
     </section>
 
     <section class="example failing-example">
-      <h3>Failing example 5: Placeholder text has insufficient contrast</h3>
+      <h3>Observed missed example 5: Placeholder text has insufficient contrast</h3>
       <p>
-        This fails because placeholder text can provide instructions or examples and must meet the same contrast requirements when it is used to convey information.
+        This is a meaningful 1.4.3 failure because placeholder text can provide instructions or examples and must meet the same contrast requirements when it is used to convey information. During testing, SiteLint did not report this placeholder contrast failure.
       </p>
 
       <div class="form-row">
         <label for="search-fail">Search</label>
         <input class="placeholder-fail" id="search-fail" name="search-fail" type="search" placeholder="Search by keyword">
       </div>
+
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> SiteLint did not flag the low-contrast placeholder text. This should be considered a potential rule-expansion area if SiteLint intends to evaluate placeholder text contrast under WCAG 1.4.3.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Observed difficult example 6: Text over a gradient background may have insufficient contrast</h3>
+      <p>
+        This is a meaningful 1.4.3 risk because the contrast of the text depends on the rendered pixels behind each part of the text. A CSS-only contrast check may not reliably evaluate gradients, images, video backgrounds, or patterned backgrounds.
+      </p>
+
+      <div class="gradient-background-example">
+        <p>Registration closes Friday at 5 PM.</p>
+      </div>
+
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> This type of issue may be missed or evaluated inconsistently if SiteLint relies only on computed foreground and background colors. The actual contrast depends on the rendered background behind the text.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Consider rendered-background analysis for text over gradients, images, video, or patterned backgrounds. This likely requires screenshot or pixel-based testing rather than CSS-only evaluation.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Observed difficult example 7: Parent opacity reduces rendered text contrast</h3>
+      <p>
+        This is a meaningful 1.4.3 risk because the computed text color may appear sufficient, while the rendered text is visually lighter because opacity is applied to an ancestor element.
+      </p>
+
+      <div class="opacity-wrapper">
+        <p>This text may appear lower contrast because its parent has opacity.</p>
+      </div>
+
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> A rule that reads only the computed <code>color</code> and <code>background-color</code> may overestimate contrast if it does not account for opacity, alpha colors, overlays, or compositing effects.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Account for opacity on the text node and ancestor elements when calculating contrast. If SiteLint cannot compute the final composited colors reliably, this should be reported as a manual-review candidate rather than a confirmed pass.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Observed missed example 8: SVG text has insufficient contrast</h3>
+      <p>
+        This is a meaningful 1.4.3 risk because SVG <code>&lt;text&gt;</code> can be visible, meaningful text content. HTML-only text contrast checks may miss SVG text entirely.
+      </p>
+
+      <svg class="svg-text-example" width="420" height="80" role="img" aria-label="Low contrast SVG text example" xmlns="http://www.w3.org/2000/svg">
+        <rect width="420" height="80" fill="#ffffff"></rect>
+        <text x="20" y="45" fill="#999999" font-size="18">Conference registration deadline</text>
+      </svg>
+
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> SiteLint may miss this if the contrast rule only evaluates HTML text nodes and does not inspect visible SVG <code>&lt;text&gt;</code> content.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Evaluate SVG <code>&lt;text&gt;</code> contrast when SVG text is visible and meaningful. Complex SVG cases involving masks, filters, transforms, layering, or patterned backgrounds may still require rendered analysis or manual review.
+      </p>
+    </section>
+  
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint coverage notes</h2>
+      <p>
+        SiteLint correctly reports several intended text contrast failures on this page. It also incorrectly reports the decorative low-contrast divider, even though the divider characters are marked <code>aria-hidden="true"</code> and are not needed to understand the content.
+      </p>
+      <p>
+        SiteLint did not report the low-contrast placeholder text example, even though placeholder text can communicate instructions or examples and should meet the applicable contrast threshold when it conveys information. Additional difficult or potentially missed cases include text over gradients or images, text affected by ancestor opacity, and visible SVG text.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint rule improvements</h2>
+      <p>
+        <strong>Recommendation:</strong> Update the contrast rule so decorative text marked <code>aria-hidden="true"</code> is not reported as a confirmed WCAG 1.4.3 failure unless the content is still visually meaningful. When the rule cannot determine whether low-contrast visible content is meaningful, consider reporting it as a manual-review item rather than a confirmed issue.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Add placeholder contrast support if SiteLint intends to evaluate all text-like content that can convey instructions or examples. Placeholder text should be evaluated when it communicates information to users.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Add rendered-background or pixel-sampling support for text over gradients, images, video, and patterned backgrounds. CSS-only background-color checks may not reflect the actual pixels behind the text.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Account for opacity, alpha colors, overlays, and ancestor compositing when calculating contrast. These can make text visually lower contrast than the computed foreground color suggests.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Add SVG <code>&lt;text&gt;</code> contrast support when SVG text is visible and meaningful. More complex SVG rendering cases may still need manual review or screenshot-based analysis.
+      </p>
     </section>
   </main>
 
