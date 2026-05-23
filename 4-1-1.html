@@ -1,0 +1,258 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 4.1.1 Parsing Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    pre {
+      background-color: #f4f4f4;
+      overflow-x: auto;
+      padding: 1rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 48rem;
+      padding: 1rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    .duplicate-id-note {
+      background-color: #fff;
+      border: 1px dashed #767676;
+      padding: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 4.1.1: Parsing</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> WCAG 4.1.1 Parsing required markup to be well-formed enough that user agents and assistive technologies could parse it reliably. In WCAG 2.0 and 2.1, this included requirements such as complete start/end tags, proper nesting, no duplicate attributes, and unique IDs.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/parsing.html">View the W3C Understanding page for WCAG 4.1.1 Parsing</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>Important WCAG version note</h2>
+      <p>
+        WCAG 4.1.1 Parsing was removed in WCAG 2.2. That means this success criterion should not be reported as an active WCAG 2.2 failure. However, the underlying technical problems can still matter. Duplicate IDs, malformed relationships, and invalid markup can still cause accessibility problems when they affect labels, ARIA references, fragment links, scripted widgets, or assistive technology exposure.
+      </p>
+      <p>
+        For SiteLint, this means the same detector may be useful in more than one reporting context. Under WCAG 2.0 or WCAG 2.1, duplicate IDs can map directly to 4.1.1. Under WCAG 2.2, generic duplicate IDs should not be reported as WCAG 4.1.1 failures because 4.1.1 has been removed. Reporting the generic duplicate-ID issue as a SiteLint / Best Practices finding is appropriate for WCAG 2.2, but when a user selects WCAG 2.0 or 2.1, the same issue should ideally be reportable under 4.1.1 Parsing. If a duplicate ID causes a specific accessibility failure under WCAG 2.2, that downstream problem should be reported under an active success criterion such as 1.3.1, 3.3.2, or 4.1.2.
+      </p>
+    </section>
+
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint classification</h2>
+      <p>
+        SiteLint currently reports the duplicate-ID findings on this page under the <strong>SiteLint</strong> / <strong>Best Practices</strong> classification. That is the correct treatment when the selected standard is WCAG 2.2, because 4.1.1 Parsing was removed from WCAG 2.2. However, when the selected standard is WCAG 2.0 or 2.1, this same duplicate-ID condition should ideally be classified under WCAG 4.1.1 Parsing rather than only as a Best Practices finding.
+      </p>
+      <p>
+        The rule is still useful because duplicate IDs can cause accessibility and scripting problems. The important product distinction is version-aware classification: under WCAG 2.0 or 2.1, the generic duplicate-ID finding can be a 4.1.1 issue; under WCAG 2.2, the generic duplicate-ID finding should depend on the Best Practices filter. It should not appear as a strict WCAG 2.2 issue unless another more specific rule identifies a current-SC failure caused by the duplicate ID.
+      </p>
+    </section>
+
+    <h2>Examples SiteLint can detect directly</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Unique IDs</h3>
+      <p>
+        These elements each have a unique <code>id</code>. SiteLint's duplicate-ID rule should not report these elements.
+      </p>
+
+      <div class="sample-area">
+        <h4 id="unique-heading-one">Unique heading one</h4>
+        <p id="unique-description-one">This paragraph has a unique ID.</p>
+        <button id="unique-button-one" type="button">Unique button</button>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 1 for WCAG 2.0/2.1: Duplicate ID values</h3>
+      <p>
+        The two paragraphs below both use <code>id="duplicate-id-basic"</code>. Under WCAG 2.0 and 2.1, this maps directly to 4.1.1 Parsing because IDs were required to be unique.
+      </p>
+
+      <div class="sample-area">
+        <p id="duplicate-id-basic">First paragraph using a duplicate ID.</p>
+        <p id="duplicate-id-basic">Second paragraph using the same duplicate ID.</p>
+      </div>
+
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> SiteLint reports this as a duplicate-ID issue under SiteLint / Best Practices. That treatment is appropriate for WCAG 2.2. Under WCAG 2.0 or 2.1 reporting, this should ideally be classified under 4.1.1 Parsing rather than only as a Best Practices finding. Under WCAG 2.2 reporting, this should continue to be treated as a Best Practices finding unless a more specific downstream accessibility failure is identified.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2 for WCAG 2.0/2.1: Duplicate ID used by an ARIA reference</h3>
+      <p>
+        This example uses duplicate IDs that are also referenced by <code>aria-describedby</code>. This still starts as a duplicate-ID condition, but it may also create a current accessibility problem because the accessible description relationship becomes ambiguous.
+      </p>
+
+      <div class="sample-area">
+        <button type="button" aria-describedby="duplicate-help-text">Submit application</button>
+        <p id="duplicate-help-text">First help text referenced by the button.</p>
+        <p id="duplicate-help-text">Second help text with the same ID.</p>
+      </div>
+
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> SiteLint's generic duplicate-ID rule detects the duplicate ID under SiteLint / Best Practices. That is appropriate for WCAG 2.2, but under WCAG 2.0 or 2.1 this same generic duplicate-ID condition should ideally be reportable under 4.1.1 Parsing. A more specific WCAG 2.2-compatible rule could also evaluate whether the duplicate ID breaks an ARIA relationship and map that downstream issue to an active SC such as 4.1.2 Name, Role, Value or 1.3.1 Info and Relationships.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3 for WCAG 2.0/2.1: Duplicate ID used by a form label</h3>
+      <p>
+        This example uses duplicate IDs where one label references <code>id="duplicate-email"</code>. Duplicate label targets can create ambiguity for form relationships.
+      </p>
+
+      <div class="sample-area">
+        <label for="duplicate-email">Email address</label>
+        <input id="duplicate-email" name="email" type="email" autocomplete="email">
+        <input id="duplicate-email" name="backup-email" type="email" autocomplete="email" aria-label="Backup email address">
+      </div>
+
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> SiteLint's generic duplicate-ID rule detects the duplicate ID under SiteLint / Best Practices. That is appropriate for WCAG 2.2, but under WCAG 2.0 or 2.1 this same generic duplicate-ID condition should ideally be reportable under 4.1.1 Parsing. If the duplicate ID affects the label association, that should be considered separately from generic 4.1.1 parsing and may be reportable under active WCAG 2.2 criteria such as 3.3.2 Labels or Instructions, 1.3.1 Info and Relationships, or 4.1.2 Name, Role, Value.
+      </p>
+    </section>
+
+    <h2>Examples that are not useful to test as live HTML</h2>
+
+    <section class="example manual-example">
+      <h3>Scenario 1: Duplicate attributes</h3>
+      <p>
+        WCAG 2.0 and 2.1 Parsing also included duplicate attributes. However, duplicate attributes are difficult to demonstrate as a live DOM test because browsers normalize invalid markup while parsing. The browser may discard one of the attributes before SiteLint inspects the DOM.
+      </p>
+
+      <pre><code>&lt;button type="button" type="submit"&gt;Duplicate type attributes&lt;/button&gt;</code></pre>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> If SiteLint wants to detect duplicate attributes, that should happen through source-code or HTML-string validation before the browser normalizes the markup. A DOM-only scan is not reliable for this specific parsing defect.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 2: Improperly nested elements or missing end tags</h3>
+      <p>
+        Improper nesting and missing end tags were also historically part of Parsing. They are not good candidates for this runtime DOM-based test page because the browser repairs the DOM before SiteLint evaluates it.
+      </p>
+
+      <pre><code>&lt;p&gt;Paragraph starts
+  &lt;div&gt;Invalidly nested div&lt;/div&gt;
+&lt;/p&gt;</code></pre>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> These issues are better handled by an HTML parser, validator, build-time tool, or source inspection. Runtime DOM inspection may see the repaired DOM rather than the original authoring error.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Do not maintain separate overlapping duplicate-ID rules for WCAG 2.1 and WCAG 2.2. Keep one underlying duplicate-ID detector, then make the reporting classification version-aware.
+      </p>
+      <p>
+        In WCAG 2.0 or 2.1 mode, report duplicate IDs under Accessibility → WCAG 4.1.1 Parsing. In WCAG 2.2 mode, do not report generic duplicate IDs as WCAG 4.1.1. The current SiteLint approach of reporting them as SiteLint / Best Practices findings is appropriate for WCAG 2.2, but not ideal when WCAG 2.0 or 2.1 is the selected target. If Best Practices are disabled in a WCAG 2.2-only review, generic duplicate-ID findings should be hidden unless a duplicate ID breaks a specific accessibility relationship and can be reported under an active WCAG 2.2 success criterion.
+      </p>
+      <p>
+        For the product filters, the strongest model is: <code>Audit group: Accessibility</code>, <code>Rule type: Best Practice or Accessibility Risk</code> for WCAG 2.2, and <code>WCAG mapping: 4.1.1</code> for WCAG 2.0 and 2.1.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

@@ -79,7 +79,7 @@
     </p>
 
     <table>
-      <caption>Created (12) and skipped (59) WCAG test pages</caption>
+      <caption>Created (13) and skipped (58) WCAG test pages</caption>
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -996,15 +996,20 @@
             </ul>
           </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>85</td>
           <td>A</td>
-          <th scope="row">4.1.1</th>
+          <th scope="row"><a href="4-1-1.html">4.1.1</a></th>
           <td>Parsing</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This is obsolete and removed in WCAG 2.2. It should not be used as a current SiteLint WCAG 2.2 coverage target.</li>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> WCAG 4.1.1 Parsing is obsolete and removed in WCAG 2.2, so it should not be reported as a current WCAG 2.2 success-criterion failure.</li>
+              <li>SiteLint reports the duplicate-ID examples on the test page under SiteLint / Best Practices. That classification is appropriate when WCAG 2.2 is the selected standard.</li>
+              <li>When WCAG 2.0 or 2.1 is the selected target, duplicate IDs should ideally be reportable under WCAG 4.1.1 Parsing rather than only as a Best Practices finding.</li>
+              <li>Under WCAG 2.2, generic duplicate-ID findings should depend on the Best Practices filter unless a more specific rule identifies a downstream failure under an active SC such as 1.3.1, 3.3.2, or 4.1.2.</li>
+              <li>Duplicate attributes and malformed nesting are not good live-DOM test cases because browsers may repair or normalize invalid markup before SiteLint evaluates the DOM.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep one duplicate-ID detector, but make the reporting classification version-aware: WCAG 2.0/2.1 → 4.1.1 Parsing; WCAG 2.2 → SiteLint / Best Practices unless a specific downstream accessibility failure is detected.</p>
           </td>
         </tr>
         <tr>
