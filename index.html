@@ -462,6 +462,7 @@
           <td>
             <ul class="notes-list">
               <li><strong>Skipped:</strong> This requires moving keyboard focus into and out of components to confirm the user is not trapped. The key issue is runtime focus behavior, including modals, widgets, embedded content, and scripts that may intercept keyboard input.</li>
+              <li>SiteLint purports to provide WCAG 2.1.2 coverage, but the <span class="highlight">current rule <code>no-keyboard-trap</code> does not actually test for keyboard traps</span>. It selects the <code>body</code> element and reports a page-level manual-verification prompt. It does not move focus, test Tab or Shift+Tab behavior, enter or exit components, inspect modals/widgets/iframes, or determine whether focus can escape.</li>
             </ul>
           </td>
         </tr>

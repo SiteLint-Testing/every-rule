@@ -1,0 +1,326 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>WCAG 1.4.4 Resize Text Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    pre {
+      background-color: #f4f4f4;
+      overflow-x: auto;
+      padding: 1rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .fixed-height-card {
+      border: 1px solid #767676;
+      height: 3rem;
+      overflow: hidden;
+      padding: 0.5rem;
+      width: 20rem;
+    }
+
+    .overlap-demo {
+      border: 1px solid #767676;
+      height: 5rem;
+      position: relative;
+      width: 22rem;
+    }
+
+    .overlap-demo p {
+      margin: 0;
+      position: absolute;
+    }
+
+    .overlap-demo .line-one {
+      left: 0.5rem;
+      top: 0.5rem;
+    }
+
+    .overlap-demo .line-two {
+      left: 0.5rem;
+      top: 1.75rem;
+    }
+
+    .tiny-fixed-text {
+      font-size: 10px;
+      line-height: 1;
+    }
+
+    .responsive-text-box {
+      border: 1px solid #767676;
+      max-width: 36rem;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.4.4: Resize Text</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Except for captions and images of text, text should be resizable up to 200 percent without loss of content or functionality.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html">View the W3C Understanding page for WCAG 1.4.4 Resize Text</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>What SiteLint can test effectively</h2>
+      <p>
+        SiteLint's <code>zoom-disabled</code> rule appears to test one narrow, automatable part of WCAG 1.4.4: whether the page restricts browser zoom through the viewport meta tag. This is useful partial coverage because disabling zoom can prevent users from enlarging text enough to read it.
+      </p>
+      <p>
+        This test page intentionally includes <code>user-scalable=no</code> in the document <code>head</code>. SiteLint should report that setting because it restricts user zoom. However, the rule does not fully determine whether all text can be resized to 200 percent without clipping, overlap, or loss of functionality.
+      </p>
+    </section>
+
+    <h2>Examples where SiteLint should be effective</h2>
+
+    <h3>Passing examples that should not be reported by the current rule</h3>
+
+    <section class="example passing-example">
+      <h4>Passing example 1: Normal responsive text content</h4>
+      <p>
+        This content is not itself a viewport restriction. SiteLint's current <code>zoom-disabled</code> rule should not report this box because the rule checks viewport metadata, not ordinary text layout.
+      </p>
+
+      <div class="sample-area">
+        <div class="responsive-text-box">
+          <p>
+            This is ordinary responsive text. It uses normal document flow and should generally adapt better when text or page zoom is increased.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h4>Passing example 2: Viewport examples that do not restrict zoom</h4>
+      <p>
+        These viewport examples are shown as code samples only. They should not be reported because they are not active <code>meta</code> elements in the document <code>head</code>.
+      </p>
+
+      <div class="sample-area">
+        <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"&gt;</code></pre>
+      </div>
+    </section>
+
+    <h3>Failing examples that should be reported</h3>
+
+    <section class="example failing-example">
+      <h4>Failing example 1: Viewport disables user scaling</h4>
+      <p>
+        This page's <code>head</code> includes the following active viewport meta tag. SiteLint should report it because <code>user-scalable=no</code> disables user zoom.
+      </p>
+
+      <div class="sample-area">
+        <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"&gt;</code></pre>
+      </div>
+    </section>
+
+    <section class="sitelint-observation">
+      <h3>Current SiteLint coverage expectation</h3>
+      <p>
+        SiteLint should report the active viewport meta tag in the document <code>head</code> because it includes <code>user-scalable=no</code>. SiteLint should not report the code samples shown in the body because those are visible examples, not active viewport metadata.
+      </p>
+    </section>
+
+    <section class="sitelint-observation">
+      <h3>Observed highlighting behavior</h3>
+      <p>
+        The reported viewport <code>meta</code> element cannot be visually highlighted in the rendered page because it lives in the document <code>head</code> and does not render a visible box in the page body. SiteLint should provide a fallback location, such as a DOM path, source snippet, or DevTools location, rather than depending on visual highlighting.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h3>Recommendation for the current rule</h3>
+      <p>
+        <strong>Recommendation:</strong> Treat <code>zoom-disabled</code> as useful partial WCAG 1.4.4 coverage. It detects viewport settings that disable or restrict zoom, but it does not verify that text can actually be resized to 200 percent without clipping, overlap, or loss of functionality.
+      </p>
+      <p>
+        The rule should also detect other restrictive viewport patterns, such as <code>user-scalable=0</code>, very low <code>maximum-scale</code> values, or <code>minimum-scale</code> / <code>maximum-scale</code> combinations that do not allow sufficient zoom. The rule should compare viewport values case-insensitively and report non-rendered <code>head</code> elements with an appropriate UI fallback.
+      </p>
+    </section>
+
+    <h2>Examples that are not fully covered by SiteLint's current 1.4.4 rule</h2>
+
+    <p>
+      The following examples are relevant to WCAG 1.4.4, but they are not evaluated by a simple viewport-zoom check. They require actually increasing text size or browser zoom and verifying that content and functionality remain usable.
+    </p>
+
+    <section class="example manual-example">
+      <h3>Scenario 1: Text clips inside a fixed-height container</h3>
+      <p>
+        This box uses a fixed height and hidden overflow. At larger text sizes or browser zoom levels, some text may be clipped. SiteLint's current viewport rule should not detect this because the issue is layout behavior after resizing, not a viewport meta setting.
+      </p>
+
+      <div class="sample-area">
+        <div class="fixed-height-card">
+          This text is inside a fixed-height container with hidden overflow. At 200 percent text size, content may be cut off.
+        </div>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint could potentially create a separate runtime layout test that increases zoom or text size and then checks for clipped or hidden content. That requires browser rendering and comparison before and after resizing.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 2: Text overlaps when resized</h3>
+      <p>
+        Absolute positioning can cause text to overlap when zoomed or enlarged. SiteLint's current viewport rule should not detect this because the viewport allows or blocks zoom; it does not inspect layout reflow at 200 percent.
+      </p>
+
+      <div class="sample-area">
+        <div class="overlap-demo">
+          <p class="line-one">First line of positioned text.</p>
+          <p class="line-two">Second line may overlap when text is enlarged.</p>
+        </div>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Detecting overlap after resizing requires a rendered-page comparison at different zoom or text-size settings. Some cases can be automated with layout measurement, but a human may still need to verify whether the overlap causes loss of content or functionality.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 3: Very small fixed-size text</h3>
+      <p>
+        This text is intentionally small. Small text may be a usability concern, but WCAG 1.4.4 is specifically about whether text can be resized up to 200 percent without loss of content or functionality. The current viewport rule does not evaluate this text directly.
+      </p>
+
+      <div class="sample-area">
+        <p class="tiny-fixed-text">
+          This is very small fixed-size text. It may be difficult to read, but the relevant 1.4.4 question is whether users can resize it successfully.
+        </p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Very small text may be better handled by a separate readability or minimum-font-size best-practice rule. It should not be treated as a complete 1.4.4 failure unless resizing is restricted or causes loss of content/functionality.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 4: Controls become unusable after zoom</h3>
+      <p>
+        Text resizing can affect controls, navigation, dialogs, and forms. A page may allow zoom but still fail if controls overlap, disappear, or become unusable at 200 percent. SiteLint's current viewport rule does not test that interaction state.
+      </p>
+
+      <div class="sample-area">
+        <button type="button">Open settings panel</button>
+        <button type="button">Save changes</button>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> This requires testing the page at increased zoom/text size and verifying that controls remain visible and operable. Automation can help with screenshots, layout bounds, and interaction checks, but human review may still be needed for complex responsive behavior.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Keep <code>zoom-disabled</code> as a confirmed automated rule for viewport zoom restrictions. It is appropriate partial WCAG 1.4.4 coverage, but should not be presented as complete Resize Text coverage.
+      </p>
+      <p>
+        Future expansion could include a separate rendered-page test that evaluates layout at 200 percent zoom or increased text size, checks for clipping and overlap, and verifies that controls remain operable. That would be a different kind of runtime/responsive-layout test from the current viewport metadata check.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
