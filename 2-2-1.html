@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="999999">
+  <meta http-equiv="Refresh" content="999999; url=https://example.com/redirect-target">
+  <title>WCAG 2.2.1 Timing Adjustable Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    pre {
+      background-color: #f4f4f4;
+      overflow-x: auto;
+      padding: 1rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .timer-box {
+      border: 1px solid #767676;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 2.2.1: Timing Adjustable</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> When content imposes a time limit, users generally need a way to turn off, adjust, or extend the limit unless one of the WCAG exceptions applies.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html">View the W3C Understanding page for WCAG 2.2.1 Timing Adjustable</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>What SiteLint can test effectively</h2>
+      <p>
+        SiteLint's <code>no-meta-http-equiv-refresh</code> rule appears to test one narrow, automatable part of WCAG 2.2.1: pages that use <code>&lt;meta http-equiv="refresh"&gt;</code> to refresh or redirect after a time interval. This is useful partial coverage because a meta refresh creates a time-triggered page change that users usually cannot pause, extend, or adjust from the page UI.
+      </p>
+      <p>
+        This page includes two intentionally long-delay meta refresh tags in the document <code>head</code>. The delay is set to <code>999999</code> seconds so the page does not redirect during normal testing, while still allowing SiteLint to detect the markup pattern.
+      </p>
+    </section>
+
+    <h2>Examples where SiteLint should be effective</h2>
+
+    <h3>Passing examples that should not be reported</h3>
+
+    <section class="example passing-example">
+      <h4>Passing example 1: Ordinary metadata without refresh</h4>
+      <p>
+        The page includes normal metadata such as <code>charset</code>, <code>viewport</code>, and <code>title</code>. Those should not be reported by the meta-refresh rule because they do not impose a time limit.
+      </p>
+
+      <div class="sample-area">
+        <pre><code>&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+&lt;title&gt;Example page&lt;/title&gt;</code></pre>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h4>Passing example 2: Refresh-like words in visible text</h4>
+      <p>
+        This visible text mentions refresh behavior, but it is not a meta refresh tag. SiteLint should not report visible prose simply because it contains the word “refresh.”
+      </p>
+
+      <div class="sample-area">
+        <p>
+          Select the refresh button only when you want to manually reload the current data.
+        </p>
+      </div>
+    </section>
+
+    <h3>Failing examples that should be reported</h3>
+
+    <section class="example failing-example">
+      <h4>Failing example 1: Meta refresh without redirect</h4>
+      <p>
+        This page's <code>head</code> includes the following meta refresh tag. SiteLint should report it because it automatically refreshes the current page after a time interval.
+      </p>
+
+      <div class="sample-area">
+        <pre><code>&lt;meta http-equiv="refresh" content="999999"&gt;</code></pre>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h4>Failing example 2: Meta refresh redirect</h4>
+      <p>
+        This page's <code>head</code> also includes the following meta refresh redirect. SiteLint should report it because it automatically changes the user's context after a time interval.
+      </p>
+
+      <div class="sample-area">
+        <pre><code>&lt;meta http-equiv="Refresh" content="999999; url=https://example.com/redirect-target"&gt;</code></pre>
+      </div>
+    </section>
+
+    <section class="sitelint-observation">
+      <h3>Current SiteLint coverage expectation</h3>
+      <p>
+        SiteLint reports the two <code>meta</code> refresh tags in the document <code>head</code>. The first uses <code>http-equiv="refresh"</code> and the second uses <code>http-equiv="Refresh"</code>. SiteLint does not report ordinary metadata or visible text that merely references refreshing.
+      </p>
+    </section>
+
+    <section class="sitelint-observation">
+      <h3>Observed highlighting behavior</h3>
+      <p>
+        SiteLint correctly reports the two meta refresh issues, but these elements cannot be visually highlighted in the rendered page because <code>meta</code> elements live in the document <code>head</code> and do not render visible boxes in the page body.
+      </p>
+      <p>
+        This is expected behavior for this type of finding. The report should rely on the DOM path, source snippet, or DevTools location rather than a visual page highlight. For non-rendered elements such as <code>meta</code>, <code>title</code>, <code>script</code>, or other <code>head</code> content, SiteLint should provide a clear fallback message indicating that the issue is not visually highlightable on the page.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h3>Recommendation for the current rule</h3>
+      <p>
+        <strong>Recommendation:</strong> Treat this rule as useful partial WCAG 2.2.1 coverage. It detects an objectively risky time-based pattern, but it should not be presented as complete Timing Adjustable coverage because many time limits are implemented without meta refresh.
+      </p>
+      <p>
+        The rule should ideally normalize the <code>http-equiv</code> value case-insensitively so values such as <code>REFRESH</code> or <code>ReFrEsH</code> are detected consistently.
+      </p>
+      <p>
+        For reported <code>head</code> elements, the SiteLint UI should not depend on visual highlighting. A better user experience would explain that the element is non-rendered and provide the DOM path and source location as the primary way to locate the issue.
+      </p>
+    </section>
+
+    <h2>Examples that are not fully covered by SiteLint's current 2.2.1 rule</h2>
+
+    <p>
+      The following examples are relevant to WCAG 2.2.1, but they are not evaluated by a simple meta-refresh check. Some can be partially detected with runtime observation or JavaScript analysis, but full evaluation often requires understanding the purpose of the time limit and whether the user can turn it off, adjust it, or extend it.
+    </p>
+
+    <section class="example manual-example">
+      <h3>Scenario 1: JavaScript-based timeout</h3>
+      <p>
+        A page can impose a time limit using JavaScript instead of <code>meta http-equiv="refresh"</code>. SiteLint's current meta-refresh rule should not detect this because there is no meta refresh tag.
+      </p>
+
+      <div class="sample-area">
+        <pre><code>setTimeout(function () {
+  window.location.href = '/session-expired';
+}, 300000);</code></pre>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint could potentially detect some JavaScript timeout patterns, but static JavaScript analysis can be brittle. A stronger approach would require runtime observation or instrumentation to detect time-triggered redirects, form resets, session expirations, or content changes.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 2: Session timeout with an extend option</h3>
+      <p>
+        A session timeout may pass WCAG 2.2.1 if users are warned and given enough time to extend the session. A simple scan cannot determine whether the warning appears at the right time, whether the extend control works, or whether data is preserved.
+      </p>
+
+      <div class="sample-area timer-box">
+        <p><strong>Session notice:</strong> Your session will expire soon.</p>
+        <button type="button">Extend session</button>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint could identify candidate timeout dialogs and controls, but confirming WCAG conformance requires interaction testing: wait for the warning, activate the extension, and verify that the time limit is actually extended and user data is preserved as required.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 3: Timed quiz or task</h3>
+      <p>
+        Some pages include visible timers for quizzes, applications, or transactions. Whether the timer is allowed depends on the purpose of the time limit and whether one of the WCAG exceptions applies.
+      </p>
+
+      <div class="sample-area timer-box">
+        <p><strong>Practice quiz timer:</strong> 04:59 remaining</p>
+        <button type="button">Pause quiz timer</button>
+        <button type="button">Request more time</button>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint may be able to identify timer-like text or controls as review candidates, but determining whether the time limit is essential, legally required, longer than 20 hours, adjustable, or extendable requires context and human judgment.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 4: Auto-updating content without a page refresh</h3>
+      <p>
+        Content can update on a timer without refreshing or redirecting the page. Depending on the behavior, this may overlap with WCAG 2.2.1 Timing Adjustable, WCAG 2.2.2 Pause, Stop, Hide, or both.
+      </p>
+
+      <div class="sample-area timer-box">
+        <p><strong>Live data:</strong> This example represents content that refreshes in place every 30 seconds.</p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> A separate runtime rule could observe repeated DOM changes or polling behavior. However, the tool would still need to determine whether the updates impose a time limit, whether users can pause or adjust them, and which WCAG success criterion is the best fit.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Keep <code>no-meta-http-equiv-refresh</code> as a confirmed automated rule for meta refresh and meta refresh redirects. It is an appropriate WCAG 2.2.1 rule for that narrow pattern.
+      </p>
+      <p>
+        Future expansion could add separate checks for JavaScript timeouts, session-expiration dialogs, timer widgets, and auto-updating content. Those should be framed carefully because complete 2.2.1 evaluation usually requires runtime observation, interaction testing, and judgment about the purpose of the time limit and the availability of turn-off, adjust, or extend mechanisms.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

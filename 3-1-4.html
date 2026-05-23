@@ -1,0 +1,312 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 3.1.4 Abbreviations Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .definition-list {
+      border: 1px solid #767676;
+      padding: 1rem;
+    }
+
+    .definition-list dt {
+      font-weight: 700;
+      margin-top: 0.75rem;
+    }
+
+    .definition-list dt:first-child {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 3.1.4: Abbreviations</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> A mechanism must be available for identifying the expanded form or meaning of abbreviations.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/abbreviations.html">View the W3C Understanding page for WCAG 3.1.4 Abbreviations</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>What SiteLint can test effectively</h2>
+      <p>
+        SiteLint's <code>title-for-abbr</code> rule appears to test one narrow, automatable part of WCAG 3.1.4: explicitly marked <code>&lt;abbr&gt;</code> elements that are missing a non-empty <code>title</code> attribute. This is useful partial coverage because an <code>abbr</code> element with a meaningful <code>title</code> can provide a mechanism for identifying the abbreviation's expanded form.
+      </p>
+      <p>
+        This rule does not determine whether every abbreviation on the page has been identified, whether the expansion is correct, or whether another valid mechanism is already available nearby, such as an expansion on first use, glossary, footnote, or linked definition.
+      </p>
+    </section>
+
+    <h2>Examples where SiteLint should be effective</h2>
+
+    <h3>Passing examples that should not be reported</h3>
+
+    <section class="example passing-example">
+      <h4>Passing example 1: Abbreviation with a meaningful title</h4>
+      <p>
+        This abbreviation should not be reported because the <code>abbr</code> element has a non-empty <code>title</code> attribute.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          The <abbr title="World Wide Web Consortium">W3C</abbr> publishes web standards and accessibility guidance.
+        </p>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h4>Passing example 2: Multiple abbreviations with meaningful titles</h4>
+      <p>
+        These abbreviations should not be reported because each <code>abbr</code> element provides an expansion through <code>title</code>.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> and <abbr title="Accessible Rich Internet Applications">ARIA</abbr> are frequently referenced in accessibility testing.
+        </p>
+      </div>
+    </section>
+
+    <h3>Failing examples that should be reported</h3>
+
+    <section class="example failing-example">
+      <h4>Failing example 1: Abbreviation missing a title attribute</h4>
+      <p>
+        This should be reported because the <code>abbr</code> element is present but does not provide an expansion through <code>title</code>.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          The <abbr>ADA</abbr> applies to many digital accessibility contexts.
+        </p>
+      </div>
+    </section>
+
+
+    <section class="sitelint-observation">
+      <h3>Current SiteLint coverage expectation</h3>
+      <p>
+        SiteLint reports the <code>abbr</code> element with a missing <code>title</code> attribute. SiteLint does not report the <code>abbr</code> elements that include meaningful <code>title</code> values.
+      </p>
+    </section>
+
+
+    <section class="sitelint-recommendation">
+      <h3>Recommendation for the current rule</h3>
+      <p>
+        <strong>Recommendation:</strong> Treat this rule as partial WCAG 3.1.4 coverage. It is useful because it catches explicitly marked abbreviations that fail to provide an expansion through <code>title</code>. This page intentionally keeps only the missing-title failure so it isolates the 3.1.4 rule and avoids the separate empty-tooltip rule. It should not be presented as complete 3.1.4 coverage because the SC permits other mechanisms and because many abbreviations are not marked up with <code>abbr</code> at all.
+      </p>
+    </section>
+
+    <h2>Examples that are not fully covered by SiteLint's current 3.1.4 rule</h2>
+
+    <p>
+      The following examples are relevant to WCAG 3.1.4, but they are not reliably evaluated by a simple <code>abbr[title]</code> check. Some can be partially detected with heuristics, but full evaluation usually requires understanding the content, surrounding explanation, glossary structure, or whether the abbreviation needs explanation for the intended audience.
+    </p>
+
+    <section class="example manual-example">
+      <h3>Scenario 1: Plain-text abbreviation not marked with <code>abbr</code></h3>
+      <p>
+        This paragraph uses the abbreviation <strong>PDF</strong> as plain text. SiteLint's current rule should not report it because there is no <code>abbr</code> element to inspect.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          Submit the completed PDF by Friday afternoon.
+        </p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint could potentially flag likely all-caps abbreviations as review candidates, but it should not treat every short uppercase word as a confirmed failure. Some abbreviations are common, some are names or acronyms that do not require expansion, and some may already be explained elsewhere.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 2: Expansion provided in surrounding text instead of <code>abbr title</code></h3>
+      <p>
+        WCAG 3.1.4 allows mechanisms other than <code>abbr title</code>. In this example, the abbreviation is expanded in the sentence before it appears again.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          The Americans with Disabilities Act (ADA) protects people with disabilities. The ADA also applies to many public accommodations and government services.
+        </p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should not require <code>abbr title</code> as the only valid mechanism. Detecting whether an abbreviation has already been expanded in nearby prose would require text analysis and still may need human review.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 3: Abbreviation has a title, but the expansion is wrong</h3>
+      <p>
+        This example uses <code>abbr title</code>, so the current rule should not report it. However, the expansion is intentionally incorrect. A simple rule can confirm that a title exists, but not that it is accurate.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          <abbr title="Very Pretty Accessibility Tool">VPAT</abbr> documents are commonly requested during procurement.
+        </p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Confirming the correctness of an abbreviation expansion usually requires subject-matter knowledge or content review. Automation may assist with known abbreviation dictionaries, but it cannot reliably validate all domain-specific abbreviations.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 4: Glossary provides the expansion</h3>
+      <p>
+        This page includes a glossary that defines abbreviations. A glossary can be a valid mechanism, but the current rule only checks individual <code>abbr</code> elements and does not determine whether the glossary covers every abbreviation used in the content.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          The audit references ACRs, VPATs, and WCAG throughout the report.
+        </p>
+
+        <dl class="definition-list">
+          <dt>ACR</dt>
+          <dd>Accessibility Conformance Report.</dd>
+          <dt>VPAT</dt>
+          <dd>Voluntary Product Accessibility Template.</dd>
+          <dt>WCAG</dt>
+          <dd>Web Content Accessibility Guidelines.</dd>
+        </dl>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint could identify glossary-like structures and abbreviation candidates, but confirming that the glossary is complete and clearly connected to the abbreviations requires content-level judgment.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 5: Abbreviation may be common enough not to need explanation</h3>
+      <p>
+        Some abbreviations may be widely understood by the intended audience, while others may not. A tool cannot reliably infer audience knowledge from markup alone.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          The meeting starts at 10 AM and the room opens at 9:45 AM.
+        </p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Avoid treating every abbreviation-like token as a failure. The tool can help identify candidates, but a human reviewer may need to decide whether an expansion is necessary for the page's audience and purpose.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Keep the current <code>title-for-abbr</code> rule as a confirmed automated rule for explicitly marked <code>abbr</code> elements that lack a usable <code>title</code>. Do not present it as complete WCAG 3.1.4 coverage.
+      </p>
+      <p>
+        Future expansion could include candidate detection for unexplained all-caps abbreviations, glossary detection, and dictionary-assisted validation of common expansions. Those should be framed as review aids or manual-verification candidates unless the tool can confidently identify both the abbreviation and the absence of any valid explanatory mechanism.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

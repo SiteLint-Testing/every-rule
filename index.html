@@ -79,7 +79,7 @@
     </p>
 
     <table>
-      <caption>Created (13) and skipped (58) WCAG test pages</caption>
+      <caption>Created (16) and skipped (55) WCAG test pages</caption>
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -293,15 +293,20 @@
             </ul>
           </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>17</td>
           <td>A</td>
-          <th scope="row">1.4.1</th>
+          <th scope="row"><a href="1-4-1.html">1.4.1</a></th>
           <td>Use of Color</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires deciding whether color is the only cue conveying meaning. A tool can detect red text, green status dots, or color changes, but a human must inspect the surrounding content to determine whether there is also text, an icon, a pattern, a label, or another non-color cue that communicates the same information.</li>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. SiteLint's current rule can detect a narrow link-specific pattern where links are visually indistinguishable from surrounding text, but it does not fully evaluate all uses of color.</li>
+              <li>SiteLint correctly reports the failing examples where non-empty links inherit the surrounding paragraph text color and remove text decoration, making them visually difficult to identify as links.</li>
+              <li>SiteLint does not report the passing examples with an underline, a font-style difference, or button-like styling because those links provide non-color visual cues or otherwise differ from the surrounding text in ways the current rule evaluates.</li>
+              <li>SiteLint's current rule does not fully evaluate other 1.4.1 scenarios, including non-underlined links distinguished only by color, error information conveyed only by color, red/green status indicators, chart legends, or selected states shown only through color.</li>
+              <li>Several broader 1.4.1 scenarios require context, visual comparison, interaction testing, or human judgment to determine whether color is the only cue conveying meaning.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat the current rule as useful partial WCAG 1.4.1 coverage for visually indistinguishable links. Consider future heuristics for color-only links, form errors, status indicators, selected states, and chart/data-visualization review candidates, but avoid presenting those as confirmed failures without sufficient context.</p>
           </td>
         </tr>
         <tr class="status-created">
@@ -482,15 +487,20 @@
             </ul>
           </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>34</td>
           <td>A</td>
-          <th scope="row">2.2.1</th>
+          <th scope="row"><a href="2-2-1.html">2.2.1</a></th>
           <td>Timing Adjustable</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires identifying time limits and testing whether the user can turn them off, adjust them, or extend them before expiration. The evaluation depends on workflow timing, warnings, and available controls during runtime.</li>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. SiteLint's current <code>no-meta-http-equiv-refresh</code> rule detects one narrow timing pattern: pages that use <code>meta http-equiv="refresh"</code> to refresh or redirect after a time interval.</li>
+              <li>SiteLint correctly reports the two intentional meta refresh examples in the document <code>head</code>: one page refresh and one timed redirect.</li>
+              <li>The reported <code>meta</code> elements cannot be visually highlighted on the page because they are non-rendered <code>head</code> elements. SiteLint should rely on the DOM path, source snippet, or DevTools location for these findings.</li>
+              <li>SiteLint's current rule does not evaluate JavaScript-based timeouts, session-expiration workflows, timer widgets, or auto-updating content that occurs without a meta refresh.</li>
+              <li>Complete 2.2.1 evaluation usually requires runtime observation, interaction testing, and judgment about whether users can turn off, adjust, or extend the time limit, and whether any WCAG exception applies.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>no-meta-http-equiv-refresh</code> as useful partial WCAG 2.2.1 coverage. Consider normalizing <code>http-equiv</code> values case-insensitively and adding a UI fallback message for non-rendered <code>head</code> elements that cannot be visually highlighted.</p>
           </td>
         </tr>
         <tr class="status-created">
@@ -806,15 +816,20 @@
             </ul>
           </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>67</td>
           <td>AAA</td>
-          <th scope="row">3.1.4</th>
+          <th scope="row"><a href="3-1-4.html">3.1.4</a></th>
           <td>Abbreviations</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires identifying abbreviations and deciding whether their meaning is unclear without an expansion or definition. A tool can find abbreviation-like text, but a human must judge whether the abbreviation is understandable in context.</li>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. SiteLint's current <code>title-for-abbr</code> rule can detect explicitly marked <code>abbr</code> elements that are missing a usable <code>title</code> expansion, but it does not fully evaluate all abbreviation mechanisms.</li>
+              <li>SiteLint correctly reports the failing example where an <code>abbr</code> element is missing a <code>title</code> attribute.</li>
+              <li>SiteLint does not report the passing examples where <code>abbr</code> elements include meaningful <code>title</code> values.</li>
+              <li>The test page intentionally keeps only the missing-title failure so the result isolates the 3.1.4 rule and avoids the separate empty-tooltip rule.</li>
+              <li>SiteLint's current rule does not evaluate plain-text abbreviations that are not marked with <code>abbr</code>, expansions provided in surrounding prose, glossary-based definitions, incorrect <code>title</code> expansions, or whether an abbreviation is common enough for the intended audience.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>title-for-abbr</code> as useful partial WCAG 3.1.4 coverage for explicitly marked abbreviations. Future enhancements could include candidate detection for unexplained all-caps abbreviations, glossary detection, and dictionary-assisted validation, but those should be framed as review aids unless the tool can confidently determine that no valid explanatory mechanism exists.</p>
           </td>
         </tr>
         <tr class="status-skipped">

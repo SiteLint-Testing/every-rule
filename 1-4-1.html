@@ -1,0 +1,418 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 1.4.1 Use of Color Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .normal-link {
+      color: #0645ad;
+      text-decoration: underline;
+    }
+
+    .italic-link {
+      color: inherit;
+      font-style: italic;
+      text-decoration: none;
+    }
+
+    .button-like-link {
+      background-color: #003b7a;
+      color: #ffffff;
+      display: inline-block;
+      font-weight: 700;
+      min-height: 28px;
+      padding: 0.45rem 0.75rem;
+      text-decoration: none;
+    }
+
+
+    .hidden-looking-link {
+      color: inherit;
+      font-style: normal;
+      text-decoration: none;
+    }
+
+    .blue-link-color-only {
+      color: #0645ad;
+      text-decoration: none;
+    }
+
+    .red-only {
+      color: #b00020;
+    }
+
+    .green-only {
+      color: #0a5c24;
+    }
+
+    .status-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .status-list li {
+      margin-block: 0.5rem;
+    }
+
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-block: 0.75rem;
+    }
+
+    .legend-item {
+      align-items: center;
+      display: inline-flex;
+      gap: 0.4rem;
+    }
+
+    .swatch {
+      display: inline-block;
+      height: 1rem;
+      width: 1rem;
+    }
+
+    .swatch-red {
+      background-color: #b00020;
+    }
+
+    .swatch-green {
+      background-color: #137333;
+    }
+
+    .swatch-blue {
+      background-color: #0645ad;
+    }
+
+    .tab-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-block: 0.75rem;
+    }
+
+    .tab-button {
+      background-color: #ffffff;
+      border: 1px solid #767676;
+      color: #000000;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .tab-button.active-color-only {
+      color: #0645ad;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 1.4.1: Use of Color</h1>
+
+    <p>
+      <a href="../index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Color must not be the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html">View the W3C Understanding page for WCAG 1.4.1 Use of Color</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>What SiteLint can test effectively</h2>
+      <p>
+        SiteLint's <code>links-not-visually-evident-without-color-vision</code> rule appears to test one narrow, automatable part of WCAG 1.4.1: text links that are visually indistinguishable from surrounding text. The rule checks non-empty links and compares their computed style against the parent text. It can catch cases where the link has the same color, background, font style, and text decoration as the surrounding text.
+      </p>
+      <p>
+        This is useful partial coverage. It does not prove full WCAG 1.4.1 conformance because the success criterion applies to many other uses of color, including errors, statuses, chart legends, selected states, and instructions.
+      </p>
+    </section>
+
+    <h2>Examples where SiteLint should be effective</h2>
+
+    <h3>Passing examples that should not be reported</h3>
+
+    <section class="example passing-example">
+      <h4>Passing example 1: Standard underlined link</h4>
+      <p>
+        This link should not be reported because it has a clear non-color cue: the underline.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          Read the <a id="standard-link-example" class="normal-link" href="#standard-link-example">standard link example</a> before continuing.
+        </p>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h4>Passing example 2: Link with a non-color font-style difference</h4>
+      <p>
+        This link should not be reported by the current rule because the link has a different font style than the surrounding text, even though it inherits the surrounding text color.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          Read the <a id="italic-link-example" class="italic-link" href="#italic-link-example">italic policy link</a> before continuing.
+        </p>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h4>Passing example 3: Button-like link</h4>
+      <p>
+        This link should not be reported because it has a distinct visual shape, background, and spacing. It does not rely only on color or hidden link semantics.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          <a id="button-like-link-example" class="button-like-link" href="#button-like-link-example">Continue registration</a>
+        </p>
+      </div>
+    </section>
+
+    <h3>Failing examples that should be reported</h3>
+
+    <section class="example failing-example">
+      <h4>Failing example 1: Link styled exactly like surrounding paragraph text</h4>
+      <p>
+        The link in this paragraph uses the same color, background, font style, and text decoration as the surrounding text. SiteLint should report this because a sighted user may not be able to identify the actionable text.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          To complete this task, review the <a class="hidden-looking-link" href="https://example.com/submission-requirements">submission requirements</a> before the deadline.
+        </p>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h4>Failing example 2: Multiple hidden-looking links in surrounding text</h4>
+      <p>
+        These links are also styled to match surrounding text. SiteLint should report each link that is visually indistinguishable from the parent text.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          Review the <a class="hidden-looking-link" href="https://example.com/agenda">agenda</a>, then open the <a class="hidden-looking-link" href="https://example.com/speaker-list">speaker list</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class="sitelint-observation">
+      <h3>Current SiteLint coverage expectation</h3>
+      <p>
+        SiteLint should report the hidden-looking links because they are non-empty anchors inside ordinary paragraph text with inherited color and no text decoration. These examples use regular URL destinations rather than self-referencing fragment links so they are closer to ordinary link usage. SiteLint should not report the underlined link, the italic link, or the button-like link because those examples provide non-color visual cues or otherwise differ from the parent text in ways the current rule evaluates.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h3>Recommendation for the current rule</h3>
+      <p>
+        <strong>Recommendation:</strong> Treat this rule as partial WCAG 1.4.1 coverage. The current rule is useful because it catches links that are effectively invisible as links. The rule name and reporting text should make clear that it is checking one link-specific pattern, not all possible uses of color.
+      </p>
+    </section>
+
+    <h2>Examples that are not fully covered by SiteLint's current 1.4.1 rule</h2>
+
+    <p>
+      The following examples are relevant to WCAG 1.4.1, but they are not reliably evaluated by SiteLint's current link-style comparison rule. Some patterns could be partially detected with specialized heuristics, but full conformance usually requires understanding the visual meaning, the instructions, or the relationship between color and content.
+    </p>
+
+    <section class="example manual-example">
+      <h3>Scenario 1: Link distinguished only by color</h3>
+      <p>
+        This link is blue and not underlined. It is visually different from the surrounding text only by color. The current SiteLint rule may not report this because the link color differs from the parent text color, even though color is the only cue.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          Read the <a id="color-only-link" class="blue-link-color-only" href="#color-only-link">conference policies</a> before registering.
+        </p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint could potentially expand link-specific 1.4.1 coverage by detecting non-underlined links whose only visual distinction from surrounding text is color. A stronger rule would also need to consider contrast between the link and surrounding text, hover/focus styling, and other non-color cues.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 2: Error information conveyed only by color</h3>
+      <p>
+        In this example, the instruction says red fields need attention, but the field itself has no icon, text, or programmatic error message. A human can infer that color is carrying meaning. A generic DOM scan cannot reliably know whether the color is meaningful or decorative without understanding the surrounding instructions and form state.
+      </p>
+
+      <div class="sample-area">
+        <p>Fields shown in <span class="red-only">red</span> need attention.</p>
+        <label class="red-only" for="example-name">Name</label>
+        <input id="example-name" name="example-name" autocomplete="name" type="text">
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint could detect some risky patterns, such as red text near a form field without an error message, but it should not treat that alone as a confirmed 1.4.1 failure. Determining whether color is the only cue requires context about the instruction, the form state, and any visible or programmatic alternatives.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 3: Status conveyed only by red and green text</h3>
+      <p>
+        These statuses use color to distinguish success from failure. The words themselves are generic, so color is doing most of the semantic work. A tool can detect red and green text, but it cannot reliably determine whether the color is essential to understanding the status without evaluating the surrounding content.
+      </p>
+
+      <div class="sample-area">
+        <ul class="status-list">
+          <li><span class="green-only">Available</span> — Morning session</li>
+          <li><span class="red-only">Unavailable</span> — Afternoon session</li>
+        </ul>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint could flag common color-only status patterns as possible review items, especially red/green status indicators. However, confirming a WCAG 1.4.1 failure requires knowing whether another cue, label, icon, or text explanation also conveys the meaning.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 4: Chart legend distinguished only by color</h3>
+      <p>
+        Chart, map, and data-visualization examples are difficult to evaluate reliably with simple automation. The tool would need to understand that the colored swatches correspond to visual chart areas and that color is the only differentiator.
+      </p>
+
+      <div class="sample-area">
+        <p>Registration by track:</p>
+        <div class="chart-legend" aria-label="Color-only chart legend example">
+          <span class="legend-item"><span class="swatch swatch-red"></span> Track A</span>
+          <span class="legend-item"><span class="swatch swatch-green"></span> Track B</span>
+          <span class="legend-item"><span class="swatch swatch-blue"></span> Track C</span>
+        </div>
+        <p class="duplicate-id-note">The visible chart is omitted. This example represents a common pattern where chart regions are distinguished only by color.</p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> This is not a good candidate for a simple static rule. SiteLint could identify charts, canvases, SVGs, and legends as candidates for review, but confirming whether color is the only meaningful distinction usually requires human judgment or specialized image/data-visualization analysis.
+      </p>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Scenario 5: Selected state shown only by color</h3>
+      <p>
+        The selected tab below is indicated only by blue text. There is no underline, border, icon, text label, or other non-color cue. This can be a 1.4.1 problem, but a generic automated rule would need to infer that the visual state is meaningful and that color is the only visible cue.
+      </p>
+
+      <div class="sample-area">
+        <div class="tab-row" role="tablist" aria-label="Example tabs">
+          <button class="tab-button active-color-only" type="button" role="tab" aria-selected="true">Overview</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false">Schedule</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false">Speakers</button>
+        </div>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint could detect some stateful components where the active state has only a color difference, but reliable detection requires comparing visual states and understanding component semantics. This is possible for some standard patterns, but it is not a simple page-wide static check.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Keep the current link-style rule as a confirmed automated rule for one narrow 1.4.1 pattern: links that are visually indistinguishable from surrounding text. Do not present it as complete 1.4.1 coverage.
+      </p>
+      <p>
+        Future expansion could add specialized heuristics for non-underlined color-only links, color-only form errors, status indicators, selected states, and chart/data-visualization review candidates. Those should be framed carefully because most require context, visual comparison, interaction testing, or human judgment before they can be treated as confirmed WCAG failures.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
