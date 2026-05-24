@@ -1,0 +1,370 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 2.5.5 Target Size Enhanced Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 60rem;
+      padding: 1rem;
+    }
+
+    .target-row {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-block: 0.75rem;
+    }
+
+    .large-target {
+      align-items: center;
+      border: 1px solid #333333;
+      display: inline-flex;
+      justify-content: center;
+      min-height: 44px;
+      min-width: 44px;
+      padding: 0.25rem 0.75rem;
+      text-decoration: none;
+    }
+
+    .small-target {
+      align-items: center;
+      border: 1px solid #333333;
+      display: inline-flex;
+      font-size: 0.875rem;
+      height: 24px;
+      justify-content: center;
+      line-height: 1;
+      min-width: 24px;
+      overflow: hidden;
+      padding: 0;
+      text-decoration: none;
+      width: 24px;
+    }
+
+    .small-text-link {
+      display: inline;
+      font-size: 1rem;
+      line-height: 1.5;
+      padding: 0;
+    }
+
+    .dense-toolbar {
+      align-items: center;
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    .inline-links a {
+      margin-inline: 0.15rem;
+    }
+
+    .map-area {
+      background-color: #eef3f8;
+      border: 1px solid #767676;
+      height: 16rem;
+      position: relative;
+      width: min(100%, 32rem);
+    }
+
+    .map-pin {
+      align-items: center;
+      border: 1px solid #333333;
+      border-radius: 50%;
+      display: inline-flex;
+      height: 24px;
+      justify-content: center;
+      padding: 0;
+      position: absolute;
+      width: 24px;
+    }
+
+    .pin-one {
+      left: 4rem;
+      top: 4rem;
+    }
+
+    .pin-two {
+      left: 7rem;
+      top: 7rem;
+    }
+
+    .pin-three {
+      left: 14rem;
+      top: 5rem;
+    }
+
+    .equivalent-large-target {
+      align-items: center;
+      border: 1px solid #333333;
+      display: inline-flex;
+      min-height: 44px;
+      min-width: 44px;
+      padding: 0.25rem 0.75rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .highlight {
+      background-color: #fff59d;
+      padding-inline: 0.15rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 2.5.5: Target Size (Enhanced)</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Pointer targets should be at least 44 by 44 CSS pixels unless an exception applies. This is the older WCAG 2.1 / 2.2 AAA target-size success criterion and is stricter than WCAG 2.5.8 Target Size (Minimum).
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html">View the W3C Understanding page for WCAG 2.5.5 Target Size (Enhanced)</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>What this page is intended to test</h2>
+      <p>
+        This page tests whether SiteLint identifies pointer targets smaller than 44 by 44 CSS pixels and whether it distinguishes true failures from WCAG 2.5.5 exceptions. Exceptions include inline text links, equivalent controls, user-agent-controlled targets, and targets where the small size is essential.
+      </p>
+      <p>
+        The current SiteLint <code>target-size-enhanced</code> rule is not actually testing rendered target size. It is triggered by the presence of matching interactive elements, counts those elements, reports on <code>document.body</code>, and asks for manual review. It does not measure rendered target dimensions or determine whether any target passes or fails the 44 by 44 CSS pixel requirement.
+      </p>
+      <p>
+        Automated target-size testing can measure rendered dimensions, but it generally cannot fully determine whether an exception applies. For that reason, some findings should be treated as review candidates rather than confirmed failures.
+      </p>
+      <p>
+        This page therefore demonstrates two separate concerns: the sample controls include targets that are intentionally smaller than 44 by 44 CSS pixels, but the current SiteLint rule does not identify those specific targets. The SiteLint finding only indicates that interactive elements exist on the page and that a human should review target size.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Link target is at least 44 by 44 CSS pixels</h3>
+      <p>
+        This link has a visible and clickable target area that meets the enhanced target-size requirement.
+      </p>
+
+      <div class="sample-area target-row">
+        <a class="large-target" href="https://example.com/register">Register</a>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Button target is at least 44 by 44 CSS pixels</h3>
+      <p>
+        This button has a minimum target size of 44 by 44 CSS pixels.
+      </p>
+
+      <div class="sample-area target-row">
+        <button class="large-target" type="button">Save</button>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Inline text links qualify for the inline exception</h3>
+      <p>
+        Inline links inside a sentence are an exception under WCAG 2.5.5, even when their clickable boxes are smaller than 44 by 44 CSS pixels.
+      </p>
+
+      <div class="sample-area inline-links">
+        <p>
+          Read the <a class="small-text-link" href="https://example.com/policy">policy</a>, <a class="small-text-link" href="https://example.com/terms">terms</a>, and <a class="small-text-link" href="https://example.com/privacy">privacy notice</a> before registering.
+        </p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> If <code>target-size-enhanced</code> is improved to evaluate individual target dimensions, it should account for the inline-text exception before reporting inline links as WCAG 2.5.5 failures. The current rule does not detect or evaluate these inline links individually.
+      </p>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 4: Small target has an equivalent larger target</h3>
+      <p>
+        The small icon button has an equivalent larger button immediately next to it. WCAG 2.5.5 allows smaller targets when an equivalent target on the same page meets the size requirement.
+      </p>
+
+      <div class="sample-area target-row">
+        <button class="small-target" type="button" aria-label="Download report">↓</button>
+        <button class="equivalent-large-target" type="button">Download report</button>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> If <code>target-size-enhanced</code> is improved to evaluate individual targets, it should account for equivalent larger controls before reporting small controls as confirmed WCAG 2.5.5 failures. The current rule does not detect this small icon button specifically or determine whether the equivalent-target exception applies.
+      </p>
+    </section>
+
+    <h2>Failing or risky examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Small standalone link target</h3>
+      <p>
+        This standalone link is smaller than 44 by 44 CSS pixels and does not appear to qualify for an exception.
+      </p>
+
+      <div class="sample-area target-row">
+        <a class="small-target" href="https://example.com/settings">S</a>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Small standalone button target</h3>
+      <p>
+        This standalone button is smaller than 44 by 44 CSS pixels and does not have an equivalent larger control.
+      </p>
+
+      <div class="sample-area target-row">
+        <button class="small-target" type="button">C</button>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Dense toolbar has several small controls</h3>
+      <p>
+        Each toolbar button is smaller than 44 by 44 CSS pixels. Dense controls like this are difficult for users with motor impairments, tremors, or touch input limitations.</p>
+
+      <div class="sample-area dense-toolbar">
+        <button class="small-target" type="button" aria-label="Bold">B</button>
+        <button class="small-target" type="button" aria-label="Italic">I</button>
+        <button class="small-target" type="button" aria-label="Underline">U</button>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 4: Small map pins may be essential but still need review</h3>
+      <p>
+        Map pins may qualify for the essential exception in some contexts, but they are still useful to test because automated tools may report them as undersized targets. This should generally be a review candidate, not a confirmed automated failure.
+      </p>
+
+      <div class="sample-area">
+        <div class="map-area" aria-label="Venue map with selectable locations">
+          <button class="map-pin pin-one" type="button">1</button>
+          <button class="map-pin pin-two" type="button">2</button>
+          <button class="map-pin pin-three" type="button">3</button>
+        </div>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> If <code>target-size-enhanced</code> is improved to evaluate individual targets, it should identify undersized map pins as review candidates and avoid treating them as confirmed failures unless it can determine that the essential exception does not apply. The current rule does not detect these map pins specifically.
+      </p>
+    </section>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint result</h2>
+      <p>
+        Initial testing reported unrelated WCAG 2.5.3 accessible-name mismatch findings for the numbered map pins because their visible labels were <code>1</code>, <code>2</code>, and <code>3</code>, while their accessible names were longer location names. Those accessible names have been removed so the visible label and accessible name match and the page can focus on target-size behavior.
+      </p>
+      <p>
+        The <code>target-size-enhanced</code> rule appears only when manual-verification findings are included. It is triggered by the presence of matching interactive elements, not by a detected target-size failure. The rule does not identify the undersized targets directly. It reports a page-level manual check against <code>document.body</code> with a count of matching interactive elements.
+      </p>
+      <p>
+        In practice, this means the rule does not currently provide automated WCAG 2.5.5 pass/fail coverage. It does not report which controls are 24 by 24 CSS pixels, which controls meet the 44 by 44 CSS pixel threshold, or whether any WCAG 2.5.5 exceptions apply.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Improve <code>target-size-enhanced</code> so it performs actual rendered target-size evaluation. It should measure each matching interactive target's rendered width and height, identify which targets are smaller than 44 by 44 CSS pixels, and report the specific element, selector or XPath, measured dimensions, and highlight option when possible.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Avoid presenting the current implementation as automated WCAG 2.5.5 coverage. The current rule is a broad page-level manual prompt. It should be labeled accordingly unless the rule is enhanced to evaluate individual target dimensions and identify specific undersized controls.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Clearly distinguish WCAG 2.5.5 Target Size (Enhanced), which uses a 44 by 44 CSS pixel threshold, from WCAG 2.5.8 Target Size (Minimum), which uses a smaller minimum target-size model with spacing allowances.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> After <code>target-size-enhanced</code> is improved to evaluate individual rendered targets, account for WCAG 2.5.5 exceptions before presenting a finding as a confirmed failure. Inline text links, equivalent larger targets, user-agent-controlled targets, and essential small targets should be treated carefully. Where SiteLint cannot determine whether an exception applies, it should identify the specific target and frame the finding as a targeted review candidate rather than a generic page-level manual prompt.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

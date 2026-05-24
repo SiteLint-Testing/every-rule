@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 2.4.10 No Native Headings Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    .page-title {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-block: 0 1rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-block: 2rem 0.75rem;
+    }
+
+    .subsection-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-block: 1.5rem 0.5rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid #f4b6b6;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 60rem;
+      padding: 1rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="page-title">WCAG 2.4.10: Section Headings</div>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Purpose of this test:</strong> This page intentionally avoids all native heading elements so it can trigger SiteLint's <code>no_headings</code> rule. The usual test-page template is not used here because the template includes headings, and even one native heading prevents this rule from firing.
+    </p>
+
+    <div class="sitelint-observation">
+      <div class="section-title">What this page is doing</div>
+      <p>
+        The <code>no_headings</code> rule selects only native heading elements: <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code>, and <code>h6</code>. If the page contains any of those elements, the rule returns without reporting. To trigger the rule, this page uses visually styled <code>div</code> elements for its title and section labels instead of semantic heading elements.
+      </p>
+      <p>
+        This is a deliberate test-page exception. It is not a recommended authoring pattern. The visual labels are present only so the page remains readable while still containing zero native heading elements.
+      </p>
+    </div>
+
+    <div class="example">
+      <div class="section-title">Failing example 1: Page has no native heading elements</div>
+      <p>
+        This page contains visually prominent section labels, but none of them use <code>h1</code> through <code>h6</code>. That should trigger SiteLint's <code>no_headings</code> rule because the rule only checks whether native heading elements exist anywhere in the document.
+      </p>
+
+      <div class="sample-area">
+        <div class="subsection-title">Registration information</div>
+        <p>Registration opens in September. Early registration closes on October 15.</p>
+
+        <div class="subsection-title">Hotel booking information</div>
+        <p>Discounted hotel rooms are available until the room block sells out or the booking deadline passes.</p>
+
+        <div class="subsection-title">Accessibility accommodations</div>
+        <p>Attendees can request captioning, ASL interpretation, accessible seating, or other accommodations during registration.</p>
+      </div>
+    </div>
+
+    <div class="sitelint-observation">
+      <div class="section-title">Expected SiteLint behavior</div>
+      <p>
+        SiteLint should report the <code>no_headings</code> rule because this document contains no native heading elements. The finding is expected to be page-level because the rule reports with <code>node: null</code>; there is no specific heading element to highlight.
+      </p>
+      <p>
+        If SiteLint reports this under WCAG 2.4.10, that confirms the rule can be triggered only by removing all native headings from the page. If SiteLint reports no issue, then the rule may not be enabled in the current auditor profile or may not be mapped to the active WCAG filter selection.
+      </p>
+    </div>
+
+    <div class="sitelint-recommendation">
+      <div class="section-title">Recommended SiteLint treatment</div>
+      <p>
+        <strong>Recommendation:</strong> Treat <code>no_headings</code> as a review candidate, not a confirmed WCAG 2.4.10 failure. A page with no native headings may indicate poor section organization, but WCAG 2.4.10 requires judgment about whether the page has sections that need headings and whether those headings organize the content effectively.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Do not treat <code>no_headings</code> alone as complete WCAG 2.4.10 coverage. The rule only detects the absence of native heading elements. It does not evaluate whether section headings are needed, whether existing headings are useful, whether visual section labels should be semantic headings, whether heading text is descriptive, or whether the content is organized effectively.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> If SiteLint intends to claim broader WCAG 2.4.10 coverage, it should add explicit review candidates for long pages without meaningful section headings, visually styled headings that are not semantic, repeated generic section headings, and content groups that appear to need headings but lack them.
+      </p>
+    </div>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

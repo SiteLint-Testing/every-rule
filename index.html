@@ -106,7 +106,7 @@
     </p>
 
     <table>
-      <caption>Created (23) and skipped (54) WCAG test pages</caption>
+      <caption>Created (26) and skipped (54) WCAG test pages</caption>
       <thead>
         <tr>
           <th scope="col" aria-sort="ascending"><button type="button" data-sort-column="0" aria-label="Sort by row number">#</button></th>
@@ -758,19 +758,36 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr class="status-created">
           <td>51</td>
           <td>AAA</td>
           <th scope="row"><a href="2-4-9.html">2.4.9</a></th>
           <td>Link Purpose (Link Only)</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li>SiteLint caught failing examples 1, 2, 3, and 4 as WCAG 2.4.9 link-purpose issues.</li>
+              <li>SiteLint did not report failing example 5, where the link text is a bare URL with an ambiguous path: <code>https://example.com/x/93821</code>.</li>
+              <li>The missed bare-URL example may be intentional if SiteLint treats visible URL text as sufficiently descriptive by default, but the example demonstrates a link-purpose risk because the URL path does not identify the destination or purpose in human-readable terms.</li>
+              <li>WCAG 2.4.9 is stricter than WCAG 2.4.4: link purpose generally needs to be clear from the link text alone, not only from surrounding or programmatically determinable context.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat generic link text such as <code>click here</code>, <code>learn more</code>, <code>read more</code>, and <code>details</code> as strong WCAG 2.4.9 review candidates. Also consider bare URL text with ambiguous paths as a review candidate when the URL does not communicate a human-readable purpose. When repeated generic links are reported, include each affected link, destination URL, selector or XPath, and a highlight option when possible.</p>
+          </td>
         </tr>
-        <tr>
+        <tr class="status-created">
           <td>52</td>
           <td>AAA</td>
           <th scope="row"><a href="2-4-10.html">2.4.10</a></th>
           <td>Section Headings</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> The 2.4.10 test page intentionally violates the standard test-page template by using visually styled <code>div</code> elements instead of native headings. This is necessary because the <code>no_headings</code> rule only fires when the document contains zero <code>h1</code> through <code>h6</code> elements.</li>
+              <li>SiteLint's <code>no_headings</code> rule checks only whether native heading elements exist anywhere on the page. If at least one native heading is present, the rule returns without reporting.</li>
+              <li>The test page keeps the SiteLint auditor snippet so it is still tracked in the platform, but avoids native headings everywhere else so the rule can be triggered.</li>
+              <li><code>no_headings</code> should be treated as a review candidate, not a confirmed WCAG 2.4.10 failure. A page with no native headings may indicate poor section organization, but WCAG 2.4.10 still requires judgment about whether the page has sections that need headings and whether those headings organize the content effectively.</li>
+              <li><code>no_headings</code> alone is not complete WCAG 2.4.10 coverage. It does not evaluate whether section headings are needed, whether existing headings are useful, whether visual section labels should be semantic headings, whether heading text is descriptive, or whether the content is organized effectively.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> If SiteLint intends to claim broader WCAG 2.4.10 coverage, add explicit review candidates for long pages without meaningful section headings, visually styled headings that are not semantic, repeated generic section headings, and content groups that appear to need headings but lack them. Keep these findings clearly framed as review candidates unless SiteLint can determine a specific confirmed failure.</p>
+          </td>
         </tr>
         <tr class="status-skipped">
           <td>53</td>
@@ -854,12 +871,21 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr class="status-created">
           <td>60</td>
           <td>AAA</td>
           <th scope="row"><a href="2-5-5.html">2.5.5</a></th>
           <td>Target Size (Enhanced)</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> SiteLint's current <code>target-size-enhanced</code> rule is not actually testing rendered target size. It is triggered by the presence of matching interactive elements.</li>
+              <li>The rule appears only when manual-verification findings are included. It selects interactive elements, counts them, reports on <code>document.body</code>, and asks for manual review.</li>
+              <li>The rule does not measure rendered width or height, does not determine whether targets meet the 44 by 44 CSS pixel threshold, and does not identify which targets are undersized.</li>
+              <li>The rule does not evaluate WCAG 2.5.5 exceptions, including inline text links, equivalent larger targets, user-agent-controlled targets, or essential small targets.</li>
+              <li>Initial testing also produced unrelated WCAG 2.5.3 accessible-name mismatch findings when visible map-pin labels differed from their accessible names; those labels were adjusted so the page can focus on target-size behavior.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Do not present the current implementation as automated WCAG 2.5.5 coverage. Improve <code>target-size-enhanced</code> to measure each matching target's rendered dimensions, identify targets smaller than 44 by 44 CSS pixels, report the specific element, selector or XPath, measured dimensions, and highlight option when possible. Where exceptions may apply, report a targeted review candidate rather than a generic page-level manual prompt.</p>
+          </td>
         </tr>
         <tr class="status-skipped">
           <td>61</td>
