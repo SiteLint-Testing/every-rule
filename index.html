@@ -190,7 +190,7 @@
           <td>Audio Description (Prerecorded)</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> This success criterion is difficult to evaluate through automation because the need for audio description depends on whether important visual information is already conveyed in the existing audio track.</li>
+              <li><strong>Caution:</strong> This success criterion is <span class="highlight">only partly testable through automation</span> because the need for audio description depends on whether important visual information is already conveyed in the existing audio track.</li>
               <li>SiteLint <span class="highlight">incorrectly flags a passing example</span> where important visual information is already conveyed in the main audio track, a valid 1.2.5 scenario.</li>
               <li>SiteLint flags the genuine failing scenario, but again <span class="highlight">reports it under WCAG 1.2.1 rather than 1.2.5</span>.</li>
             </ul>
@@ -408,7 +408,7 @@
               <li>SiteLint correctly reports the core enhanced-contrast failures that distinguish WCAG 1.4.6 from WCAG 1.4.3, including normal text, large text, button text, and link text examples that pass AA but fail AAA.</li>
               <li>SiteLint <span class="highlight">incorrectly reports the decorative low-contrast divider</span> characters as a confirmed 1.4.6 issue, even though those characters are marked <code>aria-hidden="true"</code> and are not needed to understand the content.</li>
               <li>SiteLint <span class="highlight">did not report the low-contrast placeholder text example</span>, even though placeholder text can communicate instructions or examples and should meet the applicable enhanced contrast threshold when it conveys information.</li>
-              <li>SiteLint did not report the gradient background, opacity/compositing, or visible SVG <code>&lt;text&gt;</code> examples. These should be treated as rendered-analysis, rule-refinement, or rule-expansion areas.</li>
+              <li>SiteLint <span class="highlight">did not report the gradient background</span>, opacity/compositing, or visible SVG <code>&lt;text&gt;</code> examples. These should be treated as rendered-analysis, rule-refinement, or rule-expansion areas.</li>
               <li>The 1.4.6 limitations largely mirror the confirmed 1.4.3 limitations, but the 1.4.6 page now confirms those behaviors under the enhanced-contrast rule as well.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep 1.4.6 as a separate enhanced-contrast rule using the stricter 7:1 threshold for normal text and 4.5:1 threshold for large-scale text. Prioritize decorative <code>aria-hidden</code> false positives, placeholder text contrast, rendered-background analysis, opacity/compositing, and SVG <code>&lt;text&gt;</code> contrast as rule-refinement or expansion areas.</p>
