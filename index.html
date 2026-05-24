@@ -106,7 +106,7 @@
     </p>
 
     <table>
-      <caption>Created (26) and skipped (54) WCAG test pages</caption>
+      <caption>Created (27) and skipped (54) WCAG test pages</caption>
       <thead>
         <tr>
           <th scope="col" aria-sort="ascending"><button type="button" data-sort-column="0" aria-label="Sort by row number">#</button></th>
@@ -909,13 +909,22 @@
             </ul>
           </td>
         </tr>
-        <tr>
-          <td>63</td>
-          <td>AA</td>
-          <th scope="row"><a href="2-5-8.html">2.5.8</a></th>
-          <td>Target Size (Minimum)</td>
-          <td></td>
-        </tr>
+<tr class="status-created">
+  <td>63</td>
+  <td>AA</td>
+  <th scope="row"><a href="2-5-8.html">2.5.8</a></th>
+  <td>Target Size (Minimum)</td>
+  <td>
+    <ul class="issues-list">
+      <li>SiteLint reported nine WCAG 2.5.8 findings: “Interactive elements must have an area of at least 24 by 24 pixels.”</li>
+      <li>SiteLint identifies specific undersized controls, reports measured dimensions, provides element paths, and offers highlighting. This is effective element-level target-size detection, not a generic manual-verification prompt.</li>
+      <li>SiteLint correctly reported the intentionally undersized standalone link, standalone button, crowded adjacent buttons, and spaced undersized buttons.</li>
+      <li>The reported dimensions were 18 by 18 CSS pixels for most button examples and 20 by 20 CSS pixels for the small standalone link.</li>
+      <li>SiteLint also reported the small <code>D</code> button in passing example 4, even though the page provides an equivalent larger “Download report” button next to it. This suggests the rule measures undersized targets but does not fully evaluate the WCAG 2.5.8 equivalent-target exception.</li>
+    </ul>
+    <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Preserve the current element-level reporting behavior for <code>target-size-minimum</code>. Improve the rule by adding exception handling for equivalent larger targets and evaluating nearby spacing where possible. Where SiteLint cannot determine whether an exception applies, report the specific target as a review candidate rather than a confirmed failure.</p>
+  </td>
+</tr>
         <tr>
           <td>64</td>
           <td>A</td>

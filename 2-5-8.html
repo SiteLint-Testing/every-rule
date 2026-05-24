@@ -1,0 +1,351 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 2.5.8 Target Size Minimum Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 60rem;
+      padding: 1rem;
+    }
+
+    .target-row {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-block: 0.75rem;
+    }
+
+    .large-target {
+      align-items: center;
+      border: 1px solid #333333;
+      display: inline-flex;
+      justify-content: center;
+      min-height: 24px;
+      min-width: 24px;
+      padding: 0.25rem 0.75rem;
+      text-decoration: none;
+    }
+
+    .minimum-target {
+      align-items: center;
+      border: 1px solid #333333;
+      display: inline-flex;
+      height: 24px;
+      justify-content: center;
+      line-height: 1;
+      min-width: 24px;
+      padding: 0;
+      text-decoration: none;
+      width: 24px;
+    }
+
+    .undersized-target {
+      align-items: center;
+      border: 1px solid #333333;
+      display: inline-flex;
+      font-size: 0.75rem;
+      height: 18px;
+      justify-content: center;
+      line-height: 1;
+      min-width: 18px;
+      overflow: hidden;
+      padding: 0;
+      text-decoration: none;
+      width: 18px;
+    }
+
+    .crowded-row {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin-block: 0.75rem;
+    }
+
+    .spaced-row {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-block: 0.75rem;
+    }
+
+    .inline-links a {
+      margin-inline: 0.15rem;
+    }
+
+    .small-inline-link {
+      display: inline;
+      line-height: 1.5;
+      padding: 0;
+    }
+
+    .equivalent-large-target {
+      align-items: center;
+      border: 1px solid #333333;
+      display: inline-flex;
+      min-height: 24px;
+      min-width: 24px;
+      padding: 0.25rem 0.75rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .highlight {
+      background-color: #fff59d;
+      padding-inline: 0.15rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 2.5.8: Target Size (Minimum)</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Pointer targets should be at least 24 by 24 CSS pixels, or have enough spacing so a 24 CSS pixel diameter circle centered on the target does not intersect another target or the circle for another undersized target. Exceptions may apply.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html">View the W3C Understanding page for WCAG 2.5.8 Target Size (Minimum)</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>What this page is intended to test</h2>
+      <p>
+        This page tests whether SiteLint evaluates WCAG 2.5.8 Target Size (Minimum), which is different from WCAG 2.5.5 Target Size (Enhanced). WCAG 2.5.8 uses a 24 by 24 CSS pixel minimum target-size model and allows spacing-based alternatives and exceptions.
+      </p>
+      <p>
+        A useful automated or semi-automated rule should identify the specific undersized target, measure its rendered dimensions, evaluate nearby target spacing where possible, and account for exceptions such as inline text links, equivalent controls, user-agent-controlled targets, and essential small targets.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Link target is at least 24 by 24 CSS pixels</h3>
+      <p>
+        This link meets the minimum target-size threshold.
+      </p>
+
+      <div class="sample-area target-row">
+        <a class="minimum-target" href="https://example.com/settings">S</a>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Button target is at least 24 by 24 CSS pixels</h3>
+      <p>
+        This button meets the minimum target-size threshold.
+      </p>
+
+      <div class="sample-area target-row">
+        <button class="minimum-target" type="button">C</button>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Small inline text links may qualify for the inline exception</h3>
+      <p>
+        Inline links inside continuous text are an exception under WCAG 2.5.8 and should not automatically be treated as failures.
+      </p>
+
+      <div class="sample-area inline-links">
+        <p>
+          Review the <a class="small-inline-link" href="https://example.com/policy">policy</a>, <a class="small-inline-link" href="https://example.com/terms">terms</a>, and <a class="small-inline-link" href="https://example.com/privacy">privacy notice</a> before registering.
+        </p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> If SiteLint evaluates individual target dimensions for WCAG 2.5.8, it should account for the inline-text exception before reporting inline links as confirmed failures.
+      </p>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 4: Small target has an equivalent larger target</h3>
+      <p>
+        The small target has an equivalent larger target immediately next to it. The equivalent-target exception may apply.
+      </p>
+
+      <div class="sample-area target-row">
+        <button class="undersized-target" type="button">D</button>
+        <button class="equivalent-large-target" type="button">Download report</button>
+      </div>
+
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> SiteLint reports the small <code>D</code> button as a WCAG 2.5.8 finding even though an equivalent larger “Download report” button is provided next to it.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should check whether an equivalent larger target exists before treating an undersized target as a confirmed failure. If equivalent-target detection is not reliable, this type of finding should be framed as a review candidate.
+      </p>
+    </section>
+
+    <h2>Failing or risky examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Small standalone link target</h3>
+      <p>
+        This standalone link is smaller than 24 by 24 CSS pixels and does not appear to qualify for an exception.
+      </p>
+
+      <div class="sample-area target-row">
+        <a class="undersized-target" href="https://example.com/account">A</a>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Small standalone button target</h3>
+      <p>
+        This standalone button is smaller than 24 by 24 CSS pixels and does not appear to qualify for an exception.
+      </p>
+
+      <div class="sample-area target-row">
+        <button class="undersized-target" type="button">X</button>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Adjacent undersized targets are crowded together</h3>
+      <p>
+        These controls are smaller than 24 by 24 CSS pixels and are adjacent with no spacing. They should be easier to flag than isolated undersized targets because nearby targets increase activation risk.
+      </p>
+
+      <div class="sample-area crowded-row">
+        <button class="undersized-target" type="button">1</button>
+        <button class="undersized-target" type="button">2</button>
+        <button class="undersized-target" type="button">3</button>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 4: Undersized targets have spacing but may still need review</h3>
+      <p>
+        These controls are smaller than 24 by 24 CSS pixels but have spacing around them. A correct WCAG 2.5.8 implementation needs to evaluate whether the spacing allowance is sufficient.
+      </p>
+
+      <div class="sample-area spaced-row">
+        <button class="undersized-target" type="button">4</button>
+        <button class="undersized-target" type="button">5</button>
+        <button class="undersized-target" type="button">6</button>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should measure both target dimensions and nearby spacing before reporting this scenario as a confirmed failure. If spacing cannot be reliably evaluated, report the specific controls as review candidates.
+      </p>
+    </section>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint result</h2>
+      <p>
+        SiteLint reported nine WCAG 2.5.8 findings: “Interactive elements must have an area of at least 24 by 24 pixels.” The findings identify specific undersized controls and provide element paths. This indicates that SiteLint is performing element-level target-size detection for WCAG 2.5.8, not merely showing a generic manual-verification prompt.
+      </p>
+      <p>
+        SiteLint correctly reported the intentionally undersized standalone link, standalone button, crowded adjacent buttons, and spaced undersized buttons. The reported dimensions were 18 by 18 CSS pixels for most button examples and 20 by 20 CSS pixels for the small standalone link.
+      </p>
+      <p>
+        SiteLint also reported the small button in passing example 4, even though that example includes an equivalent larger “Download report” button next to it. This suggests the rule measures undersized targets but does not fully evaluate the WCAG 2.5.8 equivalent-target exception.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Distinguish WCAG 2.5.8 Target Size (Minimum) from WCAG 2.5.5 Target Size (Enhanced). WCAG 2.5.8 uses a 24 by 24 CSS pixel model with spacing allowances, while WCAG 2.5.5 uses a stricter 44 by 44 CSS pixel threshold.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Preserve the current element-level reporting behavior. SiteLint successfully identifies specific undersized targets, reports measured dimensions, provides element paths, and offers highlighting. Improve the rule by adding exception handling for equivalent larger targets and by evaluating nearby spacing where possible.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Account for WCAG 2.5.8 exceptions before presenting a finding as a confirmed failure. Inline text links, equivalent larger targets, user-agent-controlled targets, and essential small targets should be treated carefully. Current testing shows that equivalent larger targets are not fully evaluated. Where SiteLint cannot determine whether an exception applies, report the specific target as a review candidate rather than a confirmed failure.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

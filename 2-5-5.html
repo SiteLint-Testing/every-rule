@@ -186,13 +186,13 @@
         This page tests whether SiteLint identifies pointer targets smaller than 44 by 44 CSS pixels and whether it distinguishes true failures from WCAG 2.5.5 exceptions. Exceptions include inline text links, equivalent controls, user-agent-controlled targets, and targets where the small size is essential.
       </p>
       <p>
-        The current SiteLint <code>target-size-enhanced</code> rule is not actually testing rendered target size. It is triggered by the presence of matching interactive elements, counts those elements, reports on <code>document.body</code>, and asks for manual review. It does not measure rendered target dimensions or determine whether any target passes or fails the 44 by 44 CSS pixel requirement.
+        The current SiteLint <code>target-size-enhanced</code> rule is not actually testing rendered target size. It is triggered by the presence of matching interactive elements, counts those elements, reports on <code>document.body</code>, and asks for manual review. It does not measure rendered target dimensions or determine whether any target passes or fails the 44 by 44 CSS pixel requirement. This differs from the WCAG 2.5.8 <code>target-size-minimum</code> rule, which does perform element-level rendered-size checks and reports specific undersized targets.
       </p>
       <p>
         Automated target-size testing can measure rendered dimensions, but it generally cannot fully determine whether an exception applies. For that reason, some findings should be treated as review candidates rather than confirmed failures.
       </p>
       <p>
-        This page therefore demonstrates two separate concerns: the sample controls include targets that are intentionally smaller than 44 by 44 CSS pixels, but the current SiteLint rule does not identify those specific targets. The SiteLint finding only indicates that interactive elements exist on the page and that a human should review target size.
+        This page therefore demonstrates two separate concerns: the sample controls include targets that are intentionally smaller than 44 by 44 CSS pixels, but the current SiteLint 2.5.5 rule does not identify those specific targets. The SiteLint 2.5.5 finding only indicates that interactive elements exist on the page and that a human should review target size. By contrast, the 2.5.8 test confirmed that SiteLint can report specific undersized controls, measured dimensions, element paths, and highlight options when a target-size rule is implemented with rendered-size logic.
       </p>
     </section>
 
@@ -319,18 +319,21 @@
       <p>
         In practice, this means the rule does not currently provide automated WCAG 2.5.5 pass/fail coverage. It does not report which controls are 24 by 24 CSS pixels, which controls meet the 44 by 44 CSS pixel threshold, or whether any WCAG 2.5.5 exceptions apply.
       </p>
+      <p>
+        This contrasts with SiteLint's WCAG 2.5.8 behavior. On the 2.5.8 test page, SiteLint reported specific controls that were 18 by 18 or 20 by 20 CSS pixels and mapped them to the 24 by 24 CSS pixel minimum. The 2.5.8 rule therefore provides more actionable element-level testing, while the 2.5.5 rule currently remains a generic page-level manual prompt.
+      </p>
     </section>
 
     <section class="sitelint-recommendation">
       <h2>Recommended SiteLint treatment</h2>
       <p>
-        <strong>Recommendation:</strong> Improve <code>target-size-enhanced</code> so it performs actual rendered target-size evaluation. It should measure each matching interactive target's rendered width and height, identify which targets are smaller than 44 by 44 CSS pixels, and report the specific element, selector or XPath, measured dimensions, and highlight option when possible.
+        <strong>Recommendation:</strong> Improve <code>target-size-enhanced</code> by adapting the more effective element-level behavior already demonstrated by <code>target-size-minimum</code>. The 2.5.5 rule should measure each matching interactive target's rendered width and height, identify which targets are smaller than 44 by 44 CSS pixels, and report the specific element, selector or XPath, measured dimensions, and highlight option when possible.
       </p>
       <p>
         <strong>Recommendation:</strong> Avoid presenting the current implementation as automated WCAG 2.5.5 coverage. The current rule is a broad page-level manual prompt. It should be labeled accordingly unless the rule is enhanced to evaluate individual target dimensions and identify specific undersized controls.
       </p>
       <p>
-        <strong>Recommendation:</strong> Clearly distinguish WCAG 2.5.5 Target Size (Enhanced), which uses a 44 by 44 CSS pixel threshold, from WCAG 2.5.8 Target Size (Minimum), which uses a smaller minimum target-size model with spacing allowances.
+        <strong>Recommendation:</strong> Clearly distinguish WCAG 2.5.5 Target Size (Enhanced), which uses a 44 by 44 CSS pixel threshold, from WCAG 2.5.8 Target Size (Minimum), which uses a 24 by 24 CSS pixel model with spacing allowances. The rules should not behave as though 2.5.5 is less testable than 2.5.8; the same rendered-size measurement approach can be used, but with the stricter 44 by 44 CSS pixel threshold and the relevant 2.5.5 exceptions.
       </p>
       <p>
         <strong>Recommendation:</strong> After <code>target-size-enhanced</code> is improved to evaluate individual rendered targets, account for WCAG 2.5.5 exceptions before presenting a finding as a confirmed failure. Inline text links, equivalent larger targets, user-agent-controlled targets, and essential small targets should be treated carefully. Where SiteLint cannot determine whether an exception applies, it should identify the specific target and frame the finding as a targeted review candidate rather than a generic page-level manual prompt.
