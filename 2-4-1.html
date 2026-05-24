@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 2.4.1 Bypass Blocks Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    .skip-link {
+      background-color: #ffffff;
+      border: 2px solid #000000;
+      color: #000000;
+      left: 1rem;
+      padding: 0.5rem 0.75rem;
+      position: absolute;
+      top: 1rem;
+      transform: translateY(-150%);
+      z-index: 1000;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .example-navigation ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 60rem;
+      padding: 1rem;
+    }
+
+    .mini-page {
+      border: 1px solid #767676;
+      margin-block: 1rem;
+      padding: 1rem;
+    }
+
+    .mini-nav ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+    }
+
+    .long-nav ul {
+      columns: 2;
+      max-width: 34rem;
+    }
+
+    .highlight {
+      background-color: #fff59d;
+      padding-inline: 0.15rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <nav class="example-navigation" aria-label="Example repeated navigation">
+    <ul>
+      <li><a href="https://example.com/about">About</a></li>
+      <li><a href="https://example.com/programs">Programs</a></li>
+      <li><a href="https://example.com/events">Events</a></li>
+      <li><a href="https://example.com/resources">Resources</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <h1>WCAG 2.4.1: Bypass Blocks</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Users need a way to bypass repeated blocks of content, such as repeated navigation, so they can move directly to the main content or other important regions.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks.html">View the W3C Understanding page for WCAG 2.4.1 Bypass Blocks</a>.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Page has a skip link to main content</h3>
+      <p>
+        This page includes a skip link at the beginning of the body that targets <code>#main-content</code>. The link becomes visible on focus and moves the user past repeated content.
+      </p>
+
+      <div class="sample-area">
+        <code>&lt;a class="skip-link" href="#main-content"&gt;Skip to main content&lt;/a&gt;</code>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Main landmark provides a programmatic bypass target</h3>
+      <p>
+        A properly exposed <code>main</code> landmark can help assistive-technology users move directly to the main content region.
+      </p>
+
+      <div class="sample-area">
+        <code>&lt;main id="main-content"&gt;...&lt;/main&gt;</code>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Headings help users bypass sections</h3>
+      <p>
+        A clear heading structure can provide another mechanism for bypassing and navigating blocks of content, especially for screen reader users who navigate by headings.
+      </p>
+
+      <div class="sample-area">
+        <h4>Example content section</h4>
+        <p>This section has a heading that identifies the content that follows.</p>
+      </div>
+    </section>
+
+    <h2>Failing or risky examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Repeated navigation without a bypass mechanism</h3>
+      <p>
+        This mini-page represents a page with repeated navigation before the main content and no skip link, landmark strategy, or heading structure that would help users bypass the repeated block.
+      </p>
+
+      <div class="mini-page">
+        <div class="mini-nav long-nav">
+          <p><strong>Navigation</strong></p>
+          <ul>
+            <li><a href="https://example.com/about">About</a></li>
+            <li><a href="https://example.com/programs">Programs</a></li>
+            <li><a href="https://example.com/events">Events</a></li>
+            <li><a href="https://example.com/news">News</a></li>
+            <li><a href="https://example.com/resources">Resources</a></li>
+            <li><a href="https://example.com/contact">Contact</a></li>
+            <li><a href="https://example.com/membership">Membership</a></li>
+            <li><a href="https://example.com/register">Register</a></li>
+          </ul>
+        </div>
+        <div>
+          <p>This is the start of the main article, but there is no easy way to skip the repeated navigation above.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Skip link points to a missing target</h3>
+      <p>
+        A skip link is only useful if its target exists and moves focus or reading position to the intended content. This example is described rather than implemented because an actual broken fragment link triggers SiteLint's separate 2.4.4 same-page-link rule instead of the 2.4.1 bypass-blocks rule.
+      </p>
+
+      <div class="sample-area">
+        <code>&lt;a href="#missing-main-target"&gt;Skip to main content&lt;/a&gt;</code>
+        <p>The target <code>#missing-main-target</code> would not exist in this example.</p>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Skip link is not visible on focus</h3>
+      <p>
+        Some pages include a skip link that remains visually hidden even when focused. That can make the mechanism difficult or impossible for sighted keyboard users to use.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          This example is described rather than implemented because an actually invisible focused skip link would create an intentional keyboard-accessibility problem on this test page.
+        </p>
+      </div>
+    </section>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint result</h2>
+      <p>
+        SiteLint reports a WCAG 2.4.1 bypass-blocks manual-verification item when it detects visible navigation-like structures such as <code>nav</code>, <code>header</code>, <code>[aria-label="Skip links"]</code>, <code>.main-navigation</code>, or <code>.skip-links</code>. This page now includes a real <code>nav</code> element so the current rule should trigger.
+      </p>
+      <p>
+        <span class="highlight">The current rule does not actually determine whether the page passes or fails WCAG 2.4.1.</span> It selects navigation-like elements and reports a manual-verification prompt. It does not check whether a valid skip link exists, whether the skip link target exists, whether the skip link becomes visible on focus, whether the page has a <code>main</code> landmark, or whether the available bypass mechanism is sufficient.
+      </p>
+      <p>
+        The earlier broken skip-link example was converted to a code sample because an actual broken fragment link triggers SiteLint's separate same-page-link rule under WCAG 2.4.4. That separate rule can be relevant to bypass behavior, but it is not the same as automated WCAG 2.4.1 coverage.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Keep the current <code>bypass-blocks</code> behavior as a manual-verification prompt, not a confirmed automated failure. The rule is useful as a reminder when repeated navigation or header-like structures are present, but the report should make clear that human verification is required.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Add separate automated or semi-automated checks for concrete bypass-blocks patterns: missing <code>main</code> landmark, missing skip link on pages with repeated navigation, skip link target missing, skip link not visible on focus, multiple repeated navigation blocks without a bypass mechanism, or a bypass link that does not move the user to the intended content.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Keep broken skip-link-target detection under the same-page-link rule unless SiteLint intentionally cross-references it as a possible bypass-blocks problem. A confirmed 2.4.1 finding should identify the specific missing or broken bypass mechanism rather than reporting a generic page-level failure.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

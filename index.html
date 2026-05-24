@@ -106,7 +106,7 @@
     </p>
 
     <table>
-      <caption>Created (18) and skipped (54) WCAG test pages</caption>
+      <caption>Created (20) and skipped (54) WCAG test pages</caption>
       <thead>
         <tr>
           <th scope="col" aria-sort="ascending"><button type="button" data-sort-column="0" aria-label="Sort by row number">#</button></th>
@@ -360,10 +360,10 @@
           <td>Contrast (Minimum)</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> SiteLint provides useful automated WCAG 1.4.3 coverage for many ordinary HTML text contrast cases, but the rule does not fully evaluate every rendered contrast scenario.</li>
+              <li><strong>Caution:</strong> SiteLint provides useful automated WCAG 1.4.3 coverage for many ordinary HTML text contrast cases, but <span class="highlight">the rule does not fully evaluate every rendered contrast scenario</span>.</li>
               <li>SiteLint correctly reports several intended text contrast failures on the page, including normal text, large text, button text, and link text with insufficient contrast.</li>
-              <li>SiteLint incorrectly reports the decorative low-contrast divider characters as a confirmed 1.4.3 issue, even though those characters are marked <code>aria-hidden="true"</code> and are not needed to understand the content.</li>
-              <li>SiteLint did not report the low-contrast placeholder text example, even though placeholder text can communicate instructions or examples and should meet the applicable contrast threshold when it conveys information.</li>
+              <li>SiteLint <span class="highlight">incorrectly reports the decorative low-contrast divider</span> characters as a confirmed 1.4.3 issue, even though those characters are marked <code>aria-hidden="true"</code> and are not needed to understand the content.</li>
+              <li>SiteLint <span class="highlight">did not report the low-contrast placeholder text example</span>, even though placeholder text can communicate instructions or examples and should meet the applicable contrast threshold when it conveys information.</li>
               <li>Additional difficult or potentially missed cases include text over gradients or images, text affected by ancestor opacity, and visible SVG <code>&lt;text&gt;</code>.</li>
               <li>If the WCAG AAA filter is enabled, SiteLint may also report WCAG 1.4.6 Contrast (Enhanced) on this page. That is expected because text that fails 1.4.3 AA will also fail the stricter AAA threshold.</li>
             </ul>
@@ -377,11 +377,11 @@
           <td>Resize Text</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. SiteLint's current <code>zoom-disabled</code> rule detects one narrow pattern: viewport metadata that disables or restricts browser zoom.</li>
-              <li>SiteLint should report the active viewport meta tag in the document <code>head</code> because it includes <code>user-scalable=no</code>.</li>
+              <li><strong>Caution:</strong> This success criterion is <span class="highlight">only partly testable through automation</span>. SiteLint's current <code>zoom-disabled</code> rule <span class="highlight">detects one narrow pattern</span>: viewport metadata that disables or restricts browser zoom.</li>
+              <li>SiteLint <span class="highlight">should report the active viewport meta tag</span> in the document <code>head</code> because it includes <code>user-scalable=no</code>.</li>
               <li>The reported viewport <code>meta</code> element cannot be visually highlighted on the page because it is a non-rendered <code>head</code> element. SiteLint should rely on the DOM path, source snippet, or DevTools location for these findings.</li>
-              <li>SiteLint's current rule does not evaluate whether text can actually be resized to 200 percent without clipping, overlap, or loss of functionality.</li>
-              <li>SiteLint's current rule does not detect layout problems after zoom, such as fixed-height containers clipping text, absolutely positioned text overlapping, very small fixed-size text, or controls becoming unusable after resizing.</li>
+              <li>SiteLint's <span class="highlight">current rule does not evaluate</span> whether text can actually be resized to 200 percent without clipping, overlap, or loss of functionality.</li>
+              <li>SiteLint's current rule <span class="highlight">does not detect layout problems after zoom</span>, such as fixed-height containers clipping text, absolutely positioned text overlapping, very small fixed-size text, or controls becoming unusable after resizing.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>zoom-disabled</code> as useful partial WCAG 1.4.4 coverage for viewport zoom restrictions. Consider a separate rendered-page/runtime test that evaluates layout at 200 percent zoom or increased text size, checks for clipping and overlap, and verifies that controls remain operable.</p>
           </td>
@@ -397,12 +397,22 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr class="status-created">
           <td>22</td>
           <td>AAA</td>
           <th scope="row"><a href="1-4-6.html">1.4.6</a></th>
           <td>Contrast (Enhanced)</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> SiteLint provides useful automated WCAG 1.4.6 coverage for ordinary HTML text contrast cases, especially examples that pass WCAG 1.4.3 AA but fail the stricter WCAG 1.4.6 AAA thresholds.</li>
+              <li>SiteLint correctly reports the core enhanced-contrast failures that distinguish WCAG 1.4.6 from WCAG 1.4.3, including normal text, large text, button text, and link text examples that pass AA but fail AAA.</li>
+              <li>SiteLint <span class="highlight">incorrectly reports the decorative low-contrast divider</span> characters as a confirmed 1.4.6 issue, even though those characters are marked <code>aria-hidden="true"</code> and are not needed to understand the content.</li>
+              <li>SiteLint <span class="highlight">did not report the low-contrast placeholder text example</span>, even though placeholder text can communicate instructions or examples and should meet the applicable enhanced contrast threshold when it conveys information.</li>
+              <li>SiteLint did not report the gradient background, opacity/compositing, or visible SVG <code>&lt;text&gt;</code> examples. These should be treated as rendered-analysis, rule-refinement, or rule-expansion areas.</li>
+              <li>The 1.4.6 limitations largely mirror the confirmed 1.4.3 limitations, but the 1.4.6 page now confirms those behaviors under the enhanced-contrast rule as well.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep 1.4.6 as a separate enhanced-contrast rule using the stricter 7:1 threshold for normal text and 4.5:1 threshold for large-scale text. Prioritize decorative <code>aria-hidden</code> false positives, placeholder text contrast, rendered-background analysis, opacity/compositing, and SVG <code>&lt;text&gt;</code> contrast as rule-refinement or expansion areas.</p>
+          </td>
         </tr>
         <tr class="status-skipped">
           <td>23</td>
@@ -537,10 +547,10 @@
           <td>Timing Adjustable</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. SiteLint's current <code>no-meta-http-equiv-refresh</code> rule detects one narrow timing pattern: pages that use <code>meta http-equiv="refresh"</code> to refresh or redirect after a time interval.</li>
+              <li><strong>Caution:</strong> This success criterion is <span class="highlight">only partly testable through automation</span>. SiteLint's current <code>no-meta-http-equiv-refresh</code> rule <span class="highlight">detects one narrow timing pattern</span>: pages that use <code>meta http-equiv="refresh"</code> to refresh or redirect after a time interval.</li>
               <li>SiteLint correctly reports the two intentional meta refresh examples in the document <code>head</code>: one page refresh and one timed redirect.</li>
               <li>The reported <code>meta</code> elements cannot be visually highlighted on the page because they are non-rendered <code>head</code> elements. SiteLint should rely on the DOM path, source snippet, or DevTools location for these findings.</li>
-              <li>SiteLint's current rule does not evaluate JavaScript-based timeouts, session-expiration workflows, timer widgets, or auto-updating content that occurs without a meta refresh.</li>
+              <li>SiteLint's <span class="highlight">current rule does not evaluate JavaScript-based timeouts</span>, session-expiration workflows, timer widgets, or auto-updating content that occurs without a meta refresh.</li>
               <li>Complete 2.2.1 evaluation usually requires runtime observation, interaction testing, and judgment about whether users can turn off, adjust, or extend the time limit, and whether any WCAG exception applies.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>no-meta-http-equiv-refresh</code> as useful partial WCAG 2.2.1 coverage. Consider normalizing <code>http-equiv</code> values case-insensitively and adding a UI fallback message for non-rendered <code>head</code> elements that cannot be visually highlighted.</p>
@@ -553,11 +563,11 @@
           <td>Pause, Stop, Hide</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. SiteLint's <code>animation.ts</code> can detect long-running or infinite CSS animations, but it does not fully determine whether users have a working pause, stop, or hide mechanism.</li>
-              <li>SiteLint should report the CSS animation examples with durations longer than five seconds or infinite iteration counts.</li>
-              <li>SiteLint should not report the short, paused, zero-iteration, or zero-duration animation examples.</li>
+              <li><strong>Caution:</strong> This success criterion is <span class="highlight">only partly testable through automation</span>. SiteLint's <code>animation.ts</code> can detect long-running or infinite CSS animations, but it <span class="highlight">does not fully evaluate</span> whether users have a working pause, stop, or hide mechanism.</li>
+              <li>SiteLint <span class="highlight">should report the CSS animation examples</span> with durations longer than five seconds or infinite iteration counts.</li>
+              <li>SiteLint <span class="highlight">should not report</span> the short, paused, zero-iteration, or zero-duration animation examples.</li>
               <li>SiteLint correctly reports the infinite scrolling text scenario because it uses an infinite CSS animation with a duration longer than five seconds.</li>
-              <li>SiteLint does not fully evaluate auto-updating content, JavaScript-driven visual changes, user-triggered animation, or whether pause/resume controls actually operate the moving content.</li>
+              <li>SiteLint <span class="highlight">does not fully evaluate</span> auto-updating content, JavaScript-driven visual changes, user-triggered animation, or whether pause/resume controls actually operate the moving content.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>animation.ts</code> as useful partial WCAG 2.2.2 coverage. Consider future runtime checks for pause, stop, or hide controls and a separate rule for auto-updating content, while recognizing that some cases still require human judgment.</p>
           </td>
@@ -639,12 +649,20 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr class="status-created">
           <td>43</td>
           <td>A</td>
           <th scope="row"><a href="2-4-1.html">2.4.1</a></th>
           <td>Bypass Blocks</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> SiteLint's current <code>bypass-blocks</code> rule reports a manual-verification item when it detects visible navigation-like structures such as <code>nav</code>, <code>header</code>, <code>[aria-label="Skip links"]</code>, <code>.main-navigation</code>, or <code>.skip-links</code>.</li>
+              <li>SiteLint reports the page because the test page now includes a real <code>nav</code> element. This confirms that the rule can trigger, but it does not confirm automated WCAG 2.4.1 pass/fail detection.</li>
+              <li><span class="highlight">The current rule does not actually determine whether the page passes or fails WCAG 2.4.1.</span> It does not check whether a valid skip link exists, whether the skip link target exists, whether the skip link becomes visible on focus, whether the page has a <code>main</code> landmark, or whether the available bypass mechanism is sufficient.</li>
+              <li>The broken skip-link-target example on the test page is presented as a code sample because an actual broken fragment link triggers SiteLint's separate same-page-link rule under WCAG 2.4.4, not the bypass-blocks rule.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep <code>bypass-blocks</code> as a manual-verification prompt unless SiteLint adds concrete checks for missing or broken bypass mechanisms. Confirmed 2.4.1 findings should identify specific issues such as missing <code>main</code> landmark, missing skip link on pages with repeated navigation, missing skip-link target, skip link not visible on focus, or a bypass link that does not move the user to the intended content.</p>
+          </td>
         </tr>
         <tr>
           <td>44</td>
@@ -787,11 +805,11 @@
           <td>Label in Name</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> This success criterion is partly testable through automation. SiteLint can detect clear cases where a control's accessible name does not contain the visible text label, especially when <code>aria-label</code> overrides visible button or link text.</li>
+              <li><strong>Caution:</strong> This success criterion is <span class="highlight">partly testable through automation</span>. SiteLint can detect clear cases where a control's accessible name does not contain the visible text label, especially when <code>aria-label</code> overrides visible button or link text.</li>
               <li>SiteLint reports the observed failing button, link, icon-button, initial-state mismatch, and “Join now” button examples where visible text is absent from the accessible name.</li>
-              <li>SiteLint does not report the passing examples where the visible label is the accessible name or is included in the accessible name.</li>
-              <li>SiteLint did not report the native input example where visible <code>label</code> text “Phone number” is overridden by a mismatched <code>aria-label="Mobile contact"</code>. This is a meaningful Label in Name risk and should be considered a rule-expansion area.</li>
-              <li>SiteLint's current rule does not fully evaluate graphical labels, responsive label changes, dynamic post-interaction states, or ambiguous labels distributed across surrounding layout regions.</li>
+              <li>SiteLint <span class="highlight">should not be reported</span> on the passing examples where the visible label is the accessible name or is included in the accessible name.</li>
+              <li>SiteLint <span class="highlight">did not report the native input example</span> where visible <code>label</code> text “Phone number” is overridden by a mismatched <code>aria-label="Mobile contact"</code>. This is a meaningful Label in Name risk and <span class="highlight">should be considered a rule-expansion area</span>.</li>
+              <li>SiteLint's current rule <span class="highlight">does not fully evaluate graphical labels</span>, responsive label changes, dynamic post-interaction states, or ambiguous labels distributed across surrounding layout regions.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep this as useful automated WCAG 2.5.3 coverage for clear visible-text/accesssible-name mismatches. Expand the rule to compare visible native <code>label</code> text against overriding <code>aria-label</code> values on associated inputs, and consider future dynamic-state and responsive-viewport testing.</p>
           </td>
@@ -875,11 +893,11 @@
           <td>Abbreviations</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> This success criterion is only partly testable through automation. SiteLint's current <code>title-for-abbr</code> rule can detect explicitly marked <code>abbr</code> elements that are missing a usable <code>title</code> expansion, but it does not fully evaluate all abbreviation mechanisms.</li>
+              <li><strong>Caution:</strong> This success criterion is <span class="highlight">only partly testable through automation</span>. SiteLint's current <code>title-for-abbr</code> rule can detect explicitly marked <code>abbr</code> elements that are missing a usable <code>title</code> expansion, but it <span class="highlight">does not fully evaluate all abbreviation mechanisms</span>.</li>
               <li>SiteLint correctly reports the failing example where an <code>abbr</code> element is missing a <code>title</code> attribute.</li>
               <li>SiteLint does not report the passing examples where <code>abbr</code> elements include meaningful <code>title</code> values.</li>
               <li>The test page intentionally keeps only the missing-title failure so the result isolates the 3.1.4 rule and avoids the separate empty-tooltip rule.</li>
-              <li>SiteLint's current rule does not evaluate plain-text abbreviations that are not marked with <code>abbr</code>, expansions provided in surrounding prose, glossary-based definitions, incorrect <code>title</code> expansions, or whether an abbreviation is common enough for the intended audience.</li>
+              <li>SiteLint's <span class="highlight">current rule does not evaluate</span> plain-text abbreviations that are not marked with <code>abbr</code>, expansions provided in surrounding prose, glossary-based definitions, incorrect <code>title</code> expansions, or whether an abbreviation is common enough for the intended audience.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>title-for-abbr</code> as useful partial WCAG 3.1.4 coverage for explicitly marked abbreviations. Future enhancements could include candidate detection for unexplained all-caps abbreviations, glossary detection, and dictionary-assisted validation, but those should be framed as review aids unless the tool can confidently determine that no valid explanatory mechanism exists.</p>
           </td>
@@ -1070,9 +1088,9 @@
           <td>Parsing</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> WCAG 4.1.1 Parsing is obsolete and removed in WCAG 2.2, so it should not be reported as a current WCAG 2.2 success-criterion failure.</li>
+              <li><strong>Caution:</strong> WCAG 4.1.1 Parsing is obsolete and removed in WCAG 2.2, so it <span class="highlight">should not be reported</span> as a current WCAG 2.2 success-criterion failure.</li>
               <li>SiteLint reports the duplicate-ID examples on the test page under SiteLint / Best Practices. That classification is appropriate when WCAG 2.2 is the selected standard.</li>
-              <li>When WCAG 2.0 or 2.1 is the selected target, duplicate IDs should ideally be reportable under WCAG 4.1.1 Parsing rather than only as a Best Practices finding.</li>
+              <li>When WCAG 2.0 or 2.1 is the selected target, duplicate IDs <span class="highlight">should ideally be reportable under WCAG 4.1.1</span> Parsing rather than only as a Best Practices finding.</li>
               <li>Under WCAG 2.2, generic duplicate-ID findings should depend on the Best Practices filter unless a more specific rule identifies a downstream failure under an active SC such as 1.3.1, 3.3.2, or 4.1.2.</li>
               <li>Duplicate attributes and malformed nesting are not good live-DOM test cases because browsers may repair or normalize invalid markup before SiteLint evaluates the DOM.</li>
             </ul>
