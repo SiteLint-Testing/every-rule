@@ -106,7 +106,7 @@
     </p>
 
     <table>
-      <caption>Created (27) and skipped (54) WCAG test pages</caption>
+      <caption>Created (30) and skipped (54) WCAG test pages</caption>
       <thead>
         <tr>
           <th scope="col" aria-sort="ascending"><button type="button" data-sort-column="0" aria-label="Sort by row number">#</button></th>
@@ -925,19 +925,34 @@
     <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Preserve the current element-level reporting behavior for <code>target-size-minimum</code>. Improve the rule by adding exception handling for equivalent larger targets and evaluating nearby spacing where possible. Where SiteLint cannot determine whether an exception applies, report the specific target as a review candidate rather than a confirmed failure.</p>
   </td>
 </tr>
-        <tr>
+        <tr class="status-created">
           <td>64</td>
           <td>A</td>
           <th scope="row"><a href="3-1-1.html">3.1.1</a></th>
           <td>Language of Page</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li>SiteLint correctly flags the intentionally failing page because the root <code>html</code> element does not declare a <code>lang</code> attribute.</li>
+              <li>The finding applies to the whole page, which is appropriate for WCAG 3.1.1 because the success criterion concerns the page's default human language.</li>
+              <li>Additional 3.1.1 edge cases could be tested separately, including an empty <code>lang</code> value, an invalid language tag such as <code>english</code>, and a passing control page with <code>lang="en"</code>.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat the current <code>html-lang-attr</code> behavior as accurate for missing page-language declarations. If SiteLint intends broader 3.1.1 coverage, add small follow-up fixtures for empty and invalid language values rather than expanding this page.</p>
+          </td>
         </tr>
-        <tr>
+        <tr class="status-created">
           <td>65</td>
           <td>AA</td>
           <th scope="row"><a href="3-1-2.html">3.1.2</a></th>
           <td>Language of Parts</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> SiteLint's current <code>language-of-parts</code> rule is a manual-verification trigger, not an automated evaluator for WCAG 3.1.2.</li>
+              <li>SiteLint reports the elements that already have <code>lang</code> attributes, such as <code>lang="es"</code> and <code>lang="fr"</code>, and asks the reviewer to verify that the element content matches the declared language.</li>
+              <li>The rule implementation selects <code>:not(html) [lang]</code>, so it does not detect unmarked foreign-language phrases that may be missing a language attribute.</li>
+              <li>The rule also does not automatically validate whether a declared <code>lang</code> value accurately matches the element content.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>language-of-parts</code> as partial manual-review coverage only. If expanded, keep detection of likely unmarked language changes separate from validation of existing <code>lang</code> values, and report low-confidence cases as review prompts.</p>
+          </td>
         </tr>
         <tr class="status-skipped">
           <td>66</td>
@@ -1054,12 +1069,20 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr class="status-created">
           <td>76</td>
           <td>A</td>
           <th scope="row"><a href="3-3-1.html">3.3.1</a></th>
           <td>Error Identification</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> SiteLint's current <code>error-identification</code> rule is a page-level manual-verification trigger, not an automated evaluator for WCAG 3.3.1.</li>
+              <li>The rule reports "Verify error identification" when it finds visible <code>input</code>, <code>select</code>, <code>textarea</code>, or <code>[role="textbox"]</code> elements.</li>
+              <li>The rule does not evaluate whether <code>aria-invalid</code> is present, whether error text exists, whether the error identifies the field, or whether the error text is programmatically associated with the control.</li>
+              <li>The test page uses explicit <code>autocomplete</code> values to avoid unrelated 1.3.5 <code>autocomplete-attribute-usage</code> findings obscuring the 3.3.1 manual verification item.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>error-identification</code> as broad manual-review coverage only. To evaluate 3.3.1 more effectively, inspect controls already in an error state and check whether each error is identified in text and associated with the relevant field, while keeping submission-triggered validation workflows manual or interaction-based.</p>
+          </td>
         </tr>
         <tr>
           <td>77</td>

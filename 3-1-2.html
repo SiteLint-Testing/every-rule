@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 3.1.2 Language of Parts Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 3.1.2: Language of Parts</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> The human language of each passage or phrase in the content must be programmatically determinable when it differs from the page's default language.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.html">View the W3C Understanding page for WCAG 3.1.2 Language of Parts</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint behavior</h2>
+      <p>
+        SiteLint reports the two elements on this page that already have a <code>lang</code> attribute: the Spanish phrase with <code>lang="es"</code> and the French quotation with <code>lang="fr"</code>. These findings are marked as manual verification items that ask the reviewer to confirm the element content accurately relates to the declared language.
+      </p>
+      <p>
+        This matches the current <code>language-of-parts</code> rule implementation, which selects <code>:not(html) [lang]</code>. The rule does not detect unmarked foreign-language phrases. It also does not automatically determine whether the declared language value matches the element content.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Spanish phrase marked with <code>lang</code></h3>
+      <p>
+        The Spanish phrase has its own language attribute.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          The confirmation message says <span lang="es">su pago fue recibido</span>.
+        </p>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: French quotation marked with <code>lang</code></h3>
+      <p>
+        The quoted French sentence is identified as French.
+      </p>
+
+      <div class="sample-area">
+        <blockquote lang="fr">
+          Le service est disponible pendant les heures ouvrables.
+        </blockquote>
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Spanish phrase not marked</h3>
+      <p>
+        The Spanish phrase differs from the page language but is not marked with a language attribute.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          The account page displays the message: su pago fue recibido.
+        </p>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: French quotation not marked</h3>
+      <p>
+        The quotation is in French, but no element identifies that language change.
+      </p>
+
+      <div class="sample-area">
+        <blockquote>
+          Le service est disponible pendant les heures ouvrables.
+        </blockquote>
+      </div>
+    </section>
+
+    <h2>Manual review examples</h2>
+
+    <section class="example manual-example">
+      <h3>Manual example 1: Proper names and borrowed words</h3>
+      <p>
+        Some words may look like a language change but do not require a language attribute when they are names, common borrowed terms, or part of the surrounding language.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          The report mentions Cafe Central, deja vu, and the El Camino project.
+        </p>
+      </div>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Manual example 2: Mixed-language content needs judgment</h3>
+      <p>
+        A page with many short phrases in several languages may require human review to decide which phrases are meaningful language changes.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          The welcome banner includes hello, hola, bonjour, and hallo as decorative examples.
+        </p>
+      </div>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Treat the current <code>language-of-parts</code> rule as partial manual-verification coverage only. It is useful as a prompt to review declared language changes, but it should not be presented as automated 3.1.2 pass/fail coverage.
+      </p>
+      <p>
+        If SiteLint expands this rule, separate the two concerns: detecting likely unmarked language changes, and validating the accuracy of existing <code>lang</code> values. Both should remain review-oriented unless the tool has high confidence.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

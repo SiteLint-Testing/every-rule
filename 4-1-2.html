@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 4.1.2 Name, Role, Value Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea,
+    iframe {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    .icon-button {
+      align-items: center;
+      display: inline-flex;
+      gap: 0.35rem;
+    }
+
+    .fake-switch {
+      border: 1px solid #767676;
+      border-radius: 999px;
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 4.1.2: Name, Role, Value</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> User interface components must expose their name and role, and states, properties, and values that can be set by the user must be programmatically determinable.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html">View the W3C Understanding page for WCAG 4.1.2 Name, Role, Value</a>.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Button has an accessible name</h3>
+      <p>
+        The button exposes a role and name through native HTML text.
+      </p>
+
+      <div class="sample-area">
+        <button type="button">Save settings</button>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Icon button has an accessible name</h3>
+      <p>
+        The icon is hidden from assistive technologies and the button has an <code>aria-label</code>.
+      </p>
+
+      <div class="sample-area">
+        <button type="button" class="icon-button" aria-label="Search">
+          <span aria-hidden="true">Search icon</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Iframe has a title</h3>
+      <p>
+        The iframe exposes a name through its <code>title</code> attribute.
+      </p>
+
+      <div class="sample-area">
+        <iframe title="Example account summary" srcdoc="&lt;!doctype html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;body&gt;&lt;p&gt;Account summary&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"></iframe>
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Empty button has no accessible name</h3>
+      <p>
+        The button has no text, label, or referenced label to expose as its name.
+      </p>
+
+      <div class="sample-area">
+        <button type="button"></button>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Iframe is missing a title</h3>
+      <p>
+        The iframe has no accessible name.
+      </p>
+
+      <div class="sample-area">
+        <iframe srcdoc="&lt;!doctype html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;body&gt;&lt;p&gt;Untitled embedded content&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"></iframe>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Focusable element hidden from assistive technologies</h3>
+      <p>
+        The focusable button is inside content marked <code>aria-hidden="true"</code>, so keyboard users may reach something that assistive technologies cannot expose.
+      </p>
+
+      <div class="sample-area" aria-hidden="true">
+        <button type="button">Hidden focus target</button>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 4: Custom switch does not expose role or state</h3>
+      <p>
+        This visually resembles a switch, but it does not expose a switch role or checked state.
+      </p>
+
+      <div class="sample-area">
+        <span class="fake-switch" tabindex="0">Notifications on</span>
+      </div>
+    </section>
+
+    <h2>Manual review examples</h2>
+
+    <section class="example manual-example">
+      <h3>Manual example 1: Dynamic value changes</h3>
+      <p>
+        A static scan may not know whether a custom component updates its programmatic state after interaction.
+      </p>
+
+      <div class="sample-area">
+        <button type="button" aria-pressed="false">Mute alerts</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

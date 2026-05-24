@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 3.3.1 Error Identification Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-top: 0.75rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    .error-message {
+      color: #b00020;
+      font-weight: 700;
+      margin-block: 0.35rem;
+    }
+
+    .error-border {
+      border: 3px solid #b00020;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 3.3.1: Error Identification</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> If an input error is automatically detected, the item in error must be identified and the error must be described to the user in text.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html">View the W3C Understanding page for WCAG 3.3.1 Error Identification</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint behavior</h2>
+      <p>
+        SiteLint's <code>error-identification</code> rule reports this page as a manual verification item titled "Verify error identification" when the page contains visible form controls. The rule reports once at the page level rather than evaluating each error example.
+      </p>
+      <p>
+        This matches the current rule implementation, which selects visible <code>input</code>, <code>select</code>, <code>textarea</code>, and <code>[role="textbox"]</code> elements. If any matching element exists, the rule asks for manual verification. It does not determine whether <code>aria-invalid</code> is present, whether an error message exists, whether the error identifies the field, or whether the error text is programmatically associated with the input.
+      </p>
+      <p>
+        The page uses explicit <code>autocomplete</code> values on the inputs so the separate 1.3.5 <code>autocomplete-attribute-usage</code> rule does not obscure the 3.3.1 manual verification result.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Error identified in text and associated with the field</h3>
+      <p>
+        The field is marked invalid and the text error is referenced with <code>aria-describedby</code>.
+      </p>
+
+      <div class="sample-area">
+        <label for="email-pass">Email address</label>
+        <input id="email-pass" name="email-pass" type="email" autocomplete="email" value="name@example" aria-invalid="true" aria-describedby="email-pass-error">
+        <p id="email-pass-error" class="error-message">Enter an email address in the format name@example.com.</p>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Form-level error summary names the field</h3>
+      <p>
+        The error summary identifies the field in error and describes the problem in text.
+      </p>
+
+      <div class="sample-area">
+        <div role="alert">
+          <p class="error-message">There is a problem with the form.</p>
+          <ul>
+            <li><a href="#postal-pass">ZIP code must contain five digits.</a></li>
+          </ul>
+        </div>
+        <label for="postal-pass">ZIP code</label>
+        <input id="postal-pass" name="postal-pass" inputmode="numeric" autocomplete="postal-code" value="12" aria-invalid="true">
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Error shown only with color and border</h3>
+      <p>
+        The field appears to be in error, but no text identifies the error or describes what is wrong.
+      </p>
+
+      <div class="sample-area">
+        <label for="phone-fail">Phone number</label>
+        <input id="phone-fail" class="error-border" name="phone-fail" type="tel" autocomplete="tel" value="abc" aria-invalid="true">
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Generic error text does not identify the item</h3>
+      <p>
+        The text says there is an error, but it does not identify which field is in error or describe the problem.
+      </p>
+
+      <div class="sample-area">
+        <p class="error-message" role="alert">Please fix the errors below.</p>
+        <label for="date-fail">Start date</label>
+        <input id="date-fail" name="date-fail" type="text" autocomplete="off" value="tomorrowish" aria-invalid="true">
+      </div>
+    </section>
+
+    <h2>Manual review examples</h2>
+
+    <section class="example manual-example">
+      <h3>Manual example 1: Error appears after submission</h3>
+      <p>
+        Some 3.3.1 issues can only be evaluated after a user submits a form or leaves a field.
+      </p>
+
+      <div class="sample-area">
+        <label for="account-id-manual">Account ID</label>
+        <input id="account-id-manual" name="account-id-manual" type="text" autocomplete="off">
+        <button type="button">Validate account ID</button>
+      </div>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Treat the current <code>error-identification</code> rule as a broad manual-review trigger, not automated WCAG 3.3.1 evaluation. It is useful for reminding auditors to test forms, but it should not imply that the page's error identification has passed or failed.
+      </p>
+      <p>
+        To evaluate pages like this more effectively, SiteLint should inspect fields that are already in an error state, such as controls with <code>aria-invalid="true"</code>, invalid native constraint states, or nearby visible error messaging. The rule should then check whether the field in error is identified in text and whether the error description is associated through mechanisms such as <code>aria-describedby</code>, an error summary link, or clear adjacent text.
+      </p>
+      <p>
+        SiteLint should continue to treat dynamic validation workflows as manual or interaction-based checks, because many 3.3.1 failures only appear after submission, blur, or other user actions.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

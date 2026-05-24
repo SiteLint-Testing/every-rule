@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 3.3.2 Labels or Instructions Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    label,
+    legend {
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      margin-top: 0.75rem;
+    }
+
+    fieldset {
+      margin-block: 0.75rem;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    .hint {
+      margin-block: 0.35rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 3.3.2: Labels or Instructions</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Labels or instructions must be provided when content requires user input.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html">View the W3C Understanding page for WCAG 3.3.2 Labels or Instructions</a>.
+    </p>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Text input has a visible label</h3>
+      <p>
+        The input has a visible label associated with <code>for</code> and <code>id</code>.
+      </p>
+
+      <div class="sample-area">
+        <label for="name-pass">Full name</label>
+        <input id="name-pass" name="name-pass" autocomplete="name">
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Required format has an instruction</h3>
+      <p>
+        The field label identifies the input and helper text gives the expected format.
+      </p>
+
+      <div class="sample-area">
+        <label for="date-pass">Start date</label>
+        <p id="date-pass-hint" class="hint">Use the format MM/DD/YYYY.</p>
+        <input id="date-pass" name="date-pass" type="text" aria-describedby="date-pass-hint">
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Fieldset legend is the first child</h3>
+      <p>
+        The group has a legend that describes the purpose of the radio buttons.
+      </p>
+
+      <div class="sample-area">
+        <fieldset>
+          <legend>Preferred contact method</legend>
+          <label><input name="contact-pass" type="radio" value="email"> Email</label>
+          <label><input name="contact-pass" type="radio" value="phone"> Phone</label>
+        </fieldset>
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Input has no label</h3>
+      <p>
+        The text input requires user input, but it has no visible or programmatic label.
+      </p>
+
+      <div class="sample-area">
+        <input name="unlabeled-email-fail" type="email" autocomplete="email">
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Format required but no instruction provided</h3>
+      <p>
+        The date field requires a specific format, but no instruction is provided to the user.
+      </p>
+
+      <div class="sample-area">
+        <label for="date-fail">Start date</label>
+        <input id="date-fail" name="date-fail" type="text" placeholder="MM/DD/YYYY">
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Legend is not the first child of fieldset</h3>
+      <p>
+        The fieldset has a legend, but another element appears before it.
+      </p>
+
+      <div class="sample-area">
+        <fieldset>
+          <p>Choose one option.</p>
+          <legend>Shipping speed</legend>
+          <label><input name="shipping-fail" type="radio" value="standard"> Standard</label>
+          <label><input name="shipping-fail" type="radio" value="express"> Express</label>
+        </fieldset>
+      </div>
+    </section>
+
+    <h2>Manual review examples</h2>
+
+    <section class="example manual-example">
+      <h3>Manual example 1: Instructions may be insufficient</h3>
+      <p>
+        Automation can see that instructions exist, but a reviewer may need to decide whether they are sufficient for the task.
+      </p>
+
+      <div class="sample-area">
+        <label for="tax-id-manual">Tax ID</label>
+        <p id="tax-id-manual-hint" class="hint">Enter the required value.</p>
+        <input id="tax-id-manual" name="tax-id-manual" aria-describedby="tax-id-manual-hint">
+      </div>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

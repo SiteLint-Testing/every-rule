@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 3.1.1 Language of Page Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code,
+    pre {
+      background-color: #f4f4f4;
+    }
+
+    code {
+      padding: 0.1rem 0.25rem;
+    }
+
+    pre {
+      overflow-x: auto;
+      padding: 1rem;
+      white-space: pre-wrap;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 3.1.1: Language of Page</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> The default human language of each web page must be programmatically determinable.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html">View the W3C Understanding page for WCAG 3.1.1 Language of Page</a>.
+    </p>
+
+    <h2>Test setup</h2>
+
+    <section class="example failing-example">
+      <h3>Failing page-level example: Missing language declaration</h3>
+      <p>
+        This test page intentionally omits the <code>lang</code> attribute from the root <code>html</code> element so the page-level language declaration can be tested directly.
+      </p>
+
+      <pre><code>&lt;html&gt;</code></pre>
+
+      <div class="sample-area">
+        <p>
+          This page is written in English, but the page source does not programmatically declare English as the default language.
+        </p>
+      </div>
+    </section>
+
+    <h2>Reference passing patterns</h2>
+
+    <section class="example passing-example">
+      <h3>Passing pattern 1: English page language</h3>
+      <p>
+        A page written primarily in English can declare English on the root <code>html</code> element.
+      </p>
+
+      <pre><code>&lt;html lang="en"&gt;</code></pre>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing pattern 2: French page language</h3>
+      <p>
+        A page written primarily in French can declare French on the root <code>html</code> element.
+      </p>
+
+      <pre><code>&lt;html lang="fr"&gt;</code></pre>
+    </section>
+
+    <h2>Manual review patterns</h2>
+
+    <section class="example manual-example">
+      <h3>Manual pattern 1: Language attribute exists but may be wrong</h3>
+      <p>
+        A page may include a language declaration while still choosing the wrong language for the main content.
+      </p>
+
+      <pre><code>&lt;html lang="en"&gt;</code></pre>
+
+      <div class="sample-area">
+        <p>
+          Bienvenido al centro de ayuda. Aqui puede revisar su cuenta, facturas y solicitudes de soporte.
+        </p>
+      </div>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Manual pattern 2: Language tag may be invalid</h3>
+      <p>
+        A page may include a language value that is a plain-language name rather than a valid language tag.
+      </p>
+
+      <pre><code>&lt;html lang="english"&gt;</code></pre>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Manual pattern 3: Parts of the page use another language</h3>
+      <p>
+        Language changes inside the page are related, but they are evaluated under WCAG 3.1.2 Language of Parts rather than the page-level language requirement.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          The help page is in English, but the quoted message says: Su pago fue recibido.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
