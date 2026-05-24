@@ -1,0 +1,275 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 2.4.9 Link Purpose Link Only Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 60rem;
+      padding: 1rem;
+    }
+
+    .article-list {
+      display: grid;
+      gap: 1rem;
+      margin-block: 1rem;
+    }
+
+    .article-card {
+      border: 1px solid #767676;
+      padding: 1rem;
+    }
+
+    .link-list {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .highlight {
+      background-color: #fff59d;
+      padding-inline: 0.15rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 2.4.9: Link Purpose (Link Only)</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> The purpose of each link should be identifiable from the link text alone, except where the link purpose would be ambiguous to users in general.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-link-only.html">View the W3C Understanding page for WCAG 2.4.9 Link Purpose (Link Only)</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>What this page is intended to test</h2>
+      <p>
+        WCAG 2.4.9 is stricter than WCAG 2.4.4. Under 2.4.4, link purpose may be determined from link text together with programmatically determinable context. Under 2.4.9, the link purpose generally needs to be clear from the link text alone.
+      </p>
+      <p>
+        This page tests generic link text, repeated link text, descriptive link text, and cases where surrounding context helps visually but the link text alone remains insufficient. Initial testing should identify whether SiteLint treats these as automated findings, manual-verification findings, or related 2.4.4 / 2.4.6 link-label issues.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Link text describes the destination</h3>
+      <p>
+        This link should pass because the link text identifies the destination without relying on surrounding context.
+      </p>
+
+      <div class="sample-area">
+        <a href="https://example.com/conference-schedule">View the conference schedule</a>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Download link identifies the file purpose</h3>
+      <p>
+        The link text explains what the user will download.
+      </p>
+
+      <div class="sample-area">
+        <a href="https://example.com/files/accessibility-checklist.pdf">Download the accessibility checklist PDF</a>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Repeated links remain distinguishable</h3>
+      <p>
+        These links use similar action wording but identify different destinations from the link text alone.
+      </p>
+
+      <div class="sample-area link-list">
+        <a href="https://example.com/register-attendee">Register as an attendee</a>
+        <a href="https://example.com/register-exhibitor">Register as an exhibitor</a>
+        <a href="https://example.com/register-sponsor">Register as a sponsor</a>
+      </div>
+    </section>
+
+    <h2>Failing or risky examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Generic “click here” link</h3>
+      <p>
+        The link text does not describe the destination or action when read by itself.
+      </p>
+
+      <div class="sample-area">
+        <p>For the full conference agenda, <a href="https://example.com/conference-agenda">click here</a>.</p>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Generic “learn more” link</h3>
+      <p>
+        The surrounding sentence gives visual context, but the link text alone does not identify what the user will learn more about.
+      </p>
+
+      <div class="sample-area">
+        <p>Accessibility training is available for presenters. <a href="https://example.com/accessibility-training">Learn more</a>.</p>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Repeated “Read more” links point to different destinations</h3>
+      <p>
+        Each article provides visual context, but the links themselves have identical text. A links list would expose several identical “Read more” links without enough information to distinguish them.</p>
+
+      <div class="article-list">
+        <article class="article-card">
+          <h4>Accessibility training announced</h4>
+          <p>New training sessions are available for content authors.</p>
+          <p><a href="https://example.com/news/accessibility-training">Read more</a></p>
+        </article>
+
+        <article class="article-card">
+          <h4>Conference registration opens</h4>
+          <p>Registration is now open for this year's conference.</p>
+          <p><a href="https://example.com/news/registration-open">Read more</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 4: Same link text points to different destination types</h3>
+      <p>
+        The links all say “Details,” but each points to a different type of information. The link text alone does not identify the purpose.</p>
+
+      <div class="sample-area link-list">
+        <a href="https://example.com/hotel-details">Details</a>
+        <a href="https://example.com/pricing-details">Details</a>
+        <a href="https://example.com/session-details">Details</a>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 5: URL text is not meaningful enough</h3>
+      <p>
+        A bare URL may not clearly describe the link purpose, especially when the path is ambiguous or truncated visually.
+      </p>
+
+      <div class="sample-area">
+        <a href="https://example.com/x/93821">https://example.com/x/93821</a>
+      </div>
+ 
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should be improved to catch or review bare URL link text when the URL itself does not clearly identify the destination or purpose. This should likely be treated as a review candidate rather than an automatic failure because some visible URLs may be meaningful enough.
+      </p>
+    </section>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint result</h2>
+      <p>
+        SiteLint caught failing examples 1, 2, 3, and 4 as WCAG 2.4.9 link-purpose issues. It did not report failing example 5, where the link text is a bare URL with an ambiguous path: <code>https://example.com/x/93821</code>.
+      </p>
+      <p>
+        The missed example may be intentional if SiteLint treats visible URL text as sufficiently descriptive by default, but this example demonstrates a link-purpose risk because the URL path does not identify the destination or purpose in human-readable terms.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Treat obviously generic link text such as <code>click here</code>, <code>learn more</code>, <code>read more</code>, and <code>details</code> as strong candidates for WCAG 2.4.9 review because the link purpose is not clear from the link text alone. Also consider bare URL text with ambiguous paths as a review candidate when the URL does not communicate a human-readable purpose.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Distinguish WCAG 2.4.9 from WCAG 2.4.4. A link may satisfy 2.4.4 when its purpose is clear from programmatically determinable context, while still failing or requiring review under 2.4.9 because the link text alone is not specific enough.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> When SiteLint reports repeated generic links, the report should list each affected link, destination URL, selector or XPath, and provide a highlight option when possible.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
