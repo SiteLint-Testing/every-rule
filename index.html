@@ -106,7 +106,7 @@
     </p>
 
     <table>
-      <caption>Created (30) and skipped (54) WCAG test pages</caption>
+      <caption>Created (31) and skipped (54) WCAG test pages</caption>
       <thead>
         <tr>
           <th scope="col" aria-sort="ascending"><button type="button" data-sort-column="0" aria-label="Sort by row number">#</button></th>
@@ -1084,12 +1084,20 @@
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>error-identification</code> as broad manual-review coverage only. To evaluate 3.3.1 more effectively, inspect controls already in an error state and check whether each error is identified in text and associated with the relevant field, while keeping submission-triggered validation workflows manual or interaction-based.</p>
           </td>
         </tr>
-        <tr>
+        <tr class="status-created">
           <td>77</td>
           <td>A</td>
           <th scope="row"><a href="3-3-2.html">3.3.2</a></th>
           <td>Labels or Instructions</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> SiteLint's current observed 3.3.2 coverage is narrow. The active rule is <code>legend-first-child-of-fieldset</code>, which evaluates only whether a <code>fieldset</code>'s first child is a non-empty <code>legend</code>.</li>
+              <li>The fieldset/legend rule is useful automated coverage for grouped controls, but it does not cover the full Labels or Instructions success criterion.</li>
+              <li>SiteLint does not currently evaluate several important 3.3.2 scenarios on this page through the 3.3.2 rule, including ordinary inputs with no label, placeholder-only format instructions, unexplained required-field indicators, and instruction quality.</li>
+              <li>The non-legend-first-child fieldset case may also trigger the separate 1.3.1 <code>fieldset-no-legend</code> rule, so classification and de-duplication should be reviewed.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep <code>legend-first-child-of-fieldset</code> as one automated 3.3.2 check, but expand 3.3.2 coverage with rules for unlabeled controls, placeholder-only labels or instructions, missing required-field explanations, missing format instructions, and unassociated helper text. Keep subjective instruction-quality cases as manual-review candidates.</p>
+          </td>
         </tr>
         <tr class="status-skipped">
           <td>78</td>

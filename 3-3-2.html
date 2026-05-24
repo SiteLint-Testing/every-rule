@@ -68,6 +68,20 @@
     .hint {
       margin-block: 0.35rem;
     }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
   </style>
 </head>
 <body>
@@ -101,22 +115,35 @@
     </section>
 
     <section class="example passing-example">
-      <h3>Passing example 2: Required format has an instruction</h3>
+      <h3>Passing example 2: Required format has visible instructions</h3>
       <p>
-        The field label identifies the input and helper text gives the expected format.
+        The field label identifies the input and nearby helper text gives the expected format.
       </p>
 
       <div class="sample-area">
         <label for="date-pass">Start date</label>
         <p id="date-pass-hint" class="hint">Use the format MM/DD/YYYY.</p>
-        <input id="date-pass" name="date-pass" type="text" aria-describedby="date-pass-hint">
+        <input id="date-pass" name="date-pass" type="text" autocomplete="off" aria-describedby="date-pass-hint">
       </div>
     </section>
 
     <section class="example passing-example">
-      <h3>Passing example 3: Fieldset legend is the first child</h3>
+      <h3>Passing example 3: Required fields are explained before the form</h3>
       <p>
-        The group has a legend that describes the purpose of the radio buttons.
+        The form provides an instruction that explains the meaning of the required indicators.
+      </p>
+
+      <div class="sample-area">
+        <p id="required-pass-instructions">Fields marked with an asterisk are required.</p>
+        <label for="company-pass">Company name *</label>
+        <input id="company-pass" name="company-pass" autocomplete="organization" required aria-describedby="required-pass-instructions">
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 4: Grouped controls have a descriptive legend</h3>
+      <p>
+        The group has a non-empty legend as the first child of the fieldset.
       </p>
 
       <div class="sample-area">
@@ -133,7 +160,7 @@
     <section class="example failing-example">
       <h3>Failing example 1: Input has no label</h3>
       <p>
-        The text input requires user input, but it has no visible or programmatic label.
+        The text input requires user input, but there is no visible or programmatic label.
       </p>
 
       <div class="sample-area">
@@ -142,29 +169,56 @@
     </section>
 
     <section class="example failing-example">
-      <h3>Failing example 2: Format required but no instruction provided</h3>
+      <h3>Failing example 2: Placeholder is used as the only instruction</h3>
       <p>
-        The date field requires a specific format, but no instruction is provided to the user.
+        The field requires a specific date format, but the only instruction is inside the placeholder. Placeholder text can disappear while the user is entering data and is not a reliable replacement for a persistent label or instruction.
       </p>
 
       <div class="sample-area">
-        <label for="date-fail">Start date</label>
-        <input id="date-fail" name="date-fail" type="text" placeholder="MM/DD/YYYY">
+        <label for="date-placeholder-fail">Start date</label>
+        <input id="date-placeholder-fail" name="date-placeholder-fail" type="text" autocomplete="off" placeholder="MM/DD/YYYY">
       </div>
     </section>
 
     <section class="example failing-example">
-      <h3>Failing example 3: Legend is not the first child of fieldset</h3>
+      <h3>Failing example 3: Required field is not explained</h3>
       <p>
-        The fieldset has a legend, but another element appears before it.
+        The asterisk visually marks the field as required, but the page does not explain what the asterisk means.
+      </p>
+
+      <div class="sample-area">
+        <label for="company-required-fail">Company name *</label>
+        <input id="company-required-fail" name="company-required-fail" autocomplete="organization" required>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 4: Fieldset has an empty legend</h3>
+      <p>
+        The fieldset's first child is a <code>legend</code>, but the legend has no text. This does not provide a usable label or instruction for the grouped controls.
+      </p>
+
+      <div class="sample-area">
+        <fieldset>
+          <legend></legend>
+          <label><input name="shipping-speed-fail" type="radio" value="standard"> Standard shipping</label>
+          <label><input name="shipping-speed-fail" type="radio" value="express"> Express shipping</label>
+        </fieldset>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 5: Fieldset legend is not the first child</h3>
+      <p>
+        The fieldset has a legend, but another element appears before it. The legend should be the first child so the grouped controls have a reliable caption.
       </p>
 
       <div class="sample-area">
         <fieldset>
           <p>Choose one option.</p>
           <legend>Shipping speed</legend>
-          <label><input name="shipping-fail" type="radio" value="standard"> Standard</label>
-          <label><input name="shipping-fail" type="radio" value="express"> Express</label>
+          <label><input name="shipping-order-fail" type="radio" value="standard"> Standard</label>
+          <label><input name="shipping-order-fail" type="radio" value="express"> Express</label>
         </fieldset>
       </div>
     </section>
@@ -172,16 +226,55 @@
     <h2>Manual review examples</h2>
 
     <section class="example manual-example">
-      <h3>Manual example 1: Instructions may be insufficient</h3>
+      <h3>Manual example 1: Instructions may be present but insufficient</h3>
       <p>
-        Automation can see that instructions exist, but a reviewer may need to decide whether they are sufficient for the task.
+        Automation can detect that helper text exists, but a reviewer may need to decide whether the instruction is meaningful enough for the task.
       </p>
 
       <div class="sample-area">
         <label for="tax-id-manual">Tax ID</label>
         <p id="tax-id-manual-hint" class="hint">Enter the required value.</p>
-        <input id="tax-id-manual" name="tax-id-manual" aria-describedby="tax-id-manual-hint">
+        <input id="tax-id-manual" name="tax-id-manual" autocomplete="off" aria-describedby="tax-id-manual-hint">
       </div>
+    </section>
+
+    <section class="example manual-example">
+      <h3>Manual example 2: Complex task instructions may need human judgment</h3>
+      <p>
+        Some fields require domain-specific instructions. A rule may identify missing labels or missing helper text, but deciding whether the instruction is complete can require content review.
+      </p>
+
+      <div class="sample-area">
+        <label for="routing-number-manual">Routing number</label>
+        <p id="routing-number-manual-hint" class="hint">Enter the routing number shown on your account documents.</p>
+        <input id="routing-number-manual" name="routing-number-manual" inputmode="numeric" autocomplete="off" aria-describedby="routing-number-manual-hint">
+      </div>
+    </section>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint behavior</h2>
+      <p>
+        SiteLint's active 3.3.2 finding on this page comes from <code>legend-first-child-of-fieldset</code>. That rule evaluates only <code>fieldset</code> elements by checking whether the first child is a non-empty <code>legend</code>.
+      </p>
+      <p>
+        The rule appropriately covers the grouped-control legend examples, including an empty legend and a legend that is not the first child. However, the non-legend-first-child case also overlaps with the separate 1.3.1 <code>fieldset-no-legend</code> rule, so that example may produce more than one related finding.
+      </p>
+      <p>
+        SiteLint does not currently evaluate several important 3.3.2 scenarios on this page through the 3.3.2 rule: an ordinary input with no label, a required format provided only as placeholder text, unexplained required-field indicators, or whether instructions are sufficiently clear for the task.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Keep <code>legend-first-child-of-fieldset</code> as useful automated coverage for grouped controls, but do not present it as complete WCAG 3.3.2 Labels or Instructions coverage.
+      </p>
+      <p>
+        To evaluate this page more effectively, SiteLint should add or map rules for unlabeled form controls, placeholder-only labels or instructions, missing required-field explanations, missing format instructions, and helper text that is not programmatically associated with the relevant field.
+      </p>
+      <p>
+        Some instruction-quality issues should remain manual-review candidates. The tool can identify likely risks, but deciding whether an instruction is complete, understandable, and appropriate for the task may require human judgment.
+      </p>
     </section>
   </main>
 
