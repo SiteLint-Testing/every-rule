@@ -1,0 +1,340 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 2.4.6 Headings and Labels Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 60rem;
+      padding: 1rem;
+    }
+
+    .form-row {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      margin-block: 0.75rem;
+    }
+
+    .form-row label {
+      min-width: 12rem;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      margin-block: 1rem;
+    }
+
+    .card {
+      border: 1px solid #767676;
+      padding: 1rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .highlight {
+      background-color: #fff59d;
+      padding-inline: 0.15rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 2.4.6: Headings and Labels</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Headings and labels should describe the topic or purpose of the content, section, field, or control they identify.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html">View the W3C Understanding page for WCAG 2.4.6 Headings and Labels</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>What this page is intended to test</h2>
+      <p>
+        This page provides a first pass at WCAG 2.4.6 scenarios involving headings, form labels, button labels, and link labels. Some scenarios are directly testable when text is empty or obviously generic. Other scenarios require judgment because a heading or label may be technically present but still not describe the topic or purpose clearly enough.
+      </p>
+      <p>
+        Initial testing should identify which SiteLint rules are mapped to WCAG 2.4.6, which examples are caught automatically, which examples are reported under related criteria, and which examples require manual review.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Heading describes the section topic</h3>
+      <p>
+        The heading clearly describes the content that follows.
+      </p>
+
+      <div class="sample-area">
+        <h4>Conference registration deadlines</h4>
+        <p>Early registration closes on October 15. Standard registration remains open through December 1.</p>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Form labels describe the expected input</h3>
+      <p>
+        Each label identifies what information the user should enter.
+      </p>
+
+      <div class="sample-area">
+        <div class="form-row">
+          <label for="attendee-name">Attendee name</label>
+          <input id="attendee-name" name="attendee-name" type="text" autocomplete="name">
+        </div>
+        <div class="form-row">
+          <label for="attendee-email">Attendee email address</label>
+          <input id="attendee-email" name="attendee-email" type="email" autocomplete="email">
+        </div>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Button label describes the action</h3>
+      <p>
+        The button label identifies what will happen when the button is activated.
+      </p>
+
+      <div class="sample-area">
+        <button type="button">Download accessibility checklist</button>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 4: Repeated controls have distinguishable labels</h3>
+      <p>
+        Each card uses a specific button label so users can tell which item the action applies to.
+      </p>
+
+      <div class="sample-area card-grid">
+        <div class="card">
+          <h4>Attendee registration</h4>
+          <p>Register to attend the conference.</p>
+          <button type="button">Register as attendee</button>
+        </div>
+        <div class="card">
+          <h4>Exhibitor registration</h4>
+          <p>Register to reserve an exhibitor booth.</p>
+          <button type="button">Register as exhibitor</button>
+        </div>
+      </div>
+    </section>
+
+    <h2>Failing or risky examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Generic heading does not describe the section</h3>
+      <p>
+        A heading such as “Information” may be too vague to describe the topic or purpose of the section.
+      </p>
+
+      <div class="sample-area">
+        <h4>Information</h4>
+        <p>Hotel booking instructions, group-rate deadlines, and venue transportation details are listed here.</p>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint rules should be improved to catch generic headings when they do not describe the section topic clearly enough. This may need to be a review candidate rather than a confirmed failure because context matters.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Empty heading</h3>
+      <p>
+        An empty heading creates structure without describing any topic.
+      </p>
+
+      <div class="sample-area">
+        <h4></h4>
+        <p>This content appears after an empty heading.</p>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Label is present but not descriptive</h3>
+      <p>
+        The label exists, but “Info” does not clearly describe the expected input.
+      </p>
+
+      <div class="sample-area">
+        <div class="form-row">
+          <label for="emergency-contact">Info</label>
+          <input id="emergency-contact" name="emergency-contact" type="tel" autocomplete="tel">
+        </div>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint rules should be improved to catch labels that are technically present but too vague to describe the purpose of the field.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Secondary example 4: Placeholder is used instead of a persistent label</h3>
+      <p>
+        Placeholder-only labeling can disappear when the user types and may not provide a persistent label for the field. This is relevant to label quality, but the live input triggers an unrelated WCAG 3.3.2 “Form controls need labels” finding, so the example is shown as a code sample on this page.
+      </p>
+
+      <div class="sample-area">
+        <code>&lt;input id="placeholder-only-phone" name="placeholder-only-phone" type="tel" placeholder="Phone number" autocomplete="tel"&gt;</code>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should identify inputs that rely on placeholder text instead of a persistent label where that pattern creates a label-purpose risk, while keeping the finding taxonomy separate from missing-label coverage under WCAG 3.3.2.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 5: Repeated generic buttons are not distinguishable</h3>
+      <p>
+        Repeated buttons with the same generic label can be unclear when users encounter them out of context or when the surrounding card context is not programmatically associated.
+      </p>
+
+      <div class="sample-area card-grid">
+        <div class="card">
+          <h4>Attendee registration</h4>
+          <p>Register to attend the conference.</p>
+          <button type="button">Learn more</button>
+        </div>
+        <div class="card">
+          <h4>Exhibitor registration</h4>
+          <p>Register to reserve an exhibitor booth.</p>
+          <button type="button">Learn more</button>
+        </div>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint rules should be improved to catch repeated generic control labels when the surrounding context is not sufficient or not programmatically determinable.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Secondary example 6: Link label is generic and not meaningful</h3>
+      <p>
+        Generic link text can fail heading-and-label expectations when the label does not describe the destination or action clearly enough. This overlaps with link-purpose rules, and the live link triggers an unrelated WCAG 2.4.9 finding, so the example is shown as a code sample on this page.
+      </p>
+
+      <div class="sample-area">
+        <code>&lt;a href="https://example.com/session-details"&gt;Click here&lt;/a&gt;</code>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should keep generic link-label findings clearly separated between WCAG 2.4.6, 2.4.4, and 2.4.9 so this page can test heading-and-label clarity without creating unrelated link-purpose noise.
+      </p>
+    </section>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint result</h2>
+      <p>
+        SiteLint currently reports only failing example 2 as a WCAG 2.4.6 issue: “Heading element exists but has no content.” It does not report failing example 1, failing example 3, or failing example 5 as WCAG 2.4.6 findings, even though those examples represent headings or labels that are present but not descriptive enough.
+      </p>
+      <p>
+        The placeholder-only input originally triggered an unrelated WCAG 3.3.2 “Form controls need labels” finding, and the generic link originally triggered an unrelated WCAG 2.4.9 finding. Those examples have been converted to code samples so the live page remains focused on WCAG 2.4.6 findings.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Treat empty headings as confirmed automated WCAG 2.4.6 findings. SiteLint already catches the empty heading scenario on this page.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Improve SiteLint rules to catch or review headings and labels that are present but not descriptive enough. Failing example 1 uses a generic heading, failing example 3 uses a vague form label, and failing example 5 uses repeated generic button labels. These should be treated as review candidates because context affects whether the heading or label adequately describes the topic or purpose.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Keep the distinction clear between WCAG 2.4.6 label/heading clarity and related link-purpose findings under WCAG 2.4.4 or 2.4.9. When the same issue can map to multiple criteria, SiteLint should explain the classification and avoid duplicate or contradictory reports.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>

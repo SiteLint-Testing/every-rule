@@ -106,7 +106,7 @@
     </p>
 
     <table>
-      <caption>Created (21) and skipped (54) WCAG test pages</caption>
+      <caption>Created (23) and skipped (54) WCAG test pages</caption>
       <thead>
         <tr>
           <th scope="col" aria-sort="ascending"><button type="button" data-sort-column="0" aria-label="Sort by row number">#</button></th>
@@ -672,11 +672,11 @@
           <td>
             <ul class="issues-list">
               <li><strong>Caution:</strong> SiteLint's current <code>unclear-page-title</code> rule provides useful partial WCAG 2.4.2 coverage by checking the active document <code>title</code> for missing, empty, whitespace-only, and several known generic/default title strings.</li>
-              <li>SiteLint correctly reports the active page title <code>Untitled Document</code> under WCAG 2.4.2 because it does not identify the content or purpose of the page.</li>
+              <li>SiteLint correctly reports the active page title <code>Untitled Document</code> under WCAG 2.4.2 because it <span class="highlight">does not identify the content or purpose of the page</span>.</li>
               <li>The reported <code>title</code> element cannot be visually highlighted on the page because it is a non-rendered <code>head</code> element. SiteLint's fallback message for non-rendered elements is appropriate here.</li>
-              <li>The current rule does not fully evaluate whether a title describes the page topic or purpose. It may not catch vague but common titles such as <code>Home</code>, <code>Page</code>, <code>Welcome</code>, <code>Dashboard</code>, or short organization-only titles such as <code>APAP</code>.</li>
-              <li>The current single-page rule does not evaluate duplicate titles across a site, whether the title matches the visible page topic, or whether a single-page application updates the document title after route changes.</li>
-              <li>The iframe-title issue is separate from WCAG 2.4.2 and maps more appropriately to WCAG 4.1.2 because it concerns the iframe element's accessible name, not the active document title.</li>
+              <li>The current rule <span class="highlight">does not fully evaluate</span> whether a title describes the page topic or purpose. It <span class="highlight">may not catch vague but common titles</span> such as <code>Home</code>, <code>Page</code>, <code>Welcome</code>, <code>Dashboard</code>, or short organization-only titles such as <code>APAP</code>.</li>
+              <li>The current single-page rule <span class="highlight">does not evaluate duplicate titles across a site</span>, whether the title matches the visible page topic, or whether a single-page application updates the document title after route changes.</li>
+              <li>The iframe-title issue is <span class="highlight">separate from WCAG 2.4.2 and maps more appropriately to WCAG 4.1.2</span> because it concerns the iframe element's accessible name, not the active document title.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep <code>unclear-page-title</code> as automated WCAG 2.4.2 coverage for objective title failures. Consider adding review-candidate logic for likely-generic titles, site-wide duplicate-title analysis, and single-page-application route-change checks.</p>
           </td>
@@ -692,12 +692,23 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr class="status-created">
           <td>46</td>
           <td>A</td>
           <th scope="row"><a href="2-4-4.html">2.4.4</a></th>
           <td>Link Purpose (In Context)</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li><strong>Caution:</strong> SiteLint groups several link-purpose and link-name rules under WCAG 2.4.4, including <code>aria-labelledby-association</code>, <code>aria-labelledby-association-empty-element</code>, <code>empty-link-element</code>, <code>img-alt-duplicate-text-link</code>, <code>link-purpose-in-context</code>, and <code>links-same-content-different-url</code>.</li>
+              <li>SiteLint correctly flags several failing examples on the page: missing <code>aria-labelledby</code> reference, empty <code>aria-labelledby</code> reference, empty-link content, duplicate image/link text, same-page link with missing target, and same-content/different-URL links when manual-verification findings are enabled.</li>
+              <li>SiteLint does not report secondary examples 3, 4, or 9 as live WCAG 2.4.4 findings. These include generic link text, repeated generic “Read more” links, and an icon-only link with no accessible name. SiteLint rules should be improved where these examples represent real link-purpose failures that the current rules miss.</li>
+              <li><code>links-same-content-different-url</code> is a useful concrete pattern-based review finding, but it only appears when manual-verification findings are enabled. The report says it found 3 links with the same text <code>Register</code> pointing to different URLs, but it does not list the affected links, destination URLs, selectors, XPaths, or page highlight buttons.</li>
+              <li><code>link-purpose-in-context</code> appears to be a broad manual-verification prompt that detects the presence of links and asks for human review. It should not be treated as evidence of automated WCAG 2.4.4 pass/fail coverage.</li>
+              <li>The <code>empty-link-element</code> finding is reported in the audit UI as WCAG 2.4.6 “Links should have meaningful, descriptive content,” even though the source file appears under <code>wcag/2.4.4/H30/empty-link-element.ts</code>. The source-code location and audit UI mapping should be reconciled.</li>
+              <li>The same-page-link missing-target rule is reported in the audit UI as WCAG 2.4.4, but the Bitbucket rule file appears to live under a WCAG 2.1.1 path. The source-code categorization and UI categorization should be verified.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Distinguish concrete automated findings, concrete pattern-based manual findings, and broad manual review prompts. Pattern-based findings such as <code>links-same-content-different-url</code> should include affected links, destination URLs, selectors or XPaths, and highlight options when possible. Broad prompts such as <code>link-purpose-in-context</code> should remain clearly labeled as manual verification.</p>
+          </td>
         </tr>
         <tr class="status-skipped">
           <td>47</td>
@@ -710,12 +721,20 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr class="status-created">
           <td>48</td>
           <td>AA</td>
           <th scope="row"><a href="2-4-6.html">2.4.6</a></th>
           <td>Headings and Labels</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li>SiteLint currently reports only failing example 2 as a WCAG 2.4.6 issue: “Heading element exists but has no content.”</li>
+              <li>SiteLint does not report failing example 1, failing example 3, or failing example 5 as WCAG 2.4.6 findings, even though those examples represent headings or labels that are present but not descriptive enough.</li>
+              <li>The placeholder-only input originally triggered an unrelated WCAG 3.3.2 “Form controls need labels” finding, so that scenario was converted to a code sample to keep the live page focused on WCAG 2.4.6.</li>
+              <li>The generic link originally triggered an unrelated WCAG 2.4.9 finding, so that scenario was converted to a code sample to avoid link-purpose noise on the 2.4.6 page.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat empty headings as confirmed automated WCAG 2.4.6 findings. Improve SiteLint rules to catch or review headings and labels that are present but not descriptive enough, including generic headings, vague form labels, and repeated generic button labels. Keep 2.4.6 label/heading clarity separate from related link-purpose findings under WCAG 2.4.4 or 2.4.9.</p>
+          </td>
         </tr>
         <tr class="status-skipped">
           <td>49</td>
