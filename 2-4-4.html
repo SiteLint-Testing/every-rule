@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 2.4.4 Link Purpose In Context Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 78rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 60rem;
+      padding: 1rem;
+    }
+
+    .article-list {
+      display: grid;
+      gap: 1rem;
+      margin-block: 1rem;
+    }
+
+    .article-card {
+      border: 1px solid #767676;
+      padding: 1rem;
+    }
+
+    .icon-link {
+      display: inline-flex;
+      gap: 0.35rem;
+    }
+
+    .empty-link-test {
+      display: inline-block;
+      min-height: 28px;
+      min-width: 28px;
+    }
+
+    .same-content-different-url-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .same-content-different-url-links a {
+      display: inline-block;
+      min-height: 28px;
+    }
+
+    .missing-labelledby-test {
+      display: inline-block;
+      min-height: 28px;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .highlight {
+      background-color: #fff59d;
+      padding-inline: 0.15rem;
+    }
+
+    .manual-verification-note {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 2.4.4: Link Purpose (In Context)</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> The purpose of each link should be understandable from the link text alone or from its programmatically determinable context, except where the purpose would be ambiguous to users in general.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html">View the W3C Understanding page for WCAG 2.4.4 Link Purpose (In Context)</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>SiteLint rules grouped under WCAG 2.4.4</h2>
+      <p>
+        SiteLint groups the following rules under WCAG 2.4.4 Link Purpose (In Context):
+      </p>
+      <ul>
+        <li><code>aria-labelledby-association</code>: The <code>aria-labelledby</code> attribute must reference an existing element.</li>
+        <li><code>aria-labelledby-association-empty-element</code>: An <code>aria-labelledby</code> attribute must reference an element that contains meaningful content.</li>
+        <li><code>empty-link-element</code>: Links should have meaningful, descriptive content.</li>
+        <li><code>img-alt-duplicate-text-link</code>: A link and its image may not have duplicate text content.</li>
+        <li><code>link-purpose-in-context</code>: Verify link purpose in context.</li>
+        <li><code>links-same-content-different-url</code>: Avoid link elements that have the same content, but different destination URLs.</li>
+      </ul>
+    </section>
+
+    <section class="sitelint-observation">
+      <h2>What this page is intended to test</h2>
+      <p>
+        SiteLint maps several link-related rules to WCAG 2.4.4. Some are direct link-purpose checks, while others overlap with accessible-name or ARIA-reference quality because those issues can prevent users from determining a link's purpose.
+      </p>
+      <p>
+        This page tests the broader SiteLint 2.4.4 rule family as exposed in the SiteLint audit UI. Confirmed live findings on this page include missing <code>aria-labelledby</code> references, empty <code>aria-labelledby</code> references, duplicate image/link text, same-page links with missing targets, and empty-link content. With manual-verification findings enabled, SiteLint also reports <code>link-purpose-in-context</code> and <code>links-same-content-different-url</code>.
+      </p>
+      <p class="manual-verification-note">
+        <strong>Recommendation:</strong> Manual-verification findings need clearer separation in the UI. <code>link-purpose-in-context</code> is a broad prompt that appears to detect that links exist on the page and asks for human review. It is not effectively determining whether specific links pass or fail WCAG 2.4.4. <code>links-same-content-different-url</code> is more actionable because it detects a concrete pattern, but it is still marked as requiring manual verification and can be buried among lower-value review prompts.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Descriptive link text</h3>
+      <p>
+        This link should pass because the link text clearly describes the destination.
+      </p>
+
+      <div class="sample-area">
+        <a href="https://example.com/accessibility-report">Read the accessibility report</a>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Link purpose is clear from surrounding sentence</h3>
+      <p>
+        This link should pass because the surrounding sentence provides the context needed to understand the link purpose.
+      </p>
+
+      <div class="sample-area">
+        <p>
+          To review conference pricing, <a href="https://example.com/conference-pricing">view the registration fees</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Repeated link text has equivalent destination</h3>
+      <p>
+        Repeated link text can pass when each repeated link goes to the same destination.
+      </p>
+
+      <div class="sample-area">
+        <p><a href="https://example.com/contact">Contact us</a></p>
+        <p><a href="https://example.com/contact">Contact us</a></p>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 4: Image link has descriptive alternative text</h3>
+      <p>
+        This image link should pass because the image has alternative text that describes the link purpose.
+      </p>
+
+      <div class="sample-area">
+        <a href="https://example.com/site-map">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Crect width='120' height='40' fill='%23e8f1ff'/%3E%3Ctext x='10' y='25' font-size='16' fill='%23000000'%3ESite map%3C/text%3E%3C/svg%3E" alt="View the site map">
+        </a>
+      </div>
+    </section>
+
+    <h2>Failing or risky examples aligned to SiteLint's 2.4.4 rule family</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Link uses <code>aria-labelledby</code> but references a missing element</h3>
+      <p>
+        This is intended to trigger SiteLint's <code>aria-labelledby-association</code> rule. The link has an <code>aria-labelledby</code> value that references <code>missing-link-label</code>, but no element with that <code>id</code> exists on the page.
+      </p>
+
+      <div class="sample-area">
+        <a class="missing-labelledby-test" href="https://example.com/missing-label-reference" aria-labelledby="missing-link-label" aria-label="Missing labelledby reference test">Missing labelledby reference test</a>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint should report this under WCAG 2.4.4 as “The aria-labelledby attribute must reference an existing element.” The link also includes visible text and an <code>aria-label</code> so the page can test the missing <code>aria-labelledby</code> reference without also triggering the unrelated WCAG 2.4.6 link-content rule.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Link uses <code>aria-labelledby</code> but references an empty element</h3>
+      <p>
+        This triggers SiteLint's <code>aria-labelledby-association-empty-element</code> rule. The referenced label element exists, but it does not contain meaningful content.
+      </p>
+
+      <div class="sample-area">
+        <span id="empty-link-label"></span>
+        <a href="https://example.com/empty-label-reference" aria-labelledby="empty-link-label">Fallback link text</a>
+      </div>
+
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> SiteLint reports this under WCAG 2.4.4 as “An aria-labelledby attribute must reference an element that contains meaningful content.”
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Secondary example 3: Generic link text</h3>
+      <p>
+        Generic link text such as “click here” can relate to link purpose, but SiteLint currently reports this kind of issue under other link-text rules such as WCAG 2.4.6 or WCAG 2.4.9 rather than the 2.4.4 rule family shown on this page. The example is shown as a code sample to keep the live findings focused on WCAG 2.4.4.
+      </p>
+
+      <div class="sample-area">
+        <code>&lt;p&gt;For more details about the annual conference, &lt;a href="https://example.com/conference-details"&gt;click here&lt;/a&gt;.&lt;/p&gt;</code>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint rules should be improved to catch this failure when generic link text does not provide enough link-purpose information from the link text or its programmatically determinable context.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Secondary example 4: Multiple “read more” links to different destinations</h3>
+      <p>
+        Repeated generic link text can be confusing when each link points to a different destination, but SiteLint currently reports this pattern under its out-of-context link-purpose rule mapped to WCAG 2.4.9. The example is shown as a code sample to keep the live findings focused on WCAG 2.4.4.
+      </p>
+
+      <div class="sample-area">
+        <code>&lt;a href="https://example.com/news/accessibility-training"&gt;Read more&lt;/a&gt;</code><br>
+        <code>&lt;a href="https://example.com/news/registration-open"&gt;Read more&lt;/a&gt;</code>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint rules should be improved to catch this failure when repeated generic link text points to different destinations and the surrounding context is not sufficient or not exposed clearly enough to establish each link purpose.
+      </p>
+    </section>
+
+<section class="example failing-example">
+      <h3>Failing example 5: Same link text points to different URLs</h3>
+      <p>
+        This is intended to trigger SiteLint's <code>links-same-content-different-url</code> rule. The three links have the same visible text and accessible name, but each link points to a different canonical URL. The links are direct children of a generic <code>div</code>, not inside <code>article</code> or <code>li</code> elements, because the rule treats links inside those containers as contextual exceptions.
+      </p>
+
+      <div class="sample-area same-content-different-url-links">
+        <a href="attendee-registration.html">Register</a>
+        <a href="exhibitor-registration.html">Register</a>
+        <a href="sponsor-registration.html">Register</a>
+      </div>
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> SiteLint reports <code>links-same-content-different-url</code> only when manual-verification findings are included. It provides the message: “Found 3 links with the same text Register (accessible name: Register) pointing to different URLs. Every link should have unique content.”
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> This is a useful pattern-based finding, but SiteLint should list the affected links, their destination URLs, and their selectors or XPaths. It should also provide highlight buttons for each affected link when possible. Without those details, users must search through the page source to find the repeated links, which makes the finding harder to act on.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 6: Empty link with whitespace-only content</h3>
+      <p>
+        This is intended to trigger SiteLint's <code>empty-link-element</code> rule. The link has an <code>href</code> and contains only whitespace, with no <code>aria-label</code>, no <code>aria-hidden="true"</code>, and no other accessible content to explain the link purpose.
+      </p>
+
+      <div class="sample-area">
+        <a class="empty-link-test" href="https://example.com/empty-link-destination"> </a>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint reports this as “Links should have meaningful, descriptive content” under WCAG 2.4.6 in the audit UI, but the source file for <code>empty-link-element</code> appears in the repository under <code>wcag/2.4.4/H30/empty-link-element.ts</code>. The source-code location and audit UI mapping should be reconciled.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 7: Link and image have duplicate text</h3>
+      <p>
+        This triggers SiteLint's <code>img-alt-duplicate-text-link</code> rule. The image alternative text duplicates the adjacent link text, which may create redundant or confusing link output depending on how the link is exposed.
+      </p>
+
+      <div class="sample-area">
+        <a href="https://example.com/annual-report">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Crect width='120' height='40' fill='%23e8f1ff'/%3E%3Ctext x='10' y='25' font-size='16' fill='%23000000'%3EAnnual report%3C/text%3E%3C/svg%3E" alt="Annual report">
+          Annual report
+        </a>
+      </div>
+
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> SiteLint reports this under WCAG 2.4.4 as “A link and its image may not have duplicate text content.”
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Observed failing example 8: Same-page link points to a missing target</h3>
+      <p>
+        A same-page link that points to a missing target does not take the user to the intended content. This triggers SiteLint's same-page-link rule, which SiteLint maps to WCAG 2.4.4.
+      </p>
+
+      <div class="sample-area">
+        <a href="#missing-section-target">Jump to event details</a>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint reports this as “Same-page links must have a corresponding target” under WCAG 2.4.4 in the audit UI, but the Bitbucket rule file appears to live under a WCAG 2.1.1 path. The source-code categorization and UI categorization should be verified.
+      </p>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Secondary example 9: Icon-only link has no accessible name</h3>
+      <p>
+        An icon-only link with no accessible label does not communicate its purpose, but this can trigger accessible-name or target-size findings outside the current WCAG 2.4.4 focus. The example is shown as a code sample to avoid unrelated live findings.
+      </p>
+
+      <div class="sample-area">
+        <code>&lt;a href="https://example.com/download-file"&gt;&lt;span aria-hidden="true"&gt;Download&lt;/span&gt;&lt;/a&gt;</code>
+      </div>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> SiteLint rules should be improved to catch this failure when an icon-only link has no accessible name, while avoiding unrelated target-size or taxonomy noise.
+      </p>
+    </section>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint rule family</h2>
+      <p>
+        SiteLint correctly flags several failing examples on this page: <code>aria-labelledby-association</code> for failing example 1, <code>aria-labelledby-association-empty-element</code> for failing example 2, <code>empty-link-element</code> / “Links should have meaningful, descriptive content” for failing example 6, <code>img-alt-duplicate-text-link</code> for failing example 7, same-page link missing target for observed failing example 8, and <code>links-same-content-different-url</code> when manual-verification findings are enabled.
+      </p>
+      <p>
+        SiteLint does not report secondary examples 3, 4, or 9 as live WCAG 2.4.4 findings. Failing example 5 is reported only when manual-verification findings are enabled. Some of these results may reflect intentional taxonomy choices or manual-verification behavior rather than true rule failures, but SiteLint rules should be improved where these examples represent real link-purpose failures that the current rules miss.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> With manual-verification findings enabled, SiteLint reports both <code>link-purpose-in-context</code> and <code>links-same-content-different-url</code>, but these should not be treated the same way. <code>link-purpose-in-context</code> is a general review prompt that appears because links exist on the page. <code>links-same-content-different-url</code> is a concrete pattern-based review finding because it detects multiple links with the same accessible name but different canonical destinations.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> SiteLint's broader WCAG 2.4.4 mapping is defensible for many link-purpose problems, but some findings also overlap with accessible-name, ARIA-reference, image-alternative, or keyboard/navigation quality. The UI should make that relationship clear when a finding is classified under WCAG 2.4.4. Mapping discrepancies should also be checked where the audit UI and source-code location appear to point to different WCAG criteria.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> The manual-verification bucket contains both useful pattern-based findings and broad prompts that create noise. <code>links-same-content-different-url</code> is useful because it identifies a specific repeated-link pattern. <code>link-purpose-in-context</code> is much less specific because it does not evaluate individual link text, surrounding context, destination accuracy, or whether the page actually satisfies WCAG 2.4.4.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Clarify whether each finding is a direct link-purpose failure, an accessible-name failure affecting link purpose, an ARIA-reference failure affecting link purpose, or a related redundancy/best-practice concern.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Label <code>link-purpose-in-context</code> explicitly as “Requires manual verification.” Do not present it as a confirmed WCAG 2.4.4 failure unless SiteLint identifies a specific link and a specific reason the link purpose cannot be determined from its text or programmatically determinable context. Broad manual prompts should be visually separated from concrete pattern-based review findings.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Treat <code>img-alt-duplicate-text-link</code> carefully. Duplicate image/link text may be noisy or redundant, but it is not always a clear WCAG 2.4.4 failure unless it actually interferes with understanding the link purpose.
+      </p>
+      <p>
+        <strong>Recommendation:</strong> Distinguish concrete automated findings, concrete pattern-based manual findings, and broad manual review prompts. <code>links-same-content-different-url</code> should be treated as a concrete pattern-based review candidate because it detects repeated accessible names with different destinations. The report should include each affected link, destination URL, selector or XPath, and a highlight option when possible. <code>link-purpose-in-context</code> should remain a broad manual reminder and should not be treated as evidence of automated WCAG 2.4.4 pass/fail coverage.
+      </p>
+    </section>
+  </main>
+
+  <script>
+  (function(w,d,s,a,m,t) {
+    a = d.createElement(s);m = d.getElementsByTagName(s)[0];a.defer = true;a.fetchpriority='high';a.id = 'auditor_app';a.dataset.cfasync = 'false';a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=4719ac9c7bbaf428c5a5df567a5fa94a41c35a97c77d6bad5e7f3a762dd0b1d7';
+
+    function onPageLoaded() {
+      w.clearTimeout(t);
+      w.removeEventListener('DOMContentLoaded', onPageLoaded);
+      m.parentNode.insertBefore(a, m);
+    }
+    
+    function onAuditorLoaded(){
+      auditor.config({
+        includeHidden: true,
+        stripTextFromReport: false,
+        watchDomChanges: false
+      }).run();
+    }
+
+    a.addEventListener('load', onAuditorLoaded);
+
+    if (d.readyState !== 'loading') {
+      onPageLoaded();
+      return;
+    }
+
+    w.addEventListener('DOMContentLoaded', onPageLoaded);
+  })(window, document, 'script');
+  </script>
+</body>
+</html>
