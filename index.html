@@ -79,6 +79,45 @@
       max-width: 72rem;
     }
 
+    .about-suite {
+      border: 1px solid #767676;
+      margin-block: 1rem 1.5rem;
+      max-width: 72rem;
+    }
+
+    .about-suite summary {
+      background-color: #f2f2f2;
+      cursor: pointer;
+      font-weight: 700;
+      padding: 0.75rem 1rem;
+    }
+
+    .about-suite-content {
+      padding: 0 1rem 1rem;
+    }
+
+    .summary-steps {
+      max-width: 72rem;
+      padding-left: 1.5rem;
+    }
+
+    .summary-steps li {
+      margin-block: 0.75rem;
+    }
+
+    .recommended-use {
+      background-color: #fff4cc;
+      border: 1px solid #8a6500;
+      border-left-width: 0.35rem;
+      margin-block: 1.25rem;
+      max-width: 72rem;
+      padding: 1rem;
+    }
+
+    .recommended-use p {
+      margin-block: 0;
+    }
+
     .highlight {
       background-color: #fff4a3;
     }
@@ -101,9 +140,26 @@
       <a href="translations.html">View SiteLint rule title translation map</a>
     </p>
 
-    <p class="summary">
-      This index tracks the WCAG success-criterion test pages being created to evaluate SiteLint coverage. Each linked page contains representative passing and failing scenarios for that success criterion, followed by observations and recommendations when SiteLint behavior has been reviewed.
-    </p>
+    <details class="about-suite">
+      <summary>About this Test Suite</summary>
+      <div class="about-suite-content">
+        <p class="summary">
+          This test suite tracks the WCAG success-criterion test pages being created to evaluate SiteLint coverage. Each linked page contains representative passing and failing scenarios for that success criterion, followed by observations and recommendations when SiteLint behavior has been reviewed.
+        </p>
+
+        <ol class="summary-steps">
+          <li>The suite started as a grid of every WCAG 2.0, 2.1, and 2.2 success criterion. Criteria that do not seem possible to pass or fail effectively through automation are marked as skipped. For the remaining criteria, focused test pages were created with clean success and failure scenarios that should be meaningfully auditable by automated rules.</li>
+          <li>Each test page was checked with the SiteLint Chrome extension to see which scenarios SiteLint passes, fails, misses, or mis-categorizes. The notes capture those hits and misses, including rules that are currently only broad manual-verification triggers and therefore do not provide much actionable feedback by themselves.</li>
+          <li>The recommendations identify what should be addressed or expanded to improve WCAG coverage and messaging. The <a href="translations.html">Translation Map</a> adds visibility into how SiteLint rule names map to WCAG, with links to the related test pages and Bitbucket rule resources where available.</li>
+        </ol>
+
+        <section class="recommended-use" aria-label="Recommended use">
+          <p>
+            <strong>Recommended use:</strong> Treat this suite as a shared to-do list for improving SiteLint rules. The goal is more accurate, thorough WCAG coverage, with clear messaging about what the tool can audit effectively versus what it can only point users toward for manual follow-up.
+          </p>
+        </section>
+      </div>
+    </details>
 
     <table>
       <caption>Created (41) and skipped (46) WCAG test pages</caption>
@@ -690,9 +746,10 @@
             <ul class="issues-list">
               <li>SiteLint appropriately reports the positive <code>tabindex</code> example and the redundant <code>tabindex="0"</code> example under WCAG 2.4.3.</li>
               <li>SiteLint also uses <code>focus-order-preserved</code> as a manual-verification trigger, but it <span class="highlight">does not automatically evaluate rendered focus order</span>.</li>
-              <li>The visual-order mismatch remains the key gap: SiteLint should compare keyboard focus sequence with visual order, reading order, and workflow order where possible.</li>
+              <li>SiteLint <span class="highlight">does not report failing example 2</span>, where CSS visual reordering causes the rendered visual sequence and keyboard focus sequence to disagree.</li>
+              <li>Other 2.4.3 scenarios needing coverage include absolutely positioned controls, grid or flex ordering, scripted focus movement, focus sent behind overlays, incorrect focus return after dialogs, and workflow sequences that place actions before required inputs.</li>
             </ul>
-            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep <code>positive-tabindex</code> and <code>misused-tabindex-attribute</code> as concrete partial 2.4.3 checks. Treat <code>focus-order-preserved</code> as a manual prompt unless rendered focus-order analysis is added.</p>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep <code>positive-tabindex</code> and <code>misused-tabindex-attribute</code> as concrete partial 2.4.3 checks. Treat <code>focus-order-preserved</code> as a manual prompt unless SiteLint adds rendered focus-order analysis that compares keyboard sequence with visual order, reading order, and workflow order.</p>
           </td>
         </tr>
         <tr class="status-created">

@@ -110,6 +110,9 @@
         SiteLint appropriately reports the positive <code>tabindex</code> example and the redundant <code>tabindex="0"</code> example under WCAG 2.4.3. It also uses <code>focus-order-preserved</code> as a manual-verification trigger for focus order.
       </p>
       <p>
+        SiteLint does not report failing example 2, where CSS visual reordering causes the visual sequence and keyboard focus sequence to disagree. This is an important 2.4.3 scenario because the DOM order may look valid while the rendered page creates a confusing focus order.
+      </p>
+      <p>
         The example links point to a real page so unrelated same-page-link findings do not obscure WCAG 2.4.3 behavior.
       </p>
     </section>
@@ -118,6 +121,9 @@
       <h2>Recommendation</h2>
       <p>
         Keep <code>positive-tabindex</code> and <code>misused-tabindex-attribute</code> as concrete partial 2.4.3 checks. Treat <code>focus-order-preserved</code> as a manual-review prompt unless SiteLint adds rendered focus-order analysis that compares the keyboard sequence with visual order, reading order, and workflow order.
+      </p>
+      <p>
+        Additional 2.4.3 coverage should look for focus-order risks caused by CSS visual reordering, absolutely positioned controls, grid or flex ordering, scripted focus movement, focus sent behind dialogs or overlays, focus returning to the wrong place after a modal closes, and multi-step workflows where focus moves to actions before required inputs.
       </p>
     </section>
 
@@ -181,6 +187,10 @@
       <h3>Failing example 2: Visual order differs from focus order</h3>
       <p>
         CSS reverses the visual order, but keyboard focus still follows DOM order. A keyboard user reaches the visually rightmost item first.
+      </p>
+
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> SiteLint did not report this example. The current concrete 2.4.3 rules catch explicit <code>tabindex</code> patterns, but this failure requires comparing rendered visual order with keyboard focus order.
       </p>
 
       <div class="sample-area visually-reordered">
