@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 2.4.7 Focus Visible Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    a,
+    button,
+    input {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    .visible-focus:focus {
+      outline: 3px solid #005fcc;
+      outline-offset: 3px;
+    }
+
+    .removed-focus:focus {
+      outline: 0;
+    }
+
+    .transparent-focus:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+
+    .subtle-focus:focus {
+      box-shadow: 0 0 0 1px #d0d0d0;
+      outline: 0;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 2.4.7: Focus Visible</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Keyboard focus indicators must be visible when a component receives keyboard focus.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html">View the W3C Understanding page for WCAG 2.4.7 Focus Visible</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint behavior</h2>
+      <p>
+        SiteLint uses <code>focus-visible</code> as a manual-verification trigger for WCAG 2.4.7. This is useful as a reminder to inspect focus indicators, but it does not appear to evaluate whether the focused controls actually pass or fail.
+      </p>
+      <p>
+        The example links point to a real page and the review input has a label so unrelated same-page-link and form-label findings do not obscure visible-focus behavior.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommendation</h2>
+      <p>
+        Keep <code>focus-visible</code> as a manual prompt unless SiteLint adds rendered focus-state testing. Stronger coverage should move focus through each interactive component and identify removed, transparent, or visually imperceptible focus indicators.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Link has a clear focus outline</h3>
+      <p>
+        The focused link receives a visible, high-contrast outline.
+      </p>
+
+      <div class="sample-area">
+        <a class="visible-focus" href="index.html">View account history</a>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Button has a clear focus outline</h3>
+      <p>
+        The focused button exposes a visible keyboard focus indicator.
+      </p>
+
+      <div class="sample-area">
+        <button class="visible-focus" type="button">Save preferences</button>
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Link removes focus outline</h3>
+      <p>
+        The focused link suppresses the visible focus indicator.
+      </p>
+
+      <div class="sample-area">
+        <a class="removed-focus" href="index.html">Manage subscription</a>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Button uses transparent focus outline</h3>
+      <p>
+        The button technically has an outline declaration, but it is transparent and not visible.
+      </p>
+
+      <div class="sample-area">
+        <button class="transparent-focus" type="button">Delete draft</button>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Focus indicator is too subtle to identify</h3>
+      <p>
+        The focus indicator uses a very light one-pixel change that may not be visually apparent.
+      </p>
+
+      <div class="sample-area">
+        <button class="subtle-focus" type="button">Export list</button>
+      </div>
+    </section>
+
+    <h2>Manual review examples</h2>
+
+    <section class="example manual-example">
+      <h3>Manual example 1: Browser default focus indicators</h3>
+      <p>
+        Some components may pass by relying on browser defaults. Testing should still move focus through the rendered page to confirm the indicator appears.
+      </p>
+
+      <div class="sample-area">
+        <label for="default-focus-review">Organization</label>
+        <input id="default-focus-review" name="default-focus-review" autocomplete="organization">
+      </div>
+    </section>
+  </main>
+</body>
+</html>

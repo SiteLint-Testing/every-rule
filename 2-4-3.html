@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 2.4.3 Focus Order Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    a,
+    button,
+    input {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    }
+
+    .card {
+      border: 1px solid #767676;
+      padding: 0.75rem;
+    }
+
+    .visually-reordered {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 0.75rem;
+      justify-content: flex-end;
+    }
+
+    .visually-reordered > * {
+      border: 1px solid #767676;
+      padding: 0.75rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 2.4.3: Focus Order</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> When a page can be navigated sequentially, focusable components must receive focus in an order that preserves meaning and operability.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html">View the W3C Understanding page for WCAG 2.4.3 Focus Order</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint behavior</h2>
+      <p>
+        SiteLint appropriately reports the positive <code>tabindex</code> example and the redundant <code>tabindex="0"</code> example under WCAG 2.4.3. It also uses <code>focus-order-preserved</code> as a manual-verification trigger for focus order.
+      </p>
+      <p>
+        The example links point to a real page so unrelated same-page-link findings do not obscure WCAG 2.4.3 behavior.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommendation</h2>
+      <p>
+        Keep <code>positive-tabindex</code> and <code>misused-tabindex-attribute</code> as concrete partial 2.4.3 checks. Treat <code>focus-order-preserved</code> as a manual-review prompt unless SiteLint adds rendered focus-order analysis that compares the keyboard sequence with visual order, reading order, and workflow order.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: DOM order matches reading order</h3>
+      <p>
+        The controls receive focus in the same order that a user reads and operates the card list.
+      </p>
+
+      <div class="sample-area card-grid">
+        <article class="card">
+          <h4>Billing</h4>
+          <a href="index.html">Review billing</a>
+        </article>
+        <article class="card">
+          <h4>Shipping</h4>
+          <a href="index.html">Review shipping</a>
+        </article>
+        <article class="card">
+          <h4>Confirmation</h4>
+          <button type="button">Confirm order</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Modal-like workflow starts at the first task</h3>
+      <p>
+        The form fields and action buttons are ordered from the first required input through the final action.
+      </p>
+
+      <div class="sample-area">
+        <label for="focus-name-pass">Name</label>
+        <input id="focus-name-pass" name="focus-name-pass" autocomplete="name">
+        <label for="focus-email-pass">Email</label>
+        <input id="focus-email-pass" name="focus-email-pass" type="email" autocomplete="email">
+        <button type="button">Continue</button>
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Positive tabindex overrides meaningful order</h3>
+      <p>
+        Positive <code>tabindex</code> values send focus to the final action before the fields required to complete the form.
+      </p>
+
+      <div class="sample-area">
+        <label for="tabindex-name-fail">Name</label>
+        <input id="tabindex-name-fail" name="tabindex-name-fail" tabindex="3" autocomplete="name">
+        <label for="tabindex-email-fail">Email</label>
+        <input id="tabindex-email-fail" name="tabindex-email-fail" type="email" tabindex="2" autocomplete="email">
+        <button type="button" tabindex="1">Submit before fields</button>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Visual order differs from focus order</h3>
+      <p>
+        CSS reverses the visual order, but keyboard focus still follows DOM order. A keyboard user reaches the visually rightmost item first.
+      </p>
+
+      <div class="sample-area visually-reordered">
+        <a href="index.html">Step 1: Choose plan</a>
+        <a href="index.html">Step 2: Add payment</a>
+        <a href="index.html">Step 3: Confirm</a>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Native element has redundant tabindex</h3>
+      <p>
+        The link is already focusable, so <code>tabindex="0"</code> is unnecessary. This is usually a low-impact pattern by itself, but it can signal custom focus-order management that needs review.
+      </p>
+
+      <div class="sample-area">
+        <a href="index.html" tabindex="0">Account details</a>
+      </div>
+    </section>
+
+    <h2>Manual review examples</h2>
+
+    <section class="example manual-example">
+      <h3>Manual example 1: Dynamic focus movement after interaction</h3>
+      <p>
+        Automation may need to operate widgets and dialogs to verify that scripted focus movement preserves meaning and operability.
+      </p>
+
+      <div class="sample-area">
+        <button type="button">Open account dialog</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

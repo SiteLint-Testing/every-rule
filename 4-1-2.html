@@ -58,11 +58,35 @@
       gap: 0.35rem;
     }
 
+    .empty-name-button {
+      min-width: 44px;
+    }
+
     .fake-switch {
       border: 1px solid #767676;
       border-radius: 999px;
       display: inline-block;
+      min-height: 28px;
+      min-width: 9rem;
       padding: 0.35rem 0.75rem;
+    }
+
+    iframe {
+      min-width: 18rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
     }
   </style>
 </head>
@@ -81,6 +105,19 @@
     <p>
       <a href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html">View the W3C Understanding page for WCAG 4.1.2 Name, Role, Value</a>.
     </p>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint behavior</h2>
+      <p>
+        SiteLint correctly reports three 4.1.2 failures on this page: a focusable element inside <code>aria-hidden="true"</code>, an empty button with no accessible name, and an iframe missing a <code>title</code> attribute.
+      </p>
+      <p>
+        SiteLint does not report the custom switch example that is focusable and visually presented as a switch but does not expose a switch role or checked state. That scenario is still relevant to WCAG 4.1.2 because custom controls need programmatically determinable roles, names, states, and values.
+      </p>
+      <p>
+        The page gives the empty-name button and other interactive examples sufficient visual dimensions so unrelated WCAG 2.5.8 target-size findings do not obscure the 4.1.2 results.
+      </p>
+    </section>
 
     <h2>Passing examples</h2>
 
@@ -128,7 +165,7 @@
       </p>
 
       <div class="sample-area">
-        <button type="button"></button>
+        <button type="button" class="empty-name-button"></button>
       </div>
     </section>
 
@@ -163,6 +200,14 @@
       <div class="sample-area">
         <span class="fake-switch" tabindex="0">Notifications on</span>
       </div>
+
+      <p class="sitelint-observation">
+        <strong>Observed result:</strong> SiteLint did not report this example. The element is keyboard focusable and visually presented as a switch-like control, but it is a generic <code>span</code> with no programmatic role and no checked state. Assistive technologies cannot reliably determine that it is intended to be a switch or whether it is on or off.
+      </p>
+
+      <p class="sitelint-recommendation">
+        <strong>Recommendation:</strong> Add a 4.1.2 rule for focusable non-native controls that lack an appropriate role, name, or state. For switch-like controls, SiteLint should expect semantics such as <code>role="switch"</code> and <code>aria-checked</code>, or a native control that exposes an equivalent role and state. This can start as a high-confidence check for focusable generic elements styled or labeled like common widgets, with lower-confidence cases reported for manual review.
+      </p>
     </section>
 
     <h2>Manual review examples</h2>
@@ -176,6 +221,19 @@
       <div class="sample-area">
         <button type="button" aria-pressed="false">Mute alerts</button>
       </div>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommended SiteLint treatment</h2>
+      <p>
+        <strong>Recommendation:</strong> Preserve the current automated checks for focusable descendants inside <code>aria-hidden="true"</code>, empty button names, and missing iframe titles. These are concrete, useful 4.1.2 failures.
+      </p>
+      <p>
+        Expand 4.1.2 coverage for custom controls. Focusable non-native controls that visually behave like switches, buttons, tabs, sliders, menus, or similar widgets should expose appropriate roles and states, such as <code>role="switch"</code> with <code>aria-checked</code> for a switch-like control.
+      </p>
+      <p>
+        Some dynamic value/state behavior still requires interaction testing. Static scans can identify missing initial roles and states, while interaction-based checks are needed to confirm that states update correctly after user actions.
+      </p>
     </section>
   </main>
 

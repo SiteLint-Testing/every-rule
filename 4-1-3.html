@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 4.1.3 Status Messages Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    button,
+    input {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-top: 0.75rem;
+    }
+
+    .status-box {
+      border: 1px solid #767676;
+      margin-top: 0.75rem;
+      padding: 0.75rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 4.1.3: Status Messages</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Status messages must be programmatically determinable through role or properties so assistive technologies can present them without moving focus.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html">View the W3C Understanding page for WCAG 4.1.3 Status Messages</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint behavior</h2>
+      <p>
+        SiteLint did not report findings on this page. SiteLint maps WCAG 4.1.3 to <code>status-messages</code>, whose title indicates a manual-verification trigger.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommendation</h2>
+      <p>
+        Treat <code>status-messages</code> as a manual prompt unless SiteLint adds concrete live-region checks. Useful partial coverage could detect likely status, alert, validation, save-confirmation, loading, and results-count messages that are inserted or updated without <code>role="status"</code>, <code>role="alert"</code>, or an appropriate <code>aria-live</code> region.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Save confirmation uses status role</h3>
+      <p>
+        The confirmation message is exposed as a status message.
+      </p>
+
+      <div class="sample-area">
+        <button type="button">Save profile</button>
+        <p class="status-box" role="status">Profile saved.</p>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Validation error uses alert role</h3>
+      <p>
+        The validation message is exposed with an appropriate live-region role.
+      </p>
+
+      <div class="sample-area">
+        <label for="status-email-pass">Email address</label>
+        <input id="status-email-pass" name="status-email-pass" type="email" aria-describedby="status-email-pass-error" aria-invalid="true" autocomplete="email">
+        <p id="status-email-pass-error" class="status-box" role="alert">Enter an email address in the format name@example.com.</p>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 3: Results count uses polite live region</h3>
+      <p>
+        The search result count can be announced when it changes.
+      </p>
+
+      <div class="sample-area">
+        <button type="button">Filter results</button>
+        <p class="status-box" aria-live="polite">12 results found.</p>
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Save confirmation is plain text only</h3>
+      <p>
+        The message visually reports a result, but it has no status role or live-region property.
+      </p>
+
+      <div class="sample-area">
+        <button type="button">Save settings</button>
+        <p class="status-box">Settings saved.</p>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Error summary is not exposed as an alert</h3>
+      <p>
+        The validation message appears in the page, but assistive technologies may not announce it when it appears.
+      </p>
+
+      <div class="sample-area">
+        <label for="status-phone-fail">Phone number</label>
+        <input id="status-phone-fail" name="status-phone-fail" aria-describedby="status-phone-fail-error" aria-invalid="true" autocomplete="tel">
+        <p id="status-phone-fail-error" class="status-box">Enter a 10-digit phone number.</p>
+      </div>
+    </section>
+
+    <h2>Manual review examples</h2>
+
+    <section class="example manual-example">
+      <h3>Manual example 1: Dynamic insertion timing</h3>
+      <p>
+        A static scan can detect live-region markup, but testing should also trigger the update and verify that the status message is created or changed at the right time.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

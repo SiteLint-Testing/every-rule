@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 2.4.11 Focus Not Obscured Minimum Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    a,
+    button,
+    input {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .visible-focus:focus {
+      outline: 3px solid #005fcc;
+      outline-offset: 3px;
+    }
+
+    .covered-region {
+      min-height: 7rem;
+      padding-top: 1rem;
+      position: relative;
+    }
+
+    .covering-banner {
+      background-color: #ffffff;
+      border: 2px solid #b00020;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.2);
+      left: 0.5rem;
+      padding: 0.75rem;
+      position: absolute;
+      right: 0.5rem;
+      top: 0.5rem;
+      z-index: 2;
+    }
+
+    .covered-button {
+      margin-top: 2.25rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 2.4.11: Focus Not Obscured (Minimum)</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> When a user interface component receives keyboard focus, the component must not be entirely hidden by author-created content.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html">View the W3C Understanding page for WCAG 2.4.11 Focus Not Obscured (Minimum)</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint behavior</h2>
+      <p>
+        SiteLint uses <code>focus-not-obscured-minimum</code> as a manual-verification trigger for WCAG 2.4.11. It does not appear to determine whether the focused button in the overlay example is actually obscured.
+      </p>
+      <p>
+        The example link points to a real page so unrelated same-page-link findings do not obscure focus-obscuration behavior.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommendation</h2>
+      <p>
+        Keep <code>focus-not-obscured-minimum</code> as a manual prompt unless SiteLint can focus each component in rendered viewports and compare the focused component's bounding box with author-created overlapping content. Confirmed findings should identify the obscured focused element and the content covering it.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Focused button remains visible</h3>
+      <p>
+        The button can receive focus without being covered by nearby content.
+      </p>
+
+      <div class="sample-area">
+        <button class="visible-focus" type="button">Continue checkout</button>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Sticky notice leaves focus target visible</h3>
+      <p>
+        The notice is near the control but does not cover the focused component.
+      </p>
+
+      <div class="sample-area">
+        <p>Account notice: Review changes before continuing.</p>
+        <button class="visible-focus" type="button">Review changes</button>
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Author-created banner covers focused button</h3>
+      <p>
+        The positioned banner overlays the focusable button area. A rendered-state check should verify whether focus is obscured.
+      </p>
+
+      <div class="sample-area covered-region">
+        <div class="covering-banner">Blocking account notice</div>
+        <button class="visible-focus covered-button" type="button">Covered action</button>
+      </div>
+    </section>
+
+    <h2>Manual review examples</h2>
+
+    <section class="example manual-example">
+      <h3>Manual example 1: Obscuring after scroll</h3>
+      <p>
+        Sticky headers, cookie banners, and floating chat widgets may obscure focus only at certain viewport sizes or scroll positions.
+      </p>
+
+      <div class="sample-area">
+        <a class="visible-focus" href="index.html">Focusable link near a viewport edge</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 2.5.7 Dragging Movements Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    button {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    .drag-card {
+      border: 1px solid #767676;
+      margin-block: 0.5rem;
+      padding: 0.75rem;
+      width: fit-content;
+    }
+
+    .slider-track {
+      background-color: #e5e5e5;
+      border: 1px solid #767676;
+      height: 2rem;
+      position: relative;
+      width: 18rem;
+    }
+
+    .slider-thumb {
+      background-color: #005fcc;
+      border: 2px solid #003f87;
+      height: 2rem;
+      left: 8rem;
+      position: absolute;
+      top: -2px;
+      width: 2rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 2.5.7: Dragging Movements</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Functionality that uses dragging must also be operable with a single pointer without dragging, unless dragging is essential.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html">View the W3C Understanding page for WCAG 2.5.7 Dragging Movements</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint behavior</h2>
+      <p>
+        SiteLint did not report findings on this page. SiteLint maps WCAG 2.5.7 to <code>dragging-movements</code>, whose title indicates a manual-verification trigger.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommendation</h2>
+      <p>
+        Treat <code>dragging-movements</code> as a manual prompt unless SiteLint adds concrete detection for drag-dependent controls. Useful partial coverage could flag draggable elements, slider-like widgets, sortable regions, and canvas/map interactions that do not expose an obvious non-drag alternative.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Reorderable item has button alternatives</h3>
+      <p>
+        The item can be dragged, but equivalent move buttons are available.
+      </p>
+
+      <div class="sample-area">
+        <div class="drag-card" draggable="true">
+          Quarterly report
+          <button type="button">Move up</button>
+          <button type="button">Move down</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Slider has step buttons</h3>
+      <p>
+        The visual slider can be adjusted without dragging the thumb.
+      </p>
+
+      <div class="sample-area">
+        <button type="button">Decrease amount</button>
+        <div class="slider-track" aria-hidden="true">
+          <span class="slider-thumb"></span>
+        </div>
+        <button type="button">Increase amount</button>
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Draggable item has no non-drag alternative</h3>
+      <p>
+        The item exposes draggable behavior, but no button, menu, or single-click alternative is provided.
+      </p>
+
+      <div class="sample-area">
+        <div class="drag-card" draggable="true">Drag only task card</div>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Slider appears to require dragging</h3>
+      <p>
+        The slider-like control provides no visible alternative for users who cannot drag the thumb.
+      </p>
+
+      <div class="sample-area">
+        <div class="slider-track" role="slider" tabindex="0" aria-label="Donation amount" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <span class="slider-thumb"></span>
+        </div>
+      </div>
+    </section>
+
+    <h2>Manual review examples</h2>
+
+    <section class="example manual-example">
+      <h3>Manual example 1: Essential dragging</h3>
+      <p>
+        Some drawing or map interactions may make dragging essential. That exception requires human judgment about the purpose of the functionality.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

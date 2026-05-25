@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 3.2.2 On Input Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    button,
+    input,
+    select {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-top: 0.75rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 3.2.2: On Input</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Changing the setting of a user interface component must not automatically cause a change of context unless the user has been advised before using the component.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/on-input.html">View the W3C Understanding page for WCAG 3.2.2 On Input</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint behavior</h2>
+      <p>
+        SiteLint uses <code>on-input</code> as a manual-verification trigger for WCAG 3.2.2 and reports <code>missing-submit-button</code> for the form that cannot be submitted with an explicit button. It does not appear to determine whether input changes actually trigger unexpected navigation, submission, or other context changes.
+      </p>
+      <p>
+        The form controls on this page include autocomplete attributes where possible so unrelated WCAG 1.3.5 and best-practice autocomplete findings do not obscure 3.2.2 behavior.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommendation</h2>
+      <p>
+        Keep <code>missing-submit-button</code> as a concrete partial check for forms that rely on pointer or implicit submission. Treat <code>on-input</code> as a manual prompt unless SiteLint can inspect or execute change/input handlers and distinguish permitted updates from changes of context.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Selection waits for explicit submit</h3>
+      <p>
+        Changing the select value does not navigate or submit. The user activates a button to apply the change.
+      </p>
+
+      <div class="sample-area">
+        <form action="index.html">
+          <label for="language-pass">Language</label>
+          <select id="language-pass" name="language-pass" autocomplete="language">
+            <option>English</option>
+            <option>Spanish</option>
+            <option>French</option>
+          </select>
+          <button type="submit">Apply language</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: User is advised before automatic update</h3>
+      <p>
+        The instruction tells the user that changing the value updates results automatically.
+      </p>
+
+      <div class="sample-area">
+        <p id="results-filter-pass-note">Changing the filter updates the result list automatically.</p>
+        <label for="results-filter-pass">Filter results</label>
+        <select id="results-filter-pass" name="results-filter-pass" aria-describedby="results-filter-pass-note" autocomplete="off">
+          <option>All</option>
+          <option>Open</option>
+          <option>Closed</option>
+        </select>
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Selection automatically navigates without warning</h3>
+      <p>
+        Changing the selected value causes navigation without prior instruction.
+      </p>
+
+      <div class="sample-area">
+        <label for="destination-fail">Choose destination</label>
+        <select id="destination-fail" name="destination-fail" autocomplete="off" onchange="location.hash = 'unexpected-select-navigation';">
+          <option>Choose one</option>
+          <option>Billing</option>
+          <option>Support</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Form has no submit button</h3>
+      <p>
+        The form relies on implicit or scripted submission rather than providing a visible submit button.
+      </p>
+
+      <div class="sample-area">
+        <form action="index.html">
+          <label for="newsletter-fail">Email address</label>
+          <input id="newsletter-fail" name="newsletter-fail" type="email" autocomplete="email">
+        </form>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 3: Checkbox submits on change without warning</h3>
+      <p>
+        Changing the checkbox immediately submits the form.
+      </p>
+
+      <div class="sample-area">
+        <form action="index.html">
+          <label><input type="checkbox" name="auto-renew" autocomplete="off" onchange="this.form.submit();"> Enable automatic renewal</label>
+        </form>
+      </div>
+    </section>
+
+    <h2>Manual review examples</h2>
+
+    <section class="example manual-example">
+      <h3>Manual example 1: Partial page updates</h3>
+      <p>
+        Some automatic changes may update content in place without changing context. Testing should distinguish ordinary content updates from context changes.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WCAG 3.2.1 On Focus Test Page</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      max-width: 84rem;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      padding: 0.1rem 0.25rem;
+    }
+
+    a,
+    button,
+    input,
+    select {
+      min-height: 28px;
+    }
+
+    .example {
+      border-left: 0.5rem solid;
+      margin-block: 1.75rem;
+      padding-left: 1rem;
+    }
+
+    .passing-example {
+      border-left-color: #b7e4c7;
+    }
+
+    .failing-example {
+      border-left-color: #f4b6b6;
+    }
+
+    .manual-example {
+      border-left-color: #f5d78e;
+    }
+
+    .sample-area {
+      border: 1px solid #767676;
+      margin-block: 0.75rem;
+      max-width: 56rem;
+      padding: 1rem;
+    }
+
+    .sitelint-observation {
+      background-color: #e8f1ff;
+      border-left: 0.25rem solid #1f5fbf;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .sitelint-recommendation {
+      background-color: #fff4cc;
+      border-left: 0.25rem solid #8a6500;
+      margin-block: 0.75rem;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WCAG 3.2.1: On Focus</h1>
+
+    <p>
+      <a href="index.html">View main list</a>
+    </p>
+
+    <p>
+      <strong>Brief summary:</strong> Receiving focus must not automatically initiate a change of context.
+    </p>
+
+    <p>
+      <a href="https://www.w3.org/WAI/WCAG22/Understanding/on-focus.html">View the W3C Understanding page for WCAG 3.2.1 On Focus</a>.
+    </p>
+
+    <section class="sitelint-observation">
+      <h2>Observed SiteLint behavior</h2>
+      <p>
+        SiteLint addresses WCAG 3.2.1 with <code>on-focus</code>, which appears to be a broad manual-verification trigger. It does not appear to evaluate whether the examples actually navigate or submit when focus is received.
+      </p>
+      <p>
+        The focus-navigation example points to a real page so unrelated same-page-link findings do not obscure on-focus behavior.
+      </p>
+    </section>
+
+    <section class="sitelint-recommendation">
+      <h2>Recommendation</h2>
+      <p>
+        Keep <code>on-focus</code> as a manual prompt unless SiteLint can inspect or execute focus event behavior. Improved 3.2.1 coverage should detect high-confidence patterns such as focus handlers that navigate, submit forms, open windows, move focus, or substantially replace content.
+      </p>
+    </section>
+
+    <h2>Passing examples</h2>
+
+    <section class="example passing-example">
+      <h3>Passing example 1: Focus reveals helper text without changing context</h3>
+      <p>
+        Showing nearby help text on focus does not move focus, submit a form, open a new window, or navigate away.
+      </p>
+
+      <div class="sample-area">
+        <label for="focus-help-pass">Account number</label>
+        <input id="focus-help-pass" name="focus-help-pass" aria-describedby="focus-help-pass-hint" autocomplete="off">
+        <p id="focus-help-pass-hint">Enter the number from your latest statement.</p>
+      </div>
+    </section>
+
+    <section class="example passing-example">
+      <h3>Passing example 2: Focusable button waits for activation</h3>
+      <p>
+        The button receives focus without changing context; the user must activate it to continue.
+      </p>
+
+      <div class="sample-area">
+        <button type="button">Continue to payment</button>
+      </div>
+    </section>
+
+    <h2>Failing examples</h2>
+
+    <section class="example failing-example">
+      <h3>Failing example 1: Focus automatically navigates</h3>
+      <p>
+        The link changes location as soon as it receives focus.
+      </p>
+
+      <div class="sample-area">
+        <a href="index.html" onfocus="location.href = 'index.html#unexpected-focus-navigation';">Focusable link that navigates on focus</a>
+      </div>
+    </section>
+
+    <section class="example failing-example">
+      <h3>Failing example 2: Focus automatically submits a form</h3>
+      <p>
+        The input submits the form when focus enters the field.
+      </p>
+
+      <div class="sample-area">
+        <form action="index.html">
+          <label for="focus-submit-fail">Search</label>
+          <input id="focus-submit-fail" name="focus-submit-fail" onfocus="this.form.submit();" autocomplete="off">
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </section>
+
+    <h2>Manual review examples</h2>
+
+    <section class="example manual-example">
+      <h3>Manual example 1: Scripted focus side effects</h3>
+      <p>
+        Some context changes occur through framework event handlers or delayed scripts. Testing needs to move focus and observe the rendered behavior.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

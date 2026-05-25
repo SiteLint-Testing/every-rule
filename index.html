@@ -106,7 +106,7 @@
     </p>
 
     <table>
-      <caption>Created (31) and skipped (54) WCAG test pages</caption>
+      <caption>Created (41) and skipped (46) WCAG test pages</caption>
       <thead>
         <tr>
           <th scope="col" aria-sort="ascending"><button type="button" data-sort-column="0" aria-label="Sort by row number">#</button></th>
@@ -150,7 +150,7 @@
           <td>
             <ul class="issues-list">
               <li><strong>Caution:</strong> A static page can test whether a captions mechanism appears to be present, but it cannot verify whether the captions are accurate, complete, synchronized, or include relevant non-speech audio.</li>
-              <li>SiteLint incorrectly flags a passing example that is clearly labeled as a media alternative for text, which is an exception under WCAG 1.2.2.</li>
+              <li>SiteLint <span class="highlight">incorrectly flags a passing example</span> that is clearly labeled as a media alternative for text, which is an exception under WCAG 1.2.2.</li>
               <li>SiteLint catches the missing-captions failing scenario <span class="highlight">only through a finding mapped to 1.2.1, not 1.2.2</span>.</li>
               <li>SiteLint <span class="highlight">misses the subtitles-only failing scenario</span>, suggesting that subtitles may be treated as equivalent to captions.</li>
             </ul>
@@ -254,7 +254,7 @@
               <li>SiteLint correctly flags the ungrouped radio-button example under WCAG 1.3.1, but the rule message says “Checkboxes should be grouped together” <span class="highlight">even though the controls are radio buttons</span>.</li>
               <li>SiteLint correctly flags the data table with visual headers but no programmatic header cells under WCAG 1.3.1.</li>
               <li>SiteLint flags the visible-but-unassociated form label, but <span class="highlight">maps the finding to WCAG 3.3.2 rather than 1.3.1</span>.</li>
-              <li>SiteLint also reports a WCAG 2.5.8 target-size issue on the radio buttons, which is unrelated to this 1.3.1 test page and may need to be avoided through test-page styling.</li>
+              <li>SiteLint also reports a WCAG 2.5.8 target-size issue on the radio buttons, which is <span class="highlight">unrelated to this 1.3.1 test page</span> and may need to be avoided through test-page styling.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Update the grouped-control rule message to include radio buttons, consider whether form-label relationship failures should also map to 1.3.1, and keep the page focused on machine-detectable structural relationship failures.</p>
           </td>
@@ -348,7 +348,7 @@
               <li>SiteLint does not report the examples without autoplay declarations.</li>
               <li>SiteLint also reports muted autoplay video and autoplaying audio with controls because the current rule flags the autoplay pattern itself. <span class="highlight">These reports need nuance</span> because muted media and available controls affect the final WCAG 1.4.2 judgment.</li>
               <li>Secondary media findings, such as captions or descriptions, are acceptable on this page because the same media element can legitimately trigger separate WCAG issues. They should be interpreted separately from the autoplay findings.</li>
-              <li>Reported media elements did not reliably highlight on the page. This may be affected by placeholder media paths and <code>about:blank</code> iframes, but <span class="highlight">SiteLint should ideally highlight rendered media elements or provide a fallback selector</span>, DOM path, or source snippet.</li>
+              <li>Reported media elements <span class="highlight">did not reliably highlight on the page</span>. This may be affected by placeholder media paths and <code>about:blank</code> iframes, but SiteLint should ideally highlight rendered media elements or provide a fallback selector, DOM path, or source snippet.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat the autoplay rule as useful partial WCAG 1.4.2 coverage. Consider future improvements for muted autoplay handling, media duration checks, iframe parameter coverage, visual highlighting or fallback location messaging, and a separate real-media test page for playback and highlighting behavior.</p>
           </td>
@@ -364,7 +364,7 @@
               <li>SiteLint correctly reports several intended text contrast failures on the page, including normal text, large text, button text, and link text with insufficient contrast.</li>
               <li>SiteLint <span class="highlight">incorrectly reports the decorative low-contrast divider</span> characters as a confirmed 1.4.3 issue, even though those characters are marked <code>aria-hidden="true"</code> and are not needed to understand the content.</li>
               <li>SiteLint <span class="highlight">did not report the low-contrast placeholder text example</span>, even though placeholder text can communicate instructions or examples and should meet the applicable contrast threshold when it conveys information.</li>
-              <li>Additional difficult or potentially missed cases include text over gradients or images, text affected by ancestor opacity, and visible SVG <code>&lt;text&gt;</code>.</li>
+              <li>Additional <span class="highlight">potentially missed cases</span> include text over gradients or images, text affected by ancestor opacity, and visible SVG <code>&lt;text&gt;</code>.</li>
               <li>If the WCAG AAA filter is enabled, SiteLint may also report WCAG 1.4.6 Contrast (Enhanced) on this page. That is expected because text that fails 1.4.3 AA will also fail the stricter AAA threshold.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep 1.4.3 as an automated contrast rule, but refine it so decorative <code>aria-hidden</code> text is not reported as a confirmed failure, add placeholder contrast support, and consider rendered-background, opacity/compositing, and SVG text contrast enhancements.</p>
@@ -379,7 +379,7 @@
             <ul class="issues-list">
               <li><strong>Caution:</strong> This success criterion is <span class="highlight">only partly testable through automation</span>. SiteLint's current <code>zoom-disabled</code> rule <span class="highlight">detects one narrow pattern</span>: viewport metadata that disables or restricts browser zoom.</li>
               <li>SiteLint <span class="highlight">should report the active viewport meta tag</span> in the document <code>head</code> because it includes <code>user-scalable=no</code>.</li>
-              <li>The reported viewport <code>meta</code> element cannot be visually highlighted on the page because it is a non-rendered <code>head</code> element. SiteLint should rely on the DOM path, source snippet, or DevTools location for these findings.</li>
+              <li>The reported viewport <code>meta</code> element <span class="highlight">cannot be visually highlighted on the page</span> because it is a non-rendered <code>head</code> element. SiteLint should rely on the DOM path, source snippet, or DevTools location for these findings.</li>
               <li>SiteLint's <span class="highlight">current rule does not evaluate</span> whether text can actually be resized to 200 percent without clipping, overlap, or loss of functionality.</li>
               <li>SiteLint's current rule <span class="highlight">does not detect layout problems after zoom</span>, such as fixed-height containers clipping text, absolutely positioned text overlapping, very small fixed-size text, or controls becoming unusable after resizing.</li>
             </ul>
@@ -549,7 +549,7 @@
             <ul class="issues-list">
               <li><strong>Caution:</strong> This success criterion is <span class="highlight">only partly testable through automation</span>. SiteLint's current <code>no-meta-http-equiv-refresh</code> rule <span class="highlight">detects one narrow timing pattern</span>: pages that use <code>meta http-equiv="refresh"</code> to refresh or redirect after a time interval.</li>
               <li>SiteLint correctly reports the two intentional meta refresh examples in the document <code>head</code>: one page refresh and one timed redirect.</li>
-              <li>The reported <code>meta</code> elements cannot be visually highlighted on the page because they are non-rendered <code>head</code> elements. SiteLint should rely on the DOM path, source snippet, or DevTools location for these findings.</li>
+              <li>The reported <code>meta</code> elements <span class="highlight">cannot be visually highlighted on the page</span> because they are non-rendered <code>head</code> elements. SiteLint should rely on the DOM path, source snippet, or DevTools location for these findings.</li>
               <li>SiteLint's <span class="highlight">current rule does not evaluate JavaScript-based timeouts</span>, session-expiration workflows, timer widgets, or auto-updating content that occurs without a meta refresh.</li>
               <li>Complete 2.2.1 evaluation usually requires runtime observation, interaction testing, and judgment about whether users can turn off, adjust, or extend the time limit, and whether any WCAG exception applies.</li>
             </ul>
@@ -657,7 +657,7 @@
           <td>
             <ul class="issues-list">
               <li><strong>Caution:</strong> SiteLint's current <code>bypass-blocks</code> rule reports a manual-verification item when it detects visible navigation-like structures such as <code>nav</code>, <code>header</code>, <code>[aria-label="Skip links"]</code>, <code>.main-navigation</code>, or <code>.skip-links</code>.</li>
-              <li>SiteLint reports the page because the test page now includes a real <code>nav</code> element. This confirms that the rule can trigger, but it does not confirm automated WCAG 2.4.1 pass/fail detection.</li>
+              <li>SiteLint reports the page when a real <code>nav</code> element is present. This confirms that the rule can trigger, but it <span class="highlight">does not confirm automated WCAG 2.4.1 pass/fail detection</span>.</li>
               <li><span class="highlight">The current rule does not actually determine whether the page passes or fails WCAG 2.4.1.</span> It does not check whether a valid skip link exists, whether the skip link target exists, whether the skip link becomes visible on focus, whether the page has a <code>main</code> landmark, or whether the available bypass mechanism is sufficient.</li>
               <li>The broken skip-link-target example on the test page is presented as a code sample because an actual broken fragment link triggers SiteLint's separate same-page-link rule under WCAG 2.4.4, not the bypass-blocks rule.</li>
             </ul>
@@ -681,15 +681,18 @@
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep <code>unclear-page-title</code> as automated WCAG 2.4.2 coverage for objective title failures. Consider adding review-candidate logic for likely-generic titles, site-wide duplicate-title analysis, and single-page-application route-change checks.</p>
           </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>45</td>
           <td>A</td>
-          <th scope="row">2.4.3</th>
+          <th scope="row"><a href="2-4-3.html">2.4.3</a></th>
           <td>Focus Order</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires tabbing through the page and judging whether the resulting focus order preserves meaning and operability. DOM order and tabindex values can suggest risks, but the real question is the experienced focus sequence in the rendered page.</li>
+            <ul class="issues-list">
+              <li>SiteLint appropriately reports the positive <code>tabindex</code> example and the redundant <code>tabindex="0"</code> example under WCAG 2.4.3.</li>
+              <li>SiteLint also uses <code>focus-order-preserved</code> as a manual-verification trigger, but it <span class="highlight">does not automatically evaluate rendered focus order</span>.</li>
+              <li>The visual-order mismatch remains the key gap: SiteLint should compare keyboard focus sequence with visual order, reading order, and workflow order where possible.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep <code>positive-tabindex</code> and <code>misused-tabindex-attribute</code> as concrete partial 2.4.3 checks. Treat <code>focus-order-preserved</code> as a manual prompt unless rendered focus-order analysis is added.</p>
           </td>
         </tr>
         <tr class="status-created">
@@ -701,11 +704,11 @@
             <ul class="issues-list">
               <li><strong>Caution:</strong> SiteLint groups several link-purpose and link-name rules under WCAG 2.4.4, including <code>aria-labelledby-association</code>, <code>aria-labelledby-association-empty-element</code>, <code>empty-link-element</code>, <code>img-alt-duplicate-text-link</code>, <code>link-purpose-in-context</code>, and <code>links-same-content-different-url</code>.</li>
               <li>SiteLint correctly flags several failing examples on the page: missing <code>aria-labelledby</code> reference, empty <code>aria-labelledby</code> reference, empty-link content, duplicate image/link text, same-page link with missing target, and same-content/different-URL links when manual-verification findings are enabled.</li>
-              <li>SiteLint does not report secondary examples 3, 4, or 9 as live WCAG 2.4.4 findings. These include generic link text, repeated generic “Read more” links, and an icon-only link with no accessible name. SiteLint rules should be improved where these examples represent real link-purpose failures that the current rules miss.</li>
-              <li><code>links-same-content-different-url</code> is a useful concrete pattern-based review finding, but it only appears when manual-verification findings are enabled. The report says it found 3 links with the same text <code>Register</code> pointing to different URLs, but it does not list the affected links, destination URLs, selectors, XPaths, or page highlight buttons.</li>
-              <li><code>link-purpose-in-context</code> appears to be a broad manual-verification prompt that detects the presence of links and asks for human review. It should not be treated as evidence of automated WCAG 2.4.4 pass/fail coverage.</li>
-              <li>The <code>empty-link-element</code> finding is reported in the audit UI as WCAG 2.4.6 “Links should have meaningful, descriptive content,” even though the source file appears under <code>wcag/2.4.4/H30/empty-link-element.ts</code>. The source-code location and audit UI mapping should be reconciled.</li>
-              <li>The same-page-link missing-target rule is reported in the audit UI as WCAG 2.4.4, but the Bitbucket rule file appears to live under a WCAG 2.1.1 path. The source-code categorization and UI categorization should be verified.</li>
+              <li>SiteLint <span class="highlight">does not report secondary examples 3, 4, or 9</span> as live WCAG 2.4.4 findings. These include generic link text, repeated generic “Read more” links, and an icon-only link with no accessible name. SiteLint rules should be improved where these examples represent real link-purpose failures that the current rules miss.</li>
+              <li><code>links-same-content-different-url</code> is a useful concrete pattern-based review finding, but it only appears when manual-verification findings are enabled. The report says it found 3 links with the same text <code>Register</code> pointing to different URLs, but it <span class="highlight">does not list the affected links</span>, destination URLs, selectors, XPaths, or page highlight buttons.</li>
+              <li><code>link-purpose-in-context</code> appears to be a broad manual-verification prompt that detects the presence of links and asks for human review. It <span class="highlight">should not be treated as evidence of automated WCAG 2.4.4 pass/fail coverage</span>.</li>
+              <li>The <code>empty-link-element</code> finding is reported in the audit UI as WCAG 2.4.6 “Links should have meaningful, descriptive content,” even though the source file appears under <code>wcag/2.4.4/H30/empty-link-element.ts</code>. The <span class="highlight">source-code location and audit UI mapping should be reconciled</span>.</li>
+              <li>The same-page-link missing-target rule is reported in the audit UI as WCAG 2.4.4, but the Bitbucket rule file appears to live under a WCAG 2.1.1 path. The <span class="highlight">source-code categorization and UI categorization should be verified</span>.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Distinguish concrete automated findings, concrete pattern-based manual findings, and broad manual review prompts. Pattern-based findings such as <code>links-same-content-different-url</code> should include affected links, destination URLs, selectors or XPaths, and highlight options when possible. Broad prompts such as <code>link-purpose-in-context</code> should remain clearly labeled as manual verification.</p>
           </td>
@@ -728,23 +731,23 @@
           <td>Headings and Labels</td>
           <td>
             <ul class="issues-list">
-              <li>SiteLint currently reports only failing example 2 as a WCAG 2.4.6 issue: “Heading element exists but has no content.”</li>
-              <li>SiteLint does not report failing example 1, failing example 3, or failing example 5 as WCAG 2.4.6 findings, even though those examples represent headings or labels that are present but not descriptive enough.</li>
-              <li>The placeholder-only input originally triggered an unrelated WCAG 3.3.2 “Form controls need labels” finding, so that scenario was converted to a code sample to keep the live page focused on WCAG 2.4.6.</li>
-              <li>The generic link originally triggered an unrelated WCAG 2.4.9 finding, so that scenario was converted to a code sample to avoid link-purpose noise on the 2.4.6 page.</li>
+              <li>SiteLint currently reports <span class="highlight">only failing example 2</span> as a WCAG 2.4.6 issue: “Heading element exists but has no content.”</li>
+              <li>SiteLint <span class="highlight">does not report failing example 1, failing example 3, or failing example 5</span> as WCAG 2.4.6 findings, even though those examples represent headings or labels that are present but not descriptive enough.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat empty headings as confirmed automated WCAG 2.4.6 findings. Improve SiteLint rules to catch or review headings and labels that are present but not descriptive enough, including generic headings, vague form labels, and repeated generic button labels. Keep 2.4.6 label/heading clarity separate from related link-purpose findings under WCAG 2.4.4 or 2.4.9.</p>
           </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>49</td>
           <td>AA</td>
-          <th scope="row">2.4.7</th>
+          <th scope="row"><a href="2-4-7.html">2.4.7</a></th>
           <td>Focus Visible</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires moving keyboard focus to each interactive component and confirming that a visible focus indicator appears. CSS can hint at focus styling, but testing must exercise the actual focused state in the rendered page.</li>
+            <ul class="issues-list">
+              <li>SiteLint uses <code>focus-visible</code> as a manual-verification trigger for WCAG 2.4.7.</li>
+              <li>The current trigger <span class="highlight">does not evaluate whether focus indicators are actually visible</span>, including removed, transparent, or visually imperceptible focus states.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep <code>focus-visible</code> as a manual prompt unless SiteLint adds rendered focus-state testing that moves focus through controls and inspects the visible indicator.</p>
           </td>
         </tr>
         <tr class="status-skipped">
@@ -766,8 +769,8 @@
           <td>
             <ul class="issues-list">
               <li>SiteLint caught failing examples 1, 2, 3, and 4 as WCAG 2.4.9 link-purpose issues.</li>
-              <li>SiteLint did not report failing example 5, where the link text is a bare URL with an ambiguous path: <code>https://example.com/x/93821</code>.</li>
-              <li>The missed bare-URL example may be intentional if SiteLint treats visible URL text as sufficiently descriptive by default, but the example demonstrates a link-purpose risk because the URL path does not identify the destination or purpose in human-readable terms.</li>
+              <li>SiteLint <span class="highlight">did not report failing example 5</span>, where the link text is a bare URL with an ambiguous path: <code>https://example.com/x/93821</code>.</li>
+              <li>The <span class="highlight">missed bare-URL example</span> may be intentional if SiteLint treats visible URL text as sufficiently descriptive by default, but the example demonstrates a link-purpose risk because the URL path does not identify the destination or purpose in human-readable terms.</li>
               <li>WCAG 2.4.9 is stricter than WCAG 2.4.4: link purpose generally needs to be clear from the link text alone, not only from surrounding or programmatically determinable context.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat generic link text such as <code>click here</code>, <code>learn more</code>, <code>read more</code>, and <code>details</code> as strong WCAG 2.4.9 review candidates. Also consider bare URL text with ambiguous paths as a review candidate when the URL does not communicate a human-readable purpose. When repeated generic links are reported, include each affected link, destination URL, selector or XPath, and a highlight option when possible.</p>
@@ -782,22 +785,23 @@
             <ul class="issues-list">
               <li><strong>Caution:</strong> The 2.4.10 test page intentionally violates the standard test-page template by using visually styled <code>div</code> elements instead of native headings. This is necessary because the <code>no_headings</code> rule only fires when the document contains zero <code>h1</code> through <code>h6</code> elements.</li>
               <li>SiteLint's <code>no_headings</code> rule checks only whether native heading elements exist anywhere on the page. If at least one native heading is present, the rule returns without reporting.</li>
-              <li>The test page keeps the SiteLint auditor snippet so it is still tracked in the platform, but avoids native headings everywhere else so the rule can be triggered.</li>
-              <li><code>no_headings</code> should be treated as a review candidate, not a confirmed WCAG 2.4.10 failure. A page with no native headings may indicate poor section organization, but WCAG 2.4.10 still requires judgment about whether the page has sections that need headings and whether those headings organize the content effectively.</li>
-              <li><code>no_headings</code> alone is not complete WCAG 2.4.10 coverage. It does not evaluate whether section headings are needed, whether existing headings are useful, whether visual section labels should be semantic headings, whether heading text is descriptive, or whether the content is organized effectively.</li>
+              <li><code>no_headings</code> should be treated as a <span class="highlight">review candidate, not a confirmed WCAG 2.4.10 failure</span>. A page with no native headings may indicate poor section organization, but WCAG 2.4.10 still requires judgment about whether the page has sections that need headings and whether those headings organize the content effectively.</li>
+              <li><code>no_headings</code> alone is <span class="highlight">not complete WCAG 2.4.10 coverage</span>. It does not evaluate whether section headings are needed, whether existing headings are useful, whether visual section labels should be semantic headings, whether heading text is descriptive, or whether the content is organized effectively.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> If SiteLint intends to claim broader WCAG 2.4.10 coverage, add explicit review candidates for long pages without meaningful section headings, visually styled headings that are not semantic, repeated generic section headings, and content groups that appear to need headings but lack them. Keep these findings clearly framed as review candidates unless SiteLint can determine a specific confirmed failure.</p>
           </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>53</td>
           <td>AA</td>
-          <th scope="row">2.4.11</th>
+          <th scope="row"><a href="2-4-11.html">2.4.11</a></th>
           <td>Focus Not Obscured (Minimum)</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires moving focus through the rendered page and checking whether each focused component is at least partly visible and not covered by sticky headers, dialogs, banners, or other overlays. The result depends on viewport size, scroll position, and focus behavior.</li>
+            <ul class="issues-list">
+              <li>SiteLint uses <code>focus-not-obscured-minimum</code> as a manual-verification trigger for WCAG 2.4.11.</li>
+              <li>The current trigger <span class="highlight">does not determine whether a focused component is covered</span> by author-created content.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep <code>focus-not-obscured-minimum</code> as a manual prompt unless SiteLint can focus components in rendered viewports and compare their bounding boxes with overlapping author-created content.</p>
           </td>
         </tr>
         <tr class="status-skipped">
@@ -811,15 +815,17 @@
             </ul>
           </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>55</td>
           <td>AAA</td>
-          <th scope="row">2.4.13</th>
+          <th scope="row"><a href="2-4-13.html">2.4.13</a></th>
           <td>Focus Appearance</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires focusing components, measuring the visible focus indicator's area and thickness, and checking its contrast. The requirement depends on the rendered focus state, not just the component's default DOM state.</li>
+            <ul class="issues-list">
+              <li>SiteLint uses <code>focus-appearance</code> as a manual-verification trigger for WCAG 2.4.13.</li>
+              <li>The current trigger <span class="highlight">does not measure focus-indicator size, thickness, or contrast</span>.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep <code>focus-appearance</code> as a manual prompt unless SiteLint can inspect rendered focus states and measure indicator area, thickness, and contrast against adjacent colors.</p>
           </td>
         </tr>
         <tr class="status-skipped">
@@ -878,11 +884,10 @@
           <td>Target Size (Enhanced)</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> SiteLint's current <code>target-size-enhanced</code> rule is not actually testing rendered target size. It is triggered by the presence of matching interactive elements.</li>
-              <li>The rule appears only when manual-verification findings are included. It selects interactive elements, counts them, reports on <code>document.body</code>, and asks for manual review.</li>
-              <li>The rule does not measure rendered width or height, does not determine whether targets meet the 44 by 44 CSS pixel threshold, and does not identify which targets are undersized.</li>
-              <li>The rule does not evaluate WCAG 2.5.5 exceptions, including inline text links, equivalent larger targets, user-agent-controlled targets, or essential small targets.</li>
-              <li>Initial testing also produced unrelated WCAG 2.5.3 accessible-name mismatch findings when visible map-pin labels differed from their accessible names; those labels were adjusted so the page can focus on target-size behavior.</li>
+              <li><strong>Caution:</strong> SiteLint's current <code>target-size-enhanced</code> rule is <span class="highlight">not actually testing rendered target size</span>. It is triggered by the presence of matching interactive elements.</li>
+              <li>The rule appears <span class="highlight">only when manual-verification findings are included</span>. It selects interactive elements, counts them, reports on <code>document.body</code>, and asks for manual review.</li>
+              <li>The rule <span class="highlight">does not measure rendered width or height</span>, does not determine whether targets meet the 44 by 44 CSS pixel threshold, and does not identify which targets are undersized.</li>
+              <li>The rule <span class="highlight">does not evaluate WCAG 2.5.5 exceptions</span>, including inline text links, equivalent larger targets, user-agent-controlled targets, or essential small targets.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Do not present the current implementation as automated WCAG 2.5.5 coverage. Improve <code>target-size-enhanced</code> to measure each matching target's rendered dimensions, identify targets smaller than 44 by 44 CSS pixels, report the specific element, selector or XPath, measured dimensions, and highlight option when possible. Where exceptions may apply, report a targeted review candidate rather than a generic page-level manual prompt.</p>
           </td>
@@ -898,15 +903,17 @@
             </ul>
           </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>62</td>
           <td>AA</td>
-          <th scope="row">2.5.7</th>
+          <th scope="row"><a href="2-5-7.html">2.5.7</a></th>
           <td>Dragging Movements</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires performing drag actions and checking whether the same result can be achieved without dragging, such as through buttons, menus, or single-click controls. The required evidence is interaction behavior, not the presence of draggable markup alone.</li>
+            <ul class="issues-list">
+              <li>SiteLint did not report findings on the current page.</li>
+              <li>SiteLint maps WCAG 2.5.7 to <code>dragging-movements</code>, but the current behavior appears to be manual verification and <span class="highlight">does not detect drag-only functionality</span>.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>dragging-movements</code> as a manual prompt unless SiteLint adds concrete detection for drag-dependent controls without obvious non-drag alternatives.</p>
           </td>
         </tr>
 <tr class="status-created">
@@ -920,7 +927,7 @@
       <li>SiteLint identifies specific undersized controls, reports measured dimensions, provides element paths, and offers highlighting. This is effective element-level target-size detection, not a generic manual-verification prompt.</li>
       <li>SiteLint correctly reported the intentionally undersized standalone link, standalone button, crowded adjacent buttons, and spaced undersized buttons.</li>
       <li>The reported dimensions were 18 by 18 CSS pixels for most button examples and 20 by 20 CSS pixels for the small standalone link.</li>
-      <li>SiteLint also reported the small <code>D</code> button in passing example 4, even though the page provides an equivalent larger “Download report” button next to it. This suggests the rule measures undersized targets but does not fully evaluate the WCAG 2.5.8 equivalent-target exception.</li>
+      <li>SiteLint also reported the small <code>D</code> button in passing example 4, even though the page provides an equivalent larger “Download report” button next to it. This suggests the rule measures undersized targets but <span class="highlight">does not fully evaluate the WCAG 2.5.8 equivalent-target exception</span>.</li>
     </ul>
     <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Preserve the current element-level reporting behavior for <code>target-size-minimum</code>. Improve the rule by adding exception handling for equivalent larger targets and evaluating nearby spacing where possible. Where SiteLint cannot determine whether an exception applies, report the specific target as a review candidate rather than a confirmed failure.</p>
   </td>
@@ -934,7 +941,7 @@
             <ul class="issues-list">
               <li>SiteLint correctly flags the intentionally failing page because the root <code>html</code> element does not declare a <code>lang</code> attribute.</li>
               <li>The finding applies to the whole page, which is appropriate for WCAG 3.1.1 because the success criterion concerns the page's default human language.</li>
-              <li>Additional 3.1.1 edge cases could be tested separately, including an empty <code>lang</code> value, an invalid language tag such as <code>english</code>, and a passing control page with <code>lang="en"</code>.</li>
+              <li>Additional 3.1.1 <span class="highlight">edge cases could be tested separately</span>, including an empty <code>lang</code> value, an invalid language tag such as <code>english</code>, and a passing control page with <code>lang="en"</code>.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat the current <code>html-lang-attr</code> behavior as accurate for missing page-language declarations. If SiteLint intends broader 3.1.1 coverage, add small follow-up fixtures for empty and invalid language values rather than expanding this page.</p>
           </td>
@@ -946,10 +953,10 @@
           <td>Language of Parts</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> SiteLint's current <code>language-of-parts</code> rule is a manual-verification trigger, not an automated evaluator for WCAG 3.1.2.</li>
+              <li><strong>Caution:</strong> SiteLint's current <code>language-of-parts</code> rule is a manual-verification trigger, <span class="highlight">not an automated evaluator for WCAG 3.1.2</span>.</li>
               <li>SiteLint reports the elements that already have <code>lang</code> attributes, such as <code>lang="es"</code> and <code>lang="fr"</code>, and asks the reviewer to verify that the element content matches the declared language.</li>
-              <li>The rule implementation selects <code>:not(html) [lang]</code>, so it does not detect unmarked foreign-language phrases that may be missing a language attribute.</li>
-              <li>The rule also does not automatically validate whether a declared <code>lang</code> value accurately matches the element content.</li>
+              <li>The rule implementation selects <code>:not(html) [lang]</code>, so it <span class="highlight">does not detect unmarked foreign-language phrases</span> that may be missing a language attribute.</li>
+              <li>The rule also <span class="highlight">does not automatically validate</span> whether a declared <code>lang</code> value accurately matches the element content.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>language-of-parts</code> as partial manual-review coverage only. If expanded, keep detection of likely unmarked language changes separate from validation of existing <code>lang</code> values, and report low-confidence cases as review prompts.</p>
           </td>
@@ -975,7 +982,6 @@
               <li><strong>Caution:</strong> This success criterion is <span class="highlight">only partly testable through automation</span>. SiteLint's current <code>title-for-abbr</code> rule can detect explicitly marked <code>abbr</code> elements that are missing a usable <code>title</code> expansion, but it <span class="highlight">does not fully evaluate all abbreviation mechanisms</span>.</li>
               <li>SiteLint correctly reports the failing example where an <code>abbr</code> element is missing a <code>title</code> attribute.</li>
               <li>SiteLint does not report the passing examples where <code>abbr</code> elements include meaningful <code>title</code> values.</li>
-              <li>The test page intentionally keeps only the missing-title failure so the result isolates the 3.1.4 rule and avoids the separate empty-tooltip rule.</li>
               <li>SiteLint's <span class="highlight">current rule does not evaluate</span> plain-text abbreviations that are not marked with <code>abbr</code>, expansions provided in surrounding prose, glossary-based definitions, incorrect <code>title</code> expansions, or whether an abbreviation is common enough for the intended audience.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>title-for-abbr</code> as useful partial WCAG 3.1.4 coverage for explicitly marked abbreviations. Future enhancements could include candidate detection for unexplained all-caps abbreviations, glossary detection, and dictionary-assisted validation, but those should be framed as review aids unless the tool can confidently determine that no valid explanatory mechanism exists.</p>
@@ -1003,26 +1009,30 @@
             </ul>
           </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>70</td>
           <td>A</td>
-          <th scope="row">3.2.1</th>
+          <th scope="row"><a href="3-2-1.html">3.2.1</a></th>
           <td>On Focus</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires moving focus to controls and observing whether focus alone triggers a context change, such as navigation, form submission, opening a new window, or major content replacement. The issue is triggered by focus behavior, not by static markup alone.</li>
+            <ul class="issues-list">
+              <li>SiteLint addresses WCAG 3.2.1 with <code>on-focus</code>, which appears to be a broad manual-verification trigger.</li>
+              <li>The current trigger <span class="highlight">does not evaluate whether focus causes a context change</span>, such as navigation or form submission.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep <code>on-focus</code> as a manual prompt unless SiteLint can inspect or execute focus handlers and detect high-confidence context-change patterns.</p>
           </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>71</td>
           <td>A</td>
-          <th scope="row">3.2.2</th>
+          <th scope="row"><a href="3-2-2.html">3.2.2</a></th>
           <td>On Input</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires changing form controls, selections, or settings and observing whether that input unexpectedly triggers navigation, submission, focus movement, or other context changes. The relevant behavior occurs only when the control is operated.</li>
+            <ul class="issues-list">
+              <li>SiteLint reports <code>missing-submit-button</code> for the form that cannot be submitted with an explicit button.</li>
+              <li>SiteLint uses <code>on-input</code> as a manual-verification trigger, but it <span class="highlight">does not determine whether input changes cause unexpected context changes</span>.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep <code>missing-submit-button</code> as a concrete partial 3.2.2 check. Treat <code>on-input</code> as a manual prompt unless SiteLint can inspect or execute input/change handlers and distinguish permitted updates from changes of context.</p>
           </td>
         </tr>
         <tr class="status-skipped">
@@ -1076,10 +1086,9 @@
           <td>Error Identification</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> SiteLint's current <code>error-identification</code> rule is a page-level manual-verification trigger, not an automated evaluator for WCAG 3.3.1.</li>
+              <li><strong>Caution:</strong> SiteLint's current <code>error-identification</code> rule is a page-level manual-verification trigger, <span class="highlight">not an automated evaluator for WCAG 3.3.1</span>.</li>
               <li>The rule reports "Verify error identification" when it finds visible <code>input</code>, <code>select</code>, <code>textarea</code>, or <code>[role="textbox"]</code> elements.</li>
-              <li>The rule does not evaluate whether <code>aria-invalid</code> is present, whether error text exists, whether the error identifies the field, or whether the error text is programmatically associated with the control.</li>
-              <li>The test page uses explicit <code>autocomplete</code> values to avoid unrelated 1.3.5 <code>autocomplete-attribute-usage</code> findings obscuring the 3.3.1 manual verification item.</li>
+              <li>The rule <span class="highlight">does not evaluate whether <code>aria-invalid</code> is present</span>, whether error text exists, whether the error identifies the field, or whether the error text is programmatically associated with the control.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>error-identification</code> as broad manual-review coverage only. To evaluate 3.3.1 more effectively, inspect controls already in an error state and check whether each error is identified in text and associated with the relevant field, while keeping submission-triggered validation workflows manual or interaction-based.</p>
           </td>
@@ -1091,10 +1100,10 @@
           <td>Labels or Instructions</td>
           <td>
             <ul class="issues-list">
-              <li><strong>Caution:</strong> SiteLint's current observed 3.3.2 coverage is narrow. The active rule is <code>legend-first-child-of-fieldset</code>, which evaluates only whether a <code>fieldset</code>'s first child is a non-empty <code>legend</code>.</li>
-              <li>The fieldset/legend rule is useful automated coverage for grouped controls, but it does not cover the full Labels or Instructions success criterion.</li>
-              <li>SiteLint does not currently evaluate several important 3.3.2 scenarios on this page through the 3.3.2 rule, including ordinary inputs with no label, placeholder-only format instructions, unexplained required-field indicators, and instruction quality.</li>
-              <li>The non-legend-first-child fieldset case may also trigger the separate 1.3.1 <code>fieldset-no-legend</code> rule, so classification and de-duplication should be reviewed.</li>
+              <li><strong>Caution:</strong> SiteLint's current observed 3.3.2 coverage is <span class="highlight">narrow</span>. The active rule is <code>legend-first-child-of-fieldset</code>, which evaluates only whether a <code>fieldset</code>'s first child is a non-empty <code>legend</code>.</li>
+              <li>The fieldset/legend rule is useful automated coverage for grouped controls, but it <span class="highlight">does not cover the full Labels or Instructions success criterion</span>.</li>
+              <li>SiteLint <span class="highlight">does not currently evaluate several important 3.3.2 scenarios</span> on this page through the 3.3.2 rule, including ordinary inputs with no label, placeholder-only format instructions, unexplained required-field indicators, and instruction quality.</li>
+              <li>The non-legend-first-child fieldset case may also trigger the separate 1.3.1 <code>fieldset-no-legend</code> rule, so <span class="highlight">classification and de-duplication should be reviewed</span>.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep <code>legend-first-child-of-fieldset</code> as one automated 3.3.2 check, but expand 3.3.2 coverage with rules for unlabeled controls, placeholder-only labels or instructions, missing required-field explanations, missing format instructions, and unassociated helper text. Keep subjective instruction-quality cases as manual-review candidates.</p>
           </td>
@@ -1186,28 +1195,38 @@
               <li><strong>Caution:</strong> WCAG 4.1.1 Parsing is obsolete and removed in WCAG 2.2, so it <span class="highlight">should not be reported</span> as a current WCAG 2.2 success-criterion failure.</li>
               <li>SiteLint reports the duplicate-ID examples on the test page under SiteLint / Best Practices. That classification is appropriate when WCAG 2.2 is the selected standard.</li>
               <li>When WCAG 2.0 or 2.1 is the selected target, duplicate IDs <span class="highlight">should ideally be reportable under WCAG 4.1.1</span> Parsing rather than only as a Best Practices finding.</li>
-              <li>Under WCAG 2.2, generic duplicate-ID findings should depend on the Best Practices filter unless a more specific rule identifies a downstream failure under an active SC such as 1.3.1, 3.3.2, or 4.1.2.</li>
-              <li>Duplicate attributes and malformed nesting are not good live-DOM test cases because browsers may repair or normalize invalid markup before SiteLint evaluates the DOM.</li>
+              <li>Under WCAG 2.2, generic duplicate-ID findings <span class="highlight">should depend on the Best Practices filter</span> unless a more specific rule identifies a downstream failure under an active SC such as 1.3.1, 3.3.2, or 4.1.2.</li>
+              <li>Duplicate attributes and malformed nesting are <span class="highlight">not good live-DOM test cases</span> because browsers may repair or normalize invalid markup before SiteLint evaluates the DOM.</li>
             </ul>
             <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Keep one duplicate-ID detector, but make the reporting classification version-aware: WCAG 2.0/2.1 → 4.1.1 Parsing; WCAG 2.2 → SiteLint / Best Practices unless a specific downstream accessibility failure is detected.</p>
           </td>
         </tr>
-        <tr>
+        <tr class="status-created">
           <td>86</td>
           <td>A</td>
           <th scope="row"><a href="4-1-2.html">4.1.2</a></th>
           <td>Name, Role, Value</td>
-          <td></td>
+          <td>
+            <ul class="issues-list">
+              <li>SiteLint correctly reports the focusable element inside <code>aria-hidden="true"</code> under 4.1.2.</li>
+              <li>SiteLint correctly reports the empty button with no accessible name under 4.1.2.</li>
+              <li>SiteLint correctly reports the iframe that is missing a <code>title</code> attribute under 4.1.2.</li>
+              <li>SiteLint <span class="highlight">does not report the custom switch example</span> that is focusable and visually switch-like but does not expose an appropriate role or checked state.</li>
+            </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Preserve the current concrete 4.1.2 checks for hidden focusable content, empty button names, and missing iframe titles. Expand coverage for custom controls whose visual role, state, or value is not programmatically exposed, while keeping dynamic state-update behavior as an interaction-based test where needed.</p>
+          </td>
         </tr>
-        <tr class="status-skipped">
+        <tr class="status-created">
           <td>87</td>
           <td>AA</td>
-          <th scope="row">4.1.3</th>
+          <th scope="row"><a href="4-1-3.html">4.1.3</a></th>
           <td>Status Messages</td>
           <td>
-            <ul class="notes-list">
-              <li><strong>Skipped:</strong> This requires triggering dynamic status messages, such as validation results, save confirmations, loading states, or search results counts, and checking whether assistive technologies can receive them without moving focus. The relevant content appears or changes during interaction.</li>
+            <ul class="issues-list">
+              <li>SiteLint did not report findings on the current page.</li>
+              <li>SiteLint maps WCAG 4.1.3 to <code>status-messages</code>, but the current behavior appears to be manual verification and <span class="highlight">does not detect status messages missing live-region semantics</span>.</li>
             </ul>
+            <p class="recommendation-note"><span class="recommendation-label">Recommendation:</span> Treat <code>status-messages</code> as a manual prompt unless SiteLint adds concrete checks for likely status, alert, validation, save-confirmation, loading, and results-count messages that are not exposed with status, alert, or live-region semantics.</p>
           </td>
         </tr>
       </tbody>
@@ -1317,7 +1336,7 @@
         w.removeEventListener('DOMContentLoaded', onPageLoaded);
         m.parentNode.insertBefore(a, m);
       }
-      
+
       function onAuditorLoaded(){
         auditor.config({
           includeHidden: true,
